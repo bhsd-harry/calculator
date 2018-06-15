@@ -43,7 +43,7 @@
     <div id="divServant">
         <table class="servant">
             <tr>
-                <td colspan="4">
+                <td  align="left" colspan="4">
 					<label for="ckIsMaxGrail">
                         <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX</label>
                     <select id="ddlChooseServant">
@@ -53,7 +53,7 @@
 				</td>
 			</tr>
 			 <tr>
-                <td colspan="4">
+                <td  align="left" colspan="4">
                     <input type="text" id="txtWord" class="search" list="dlTips" autofocus />
                     <input type="button" id="btnSearch" value="查询" />&nbsp;
 				</td>
@@ -383,7 +383,7 @@
             <tr>
             </tr>
             <tr>
-                <td colspan="2">
+                <td  align="left" colspan="2">
                     <input type="button" value="计算" id="btnCalcute" onclick="calc()" />
                 </td>
 				
@@ -396,6 +396,7 @@
         <b>结果：<a href="javascript:;" onclick="clearTable(1)">清空</a></b>
         <table id="tbResult" class="result">
             <tr>
+				<th>&nbsp;</th>
                 <th>排名</th>
 				<th>平均值</th>
                 <th>从者</th>
@@ -414,7 +415,7 @@
                 <th>最小值</th>
                 <th>最大值</th>
                 
-                <th>&nbsp;</th>
+                
             </tr>
         </table>
     </div>
@@ -1256,6 +1257,8 @@
         rankIndex++;
         let tb = $("tbResult");
         let newRow = tb.insertRow(-1);
+		//18.删除操作     
+        newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
         //1.排名
         newRow.insertCell(-1).innerHTML = rankIndex;
 		//17.宝具伤害平均值       
@@ -1302,8 +1305,7 @@
         max.innerHTML = obj.max;
         max.classList.add(obj.careerResistClassName);
         
-        //18.删除操作     
-        newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
+        
     }
     //获取宝具颜色
     function getColor(num) {
