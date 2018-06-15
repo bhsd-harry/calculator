@@ -137,7 +137,7 @@ function initialServant(star,career, name, eName, servantNo, keys, camp, attribu
 }
 function initNew(){
 	initialServant(5,"Caster", "阿纳斯塔西娅", "Анастасия", 201 ,["皇女"], "人", ["中立","中庸"],["人型", "被「天地乖离开辟之星」所克"], 10546, 14259, 11544, 15621, "AAABQ", 450, 600 ,675, 712.5, 750,0,0,0,0,0, "" , 1,{ cardColor: 1, cardBuff: 12, fixedDamageBuff: 0, critialPowerBuff: 0 });
-        initialServant(4,"Berserker","阿塔兰忒〔Alter〕","Atalanta", 202, ["狂阿塔"], "地", ["混沌","恶"], ["人型", "被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克","猛兽"],
+        initialServant(4,"Berserker","阿塔兰忒〔Alter〕","Atalanta(Alter)", 202, ["狂阿塔"], "地", ["混沌","恶"], ["人型", "被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克","猛兽"],
 9806,10634,11873,12894, "ABBQQ", 1200,1600,1800,1900,2000,0,0,0,0,0,"",0.8,{ cardColor: 1.5, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 10 });
 	initialServant(3,"Caster","阿维斯布隆","Avicebron",203,["哲学家"],"人",["秩序","中庸"],["人型", "被「天地乖离开辟之星」所克"],6376,9981,8629,13533,"AAABQ",300,400,450,475,500,0,0,0,0,0,"",1,{ cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
 	initialServant(3,"Avenger","安东尼奥·萨列里","Antonio Salieri",204,[""],"地",["混沌","恶"],["人型", "被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克","所爱之人"],8125,7840,10996,10630,"AABBQ",450,600,675,712.5,750,0,0,0,0,0,"",1,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
@@ -146,7 +146,7 @@ function initNew(){
 	initialServant(4,"Archer","喀戎","Chiron",207,["马老师"],"天",["秩序","善"],["人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克", "希腊神话系男性"],
 9294,12250,11253,14853,"AABQQ",900,1200,1350,1425,1500,0,0,0,0,0,"",1,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 150, critialPowerBuff: 10 });
 	initialServant(4,"Caster","齐格","Sieg",208,[""],"人",["中立","善"],["人型", "被「天地乖离开辟之星」所克","龙"],8394,11288,10163,13686,"AABBQ",450,600,675,712.5,750,0,0,0,0,0,"",1,{ cardColor: 1, cardBuff: 6.5, fixedDamageBuff: 0, critialPowerBuff: 12 });
-	initialServant(5, "Alterego", "冲田总司〔Alter〕", "Souji Okita", 209, [""], "人",["中立","中庸"],["人型", "被「天地乖离开辟之星」所克","阿尔托莉雅脸","所爱之人"],12465,12696,13645,13909,"ABBQQ",300,400,450,475,500,0,0,0,0,0,"",1.5,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
+	initialServant(5, "Alterego", "冲田总司〔Alter〕", "Okita Souji(Alter)", 209, [""], "人",["中立","中庸"],["人型", "被「天地乖离开辟之星」所克","阿尔托莉雅脸","所爱之人"],12465,12696,13645,13909,"ABBQQ",300,400,450,475,500,0,0,0,0,0,"",1.5,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
 	initialServant(3,"Assasin","冈田以藏","Izou Okada",210,[""],"人",["中立","恶"],["人型", "被「天地乖离开辟之星」所克"],6879,8844,9310,11991,"AABQQ",900,1200,1350,1425,1500,0,0,0,0,0,"",1);
 	initialServant(4,"Rider","坂本龙马","Ryouma Sakamoto",211,["龙马"],"人",["中立","中庸"],["骑乘","人型","神性", "被「天地乖离开辟之星」所克"], 8555,11880,10358,14404,"AABBQ",900,1200,1350,1425,1500,0,0,0,0,0,"",1,{ cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 170, critialPowerBuff: 0 });
 }
