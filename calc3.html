@@ -982,7 +982,7 @@
 
 			let ocLevel1 = $("ddlOc").value; let ocs1 = servants[$("ddlChooseServant").value].oc;
 			let o= getFloat("txtEnemyDefenceBuff");
-			if(ocs1["type"] = "TreasureSpecialDefReduceAttck"){
+			if(ocs1["type"] == "TreasureSpecialDefReduceAttck"){
 				$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") + ocs1[ocLevel1]
 			}
 			//$("txtEnemyFixedDamageReductionBuff").value = 0;
