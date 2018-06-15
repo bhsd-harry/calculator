@@ -5,6 +5,10 @@
     <title></title>
     <link href="css/style.css" rel="stylesheet" />
     <style>
+	
+		input[type="number"]{
+			width: 60px;
+		}
         .servant tr:nth-child(2) td:nth-child(odd) {
             width: 10%;
         }
@@ -40,11 +44,16 @@
         <table class="servant">
             <tr>
                 <td colspan="4">
+					<label for="ckIsMaxGrail">
+                        <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX</label>
                     <select id="ddlChooseServant">
                         <option value="-1">|----------------------请选择从者-------------------------|</option>
                     </select>
-                    <label for="ckIsMaxGrail">
-                        <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX</label>
+                    
+				</td>
+			</tr>
+			 <tr>
+                <td colspan="4">
                     <input type="text" id="txtWord" class="search" list="dlTips" autofocus />
                     <input type="button" id="btnSearch" value="查询" />&nbsp;
 				</td>
@@ -287,8 +296,8 @@
                         <option value="2.0">普通克制</option>
                         <option value="1.5">狂阶克制</option>
                         <option value="0.5">被克制</option>
-                        <option value="1.2">Alterego- Beast III</option>
-                        <option value="1.5">Alterego-下三</option>
+                        <option value="1.2">AE- Beast III</option>
+                        <option value="1.5">AE-下三</option>
                     </select>
                 </td>
                 <td>从者职介</td>
@@ -332,7 +341,7 @@
             <tr>
                 <td>宝具伤害</td>
                 <td>
-                    <input type="text" id="txtTreasurePowerBuff" value="0"/>
+                    <input type="number" id="txtTreasurePowerBuff" value="0"/>
                 </td>
 				<td>固定伤害</td>
                 <td>
@@ -343,11 +352,11 @@
 			<tr>
                 <td>攻击力</td>
                 <td>
-                    <input type="text" id="txtAttackBuff" value="0" />
+                    <input type="number" id="txtAttackBuff" value="0" />
                 </td>
                 <td>敌方防御力</td>
                 <td>
-                    <input type="text" id="txtEnemyDefenceBuff" value="0" />
+                    <input type="number" id="txtEnemyDefenceBuff" value="0" />
                 </td>
             </tr>
             <tr>
@@ -364,7 +373,7 @@
 			<tr>
                 <td>卡牌Buff</td>
                 <td>
-                    <input type="text" id="txtCardBuff" value="0" data-value="0" />
+                    <input type="number" id="txtCardBuff" value="0" data-value="0" />
                 </td>
                 <td>敌方固定减伤</td>
                 <td>
@@ -374,9 +383,10 @@
             <tr>
             </tr>
             <tr>
-                <td colspan="8">
+                <td colspan="2">>
                     <input type="button" value="计算" id="btnCalcute" onclick="calc()" />
                 </td>
+				
             </tr>
         </table>
     </div>
@@ -387,6 +397,7 @@
         <table id="tbResult" class="result">
             <tr>
                 <th>排名</th>
+				<th>平均值</th>
                 <th>从者</th>
                 <th>等级</th>
                 <!--<th>ATK</th>
@@ -402,7 +413,7 @@
                 <th>敌防Buff</th>
                 <th>最小值</th>
                 <th>最大值</th>
-                <th>平均值</th>
+                
                 <th>&nbsp;</th>
             </tr>
         </table>
@@ -1247,7 +1258,10 @@
         let newRow = tb.insertRow(-1);
         //1.排名
         newRow.insertCell(-1).innerHTML = rankIndex;
-
+		//17.宝具伤害平均值       
+        let avg = newRow.insertCell(-1);
+        avg.innerHTML = obj.avg;
+        avg.classList.add(obj.careerResistClassName);
         //2.从者
         newRow.insertCell(-1).innerHTML = obj.servantName;
 
@@ -1287,10 +1301,7 @@
         let max = newRow.insertCell(-1);
         max.innerHTML = obj.max;
         max.classList.add(obj.careerResistClassName);
-        //17.宝具伤害平均值       
-        let avg = newRow.insertCell(-1);
-        avg.innerHTML = obj.avg;
-        avg.classList.add(obj.careerResistClassName);
+        
         //18.删除操作     
         newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
     }
