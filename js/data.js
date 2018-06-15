@@ -290,7 +290,7 @@ function initRider(){
 function initCaster(){
     //----------------------------------Caster---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
-    initialServant(5,"Caster", "玄奘三蔵", "Genjou Sanzou", 113, ["玄奘三蔵", "师傅"], "人", ["秩序", "善"], ["人型", "神性", "被「天地乖离开辟之星」所克"], 11658, 12965, 12761, 14204, "AAABQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 12, fixedDamageBuff: 125, critialPowerBuff: 0 });
+    initialServant(5,"Caster", "玄奘三藏", "Genjou Sanzou", 113, ["玄奘三藏", "师傅"], "人", ["秩序", "善"], ["人型", "神性", "被「天地乖离开辟之星」所克"], 11658, 12965, 12761, 14204, "AAABQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 12, fixedDamageBuff: 125, critialPowerBuff: 0 });
     initialServant(5,"Caster", "尼禄・克劳狄乌斯", "Nero Claudius2", 175, ["尼禄克劳狄乌斯", "C尼禄","水尼禄"], "人", ["混沌", "夏"], ["骑乘", "人型", "罗马", "阿尔托莉雅脸", "被「天地乖离开辟之星」所克", "王"], 10857, 13685, 11885, 14992, "AABBQ", 300, 400, 450, 475, 500, 20, 30, 40, 50, 60, "TreasurePowerBuff", 1.5, { cardColor: -2, cardBuff: "8|11", fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(5,"Caster", "伊莉雅斯菲尔", "Illyasviel", 136, ["伊莉雅斯菲尔", "马猴烧酒", "魔伊"], "人", ["中立", "善"], ["人型", "被「天地乖离开辟之星」所克"], 10857, 13825, 11885, 15146, "AAABQ", 800, 1000, 1100, 1150, 1200, 20, 40, 60, 80, 100, "TreasureSpecialCardPowerAttack", 1.5, null);
     initialServant(5,"Caster", "莱昂纳多・达・芬奇", "Leonardo da Vinci", 127, ["莱昂纳多达芬奇"], "星", ["混沌", "善"], ["人型", "被「天地乖离开辟之星」所克"], 10598, 14259, 11601, 15621, "AAABQ", 600, 750, 825, 862, 900, 30, 40, 50, 60, 70, "TreasurePowerBuff", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
@@ -309,7 +309,7 @@ function initCaster(){
     initialServant(4,"Caster", "伊丽莎白・巴陶里〔万圣节〕", "Erzsebet Bathory（Halloween)", 61, ["伊丽莎白巴陶里", "C龙娘"], "人",["混沌","恶"],["人型","龙","被「天地乖离开辟之星」所克"], 8616, 11404, 10432, 13827, "AAABQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(4,"Caster", "吉尔伽美什〔Caster〕", "Gilgamesh(Caster)", 145, ["吉尔伽美什", "C闪"], "人",["秩序", "善"],["人型","神性","被「天地乖离开辟之星」所克","所爱之人","王"], 8460, 12005, 10243, 14556, "AAABQ", 450, 600, 675, 712, 750, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 175, critialPowerBuff: 0 });
     initialServant(4,"Caster", "托马斯・爱迪生", "Thomas Edison", 103, ["托马斯爱迪生", "托马狮", "艾迪牲", "大总统"], "人",["秩序","中庸"],["人型","被「天地乖离开辟之星」所克"], 7952, 11882, 9628, 14407, "AAABQ", 600, 750, 825, 862.5, 900, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 4, fixedDamageBuff: 0, critialPowerBuff: 0 });
-    initialServant(4,"Caster","齐格","Sieg",208,[""],"人",["中立","善"],["人型", "被「天地乖离开辟之星」所克","龙"],8394,11288,10163,13686,"AABBQ",450,600,675,712.5,750,20,25,30,35,40,"TreasureSpecialDefReduceAttck",1,{ cardColor: 1, cardBuff: 6.5, fixedDamageBuff: 0, critialPowerBuff: 12 });
+    initialServant(4,"Caster","齐格","Sieg",208,["齐格"],"人",["中立","善"],["人型", "被「天地乖离开辟之星」所克","龙"],8394,11288,10163,13686,"AABBQ",450,600,675,712.5,750,20,25,30,35,40,"TreasureSpecialDefReduceAttck",1,{ cardColor: 1, cardBuff: 6.5, fixedDamageBuff: 0, critialPowerBuff: 12 });
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Caster", "美狄亚", "Medea", 31, ["美狄亚", "C妈", "Saber控"], "地",["中立","恶"],["人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 7418, 8643, 10039, 11719, "AAABQ", 600, 750, 825, 862.5, 900, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(3,"Caster", "杰罗尼莫", "Geronimo", 104, ["杰罗尼莫", "萨满"], "人",["中立","善"],["人型","被「天地乖离开辟之星」所克","所爱之人"], 6857, 9123, 9280, 12369, "AABBQ", 600, 750, 825, 862.5, 900, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
@@ -323,7 +323,7 @@ function initCaster(){
     
     initialServant(1,"Caster", "沃尔夫冈·阿马多伊斯·莫扎特", "Wolfgang Amadeus Mozart", 36, ["沃尔夫冈阿马多伊斯莫扎特", "假面"], "星",["中立","善"],["人型","所爱之人"], 5195, 7129, 8072, 10990, "AAABQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
 
-    initialServant(3,"Caster","阿维斯布隆","Avicebron",203,["哲学家"],"人",["秩序","中庸"],["人型", "被「天地乖离开辟之星」所克"],6376,9981,8629,13533,"AAABQ",300,400,450,475,500,0,0,0,0,0,"",1,{ cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(3,"Caster","阿维斯布隆","Avicebron",203,["哲学家"],"人",["秩序","中庸"],["人型", "被「天地乖离开辟之星」所克"],6376,9981,8629,13533,"AAABQ",300,400,450,475,500,0,0,0,0,0,"",1.5,{ cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
 }
 
 
@@ -355,13 +355,14 @@ function initAss(){
     initialServant(3,"Assassin", "风魔小太郎", "Fuuma Koutarou", 117, ["风魔小太郎"], "人",["混沌","恶"],["人型","被「天地乖离开辟之星」所克"], 7091, 8844, 9597, 11991, "ABQQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8,null);
     initialServant(3,"Assassin", "百貌的哈桑", "Hassan of Hundred Faces", 110, ["百貌的哈桑"], "人",["秩序","恶"],["人型","被「天地乖离开辟之星」所克"], 6686, 9310, 9049, 12623, "AABQQ", 1200, 1500, 1650, 1725, 1800, 0, 0, 0, 0, 0, "", 1,null);
     initialServant(3,"Assassin", "静谧的哈桑", "Hassan of Serenity", 124, ["静谧的哈桑"], "人",["秩序","恶"],["人型","被「天地乖离开辟之星」所克"], 6636, 9310, 8981, 12623, "AABQQ", 1200, 1500, 1650, 1725, 1800, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
-    
+    initialServant(3,"Assasin","冈田以藏","Izou Okada",210,["冈田以藏"],"人",["中立","恶"],["人型", "被「天地乖离开辟之星」所克"],6879,8844,9310,11991,"AABQQ",900,1200,1350,1425,1500,0,0,0,0,0,"",1,null);
+	
     initialServant(2,"Assassin", "咒腕的哈桑", "Hassan of the Cursed Arm", 40, ["咒腕的哈桑"], "人",["秩序","恶"],["人型","被「天地乖离开辟之星」所克"], 6280, 7594, 9100, 10960, "ABQQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8,null);
     initialServant(2,"Assassin", "歌剧魅影", "Phantom of the Opera", 44, ["歌剧魅影", "赛巴斯"], "地",["混沌","恶"],["人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 5654, 8393, 8193, 12112, "ABQQQ", 600, 750, 825, 862.5, 900, 0, 0, 0, 0, 0, "", 1,null);
     initialServant(2,"Assassin", "夏尔・亨利・桑松", "Charles Henri Sanson", 43, ["夏尔亨利桑松"], "人",["秩序","恶"],["人型","被「天地乖离开辟之星」所克"], 5456, 8309, 7906, 11991, "ABQQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 1.5,null);
 
     initialServant(1,"Assassin", "佐佐木小次郎", "Sasaki Koujirou", 39, ["佐佐木小次郎", "屠龙剑圣"], "人",["中立","恶"],["人型","被「天地乖离开辟之星」所克"], 5735, 6220, 8912, 9588, "ABQQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8,null);
-    initialServant(3,"Assasin","冈田以藏","Izou Okada",210,[""],"人",["中立","恶"],["人型", "被「天地乖离开辟之星」所克"],6879,8844,9310,11991,"AABQQ",900,1200,1350,1425,1500,0,0,0,0,0,"",1,null);
+    
 }
 
 
@@ -425,7 +426,7 @@ function initExtra(){
     initialServant(4,"Avenger", "海森・罗伯", "Hyesons Robert", 158, ["海森罗伯", "无头骑士", "狼王"], "地",["混沌","恶"],["人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克","猛兽"], 10628, 9949, 12868, 12063, "AABQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
 
     /******************************************3星及以下********************************************************************/
-    initialServant(3,"Avenger","安东尼奥·萨列里","Antonio Salieri",204,[""],"地",["混沌","恶"],["人型", "被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克","所爱之人"],8125,7840,10996,10630,"AABBQ",450,600,675,712.5,750,0,0,0,0,0,"",1,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
+    initialServant(3,"Avenger","安东尼奥·萨列里","Antonio Salieri",204,["安东尼奥·萨列里"],"地",["混沌","恶"],["人型", "被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克","所爱之人"],8125,7840,10996,10630,"AABBQ",450,600,675,712.5,750,0,0,0,0,0,"",1,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
     initialServant(0,"Avenger", "安哥拉曼纽", "Angra Mainyu", 107, ["安哥拉曼纽", "小安"], "人",["混沌","恶"],["人型","被「天地乖离开辟之星」所克"], 5683, 7981, 8235, 11518, "AABQQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
 
     //----------------------------------MoonCancer---------------------------------------------------------------------//
@@ -436,7 +437,7 @@ function initExtra(){
     /******************************************5星********************************************************************/
     initialServant(5,"Alterego", "梅尔特莉莉丝（溶解莉莉丝）", "Meltlilith", 163, ["梅尔特莉莉丝溶解莉莉丝"], "地",["秩序","善"],["骑乘","人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 11692, 13402, 12799, 14682, "ABBQQ", 1200, 1600, 1800, 1900, 2000, 10, 15, 20, 25, 30, "TreasureSpecialCardPowerAttack", 0.8, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 225, critialPowerBuff: 10 });
     initialServant(5,"Alterego", "杀生院祈荒", "Sesshouin Kiara", 167, ["杀生院祈荒"], "兽",["混沌","恶"],["人型"], 11668, 14606, 12772, 16001, "AABBQ", 450, 600, 675, 712, 750, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
-    initialServant(5, "Alterego", "冲田总司〔Alter〕", "Okita Souji(Alter)", 209, [""], "人",["中立","中庸"],["人型", "被「天地乖离开辟之星」所克","阿尔托莉雅脸","所爱之人"],12465,12696,13645,13909,"ABBQQ",300,400,450,475,500,0,0,0,0,0,"",1.5,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
+    initialServant(5, "Alterego", "冲田总司〔Alter〕", "Okita Souji(Alter)", 209, ["冲田总司"], "人",["中立","中庸"],["人型", "被「天地乖离开辟之星」所克","阿尔托莉雅脸","所爱之人"],12465,12696,13645,13909,"ABBQQ",300,400,450,475,500,0,0,0,0,0,"",1.5,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
     /******************************************4星********************************************************************/
     initialServant(4,"Alterego", "帕森莉普（热情迷唇）", "Passionlip", 164, ["帕森莉普热情迷唇"], "地",["秩序","中庸"],["人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 10299, 10901, 12470, 13217, "ABBBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 200, critialPowerBuff: 6 });
     initialServant(4,"Alterego", "机械伊丽酱", "mekaerichan", 190, ["机械伊丽酱","机械龙娘I号"], "人",["秩序","善"],["人型","被「天地乖离开辟之星」所克"], 9997, 10901, 12104, 13217, "ABBBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });

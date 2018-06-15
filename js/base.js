@@ -25,9 +25,9 @@ $("btnShowMaterials").onclick=function(){
     showMaterialsWin();
 }
 
-/*$("btnShowNP").onclick=function(){
+$("btnShowNP").onclick=function(){
     showNPWin();
-}*/
+}
 
 //关闭从者技能详情
 $("btnClose").onclick = function () {
@@ -84,10 +84,10 @@ function showMaterialsWin(){
 }
 
 //显示NP获取TOP5图
-/*function showNPWin(){
+function showNPWin(){
     showWin("NP",".png");
 }
-*/
+
 //查询
 function search() {
     //清空从者数据数组
