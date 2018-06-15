@@ -151,7 +151,7 @@ function initNew(){
 
 
 function initSaber(){
-    initialServant(5,"Saber", "亚瑟・潘德拉贡〔Prototype〕", "Arthur Pendragon〔Prototype〕", 160, ["亚瑟", "旧剑", "亚瑟潘德拉贡"], "地", ["秩序", "善"], ["骑乘", "人型", "龙", "被「天地乖离开辟之星」所克", "被「人类神话雷电降临」所克", "被「神秘杀」所克", "亚瑟", "所爱之人", "王"], 12465, 13975, 13645, 15310, "AABBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(5,"Saber", "亚瑟・潘德拉贡〔Prototype〕", "Arthur Pendragon〔Prototype〕", 160, ["亚瑟", "旧剑", "亚瑟潘德拉贡"], "地", ["秩序", "善"], ["骑乘", "人型", "龙", "被「天地乖离开辟之星」所克", "被「人类神话雷电降临」所克", "被「神秘杀」所克", "亚瑟", "所爱之人", "王"], 12465, 13975, 13645, 15310, "AABBQ", 300, 400, 450, 475, 500, 10, 20, 30, 40, 50, "TreasurePowerBuff", 1.5, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(5,"Saber", "阿尔提拉", "Artila", 8, ["阿提拉", "b提拉", "彩笔", "天元突破", "匈奴王", "大王", "阿尔提拉"], "人", ["混沌", "善"], ["骑乘", "人型", "神性", "被「天地乖离开辟之星」所克", "王"], 12343, 13907, 13511, 15236, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 175, critialPowerBuff: 0 });
     initialServant(5,"Saber", "沖田総司", "Okita Souji", 68, ["冲田总司", "樱saber"], "人", ["中立", "中庸"], ["骑乘", "人型", "阿尔托莉雅脸", "被「天地乖离开辟之星」所克"], 12068, 13225, 13210, 14489, "ABBQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 2, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(5,"Saber", "宫本武藏", "Miyamoto Musashi", 153, ["宫本武藏"], "人", ["混沌", "善"], ["人型", "被「天地乖离开辟之星」所克"], 12037, 13635, 13176, 14938, "ABBBQ", 600, 800, 900, 950, 1000, 20, 30, 40, 50, 60, "TreasurePowerBuff", 1.5);
