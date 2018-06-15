@@ -256,7 +256,7 @@
                         <option value="oc5">5</option>
                     </select>
                     <label for="ckIsSpecialAttack">
-                        <input type="checkbox" id="ckIsSpecialAttack" value="1" />特攻
+                        <input type="checkbox" id="ckIsSpecialAttack" value="1" /> OC特效
                     </label>
                 </td>
 
@@ -712,8 +712,9 @@
 
         let id = this.value;
         if (id != "-1" && id != "") {
-            changeOc();
+            resetOc();
             bindServantData(id);
+			changeOc();
         }
     }
     //宝具等级选中项发生变化事件
@@ -944,7 +945,16 @@
         //向下取整总宝具倍率
         $("txtTreasureRate").value = Math.floor(treasureRate);
     }
+	function resetOc(servant) {
+            $("txtTreasureSpecialAttack").value = 100;
+            $("txtSpecialAttackPowerBuff").value = 0;
 
+            $("txtAttackBuff").value = 0;
+            $("txtTreasurePowerBuff").value = 0;
+			$("txtEnemyDefenceBuff").value = 0;
+            $("ddlOc").selectedIndex = 0;
+        
+    }
     //OC等级选中项发生变化事件
     function changeOc(servant) {
         if (!servant) {
@@ -955,6 +965,9 @@
         let ocLevel = $("ddlOc").value;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
+		if(ocs["type"] != "TreasureSpecialAttack"){
+			isSpecialAttack.checked = true;
+		}
         if (isSpecialAttack.checked) {//是特攻
             if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
                 $("txtTreasureSpecialAttack").value = ocs[ocLevel];
@@ -977,6 +990,10 @@
             else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
                 $("txtAttackBuff").value = ocs[ocLevel];
             }
+			else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
+				$("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+				
+			}
             else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
                 $("txtTreasurePowerBuff").value = ocs[ocLevel];
             }
