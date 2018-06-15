@@ -384,7 +384,7 @@
             </tr>
             <tr>
                 <td  align="left" colspan="4">
-					<input type="button" value="清空buff" id="btnClearBuff" onclick="resetOc()" />
+					<input type="button" value="清空buff" id="btnClearBuff" onclick="changeOc()" />
                     <input type="button" value="计算" id="btnCalculate" onclick="calc()" />
 					<input type="button" value="孔明buff" id="btnAddKM" onclick="addKM()" />
 					<input type="button" value="梅林buff" id="btnAddML" onclick="addML()" />
@@ -996,7 +996,7 @@
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
         let servant = servants[$("ddlChooseServant").value];
         if(servant.cardColor == 1.5){
-			$("txtCardBuff").value = getFloat("txtCardBuff") + 30;
+			$("txtCardBuff").value = getFloat("txtCardBuff") + 50;
 		}
 	}
 	
