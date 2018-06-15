@@ -320,7 +320,7 @@
                 </td>
                 <td>卡牌Buff(%)</td>
                 <td>
-                    <input type="text" id="txtCardBuff" value="0" data-value="0" />
+                    <input type="text" id="txtCardBuff" value="0" data-value="0"/>
                 </td>
                 <td>攻击力Buff(%)</td>
                 <td>
@@ -342,7 +342,7 @@
                 </td>
                 <td>固定伤害Buff</td>
                 <td>
-                    <input type="number" id="txtFixedDamageBuff" value="0" />
+                    <input type="number" id="txtFixedDamageBuff" value="0" basicvalue="0" />
                 </td>
                 <td>敌方固定减伤Buff</td>
                 <td>
@@ -353,6 +353,9 @@
             </tr>
             <tr>
                 <td colspan="8">
+					<input type="button" value="孔明buff" id="btnAddKM" onclick="addKM()" />
+					<input type="button" value="梅林buff" id="btnAddML" onclick="addML()" />
+					<input type="button" value="清空buff" id="btnClearBuff" onclick="resetOc()" />
                     <input type="button" value="计算" id="btnCalcute" onclick="calc()" />
                 </td>
             </tr>
@@ -898,6 +901,7 @@
             }
             /****************************************固定伤害Buff**************************************************/
             if (!isNaN(careerSkill.fixedDamageBuff)) {
+				$("txtFixedDamageBuff").basicvalue = careerSkill.fixedDamageBuff;
                 $("txtFixedDamageBuff").value = careerSkill.fixedDamageBuff;
             }
         }
@@ -949,13 +953,39 @@
         //向下取整总宝具倍率
         $("txtTreasureRate").value = Math.floor(treasureRate);
     }
+
+	
+	function addKM(){
+		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
+		$("txtFixedDamageBuff").value = getFloat("txtFixedDamageBuff") + 500;	
+	}
+	
+	function addML(){
+		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
+        let servant = servants[$("ddlChooseServant").value];
+        if(servant.cardColor == 1.5){
+			$("txtCardBuff").value = getFloat("txtCardBuff") + 30;
+		}
+	}
+	
 	function resetOc(servant) {
+		if (!servant) {
+            let id = $("ddlChooseServant").value;
+            servant = servants[id];
+        }
             $("txtTreasureSpecialAttack").value = 100;
             $("txtSpecialAttackPowerBuff").value = 0;
-            $("txtCardBuff").value = 0;
+			$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;
+            $("txtCardBuff").value = $("txtCardBuff").dataset.value;
             $("txtAttackBuff").value = 0;
             $("txtTreasurePowerBuff").value = 0;
-			$("txtEnemyDefenceBuff").value = 0;
+
+			let ocLevel1 = $("ddlOc").value; let ocs1 = servants[$("ddlChooseServant").value].oc;
+			let o= getFloat("txtEnemyDefenceBuff");
+			if(ocs1["type"] = "TreasureSpecialDefReduceAttck"){
+				$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") + ocs1[ocLevel1]
+			}
+			//$("txtEnemyFixedDamageReductionBuff").value = 0;
             $("ddlOc").selectedIndex = 0;
         
     }
@@ -1003,13 +1033,7 @@
             }
         }
         else {
-            $("txtTreasureSpecialAttack").value = 100;
-            $("txtSpecialAttackPowerBuff").value = 0;
-
-            $("txtAttackBuff").value = 0;
-            $("txtTreasurePowerBuff").value = 0;
-            $("ddlOc").selectedIndex = 0;
-
+            resetOc();
 
             //设置回被动卡牌buff
             let originNum = getTxtAttrFloatNum("txtCardBuff", "value");

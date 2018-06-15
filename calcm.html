@@ -383,8 +383,12 @@
             <tr>
             </tr>
             <tr>
-                <td  align="left" colspan="2">
-                    <input type="button" value="计算" id="btnCalcute" onclick="calc()" />
+                <td  align="left" colspan="4">
+					<input type="button" value="清空buff" id="btnClearBuff" onclick="resetOc()" />
+                    <input type="button" value="计算" id="btnCalculate" onclick="calc()" />
+					<input type="button" value="孔明buff" id="btnAddKM" onclick="addKM()" />
+					<input type="button" value="梅林buff" id="btnAddML" onclick="addML()" />
+					
                 </td>
 				
             </tr>
@@ -983,7 +987,24 @@
         //向下取整总宝具倍率
         $("txtTreasureRate").value = Math.floor(treasureRate);
     }
+	function addKM(){
+		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
+		$("txtFixedDamageBuff").value = getFloat("txtFixedDamageBuff") + 500;	
+	}
+	
+	function addML(){
+		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
+        let servant = servants[$("ddlChooseServant").value];
+        if(servant.cardColor == 1.5){
+			$("txtCardBuff").value = getFloat("txtCardBuff") + 30;
+		}
+	}
+	
 	function resetOc(servant) {
+		if (!servant) {
+            let id = $("ddlChooseServant").value;
+            servant = servants[id];
+        }
             $("txtTreasureSpecialAttack").value = 100;
             $("txtSpecialAttackPowerBuff").value = 0;
             $("txtCardBuff").value = 0;
@@ -1037,12 +1058,7 @@
             }
         }
         else {
-            $("txtTreasureSpecialAttack").value = 100;
-            $("txtSpecialAttackPowerBuff").value = 0;
-
-            $("txtAttackBuff").value = 0;
-            $("txtTreasurePowerBuff").value = 0;
-            $("ddlOc").selectedIndex = 0;
+            resetOc();
 
 
             //设置回被动卡牌buff
