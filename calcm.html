@@ -1012,13 +1012,8 @@
         $("txtCardBuff").value = $("txtCardBuff").dataset.value;
         $("txtAttackBuff").value = 0;
         $("txtTreasurePowerBuff").value = 0;
-
-		let ocLevel1 = $("ddlOc").value; let ocs1 = servant.oc;
-		let o= getFloat("txtEnemyDefenceBuff");
-		if(ocs1["type"] == "TreasureSpecialDefReduceAttck"){
-			$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") + ocs1[ocLevel1]
-		}
-		//$("txtEnemyFixedDamageReductionBuff").value = 0;
+		$("txtEnemyDefenceBuff").value = 0;
+		$("txtEnemyFixedDamageReductionBuff").value = 0;
         //$("ddlOc").selectedIndex = 0;
         //设置回被动卡牌buff
         let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
