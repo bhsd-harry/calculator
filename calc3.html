@@ -737,18 +737,18 @@
     };
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {
-        changeOc();
+        adjustOc(true);
     }
     $("txtFufuHp").onchange = function () {
-        changeOc();
+        adjustOc(true);
     }
     $("txtCardHp").onchange = function () {
-        changeOc();
+        adjustOc(true);
     }
 
     //是否特攻
     $("ckIsSpecialAttack").onclick = function () {
-        changeOc();
+        adjustOc(true);
     }
 
      //等级下拉列表选中项改变事件
@@ -1007,7 +1007,7 @@
         let ocLevel = $("ddlOc").value;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
-		if(ocs["type"] != "TreasureSpecialAttack"){
+		if(ocs["type"] != "TreasureSpecialAttack" && ocs["type"] != ""){
 			isSpecialAttack.checked = true;
 		}
         if (isSpecialAttack.checked) {//是特攻
@@ -1047,19 +1047,20 @@
         }
     }
 
-	function adjustOc(servant){
-		if (!servant) {
-            let id = $("ddlChooseServant").value;
-			if(isNaN(id) || id <= 0) {
-				$("ddlOc").selectedIndex = 0;
-				isSpecialAttack.checked = false;
-				return;
+	function adjustOc(is_forced){
+        let id = $("ddlChooseServant").value;
+		let servant = undefined;
+		if(isNaN(id) || id <= 0) {
+			$("ddlOc").selectedIndex = 0;
+			isSpecialAttack.checked = false;
+			return;
 		}
-            servant = servants[id];
-        }
+        servant = servants[id];
+        
 
         let ocLevel = $("ddlOc").value; let oldocLevel = $("ddlOc").oldvalue;
 		if(oldocLevel === undefined){ oldocLevel = "oc1";}
+		if(is_forced == false && ocLevel == oldocLevel)return;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
 		if(ocs["type"] == ""){

@@ -409,7 +409,7 @@
                 <th>剩余HP</th>-->
                 <th>阵营</th>
                 <th>宝具</th>
-                <!--<th>宝具倍率</th>-->
+                <th>宝具倍率</th>
                 <th>OC特攻</th>
                 <th>宝具伤害</th>
                 <th>卡牌Buff</th>
@@ -754,10 +754,10 @@
 
         let id = this.value;
         if (id != "-1" && id != "") {
-            resetOc();
+            clearBuff();
 			$("ddlOc").selectedIndex = 0;
             bindServantData(id);
-			adjustOc();
+			changeOc();
         }
     }
     //宝具等级选中项发生变化事件
@@ -767,22 +767,23 @@
 
     //OC等级选中项发生变化事件
     $("ddlOc").onchange = function () {
-        changeOc();
+        adjustOc();
+		$("ddlOc").oldvalue = $("ddlOc").value;
     };
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {
-        changeOc();
+        adjustOc(true);
     }
     $("txtFufuHp").onchange = function () {
-        changeOc();
+        adjustOc(true);
     }
     $("txtCardHp").onchange = function () {
-        changeOc();
+        adjustOc(true);
     }
 
     //是否特攻
     $("ckIsSpecialAttack").onclick = function () {
-        changeOc();
+        adjustOc(true);
     }
 
      //等级下拉列表选中项改变事件
@@ -937,6 +938,7 @@
             }
             /****************************************固定伤害Buff**************************************************/
             if (!isNaN(careerSkill.fixedDamageBuff)) {
+				$("txtFixedDamageBuff").basicvalue = careerSkill.fixedDamageBuff;
                 $("txtFixedDamageBuff").value = careerSkill.fixedDamageBuff;
             }
         }
@@ -988,6 +990,8 @@
         //向下取整总宝具倍率
         $("txtTreasureRate").value = Math.floor(treasureRate);
     }
+
+	
 	function addKM(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
 		$("txtFixedDamageBuff").value = getFloat("txtFixedDamageBuff") + 500;	
@@ -1000,7 +1004,6 @@
 			$("txtCardBuff").value = getFloat("txtCardBuff") + 50;
 		}
 	}
-	
 	function clearBuff(servant){
 		if (!servant) {
             let id = $("ddlChooseServant").value;
@@ -1029,7 +1032,7 @@
 		changeOc();
 	}
 	
-    //单纯将OC修改
+    //根据OC重设所有buff
     function changeOc(servant) {
         if (!servant) {
             let id = $("ddlChooseServant").value;
@@ -1039,7 +1042,7 @@
         let ocLevel = $("ddlOc").value;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
-		if(ocs["type"] != "TreasureSpecialAttack"){
+		if(ocs["type"] != "TreasureSpecialAttack" && ocs["type"] != ""){
 			isSpecialAttack.checked = true;
 		}
         if (isSpecialAttack.checked) {//是特攻
@@ -1073,45 +1076,26 @@
             }
         }
         else {
-            $("txtTreasureSpecialAttack").value = 100;
-            $("txtSpecialAttackPowerBuff").value = 0;
-			if(isNaN($("txtFixedDamageBuff").basicvalue)){$("txtFixedDamageBuff").value = 0;}
-			else {$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;}
-            $("txtCardBuff").value = $("txtCardBuff").dataset.value;
-            $("txtAttackBuff").value = 0;
-            $("txtTreasurePowerBuff").value = 0;
-
-			let ocLevel1 = $("ddlOc").value; let ocs1 = servants[$("ddlChooseServant").value].oc;
-			let o= getFloat("txtEnemyDefenceBuff");
-			if(ocs1["type"] == "TreasureSpecialDefReduceAttck"){
-				$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") + ocs1[ocLevel1]
-			}
-			//$("txtEnemyFixedDamageReductionBuff").value = 0;
-            $("ddlOc").selectedIndex = 0;
-
-            //设置回被动卡牌buff
-            let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
-            $("txtCardBuff").value = originNum;
-
-            //宝具副效果补充
-            bindTreasureSideEffect(servant);
+            clearBuff();
+			
+			$("ddlOc").selectedIndex = 0;
         }
     }
 
-
-	function adjustOc(servant){
-		if (!servant) {
-            let id = $("ddlChooseServant").value;
-			if(isNaN(id) || id <= 0) {
-				$("ddlOc").selectedIndex = 0;
-				isSpecialAttack.checked = false;
-				return;
+	function adjustOc(is_forced){
+        let id = $("ddlChooseServant").value;
+		let servant = undefined;
+		if(isNaN(id) || id <= 0) {
+			$("ddlOc").selectedIndex = 0;
+			isSpecialAttack.checked = false;
+			return;
 		}
-            servant = servants[id];
-        }
+        servant = servants[id];
+        
 
         let ocLevel = $("ddlOc").value; let oldocLevel = $("ddlOc").oldvalue;
 		if(oldocLevel === undefined){ oldocLevel = "oc1";}
+		if(is_forced == false && ocLevel == oldocLevel)return;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
 		if(ocs["type"] == ""){
@@ -1162,6 +1146,7 @@
             }
 		}
 	}
+
     //宝具等级选中项发生变化事件
     function changeTreasureRate(servant) {
         if (!servant) {
@@ -1368,10 +1353,11 @@
         newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
         //1.排名
         newRow.insertCell(-1).innerHTML = rankIndex;
-		//17.宝具伤害平均值       
+ //17.宝具伤害平均值       
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
         avg.classList.add(obj.careerResistClassName);
+        
         //2.从者
         newRow.insertCell(-1).innerHTML = obj.servantName;
 
@@ -1390,7 +1376,7 @@
         //7.宝具等级      
         newRow.insertCell(-1).innerHTML = obj.tl;
         //8.宝具倍率      
-        //newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.treasureRate + "</span>"
+        newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.treasureRate + "</span>"
         //9.宝具特攻(oc)  
         newRow.insertCell(-1).innerHTML = obj.treasureSpecialAttack + "(" + obj.oc + ")";
         //10.宝具威力Buff 
@@ -1411,8 +1397,7 @@
         let max = newRow.insertCell(-1);
         max.innerHTML = obj.max;
         max.classList.add(obj.careerResistClassName);
-        
-        
+       
     }
     //获取宝具颜色
     function getColor(num) {
