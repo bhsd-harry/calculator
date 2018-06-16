@@ -384,7 +384,7 @@
             </tr>
             <tr>
                 <td  align="left" colspan="4">
-					<input type="button" value="清空buff" id="btnClearBuff" onclick="changeOc()" />
+					<input type="button" value="清空buff" id="btnClearBuff" onclick="resetBuff()" />
                     <input type="button" value="计算" id="btnCalculate" onclick="calc()" />
 					<input type="button" value="孔明buff" id="btnAddKM" onclick="addKM()" />
 					<input type="button" value="梅林buff" id="btnAddML" onclick="addML()" />
@@ -1000,28 +1000,40 @@
 		}
 	}
 	
-	function resetOc(servant) {
+	function clearBuff(servant){
 		if (!servant) {
             let id = $("ddlChooseServant").value;
             servant = servants[id];
         }
-            $("txtTreasureSpecialAttack").value = 100;
-            $("txtSpecialAttackPowerBuff").value = 0;
-			$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;
-            $("txtCardBuff").value = $("txtCardBuff").dataset.value;
-            $("txtAttackBuff").value = 0;
-            $("txtTreasurePowerBuff").value = 0;
+		$("txtTreasureSpecialAttack").value = 100;
+        $("txtSpecialAttackPowerBuff").value = 0;
+		if(isNaN($("txtFixedDamageBuff").basicvalue)){$("txtFixedDamageBuff").value = 0;}
+		else {$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;}
+        $("txtCardBuff").value = $("txtCardBuff").dataset.value;
+        $("txtAttackBuff").value = 0;
+        $("txtTreasurePowerBuff").value = 0;
 
-			let ocLevel1 = $("ddlOc").value; let ocs1 = servants[$("ddlChooseServant").value].oc;
-			let o= getFloat("txtEnemyDefenceBuff");
-			if(ocs1["type"] == "TreasureSpecialDefReduceAttck"){
-				$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") + ocs1[ocLevel1]
-			}
-			//$("txtEnemyFixedDamageReductionBuff").value = 0;
-            $("ddlOc").selectedIndex = 0;
-        
-    }
-    //OC等级选中项发生变化事件
+		let ocLevel1 = $("ddlOc").value; let ocs1 = servant.oc;
+		let o= getFloat("txtEnemyDefenceBuff");
+		if(ocs1["type"] == "TreasureSpecialDefReduceAttck"){
+			$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") + ocs1[ocLevel1]
+		}
+		//$("txtEnemyFixedDamageReductionBuff").value = 0;
+        //$("ddlOc").selectedIndex = 0;
+        //设置回被动卡牌buff
+        let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+        $("txtCardBuff").value = originNum;
+
+        //宝具副效果补充
+        bindTreasureSideEffect(servant);
+	}
+	function resetBuff()
+	{
+		clearBuff();
+		changeOc();
+	}
+	
+    //单纯将OC修改
     function changeOc(servant) {
         if (!servant) {
             let id = $("ddlChooseServant").value;
@@ -1065,8 +1077,21 @@
             }
         }
         else {
-            resetOc();
+            $("txtTreasureSpecialAttack").value = 100;
+            $("txtSpecialAttackPowerBuff").value = 0;
+			if(isNaN($("txtFixedDamageBuff").basicvalue)){$("txtFixedDamageBuff").value = 0;}
+			else {$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;}
+            $("txtCardBuff").value = $("txtCardBuff").dataset.value;
+            $("txtAttackBuff").value = 0;
+            $("txtTreasurePowerBuff").value = 0;
 
+			let ocLevel1 = $("ddlOc").value; let ocs1 = servants[$("ddlChooseServant").value].oc;
+			let o= getFloat("txtEnemyDefenceBuff");
+			if(ocs1["type"] == "TreasureSpecialDefReduceAttck"){
+				$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") + ocs1[ocLevel1]
+			}
+			//$("txtEnemyFixedDamageReductionBuff").value = 0;
+            $("ddlOc").selectedIndex = 0;
 
             //设置回被动卡牌buff
             let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
