@@ -252,7 +252,7 @@
                 </td>
                 <td>OC等级</td>
                 <td>
-                    <select id="ddlOc">
+                    <select id="ddlOc" oldvalue = "oc1">
                         <option value="oc1">1</option>
                         <option value="oc2">2</option>
                         <option value="oc3">3</option>
@@ -720,6 +720,7 @@
         let id = this.value;
         if (id != "-1" && id != "") {
             clearBuff();
+			$("ddlOc").selectedIndex = 0;
             bindServantData(id);
 			changeOc();
         }
@@ -731,7 +732,8 @@
 
     //OC等级选中项发生变化事件
     $("ddlOc").onchange = function () {
-        changeOc();
+        adjustOc();
+		$("ddlOc").oldvalue = $("ddlOc").value;
     };
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {
@@ -995,7 +997,7 @@
 		changeOc();
 	}
 	
-    //单纯将OC修改
+    //根据OC重设所有buff
     function changeOc(servant) {
         if (!servant) {
             let id = $("ddlChooseServant").value;
@@ -1045,6 +1047,69 @@
         }
     }
 
+	function adjustOc(servant){
+		if (!servant) {
+            let id = $("ddlChooseServant").value;
+			if(isNaN(id) || id <= 0) {
+				$("ddlOc").selectedIndex = 0;
+				isSpecialAttack.checked = false;
+				return;
+		}
+            servant = servants[id];
+        }
+
+        let ocLevel = $("ddlOc").value; let oldocLevel = $("ddlOc").oldvalue;
+		if(oldocLevel === undefined){ oldocLevel = "oc1";}
+        let isSpecialAttack = $("ckIsSpecialAttack");
+        let ocs = servant.oc;
+		if(ocs["type"] == ""){
+			$("ddlOc").selectedIndex = 1;
+			isSpecialAttack.checked = false;
+			return;
+		}
+		if(ocs["type"] != "TreasureSpecialAttack"){
+		
+			isSpecialAttack.checked = true;
+		}
+		if (isSpecialAttack.checked) {//是特攻
+            if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
+                $("txtTreasureSpecialAttack").value = ocs[ocLevel];
+            }
+            else if (ocs["type"] == "TreasureSpecialRemainHpAttack") {//双子宝具特攻
+                calTreasureSpecialRemainHpAttackRate();
+            }
+            else if (ocs["type"] == "TreasureSpecialExplosionAttack") {//自爆弓特攻
+                calTreasureSpecialExplosionAttackRate();
+            }
+            else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
+				let o = getFloat("txtSpecialAttackPowerBuff");
+                $("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            }
+            else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
+                //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
+                //let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+
+                //$("txtCardBuff").value = originNum + ocs[ocLevel];
+				let o = getFloat("txtCardBuff");
+				$("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            }
+            else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
+				let o = getFloat("txtAttackBuff");
+				$("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+                //$("txtAttackBuff").value = ocs[ocLevel];
+            }
+			else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
+				let o = getFloat("txtEnemyDefenceBuff");
+				$("txtEnemyDefenceBuff").value = o - ocs[ocLevel] + ocs[oldocLevel];
+				//$("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+			}
+            else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
+				let o = getFloat("txtTreasurePowerBuff");
+				$("txtTreasurePowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+                //$("txtTreasurePowerBuff").value = ocs[ocLevel];
+            }
+		}
+	}
 
     //宝具等级选中项发生变化事件
     function changeTreasureRate(servant) {
