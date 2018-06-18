@@ -1042,7 +1042,7 @@
         let ocLevel = $("ddlOc").value;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
-		if(ocs["type"] != "TreasureSpecialAttack" && ocs["type"] != ""){
+		if(ocs["type"] != "TreasureSpecialAttack" && ocs["type"] != "" && ocs["type"] != "SpecialAttackPowerBuff"){
 			isSpecialAttack.checked = true;
 		}
         if (isSpecialAttack.checked) {//是特攻
@@ -1103,9 +1103,12 @@
 			isSpecialAttack.checked = false;
 			return;
 		}
-		if(ocs["type"] != "TreasureSpecialAttack"){
+		if(ocs["type"] != "TreasureSpecialAttack" && ocs["type"] != "SpecialAttackPowerBuff"){
 		
 			isSpecialAttack.checked = true;
+		}
+		if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false){
+			$("txtSpecialAttackPowerBuff").value = 0;
 		}
 		if (isSpecialAttack.checked) {//是特攻
             if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
@@ -1118,8 +1121,9 @@
                 calTreasureSpecialExplosionAttackRate();
             }
             else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
-				let o = getFloat("txtSpecialAttackPowerBuff");
-                $("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+				//let o = getFloat("txtSpecialAttackPowerBuff");
+                //$("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+				$("txtSpecialAttackPowerBuff").value = ocs[ocLevel];
             }
             else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
                 //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
