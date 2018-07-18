@@ -1110,6 +1110,9 @@
 		if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false){
 			$("txtSpecialAttackPowerBuff").value = 0;
 		}
+		if(ocs["type"] == "TreasureSpecialAttack" && isSpecialAttack.checked == false){
+			$("txtTreasureSpecialAttack").value = 100;
+		}
 		if (isSpecialAttack.checked) {//是特攻
             if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
                 $("txtTreasureSpecialAttack").value = ocs[ocLevel];
