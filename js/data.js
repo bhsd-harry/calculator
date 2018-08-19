@@ -400,6 +400,7 @@ function initBerserker(){
     initialServant(3,"Berserker", "清姬", "Kiyohime", 56, ["B清姬", "狂清姬"], "地",["混沌","恶"],["人型","龙","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 6644, 9166, 8992, 12428, "ABBBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1.5, cardBuff: 12, fixedDamageBuff: 0, critialPowerBuff: 0 });
     
     initialServant(2,"Berserker", "血斧埃里克", "Eric Bloodaxe", 57, ["血斧埃里克", "成龙"], "人",["混沌","中庸"],["人型","被「天地乖离开辟之星」所克","王"], 6290, 7688, 9115, 11095, "ABBBQ", 300, 400, 450, 475, 500, 30, 35, 40, 45, 50, "TreasureSpecialAtkPowerAttack", 1.5, { cardColor: 1.5, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(2,"Berserker", "卡利古拉", "Caligula", 54, ["鬼舅"], "人",["混沌","恶"],["人型","罗马","被「天地乖离开辟之星」所克","王"], 6831, 7303, 9899, 10540, "ABBBQ",0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1.5, cardBuff: 11, fixedDamageBuff: 0, critialPowerBuff: 0 });
     
     initialServant(1,"Berserker", "保罗・班扬", "Paul Bunyan", 174, ["保罗班扬"], "地",["中立","中庸"],["人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 6044, 6196, 9391, 9551, "ABBBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1.5, cardBuff: 4, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(1,"Berserker", "阿斯忒里俄斯", "Asterius", 53, ["阿斯忒里俄斯","小牛"], "地",["混沌","恶"],["人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克","希腊神话系男性"], 6037, 6604, 9381, 10181, "ABBBQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1, { cardColor: 1.5, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
