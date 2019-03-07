@@ -558,7 +558,7 @@
 
 
             /************************************卡牌Buff******************************************************/
-            //0.8(Quick)，1(Arts)，1.5(Buster)，0(All)，-1(None)，-2(Quick和Arts)，-3(Buster和Quick)
+            //0.8(Quick)，1(Arts)，1.5(Buster)，0(All)，-1(None)，-2(Quick和Arts)，-3(Buster和Quick)， -4 (Buster和Arts)
             if ((cardColor == 0.8 || cardColor == 1 || cardColor == 1.5) && cardColor == cardColorValue) {
                 $("txtCardBuff").dataset.value = careerSkill.cardBuff;
 
@@ -589,6 +589,19 @@
                 let quickBuff = cardBuffs[1];
                 $("txtCardBuff").dataset.value = careerSkill.quickBuff;
                 $("txtCardBuff").value = quickBuff;
+            }
+						//Buster和Arts
+            else if (cardColor == -4 && cardColorValue == 1.5 && cardBuffs && cardBuffs.length == 2) {
+                let busterBuff = cardBuffs[0];
+                $("txtCardBuff").dataset.value = busterBuff;
+
+                $("txtCardBuff").value = busterBuff;
+            }
+            else if (cardColor == -4 && cardColorValue == 1 && cardBuffs && cardBuffs.length == 2) {
+                let artsBuff = cardBuffs[1];
+                $("txtCardBuff").dataset.value = artsBuff;
+
+                $("txtCardBuff").value = artsBuff;
             }
             else {
                 $("txtCardBuff").dataset.value = 0;
