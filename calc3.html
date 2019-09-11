@@ -352,7 +352,9 @@
             <tr>
                 <td colspan="8">
 					<input type="button" value="孔明buff" id="btnAddKM" onclick="addKM()" />
-					<input type="button" value="梅林buff" id="btnAddML" onclick="addML()" />
+					<input type="button" value="梅林buff" id="btnAddML" onclick="addML()" />	
+					<input type="button" value="CBA buff" id="btnAddCB" onclick="addCB()" />
+					<input type="button" value="狐狸buff" id="btnAddHL" onclick="addHL()" />
 					<input type="button" value="清空buff" id="btnClearBuff" onclick="resetBuff()" />
                     <input type="button" value="计算" id="btnCalcute" onclick="calc()" />
                 </td>
@@ -980,6 +982,19 @@
 			$("txtCardBuff").value = getFloat("txtCardBuff") + 50;
 		}
 	}
+	function addCB(){
+	let servant = servants[$("ddlChooseServant").value];
+        if(servant.cardColor == 0.8){
+                        $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+		}
+	}
+	function addHL(){
+                $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 30;
+        let servant = servants[$("ddlChooseServant").value];
+        if(servant.cardColor == 1.0){
+                        $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+                }
+        }
 	function clearBuff(servant){
 		if (!servant) {
             let id = $("ddlChooseServant").value;
