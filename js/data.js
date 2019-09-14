@@ -295,6 +295,7 @@ function initRider(){
     initialServant(3,"Rider", "亚历山大", "Alexander", 28, [], "人", ["中立", "善"], [], 7356, 8640, 9955, 11714, "AABQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 100, critialPowerBuff: 0 });
     initialServant(3,"Rider", "克里斯托弗·哥伦布", "Cristoforo Colombo", 172, [], "人", ["中立", "恶"], [], 6552, 9600, 8867, 13016, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(3,"Rider", "赤兔马", "Red Hare", 231, [], "地", ["中立", "中庸"], [], 6434, 10483, 8708, 14214, "AABQQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 12, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(2,"Rider", "聖喬治", "", 24, [], "人", ["秩序", "善"], [], 5236, 9200, 7587, 13278, "AABQQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(2,"Rider", "爱德华・蒂奇", "Edward Teach", 25, [], "人", ["混沌", "恶"], [], 6188, 7907, 8967, 11411, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, null);
     initialServant(1,"Rider", "巴沙洛繆・羅伯茨", "", 257, [], "人", ["混沌","恶"], [], 5461, 6720, 8485, 10359, "AABQQ", 600, 800, 900, 950, 1000, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 0.8, { cardColor: 0.8, cardBuff: 4, fixedDamageBuff: 0, critialPowerBuff: 0 });
 }
