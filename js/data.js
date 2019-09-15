@@ -360,6 +360,7 @@ function initAss(){
     initialServant(4,"Assassin", "加藤段藏", "Katou Danzou", 188, [], "地",["中立","中庸"],[], 8935, 11055, 10818, 13404, "ABBQQ", 300, 400, 450, 475, 500, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1.5,null);
     initialServant(4,"Assassin", "牛若丸", "Ushiwakamaru Assassin", 218, [], "人",["中立","夏"],[], 9456, 10580, 11449, 12828, "ABQQQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 0, critialPowerBuff: 11 });
     initialServant(4,"Assassin", "虞美人", "Consort Yu", 230, [], "地",["秩序","恶"],[], 7970, 13389, 9650, 16234, "ABBQQ", 300, 400, 450, 475, 500, 50, 62.5, 75, 87.5, 100, "TreasureSpecialCardPowerAttack", 1.5, null);
+    initialServant(4,"Assassin", "格蕾", "", 243, [], "人",["秩序","善"],[], 9456, 10580, 11449, 12828, "ABQQQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 11 });
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Assassin", "荆轲", "Jing Ke", 42, ["荆轲"], "人",["混沌","善"],["人型","被「天地乖离开辟之星」所克"], 7207, 8293, 9754, 11244, "ABQQQ", 1600, 2000, 2200, 2300, 2400, 0, 0, 0, 0, 0, "", 0.8,null);
     initialServant(3,"Assassin", "风魔小太郎", "Fuuma Koutarou", 117, ["风魔小太郎"], "人",["混沌","恶"],["人型","被「天地乖离开辟之星」所克"], 7091, 8844, 9597, 11991, "ABQQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8,null);
