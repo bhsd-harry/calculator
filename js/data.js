@@ -355,6 +355,11 @@ function initAss(){
     initialServant(4,"Assassin", "斯卡哈", "Scathach2", 133, [], "星",["中立","善"],[], 9049, 11168, 10956, 13541, "ABQQQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8,null);
     initialServant(4,"Assassin", "燕青", "Yan Qing", 159, [], "人",["混沌","恶"],[], 8661, 11637, 10487, 14110, "ABQQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 5, fixedDamageBuff: 0, critialPowerBuff: 5 });
     initialServant(4,"Assassin", "武则天", "Wu Ze Tian", 170, [], "人",["秩序","恶"],[], 8981, 10942, 10874, 13267, "ABBQQ", 1600, 2000, 2200, 2300, 2400, 0, 0, 0, 0, 0, "", 0.8,null);
+    initialServant(4,"Assassin", "尼托克丽丝", "Nitocris2", 177, [], "天",["秩序","善"],[], 8812, 11518, 10670, 13965, "AABQQ", 450, 600, 675, 712.5, 750, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 185, critialPowerBuff: 0 });
+    initialServant(4,"Assassin", "望月千代女", "Mochizuki Chiyome", 185, [], "地",["混沌","恶"],[], 8510, 11637, 10304, 14110, "AABQQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, null);
+    initialServant(4,"Assassin", "加藤段藏", "Katou Danzou", 188, [], "地",["中立","中庸"],[], 8935, 11055, 10818, 13404, "ABBQQ", 300, 400, 450, 475, 500, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1.5,null);
+    initialServant(4,"Assassin", "牛若丸", "Ushiwakamaru Assassin", 218, [], "人",["中立","夏"],[], 9456, 10580, 11449, 12828, "ABQQQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 0, critialPowerBuff: 11 });
+    initialServant(4,"Assassin", "虞美人", "Consort Yu", 230, [], "地",["秩序","恶"],[], 7970, 13389, 9650, 16234, "ABBQQ", 300, 400, 450, 475, 500, 50, 62.5, 75, 87.5, 100, "TreasureSpecialCardPowerAttack", 1.5, null);
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Assassin", "荆轲", "Jing Ke", 42, ["荆轲"], "人",["混沌","善"],["人型","被「天地乖离开辟之星」所克"], 7207, 8293, 9754, 11244, "ABQQQ", 1600, 2000, 2200, 2300, 2400, 0, 0, 0, 0, 0, "", 0.8,null);
     initialServant(3,"Assassin", "风魔小太郎", "Fuuma Koutarou", 117, ["风魔小太郎"], "人",["混沌","恶"],["人型","被「天地乖离开辟之星」所克"], 7091, 8844, 9597, 11991, "ABQQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8,null);
