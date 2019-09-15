@@ -340,10 +340,8 @@ function initCaster(){
 function initAss(){
     //----------------------------------Assassin---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
-    initialServant(5,"Assassin", "开膛手杰克", "Jack the Ripper", 75, [], "地",["混
-沌","恶"],[], 11557, 12696, 12651, 13909, "ABQQQ", 1400, 1800, 2000, 2100, 2200, 50, 62.5, 75, 87.5, 100, "SpecialAttackPowerBuff", 0.8,null);
-    initialServant(5,"Assassin", "谜之女主角X", "Mysterious Heroine X", 86, [], "星
-",["混沌","善"],[], 11761, 12696, 12874, 13909, "AABQQ", 1600, 2000, 2200, 2300, 2400, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 0.8, { cardColor: 0.8, cardBuff: 12, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(5,"Assassin", "开膛手杰克", "Jack the Ripper", 75, [], "地",["混沌","恶"],[], 11557, 12696, 12651, 13909, "ABQQQ", 1400, 1800, 2000, 2100, 2200, 50, 62.5, 75, 87.5, 100, "SpecialAttackPowerBuff", 0.8,null);
+    initialServant(5,"Assassin", "谜之女主角X", "Mysterious Heroine X", 86, [], "星",["混沌","善"],[], 11761, 12696, 12874, 13909, "AABQQ", 1600, 2000, 2200, 2300, 2400, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 0.8, { cardColor: 0.8, cardBuff: 12, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(5,"Assassin", "酒吞童子", "Shuten Doji", 112, [], "地",["混沌","恶"],[], 11993, 12825, 13128, 14050, "AABQQ", 600, 750, 825, 862.5, 900, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 150, critialPowerBuff: 0 });
     initialServant(5,"Assassin", "克利奥帕特拉", "Cleopatra", 139, [], "人",["秩序","中庸"],[], 11088, 13402, 12138, 14682, "ABBQQ", 400, 500, 550, 575, 600, 30, 40, 50, 60, 70, "TreasureSpecialCardPowerAttack", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 125, critialPowerBuff: 0 });
     initialServant(5,"Assassin", "“山之翁”", "Yama no okina", 154, [], "人",["秩序","恶"],[], 11848, 13338, 12969, 14612, "ABBBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
