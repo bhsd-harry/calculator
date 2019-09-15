@@ -1,1 +1,1 @@
-Assassin and Foreigner need further updating.
+自用，取消了很多功能，与日服同步。
