@@ -414,50 +414,52 @@ function initBerserker(){
 function initExtra(){
     //----------------------------------Shielder---------------------------------------------------------------------//
     /******************************************4星********************************************************************/
+    initialServant(4,"Shielder", "玛修・基列莱特", "Matthew Kyrielite", 1, ["玛修基列莱特","学妹","盾娘"], "地",["秩序","善"],["骑乘","人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克"], 8730, 12877, 10575, 15619, "AABBQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1,null);
 
     //----------------------------------Ruler---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
-    initialServant(5,"Ruler", "天草四郎", "Shirou Kotomine", 93, [], "人",["秩序","善"],[], 10972, 14107, 12011, 15455, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5,null);
-    initialServant(5,"Ruler", "阿爾托莉亞・潘德拉剛", "", 265, [], "天",["秩序","夏"], [], 9593, 16912, 10501, 18528, "ABBQQ", 300, 400, 450, 475, 500, 20, 25, 30, 35, 40, "TreasureSpecialCardPowerAttack", 1.5, { cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(5,"Ruler", "夏洛克·福尔摩斯", "Sherlock Holmes", 173, ["夏洛克福尔摩斯"], "星",["中立","善"],["人型"], 11495, 13365, 12583, 14642, "AABQQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1,null);
+    initialServant(5,"Ruler", "天草四郎", "Shirou Kotomine", 93, ["天草四郎"], "人",["秩序","善"],["人型","被「天地乖离开辟之星」所克"], 10972, 14107, 12011, 15455, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5,null);
+    initialServant(5,"Ruler", "贞德", "Jeanne d'Arc", 59, ["白贞德", "村姑"], "星",["秩序","善"],["人型","阿尔托莉雅脸","被「天地乖离开辟之星」所克"], 9593, 16500, 10501, 18076, "AAABQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1,null);
+	initialServant(5,"Ruler", "始皇帝", "First Emperor of China", 229, ["始皇帝", "秦始皇"], "人",["秩序","善"],["人型","王","被「天地乖离开辟之星」所克"], 9977, 15828, 10921, 17340, "AABBQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1,null);
     /******************************************4星********************************************************************/
-    initialServant(4,"Ruler", "马大", "Marthe2", 135, [], "人",["秩序","善"],[], 9546, 11250, 11558, 13640, "ABBBQ", 800, 1000, 1100, 1150, 1200, 20, 30, 40, 50, 60, "TreasureSpecialDefReduceAttck", 1.5,null);
-    initialServant(4,"Ruler", "魁札尔·科亚特尔", "Quetzalcoatl2", 233, [], "天",["秩序","善"],[], 9687, 11306, 11729, 13708, "ABBQQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 250, critialPowerBuff: 0 });
-    initialServant(4,"Ruler", "阿斯特蕾亞", "", 242, [], "天",["秩序","善"],[], 9734, 11531, 11786, 13981, "AABBQ", 900, 1200, 1350, 1425, 1500, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 225, critialPowerBuff: 10 });
+    initialServant(4,"Ruler", "马大", "Marthe2", 135, ["马大", "铁拳剩女", "铁拳圣女"], "人",["秩序","善"],["人型","被「天地乖离开辟之星」所克"], 9546, 11250, 11558, 13640, "ABBBQ", 600, 800, 900, 950, 1000, 10, 20, 30, 40, 50, "TreasureSpecialDefReduceAttck", 1.5,null);
+	initialServant(4,"Ruler", "魁札尔·科亚特尔", "Quetzalcoatl2", 233, ["魁札尔·科亚特尔", "圣诞羽蛇神"], "天",["秩序","善"],["人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克","王"], 9687, 11306, 11729, 13708, "ABBQQ", 300, 400, 450, 175, 500, 0, 0, 0, 0, 0, "", 1.5,{ cardColor: 0, cardBuff: 0, fixedDamageBuff: 250, critialPowerBuff: 0 });
+
     //----------------------------------Avenger---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
-    initialServant(5,"Avenger", "岩窟王 爱德蒙・唐泰斯", "Edmond Dantes", 96, [], "人",["混沌","恶"],[], 12641, 12177, 13838, 13340, "ABBQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
-    initialServant(5,"Avenger", "贞德〔Alter〕", "Jeanne d'Arc（Alter)", 106, [], "人",["混沌","恶"],[], 13244, 11761, 14498, 12885, "AABBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
-    initialServant(5,"Avenger", "魔王信長", "", 250, [], "地",["混沌","中庸"],[], 12641, 11761, 13838, 12885, "ABBBQ", 300, 400, 450, 475, 500, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 2 });
+    initialServant(5,"Avenger", "贞德〔Alter〕", "Jeanne d'Arc（Alter)", 106, ["黑贞德"], "人",["混沌","恶"],["人型","阿尔托莉雅脸","被「天地乖离开辟之星」所克"], 13244, 11761, 14498, 12885, "AABBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
+    initialServant(5,"Avenger", "岩窟王 爱德蒙・唐泰斯", "Edmond Dantes", 96, ["岩窟王爱德蒙唐泰斯", "伯爵", "狛枝"], "人",["混沌","恶"],["人型","被「天地乖离开辟之星」所克"], 12641, 12177, 13838, 13340, "ABBQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
+
     /******************************************4星********************************************************************/
-    initialServant(4,"Avenger", "戈尔贡", "Gorgon", 147, [], "地",["混沌","恶"],[], 10706, 10197, 12963, 12364, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 6 });
-    initialServant(4,"Avenger", "海森・罗伯", "Hyesons Robert", 158, [], "地",["混沌","恶"],[], 10628, 9949, 12868, 12063, "AABQQ", 1600, 2000, 2200, 2300, 2400, 0, 0, 0, 0, 0, "", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
+    initialServant(4,"Avenger", "戈尔贡", "Gorgon", 147, ["戈尔贡", "魔神R姐","复仇R姐"], "地",["混沌","恶"],["人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 10706, 10197, 12963, 12364, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 6 });
+    initialServant(4,"Avenger", "海森・罗伯", "Hyesons Robert", 158, ["海森罗伯", "无头骑士", "狼王"], "地",["混沌","恶"],["人型","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克","猛兽"], 10628, 9949, 12868, 12063, "AABQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
 
     /******************************************3星及以下********************************************************************/
-    initialServant(3,"Avenger","安东尼奥·萨列里","Antonio Salieri", 204,[],"地",["混沌","恶"],[], 8125, 7840, 10996, 10630, "AABBQ", 450, 600, 675, 712.5, 750, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
+    initialServant(3,"Avenger","安东尼奥·萨列里","Antonio Salieri",204,["安东尼奥·萨列里"],"地",["混沌","恶"],["人型", "被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克","所爱之人"],8125,7840,10996,10630,"AABBQ",450,600,675,712.5,750,0,0,0,0,0,"",1,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
+    initialServant(0,"Avenger", "安哥拉曼纽", "Angra Mainyu", 107, ["安哥拉曼纽", "小安"], "人",["混沌","恶"],["人型","被「天地乖离开辟之星」所克"], 5683, 7981, 8235, 11518, "AABQQ", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
 
     //----------------------------------MoonCancer---------------------------------------------------------------------//
-    /******************************************5星********************************************************************/
-    initialServant(5,"MoonCancer", "BB", "BB Summer", 220, [], "地",["混沌","恶"],[], 11182, 14812, 12240, 16227, "AABBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 250, critialPowerBuff: 0 });
-    initialServant(5,"MoonCancer", "吉娜可＝加里吉利", 244, [], "天",["秩序","善"],[], 9166, 17844, 10034, 19549, "AAABQ", 450, 600, 675, 712.5, 750, 30, 30, 30, 30, 30, "TreasureSpecialDefReduceAttck", 1, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 175, critialPowerBuff: 0 });
     /******************************************4星********************************************************************/
-    initialServant(4,"MoonCancer", "BB", "BB", 166, [], "人",["混沌","善"],[], 8197, 13643, 9925, 16542, "AABQQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
+	initialServant(5,"MoonCancer", "BB", "BB Summer", 220, ["水B"], "地",["混沌","恶"],["神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克", "被「神秘杀」所克"], 11182, 14812, 12240, 18227, "AABBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 250, critialPowerBuff: 0 });
+    initialServant(4,"MoonCancer", "BB", "BB", 166, ["BB"], "人",["混沌","善"],["人型","被「天地乖离开辟之星」所克"], 8197, 13643, 9925, 16542, "AABQQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
 
     //----------------------------------Alterego---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
-    initialServant(5,"Alterego", "梅尔特莉莉丝（溶解莉莉丝）", "Meltlilith", 163, [], "地",["秩序","善"],[], 11692, 13402, 12799, 14682, "ABBQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 225, critialPowerBuff: 10 });
-    initialServant(5,"Alterego", "杀生院祈荒", "Sesshouin Kiara", 167, [], "兽",["混沌","恶"],[], 11668, 14606, 12772, 16001, "AABBQ", 450, 600, 675, 712.5, 750, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
-    initialServant(5, "Alterego", "冲田总司〔Alter〕", "Okita Souji(Alter)", 209, [], "人",["中立","中庸"],[], 12465, 12696, 13645, 13909, "ABBQQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
-    initialServant(5,"Alterego", "西托奈", "Shitonai", 224, [], "天",["混沌","善"],[], 11668, 13965, 12772, 15299, "AABBQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 225, critialPowerBuff: 0 });
-    initialServant(5,"Alterego", "帝王花", "Kingprotea", 238, [], "地",["秩序","善"],[], 12835, 13338, 14050, 14612, "AABBQ", 300, 400, 450, 475, 500, 20, 30, 40, 50, 60, "TreasureSpecialCardPowerAttack", 1.5, { cardColor: -4, cardBuff: "11|12", fixedDamageBuff: 250, critialPowerBuff: 8 }, { cardPowerBuff: 20 };
+    initialServant(5,"Alterego", "梅尔特莉莉丝（溶解莉莉丝）", "Meltlilith", 163, ["梅尔特莉莉丝溶解莉莉丝","莉莉丝"], "地",["秩序","善"],["骑乘","人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 11692, 13402, 12799, 14682, "ABBQQ", 1200, 1600, 1800, 1900, 2000, 10, 15, 20, 25, 30, "TreasureSpecialCardPowerAttack", 0.8, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 225, critialPowerBuff: 10 });
+    initialServant(5,"Alterego", "杀生院祈荒", "Sesshouin Kiara", 167, ["杀生院祈荒"], "兽",["混沌","恶"],["人型"], 11668, 14606, 12772, 16001, "AABBQ", 450, 600, 675, 712, 750, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
+    initialServant(5, "Alterego", "冲田总司〔Alter〕", "Okita Souji(Alter)", 209, ["冲田总司"], "人",["中立","中庸"],["人型", "被「天地乖离开辟之星」所克","阿尔托莉雅脸","所爱之人"],12465,12696,13645,13909,"ABBQQ",300,400,450,475,500,0,0,0,0,0,"",1.5,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
+	initialServant(5,"Alterego", "西托奈", "Shitonai", 224, ["西托奈"], "天",["混沌","善"],["人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克","伊莉雅"], 11668, 13965, 12772, 15299, "AABBQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 225, critialPowerBuff: 0 });
+	initialServant(5,"Alterego", "帝王花", "Kingprotea", 238, ["帝王花"], "地",["秩序","善"],["人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克","超巨大"], 12835, 13338, 14050, 14612, "AABBQ", 300, 400, 450, 175, 500, 20, 30, 40, 50, 60, "TreasureSpecialCardPowerAttack", 1.5, { cardColor: -4, cardBuff: "11|12", fixedDamageBuff: 250, critialPowerBuff: 10 },{cardPowerBuff:20});
     /******************************************4星********************************************************************/
-    initialServant(4,"Alterego", "帕森莉普（热情迷唇）", "Passionlip", 164, [], "地",["秩序","中庸"],[], 10299, 10901, 12470, 13217, "ABBBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 200, critialPowerBuff: 6 });
-    initialServant(4,"Alterego", "机械伊丽酱", "mekaerichan", 190, [], "人",["秩序","善"],[], 9997, 10901, 12104, 13217, "ABBBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, null);
+    initialServant(4,"Alterego", "帕森莉普（热情迷唇）", "Passionlip", 164, ["帕森莉普热情迷唇"], "地",["秩序","中庸"],["人型","神性","被「天地乖离开辟之星」所克","被「人类神话雷电降临」所克","被「神秘杀」所克"], 10299, 10901, 12470, 13217, "ABBBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 200, critialPowerBuff: 6 });
+    initialServant(4,"Alterego", "机械伊丽酱", "mekaerichan", 190, ["机械伊丽酱","机械龙娘I号"], "人",["秩序","善"],["人型","被「天地乖离开辟之星」所克"], 9997, 10901, 12104, 13217, "ABBBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(4,"Alterego", "机械伊丽酱Ⅱ号机", "mekaerichan", 191, ["机械伊丽酱Ⅱ号机","机械龙娘II号"], "人",["秩序","善"],["人型","被「天地乖离开辟之星」所克"], 9997, 10901, 12104, 13217, "ABBBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
 
     //----------------------------------Foreigner---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
-    initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯", "Abigail Williams", 195, [], "地",["混沌","恶"],[], 12100, 13770, 13245, 15086, "AAABQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1.5, cardBuff: 8, fixedDamageBuff: 175, critialPowerBuff: 0 });
-    initialServant(5,"Foreigner", "葛饰北斋", "Katsushika Hokusai", 198, [], "人",["混沌","中庸"],[], 12100, 13230, 13245, 14494, "AABBQ",  450, 600, 675, 712.5, 750, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1, { cardColor: 1, cardBuff: 4, fixedDamageBuff: 175, critialPowerBuff: 0 });
-    /******************************************4星********************************************************************/
-    initialServant(4,"Foreigner", "谜之女主角XX", "Mysterious Heroine XX", 222, [], "星",["秩序","善"],[], 9751, 11250, 11806, 13640, "AABBQ", 900, 1200, 1350, 1425, 1500, 20, 30,40, 50, 60, "TreasureSpecialAtkPowerAttack", 1, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 10 });
+    initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯", "Abigail Williams", 195, ["阿比盖尔威廉姆斯","钥匙孔"], "地",["混沌","恶"],["人型","神性","被「人类神话雷电降临」所克","被「神秘杀」所克"], 12100, 13770, 13245, 15086, "AAABQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1.5, cardBuff: 8, fixedDamageBuff: 175, critialPowerBuff: 0 });
+    initialServant(5,"Foreigner", "葛饰北斋", "Katsushika Hokusai", 198, ["葛饰北斋"], "人",["混沌","中庸"],["人型","神性","被「天地乖离开辟之星」所克"], 12100, 13230, 13245, 14494, "AABBQ",  450, 600, 675, 712, 750, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1, { cardColor: 1, cardBuff: 4, fixedDamageBuff: 175, critialPowerBuff: 0 });
+	initialServant(5,"Foreigner", "谜之女主角XX", "Mysterious Heroine XX", 222, ["XX毛"], "星",["秩序","善"],["人型","龙","阿尔托莉雅脸","骑乘","亚瑟","所爱之人","王"], 9751, 11250, 11806, 13640, "AABBQ", 900, 1200, 1350, 1425, 1500, 20, 30,40, 50, 60, "TreasureSpecialAtkPowerAttack", 1, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 },{treasureSpecialAttack:1.5});
 	
 }
