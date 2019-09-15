@@ -455,8 +455,5 @@ function initExtra(){
 
     //----------------------------------Foreigner---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
-    initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯", "Abigail Williams", 195, ["阿比盖尔威廉姆斯","钥匙孔"], "地",["混沌","恶"],["人型","神性","被「人类神话雷电降临」所克","被「神秘杀」所克"], 12100, 13770, 13245, 15086, "AAABQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1.5, cardBuff: 8, fixedDamageBuff: 175, critialPowerBuff: 0 });
-    initialServant(5,"Foreigner", "葛饰北斋", "Katsushika Hokusai", 198, ["葛饰北斋"], "人",["混沌","中庸"],["人型","神性","被「天地乖离开辟之星」所克"], 12100, 13230, 13245, 14494, "AABBQ",  450, 600, 675, 712, 750, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1, { cardColor: 1, cardBuff: 4, fixedDamageBuff: 175, critialPowerBuff: 0 });
-	initialServant(5,"Foreigner", "谜之女主角XX", "Mysterious Heroine XX", 222, ["XX毛"], "星",["秩序","善"],["人型","龙","阿尔托莉雅脸","骑乘","亚瑟","所爱之人","王"], 9751, 11250, 11806, 13640, "AABBQ", 900, 1200, 1350, 1425, 1500, 20, 30,40, 50, 60, "TreasureSpecialAtkPowerAttack", 1, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 },{treasureSpecialAttack:1.5});
-	
+    initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯", "Abigail Williams", 195, [], "地",["混沌","恶"],[], 12100, 13770, 13245, 15086, "AAABQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1.5, cardBuff: 8, fixedDamageBuff: 175, critialPowerBuff: 0 });
 }
