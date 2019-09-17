@@ -849,6 +849,11 @@
             if (cardPowerBuff && !isNaN(cardPowerBuff)) {//单个数值，比如剑兰宝具的30%蓝魔放buff
                 $("txtCardBuff").value = cardPowerBuff;
             }
+
+            let specialAttack = treasureSideEffect.specialAttack;//宝具特攻
+            if (specialAttack && !isNaN(specialAttack)) {//单个数值，比如小恩宝具的200%人类威胁特攻
+                $("txtTreasureSpecialAttack").value = specialAttack;
+            }
         }
 
     }

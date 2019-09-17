@@ -91,6 +91,7 @@ function loadLvs(){
 * @param {Object} treasureSideEffect 宝具副效果(oc特攻只能显示一种副效果，所以剩余其他的副效果存储到这个对象里)
 *    treasurePowerBuff：宝具威力buff
 *    cardPowerBuff：卡牌buff
+*    specialAttack: 宝具特攻
 */
 function initialServant(star,career, name, eName, servantNo, keys, camp, attributes, characteristics, atk, hp, maxAtk, maxHp, cards, tl1, tl2, tl3, tl4, tl5, oc1, oc2, oc3, oc4, oc5, type, cardColor, careerSkill, treasureSideEffect) {
     //id++;//下标最好还是从0开始
@@ -242,7 +243,7 @@ function initLancer(){
     initialServant(5,"Lancer", "布伦希尔德", "Brynhildr", 88, [], "天", ["中立", "善"], [], 11432, 14825, 12514, 16241, "ABBQQ", 800, 1000, 1100, 1150, 1200, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1.5, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 100, critialPowerBuff: 0 });
     initialServant(5,"Lancer", "阿尔托莉雅・潘德拉贡〔Lancer〕", "Altria Pendragon(Lancer)", 119, [], "天", ["秩序", "善"], [], 10995, 15606, 12036, 17097, "ABBQQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(5,"Lancer", "玉藻前", "Tamamo no Mae2", 128, [], "天", ["中立", "夏"], [], 10726, 15147, 11741, 16594, "ABBQQ", 600, 800, 900, 950, 1000, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1.5, { cardColor: -2, cardBuff: "10|10", fixedDamageBuff: 230, critialPowerBuff: 0 });
-    initialServant(5,"Lancer", "恩奇都", "Enkidu", 143, [], "天", ["中立", "中庸"], [], 10780, 15300, 11800, 16762, "ABQQQ", 800, 1000, 1100, 1150, 1200, 30, 35, 40, 45, 50, "TreasureSpecialDefReduceAttck", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(5,"Lancer", "恩奇都", "Enkidu", 143, [], "天", ["中立", "中庸"], [], 10780, 15300, 11800, 16762, "ABQQQ", 800, 1000, 1100, 1150, 1200, 30, 35, 40, 45, 50, "TreasureSpecialDefReduceAttck", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 }, { specialAttack: 200});
     initialServant(5,"Lancer", "恩奇都WW", "Enkidu", 143, [], "天", ["中立", "中庸"], [], 10780, 15300, 11800, 16762, "ABQQQ", 600, 800, 900, 950, 1000, 20, 25, 30, 35, 40, "TreasureSpecialDefReduceAttck", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(5,"Lancer", "艾蕾什基伽尔", "Ereshkigal", 196, [], "地", ["混沌", "恶"], [], 10343, 16065, 11322, 17600, "ABBQQ", 300, 400, 450, 475, 500, 10, 20, 30, 40, 50, "TreasureSpecialCardPowerAttack", 1.5, { cardColor:1, cardBuff: 11, fixedDamageBuff: 225, critialPowerBuff: 0 });
     initialServant(5,"Lancer", "布拉达曼特", "Bradamante", 232, [], "地", ["秩序", "善"], [], 10833, 15682, 11858, 17180, "AABQQ", 600, 800, 900, 950, 1000, 20, 30, 40, 50, 60, "TreasurePowerBuff", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
