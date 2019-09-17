@@ -351,10 +351,14 @@
             </tr>
             <tr>
                 <td colspan="8">
-					<input type="button" value="孔明buff" id="btnAddKM" onclick="addKM()" />
-					<input type="button" value="梅林buff" id="btnAddML" onclick="addML()" />	
-					<input type="button" value="狐狸buff" id="btnAddHL" onclick="addHL()" />
-					<input type="button" value="清空buff" id="btnClearBuff" onclick="resetBuff()" />
+                                        <input type="button" value="醉贞" id="btnAddZZ" onclick="addZZ()" />
+                                        <input type="button" value="空骑" id="btnAddKQ" onclick="addKQ()" />
+                                        <input type="button" value="黑杯" id="btnAddHB" onclick="addHB()" />
+                                        <input type="button" value="宝石" id="btnAddBS" onclick="addBS()" />
+					<input type="button" value="孔明" id="btnAddKM" onclick="addKM()" />
+					<input type="button" value="梅林" id="btnAddML" onclick="addML()" />	
+					<input type="button" value="狐狸" id="btnAddHL" onclick="addHL()" />
+					<input type="button" value="清空" id="btnClearBuff" onclick="resetBuff()" />
                     <input type="button" value="计算" id="btnCalcute" onclick="calc()" />
                 </td>
             </tr>
@@ -969,6 +973,25 @@
     }
 
 	
+	function addZZ(){
+		$("txtCardAtk").value = 2000;
+		$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 15;
+	}
+        function addZZ(){
+                $("txtCardAtk").value = 2000;
+                $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 10;
+        	let servant = servants[$("ddlChooseServant").value];
+        	if(servant.cardColor == 1.5){
+                        $("txtCardBuff").value = getFloat("txtCardBuff") + 10;
+                }
+        }
+        function addZZ(){
+                $("txtCardAtk").value = 1671;
+                $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 60;
+        }
+        function addZZ(){
+                $("txtCardAtk").value = 786;
+        }
 	function addKM(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
 		$("txtFixedDamageBuff").value = getFloat("txtFixedDamageBuff") + 500;	
@@ -976,15 +999,15 @@
 	
 	function addML(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
-        let servant = servants[$("ddlChooseServant").value];
-        if(servant.cardColor == 1.5){
+        	let servant = servants[$("ddlChooseServant").value];
+        	if(servant.cardColor == 1.5){
 			$("txtCardBuff").value = getFloat("txtCardBuff") + 50;
 		}
 	}
 	function addHL(){
                 $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 30;
-        let servant = servants[$("ddlChooseServant").value];
-        if(servant.cardColor == 1.0){
+        	let servant = servants[$("ddlChooseServant").value];
+        	if(servant.cardColor == 1.0){
                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
                 }
         }
