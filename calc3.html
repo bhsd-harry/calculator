@@ -769,10 +769,28 @@
 
         if(lv!="-1"){//非默认
             // console.log(servant.lvs[lv-1]);
-            lv=servant.lvs[lv-1];
-            $("txtAttack").value=lv.a;
-            $("txtMaxHp").value=lv.h;
-            $("txtRemainHp").value=lv.h;
+	    if(Number(id)<226){
+            	lv=servant.lvs[lv-1];
+            	$("txtAttack").value=lv.a;
+            	$("txtMaxHp").value=lv.h;
+            	$("txtRemainHp").value=lv.h;
+	    }
+	    else {
+		star=Number(servant.star);
+		if(star<4){
+		    mlv=star*5+55;
+		}
+		else {
+		    mlv=star*10+40;
+		}
+		if(Number(lv)>=mlv){
+		    lva=parseInt((Number(servant.maxAtk)-Number(servant.atk))/(100-mlv)*(Number(lv)-mlv)+Number(servant.atk));
+                    lvh=parseInt((Number(servant.maxHp)-Number(servant.hp))/(100-mlv)*(Number(lv)-mlv)+Number(servant.hp));
+		    $("txtAttack").value=lva.toString();
+                    $("txtMaxHp").value=lvh.toString();
+                    $("txtRemainHp").value=lvh.toString();
+		}
+	    }
             if(lv.a==servant.maxAtk){
                 $("ckIsMaxGrail").checked=true;
                 $("ckIsMaxGrail").onchange();
