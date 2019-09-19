@@ -769,13 +769,8 @@
 
         if(lv!="-1"){//非默认
             // console.log(servant.lvs[lv-1]);
-	    if(Number(id)<226){
-            	lv=servant.lvs[lv-1];
-            	$("txtAttack").value=lv.a;
-            	$("txtMaxHp").value=lv.h;
-            	$("txtRemainHp").value=lv.h;
-	    }
-	    else {
+            lv=servant.lvs[lv-1];
+	    if(lv === undefined || lv.length == 0){
 		$("txtAttack").value=servant.maxAtk;
 //		star=Number(servant.star);
 //		if(star<4){
@@ -791,6 +786,11 @@
 //		    $("txtMaxHp").value=lvh.toString();
 //		    $("txtRemainHp").value=lvh.toString();
 //		}
+	    }
+	    else {
+                $("txtAttack").value=lv.a;
+                $("txtMaxHp").value=lv.h;
+                $("txtRemainHp").value=lv.h;
 	    }
             if(lv.a==servant.maxAtk){
                 $("ckIsMaxGrail").checked=true;
