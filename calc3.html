@@ -792,11 +792,11 @@
                 $("txtMaxHp").value=lv.h;
                 $("txtRemainHp").value=lv.h;
 	    }
-            if(lv.a==servant.maxAtk){
+            if($("txtAttack").value==servant.maxAtk){
                 $("ckIsMaxGrail").checked=true;
                 $("ckIsMaxGrail").onchange();
             }
-            else if(lv.a==servant.atk){
+            else if($("txtAttack").value==servant.atk){
             	$("ddlLvs").selectedIndex=0;//默认
             }
         }
