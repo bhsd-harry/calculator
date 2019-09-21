@@ -186,7 +186,7 @@ function initSaber(){
     initialServant(3,"Saber", "弗格斯・马克・罗伊", "Fergus Mac Roich", 72, [], "地", ["秩序", "中庸"], [], 7460, 9786, 10096, 13268, "ABBBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(3,"Saber", "贝狄威尔", "Bedwyr", 126, [], "星", ["秩序", "善"], [], 7627, 9595, 10322, 13009, "ABBQQ", 800, 1000, 1100, 1150, 1200, 30, 45, 60, 75, 90, "TreasureSpecialCardPowerAttack", 1.5, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(3,"Saber", "贝狄威尔WW", "Bedwyr", 126, [], "星", ["秩序", "善"], [], 7627, 9595, 10322, 13009, "ABBQQ", 600, 800, 900, 950, 1000, 30, 40, 50, 60, 70, "TreasureSpecialCardPowerAttack", 1.5, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
-    initialServant(2,"Saber", "伊阿宋", "", 254, [], "地", ["秩序", "善"], [], 5457, 7575, 8479, 11677, "AABBQ", 450, 600, 675, 712.5, 750, 20, 25, 30, 35, 40, "TreasureSpecialCardPowerAttack", 1, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(1,"Saber", "伊阿宋", "", 254, [], "地", ["秩序", "善"], [], 5457, 7575, 8479, 11677, "AABBQ", 450, 600, 675, 712.5, 750, 20, 25, 30, 35, 40, "TreasureSpecialCardPowerAttack", 1, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
 
 }
 
