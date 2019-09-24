@@ -16,19 +16,6 @@ if (typeof storage === 'object') {
 }
 
 
-//显示从者技能详情
-//$("btnShowSkills").onclick = function () {
-//    showSkillsWin();
-//}
-
-//$("btnShowMaterials").onclick=function(){
-//    showMaterialsWin();
-//}
-
-//$("btnShowNP").onclick=function(){
-//    showNPWin();
-//}
-
 //关闭从者技能详情
 $("btnClose").onclick = function () {
     hideSkillsWin();
@@ -231,10 +218,6 @@ function binds(servant,key,id,flag){
 function bindAttributes(servant) {
     binds(servant,"attributes","spanAttributes","$");
 }
-//特性  
-//function bindCharacteristics(servant) {
-//    binds(servant,"characteristics","spanCharacteristics","#");
-//}
 //加载搜索提示(类似自动完成)
 function bindSearchTips(){
     let tips=[],
