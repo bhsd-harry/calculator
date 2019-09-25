@@ -6,35 +6,10 @@
     <link href="css/style.css" rel="stylesheet" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <style type="text/css">
-        nav, .content {
-            margin: 5px;
-        }
 
         ul {
             height: 34px;
             list-style: none;
-        }
-
-        nav > ul > li {
-            width: 140px;
-            margin-right: 5px;
-            margin-bottom: 5px;
-            border: 1px solid gray;
-            background: gray;
-            display: block;
-            float: left;
-            text-align: center;
-        }
-
-        nav > ul > li > a {
-            padding: 5px;
-            display: block;
-            color: white;
-            width: 130px;
-        }
-
-        .active {
-            background: blue;
         }
 
         #to_top{
@@ -61,45 +36,8 @@
         "use strict";
         window.onload = function () {
             resizeWindow();
-            let links = document.querySelectorAll("#top a");
-            for (let i = 0; i < links.length; i++) {
-                links[i].onclick = function () {
-                    let url = this.dataset.url;
-
-                    //获取选中的a标签
-                    let active = document.querySelector(".active");
-
-                    //移除选中a标签的"active"类名
-                    active.classList.remove("active");
-
-                    //给当前选中的a标签添加"active"类名
-                    this.classList.add("active");
-                    if (url.indexOf("http") == -1) {
-                        $("iContent").src = url;
-                        resizeWindow();
-                    }
-                    else {
-                        resetChoose();
-                        openTab(url);
-                    }
-                }
-            }
         }
  
-        //每次新开标签页打开其它域名的网页前重新设置默认选中项以及iframe的src属性值
-        function resetChoose() {
-            let active = document.querySelector(".active");
-
-            //移除选中a标签的"active"类名
-            active.classList.remove("active");
-
-            //默认选中第1个
-            //由于这几个a标签不是兄弟元素，所以只能通过li元素来找
-            let first = document.querySelector("ul li:nth-child(1)>a");
-            first.classList.add("active");
-            $("iContent").src = first.dataset.url;
-        }
-
         window.onresize = resizeWindow;
 
         window.onscroll=function(){

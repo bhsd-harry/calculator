@@ -15,24 +15,12 @@ if (typeof storage === 'object') {
     }
 }
 
-
-//关闭从者技能详情
-$("btnClose").onclick = function () {
-    hideSkillsWin();
-}
-
 //查询
 $("txtWord").oninput = function () {
     search();
 }
 $("btnSearch").onclick = function () {
     search();
-}
-
-//双击下载图片
-$("showSkillsWin").ondblclick =function(){
-    let url= document.querySelector(".skillImg").src;
-    downloadFile(url);
 }
 
 //显示查询结果
@@ -54,25 +42,6 @@ function showWin(type,ext){
     let servant = servants[id];
     let eName = filterStr(servant.eName);
     document.querySelector(".skillImg").src=`images/${type}/${eName}${ext}`;
-}
-
-//显示技能图
-function showSkillsWin() {
-    showWin("Skill",".png")
-
-}
-//隐藏技能图
-function hideSkillsWin() {
-    hideDiv("showSkillsWin");
-}
-//显示强化素材图
-function showMaterialsWin(){
-    showWin("Material",".jpg");
-}
-
-//显示NP获取TOP5图
-function showNPWin(){
-    showWin("NP",".png");
 }
 
 //查询
@@ -154,26 +123,6 @@ function check(key) {
     //return key.indexOf(word) != -1;
 }
 
-
-//跳转到茹西教王的理想鄉
-$("btnRedirectKazemai").onclick = function () {
-    redirectLink('https://kazemai.github.io/fgo-vz/svtData.html?no=');
-}
-//跳转到wiki
-$("btnRedirectWiki").onclick = function () {
-    redirectLink('http://fgowiki.com/guide/petdetail/');
-}
-//跳转页面
-function redirectLink(link) {
-    let id = $("ddlChooseServant").value;
-    if (id != "-1" && id != "") {
-        //window.top.location = link + servants[id].servantNo;
-        openTab(link + servants[id].servantNo);
-    }
-    else {
-        alert("请选择从者");
-    }
-}
 //设置本地存储信息
 function setStorage() {
     if (storage) {

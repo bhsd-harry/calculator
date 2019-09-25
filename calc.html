@@ -17,25 +17,11 @@
         } 
         .servant tr:nth-child(2)>td:nth-child(2) input{
             width:450px;
-        }                     
-        .switchCotent{
-            display:none;
         }
-        .switchCotent.showSwitchContent{
-            display:block;
-        }
-        .switchCotent a{
-            margin-left: 1em;
-        }
-		
 		
     </style>
 </head>
 <body id="content" onunload="setStorage()">
-    <div id="showSkillsWin" class="showSkills">
-        <img src="" alt="" class="skillImg">
-        <a id="btnClose" class="close" href="javascript:;">☒</a>
-    </div>
     <div id="divServant">
         <table class="servant">
             <tr>
@@ -173,7 +159,6 @@
                         <option value="1.0">非克制</option>
 			<option value="0.5">被克制</option>
                         <option value="1.2">Alterego- Beast III</option>
-                        <option value="1.5">Alterego-下三</option>
                     </select>
                 </td>
                 <td>阵营克制</td>
@@ -232,15 +217,18 @@
             </tr>
             <tr>
                 <td colspan="8">
-                                        <input type="button" value="醉贞" id="btnAddZZ" onclick="addZZ()" />
-                                        <input type="button" value="空骑" id="btnAddKQ" onclick="addKQ()" />
-                                        <input type="button" value="黑杯" id="btnAddHB" onclick="addHB()" />
-                                        <input type="button" value="宝石" id="btnAddBS" onclick="addBS()" />
-					<input type="button" value="孔明" id="btnAddKM" onclick="addKM()" />
-					<input type="button" value="梅林" id="btnAddML" onclick="addML()" />	
-					<input type="button" value="狐狸" id="btnAddHL" onclick="addHL()" />
-					<input type="button" value="清空" id="btnClearBuff" onclick="resetBuff()" />
-                    <input type="button" value="计算" id="btnCalcute" onclick="calc()" />
+                                        <input type="button" value="醉   贞" id="btnAddZZ" onclick="addZZ()" />
+                                        <input type="button" value="空   骑" id="btnAddKQ" onclick="addKQ()" />
+                                        <input type="button" value="黑   杯" id="btnAddHB" onclick="addHB()" />
+                                        <input type="button" value="宝   石" id="btnAddBS" onclick="addBS()" />
+					<br><input type="button" value="孔   明" id="btnAddKM" onclick="addKM()" />
+					<input type="button" value="梅   林" id="btnAddML" onclick="addML()" />	
+					<input type="button" value="狐   狸" id="btnAddHL" onclick="addHL()" />
+					<input type="button" value="斯卡蒂" id="btnAddCB" onclick="addCB()" />
+					<br><input type="button" value="战斗服" id="btnAddZD" onclick="addZD()" />
+					<input type="button" value="碎片服" id="btnAddSP" onclick="addSP()" />
+					<input type="button" value="清   空" id="btnClearBuff" onclick="resetBuff()" />
+                    <input type="button" value="计   算" id="btnCalcute" onclick="calc()" />
                 </td>
             </tr>
         </table>
@@ -286,9 +274,10 @@
     loadStorage(true);
     bindSearchTips();
 
+    var ceEffect=0;
+    var maEffect=0;
+
     (function(){
-        window.Global_save=[];
-        let n=1;//默认选择存档
     })();
 
     //圣杯MAX勾选框改变事件
@@ -463,9 +452,6 @@
 
         //8.属性
         bindAttributes(servant);
-
-        //9.特性
-        //bindCharacteristics(servant);
     }
 
 
@@ -612,13 +598,39 @@
         $("txtTreasureRate").value = Math.floor(treasureRate);
     }
 
-	
+	function clearCE(){
+		if(ceEffect==1) {
+			$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 15;
+		}
+		else if(ceEffect==2) {
+			$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 10;
+			let servant = servants[$("ddlChooseServant").value];
+			if(servant.cardColor == 1.5){
+				$("txtCardBuff").value = getFloat("txtCardBuff") - 10;
+			}
+		}
+		else if(ceEffect==3) {
+			$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 60;
+		}
+	}
+	function clearMA(){
+		if(maEffect==1) {
+                        $("txtAttackBuff").value = getFloat("txtAttackBuff") - 30;
+                }
+                else if(maEffect==2) {
+                        $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 50;
+                }
+	}
 	function addZZ(){
 		$("txtCardAtk").value = 2000;
+		clearCE()
+		ceEffect=1;
 		$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 15;
 	}
         function addKQ(){
                 $("txtCardAtk").value = 2000;
+		clearCE()
+		ceEffect=2;
                 $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 10;
         	let servant = servants[$("ddlChooseServant").value];
         	if(servant.cardColor == 1.5){
@@ -627,10 +639,14 @@
         }
         function addHB(){
                 $("txtCardAtk").value = 1671;
-                $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 60;
+		clearCE()
+		ceEffect=3;
+		$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 60;
         }
         function addBS(){
                 $("txtCardAtk").value = 786;
+		clearCE()
+		ceEffect=0;
         }
 	function addKM(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
@@ -651,6 +667,23 @@
                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
                 }
         }
+	function addCB(){
+		$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") - 30;
+		let servant = servants[$("ddlChooseServant").value];
+                if(servant.cardColor == 0.8){
+                        $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+                }
+	}
+	function addZD(){
+		clearMA();
+		maEffect=1;
+		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
+	}
+	function addSP(){
+		clearMA();
+		maEffect=2;
+		$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 50;
+	}
 	function clearBuff(servant){
 		if (!servant) {
             let id = $("ddlChooseServant").value;
@@ -672,6 +705,8 @@
 
         //宝具副效果补充
         bindTreasureSideEffect(servant);
+	ceEffect = 0;
+	maEffect = 0;
 	}
 	function resetBuff()
 	{
