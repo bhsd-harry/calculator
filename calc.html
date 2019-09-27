@@ -67,6 +67,7 @@
                 <td>剩余Hp值</td>
                 <td>
                     <input type="number" id="txtRemainHp" />
+		    <input type="button" value="满血" id="btnAdjHp" onclick="adjHp()" />
                 </td>                
 
             </tr>
@@ -200,34 +201,39 @@
                 <td>
                     <input type="number" id="txtSpecialAttackPowerBuff" value="0" />
                 </td>
-                <td>敌方特防威力Buff(%)</td>
-                <td>
-                    <input type="number" id="txtSpecialDefencePowerBuff" value="0" />
-                </td>
                 <td>固定伤害Buff</td>
                 <td>
                     <input type="number" id="txtFixedDamageBuff" value="0" basicvalue="0" />
                 </td>
-                <td>敌方固定减伤Buff</td>
+                <td>概念礼装</td>
                 <td>
-                    <input type="number" id="txtEnemyFixedDamageReductionBuff" value="0" />
+                    <select id="ddlCes">
+                        <option value="0">自定义</option>
+                        <option value="1">20级宝石</option>
+                        <option value="2">100级醉贞</option>
+                        <option value="3">100级空骑</option>
+                        <option value="4">100级相扑</option>
+                        <option value="5">60级黑杯</option>
+                    </select>
+                </td>
+                <td>御主礼装</td>
+                <td>
+                    <select id="ddlCls">
+                        <option value="0">无</option>
+                        <option value="1">战斗服</option>
+                        <option value="2">04服</option>
+                    </select>
                 </td>
             </tr>
             <tr>
             </tr>
             <tr>
                 <td colspan="8">
-                                        <input type="button" value="醉   贞" id="btnAddZZ" onclick="addZZ()" />
-                                        <input type="button" value="空   骑" id="btnAddKQ" onclick="addKQ()" />
-                                        <input type="button" value="黑   杯" id="btnAddHB" onclick="addHB()" />
-                                        <input type="button" value="宝   石" id="btnAddBS" onclick="addBS()" />
-					<br><input type="button" value="孔   明" id="btnAddKM" onclick="addKM()" />
-					<input type="button" value="梅   林" id="btnAddML" onclick="addML()" />	
-					<input type="button" value="狐   狸" id="btnAddHL" onclick="addHL()" />
-					<input type="button" value="斯卡蒂" id="btnAddCB" onclick="addCB()" />
-					<br><input type="button" value="战斗服" id="btnAddZD" onclick="addZD()" />
-					<input type="button" value="碎片服" id="btnAddSP" onclick="addSP()" />
-					<input type="button" value="清   空" id="btnClearBuff" onclick="resetBuff()" />
+		    <input type="button" value="孔   明" id="btnAddKM" onclick="addKM()" />
+		    <input type="button" value="梅   林" id="btnAddML" onclick="addML()" />	
+		    <input type="button" value="狐   狸" id="btnAddHL" onclick="addHL()" />
+		    <input type="button" value="斯卡蒂" id="btnAddCB" onclick="addCB()" />
+		    <input type="button" value="清   空" id="btnClearBuff" onclick="resetBuff()" />
                     <input type="button" value="计   算" id="btnCalcute" onclick="calc()" />
                 </td>
             </tr>
@@ -273,9 +279,6 @@
     intialServantList();
     loadStorage(true);
     bindSearchTips();
-
-    var ceEffect=0;
-    var maEffect=0;
 
     (function(){
     })();
@@ -410,6 +413,25 @@
             $("txtMaxHp").value=servant.hp;
             $("txtRemainHp").value=servant.hp;   
         }
+    }
+
+    $("ddlCes").onchange=function(){
+	switch($("ddlCes").value) {
+	    case "1":
+		$("txtCardAtk").value=786;
+		$("txtCardHp").value=0;
+		break;
+	    case "2":
+	    case "3":
+	    case "4":
+	    	$("txtCardAtk").value=2000;
+		$("txtCardHp").value=0;
+                break;
+	    case "5":
+		$("txtCardAtk").value=1671;
+                $("txtCardHp").value=0;
+                break;
+	}
     }
 
     /***********************************************************/
@@ -598,56 +620,11 @@
         $("txtTreasureRate").value = Math.floor(treasureRate);
     }
 
-	function clearCE(){
-		if(ceEffect==1) {
-			$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 15;
-		}
-		else if(ceEffect==2) {
-			$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 10;
-			let servant = servants[$("ddlChooseServant").value];
-			if(servant.cardColor == 1.5){
-				$("txtCardBuff").value = getFloat("txtCardBuff") - 10;
-			}
-		}
-		else if(ceEffect==3) {
-			$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 60;
-		}
+	function adjHp(){
+		let fullHp = Number($("txtMaxHp").value) + Number($("txtFufuHp").value) + Number($("txtCardHp").value);
+		$("txtRemainHp").value = fullHp.toString();
+		calTreasureSpecialRemainHpAttackRate();
 	}
-	function clearMA(){
-		if(maEffect==1) {
-                        $("txtAttackBuff").value = getFloat("txtAttackBuff") - 30;
-                }
-                else if(maEffect==2) {
-                        $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") - 50;
-                }
-	}
-	function addZZ(){
-		$("txtCardAtk").value = 2000;
-		clearCE()
-		ceEffect=1;
-		$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 15;
-	}
-        function addKQ(){
-                $("txtCardAtk").value = 2000;
-		clearCE()
-		ceEffect=2;
-                $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 10;
-        	let servant = servants[$("ddlChooseServant").value];
-        	if(servant.cardColor == 1.5){
-                        $("txtCardBuff").value = getFloat("txtCardBuff") + 10;
-                }
-        }
-        function addHB(){
-                $("txtCardAtk").value = 1671;
-		clearCE()
-		ceEffect=3;
-		$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 60;
-        }
-        function addBS(){
-                $("txtCardAtk").value = 786;
-		clearCE()
-		ceEffect=0;
-        }
 	function addKM(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
 		$("txtFixedDamageBuff").value = getFloat("txtFixedDamageBuff") + 500;	
@@ -674,16 +651,6 @@
                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
                 }
 	}
-	function addZD(){
-		clearMA();
-		maEffect=1;
-		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
-	}
-	function addSP(){
-		clearMA();
-		maEffect=2;
-		$("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 50;
-	}
 	function clearBuff(servant){
 		if (!servant) {
             let id = $("ddlChooseServant").value;
@@ -691,13 +658,14 @@
         }
 		$("txtTreasureSpecialAttack").value = 100;
         $("txtSpecialAttackPowerBuff").value = 0;
-		if(isNaN($("txtFixedDamageBuff").basicvalue)){$("txtFixedDamageBuff").value = 0;}
-		else {$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;}
+	if(isNaN($("txtFixedDamageBuff").basicvalue)){
+		$("txtFixedDamageBuff").value = 0;}
+	else {
+		$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;}
         $("txtCardBuff").value = $("txtCardBuff").dataset.value;
         $("txtAttackBuff").value = 0;
         $("txtTreasurePowerBuff").value = 0;
-		$("txtEnemyDefenceBuff").value = 0;
-		$("txtEnemyFixedDamageReductionBuff").value = 0;
+	$("txtEnemyDefenceBuff").value = 0;
         //$("ddlOc").selectedIndex = 0;
         //设置回被动卡牌buff
         let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
@@ -705,8 +673,6 @@
 
         //宝具副效果补充
         bindTreasureSideEffect(servant);
-	ceEffect = 0;
-	maEffect = 0;
 	}
 	function resetBuff()
 	{
@@ -905,28 +871,22 @@
         let career = getFloat("ddlCareer");
 
         //9.宝具威力Buff(%)
-        let treasurePowerBuff = getFloat("txtTreasurePowerBuff") / 100;
+        let treasurePowerBuff = getFloat("txtTreasurePowerBuff");
 
         //10.卡牌Buff(%)
-        let cardBuff = getFloat("txtCardBuff") / 100;
+        let cardBuff = getFloat("txtCardBuff");
 
         //11.攻击力Buff(%)
-        let attackBuff = getFloat("txtAttackBuff") / 100;
+        let attackBuff = getFloat("txtAttackBuff");
 
         //12.敌方防御力Buff(%)
-        let enemyDefenceBuff = getFloat("txtEnemyDefenceBuff") / 100;
+        let enemyDefenceBuff = getFloat("txtEnemyDefenceBuff");
 
         //13.特攻威力Buff(%)
-        let specialAttackPowerBuff = getFloat("txtSpecialAttackPowerBuff") / 100;
-
-        //14.敌方特防威力Buff(%)
-        let specialDefencePowerBuff = getFloat("txtSpecialDefencePowerBuff") / 100;
+        let specialAttackPowerBuff = getFloat("txtSpecialAttackPowerBuff");
 
         //15.固定伤害Buff
         let fixedDamageBuff = getFloat("txtFixedDamageBuff");
-
-        //16.敌方固定减伤Buff
-        let enemyFixedDamageReductionBuff = getFloat("txtEnemyFixedDamageReductionBuff");
 
         //17.宝具特攻(%)     
         let treasureSpecialAttack = getFloat("txtTreasureSpecialAttack") / 100;
@@ -934,10 +894,37 @@
             ATK×攻击补正(0.23)×[宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)]×职阶补正×职阶相性补正×阵营相性补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
-        let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff)] * career * careerResist * campResist * 0.9 * Math.max(0,(1 + attackBuff - enemyDefenceBuff - specialDefencePowerBuff))* (1 + specialAttackPowerBuff + treasurePowerBuff) * treasureSpecialAttack + (fixedDamageBuff - enemyFixedDamageReductionBuff);
+
+	switch($("ddlCes").value) {
+	    case "2":
+		treasurePowerBuff = treasurePowerBuff + 15;
+		break;
+	    case "3":
+		treasurePowerBuff = treasurePowerBuff + 10;
+		    if(cardColor == 1.5) {
+			cardBuff = cardBuff + 10;
+		    }
+		break;
+	    case "4":
+		attackBuff = attackBuff + 15;
+		break;
+	    case "5":
+		treasurePowerBuff = treasurePowerBuff + 60;
+		break;
+	}
+	switch($("ddlCls").value) {
+	    case "1":
+		attackBuff = attackBuff + 30;
+		break;
+	    case "2":
+		treasurePowerBuff = treasurePowerBuff + 50;
+		break;
+	}
+
+        let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * campResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
         resultMin = Math.floor(Math.max(0,resultMin));
 
-        let resultMax = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff)] * career * careerResist * campResist * 1.1 * Math.max(0,(1 + attackBuff - enemyDefenceBuff - specialDefencePowerBuff))* (1 + specialAttackPowerBuff + treasurePowerBuff) * treasureSpecialAttack + (fixedDamageBuff - enemyFixedDamageReductionBuff);
+        let resultMax = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * campResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
         resultMax = Math.floor(Math.max(0,resultMax));
 
         let resultAvg = Math.round((resultMin + resultMax) * 1.0 / 2);
@@ -978,10 +965,10 @@
             treasureRate: getFloat("txtTreasureRate"),
             treasureSpecialAttack: getFloat("txtTreasureSpecialAttack"),
             oc: oc,
-            treasurePowerBuff: getFloat("txtTreasurePowerBuff"),
-            cardBuff: getFloat("txtCardBuff"),
-            attackBuff: getFloat("txtAttackBuff"),
-            specialAttackPowerBuff: getFloat("txtSpecialAttackPowerBuff"),
+            treasurePowerBuff: treasurePowerBuff,
+            cardBuff: cardBuff,
+            attackBuff: attackBuff,
+            specialAttackPowerBuff: specialAttackPowerBuff,
             enemyDefenceBuff: getFloat("txtEnemyDefenceBuff"),
             min: resultMin,
             max: resultMax,
