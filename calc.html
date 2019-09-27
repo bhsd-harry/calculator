@@ -126,7 +126,7 @@
                         <option value="oc5">5</option>
                     </select>
                     <label for="ckIsSpecialAttack">
-                        <input type="checkbox" id="ckIsSpecialAttack" value="1" /> OC特效
+                        <input type="checkbox" id="ckIsSpecialAttack" value="1" /> 特攻
                     </label>
                 </td>
 
@@ -316,9 +316,10 @@
         let id = this.value;
         if (id != "-1" && id != "") {
             clearBuff();
-			$("ddlOc").selectedIndex = 0;
+	    $("ddlOc").selectedIndex = 0;
+	    $("ddlOc").oldvalue = "oc1";
             bindServantData(id);
-			changeOc();
+	    changeOc();
         }
     }
     //宝具等级选中项发生变化事件
@@ -329,7 +330,7 @@
     //OC等级选中项发生变化事件
     $("ddlOc").onchange = function () {
         adjustOc();
-		$("ddlOc").oldvalue = $("ddlOc").value;
+	$("ddlOc").oldvalue = $("ddlOc").value;
     };
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {
@@ -344,7 +345,31 @@
 
     //是否特攻
     $("ckIsSpecialAttack").onclick = function () {
-        adjustOc(true);
+	let id=$("ddlChooseServant").value;
+        if (id == "-1" || id == "") {
+            return;
+        }
+
+        let servant = servants[id];
+	let ocs = servant.oc;
+        if(ocs["type"] == "TreasureSpecialAttack" || ocs["type"] == "SpecialAttackPowerBuff") {
+	    adjustOc(true);
+	}
+	else {
+	    let treasureSideEffect = servant.treasureSideEffect;
+	    if (treasureSideEffect && treasureSideEffect.specialAttack && !isNaN(treasureSideEffect.specialAttack)) {
+        	//!isNaN(null)，返回true，需要去掉这种情况
+                if($("ckIsSpecialAttack").checked) {
+		    $("txtTreasureSpecialAttack").value = treasureSideEffect.specialAttack;
+		}
+		else {
+		    $("txtTreasureSpecialAttack").value = 100;
+		}
+	    }
+	    else {
+		$("ckIsSpecialAttack").checked = false;
+	    }
+	}
     }
 
      //等级下拉列表选中项改变事件
@@ -432,6 +457,7 @@
                 $("txtCardHp").value=0;
                 break;
 	}
+	calTreasureSpecialRemainHpAttackRate();
     }
 
     /***********************************************************/
@@ -493,10 +519,6 @@
                 $("txtCardBuff").value = cardPowerBuff;
             }
 
-            let specialAttack = treasureSideEffect.specialAttack;//宝具特攻
-            if (specialAttack && !isNaN(specialAttack)) {//单个数值，比如小恩宝具的200%人类威胁特攻
-                $("txtTreasureSpecialAttack").value = specialAttack;
-            }
         }
 
     }
@@ -622,7 +644,7 @@
 
 	function adjHp(){
 		let fullHp = Number($("txtMaxHp").value) + Number($("txtFufuHp").value) + Number($("txtCardHp").value);
-		$("txtRemainHp").value = fullHp.toString();
+		$("txtRemainHp").value = fullHp;
 		calTreasureSpecialRemainHpAttackRate();
 	}
 	function addKM(){
@@ -652,27 +674,28 @@
                 }
 	}
 	function clearBuff(servant){
-		if (!servant) {
-            let id = $("ddlChooseServant").value;
-            servant = servants[id];
-        }
-		$("txtTreasureSpecialAttack").value = 100;
-        $("txtSpecialAttackPowerBuff").value = 0;
-	if(isNaN($("txtFixedDamageBuff").basicvalue)){
+	    if (!servant) {
+                let id = $("ddlChooseServant").value;
+                servant = servants[id];
+            }
+	    $("txtTreasureSpecialAttack").value = 100;
+            $("txtSpecialAttackPowerBuff").value = 0;
+	    if(isNaN($("txtFixedDamageBuff").basicvalue)){
 		$("txtFixedDamageBuff").value = 0;}
-	else {
-		$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;}
-        $("txtCardBuff").value = $("txtCardBuff").dataset.value;
-        $("txtAttackBuff").value = 0;
-        $("txtTreasurePowerBuff").value = 0;
-	$("txtEnemyDefenceBuff").value = 0;
-        //$("ddlOc").selectedIndex = 0;
-        //设置回被动卡牌buff
-        let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
-        $("txtCardBuff").value = originNum;
+	    else {
+		$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;
+	    }
+            $("txtCardBuff").value = $("txtCardBuff").dataset.value;
+            $("txtAttackBuff").value = 0;
+            $("txtTreasurePowerBuff").value = 0;
+	    $("txtEnemyDefenceBuff").value = 0;
+            //$("ddlOc").selectedIndex = 0;
+            //设置回被动卡牌buff
+            let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+            $("txtCardBuff").value = originNum;
 
-        //宝具副效果补充
-        bindTreasureSideEffect(servant);
+            //宝具副效果补充
+            bindTreasureSideEffect(servant);
 	}
 	function resetBuff()
 	{
@@ -690,117 +713,111 @@
         let ocLevel = $("ddlOc").value;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
-		if(ocs["type"] != "TreasureSpecialAttack" && ocs["type"] != "" && ocs["type"] != "SpecialAttackPowerBuff"){
-			isSpecialAttack.checked = true;
-		}
+	if (ocs["type"] == "TreasureSpecialRemainHpAttack") {//双子宝具特攻
+                calTreasureSpecialRemainHpAttackRate();
+        }
+        else if (ocs["type"] == "TreasureSpecialExplosionAttack") {//自爆弓特攻
+            calTreasureSpecialExplosionAttackRate();
+        }
+	else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
+            //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
+            let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+
+            $("txtCardBuff").value = originNum + ocs[ocLevel];
+        }
+        else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
+            $("txtAttackBuff").value = ocs[ocLevel];
+        }
+        else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
+            $("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+
+        }
+        else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
+            $("txtTreasurePowerBuff").value = ocs[ocLevel];
+        }
         if (isSpecialAttack.checked) {//是特攻
             if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
                 $("txtTreasureSpecialAttack").value = ocs[ocLevel];
             }
-            else if (ocs["type"] == "TreasureSpecialRemainHpAttack") {//双子宝具特攻
-                calTreasureSpecialRemainHpAttackRate();
-            }
-            else if (ocs["type"] == "TreasureSpecialExplosionAttack") {//自爆弓特攻
-                calTreasureSpecialExplosionAttackRate();
-            }
             else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
                 $("txtSpecialAttackPowerBuff").value = ocs[ocLevel];
             }
-            else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
-                //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
-                let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
-
-                $("txtCardBuff").value = originNum + ocs[ocLevel];
-            }
-            else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
-                $("txtAttackBuff").value = ocs[ocLevel];
-            }
-			else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
-				$("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
-				
-			}
-            else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
-                $("txtTreasurePowerBuff").value = ocs[ocLevel];
-            }
         }
-        else {
+        if (ocs["type"] == "") {
             clearBuff();
 			
-			$("ddlOc").selectedIndex = 0;
+	    $("ddlOc").selectedIndex = 0;
         }
     }
 
-	function adjustOc(is_forced){
+    function adjustOc(is_forced){
         let id = $("ddlChooseServant").value;
-		let servant = undefined;
-		if(isNaN(id) || id <= 0) {
-			$("ddlOc").selectedIndex = 0;
-			isSpecialAttack.checked = false;
-			return;
-		}
+	let servant = undefined;
+	if(isNaN(id) || id <= 0) {
+		$("ddlOc").selectedIndex = 0;
+		isSpecialAttack.checked = false;
+		return;
+	}
         servant = servants[id];
         
 
-        let ocLevel = $("ddlOc").value; let oldocLevel = $("ddlOc").oldvalue;
-		if(oldocLevel === undefined){ oldocLevel = "oc1";}
-		if(is_forced == false && ocLevel == oldocLevel)return;
+        let ocLevel = $("ddlOc").value;
+	let oldocLevel = $("ddlOc").oldvalue;
+	if(oldocLevel === undefined){ oldocLevel = "oc1";}
+	if(is_forced == false && ocLevel == oldocLevel)return;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
-		if(ocs["type"] == ""){
-			$("ddlOc").selectedIndex = 0;
-			isSpecialAttack.checked = false;
-			return;
-		}
-		if(ocs["type"] != "TreasureSpecialAttack" && ocs["type"] != "SpecialAttackPowerBuff"){
-		
-			isSpecialAttack.checked = true;
-		}
-		if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false){
-			$("txtSpecialAttackPowerBuff").value = 0;
-		}
-		if(ocs["type"] == "TreasureSpecialAttack" && isSpecialAttack.checked == false){
-			$("txtTreasureSpecialAttack").value = 100;
-		}
-		if (isSpecialAttack.checked) {//是特攻
-            if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
-                $("txtTreasureSpecialAttack").value = ocs[ocLevel];
-            }
-            else if (ocs["type"] == "TreasureSpecialRemainHpAttack") {//双子宝具特攻
+
+	if(ocs["type"] == ""){
+		$("ddlOc").selectedIndex = 0;
+		return;
+	}
+	if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false){
+		$("txtSpecialAttackPowerBuff").value = 0;
+	}
+	if(ocs["type"] == "TreasureSpecialAttack" && isSpecialAttack.checked == false){
+		$("txtTreasureSpecialAttack").value = 100;
+	}
+        if (ocs["type"] == "TreasureSpecialRemainHpAttack") {//双子宝具特攻
                 calTreasureSpecialRemainHpAttackRate();
-            }
-            else if (ocs["type"] == "TreasureSpecialExplosionAttack") {//自爆弓特攻
+        }
+        else if (ocs["type"] == "TreasureSpecialExplosionAttack") {//自爆弓特攻
                 calTreasureSpecialExplosionAttackRate();
-            }
-            else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
-				//let o = getFloat("txtSpecialAttackPowerBuff");
-                //$("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
-				$("txtSpecialAttackPowerBuff").value = ocs[ocLevel];
-            }
-            else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
+        }
+	else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
                 //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
                 //let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
 
                 //$("txtCardBuff").value = originNum + ocs[ocLevel];
-				let o = getFloat("txtCardBuff");
-				$("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
-            }
-            else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
-				let o = getFloat("txtAttackBuff");
-				$("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+                let o = getFloat("txtCardBuff");
+                $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+        }
+        else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
+                let o = getFloat("txtAttackBuff");
+                $("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
                 //$("txtAttackBuff").value = ocs[ocLevel];
-            }
-			else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
-				let o = getFloat("txtEnemyDefenceBuff");
-				$("txtEnemyDefenceBuff").value = o - ocs[ocLevel] + ocs[oldocLevel];
-				//$("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
-			}
-            else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
-				let o = getFloat("txtTreasurePowerBuff");
-				$("txtTreasurePowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+        }
+        else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
+                let o = getFloat("txtEnemyDefenceBuff");
+                $("txtEnemyDefenceBuff").value = o - ocs[ocLevel] + ocs[oldocLevel];
+                //$("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+        }
+        else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
+                let o = getFloat("txtTreasurePowerBuff");
+                $("txtTreasurePowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
                 //$("txtTreasurePowerBuff").value = ocs[ocLevel];
-            }
-		}
+        }
+	if (isSpecialAttack.checked) {//是特攻
+        	if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
+                	$("txtTreasureSpecialAttack").value = ocs[ocLevel];
+        	}
+        	else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
+			//let o = getFloat("txtSpecialAttackPowerBuff");
+                	//$("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+			$("txtSpecialAttackPowerBuff").value = ocs[ocLevel];
+        	}
 	}
+    }
 
     //宝具等级选中项发生变化事件
     function changeTreasureRate(servant) {
@@ -813,10 +830,10 @@
         let treasureRate = servant.tl[tl];
 
         $("txtTreasureRate").value = treasureRate;
-        if (servant.oc.type == "TreasureSpecialRemainHpAttack" && $("ckIsSpecialAttack").checked) {//双子宝具特攻并且勾选了特攻
+        if (servant.oc.type == "TreasureSpecialRemainHpAttack") {//双子宝具特攻并且勾选了特攻
             calTreasureSpecialRemainHpAttackRate();
         }
-        else if (servant.oc.type == "TreasureSpecialExplosionAttack" && $("ckIsSpecialAttack").checked) {//自爆弓特攻
+        else if (servant.oc.type == "TreasureSpecialExplosionAttack") {//自爆弓特攻
             calTreasureSpecialExplosionAttackRate();
         }
     }
