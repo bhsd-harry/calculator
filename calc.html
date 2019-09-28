@@ -67,7 +67,6 @@
                 <td>剩余Hp值</td>
                 <td>
                     <input type="number" id="txtRemainHp" />
-		    <input type="button" value="满血" id="btnAdjHp" onclick="adjHp()" />
                 </td>                
 
             </tr>
@@ -128,6 +127,7 @@
                     <label for="ckIsSpecialAttack">
                         <input type="checkbox" id="ckIsSpecialAttack" value="1" /> 特攻
                     </label>
+		    <input type="button" value="满血" id="btnAdjHp" onclick="adjHp()" />
                 </td>
 
 
@@ -214,6 +214,9 @@
                         <option value="3">100级空骑</option>
                         <option value="4">100级相扑</option>
                         <option value="5">60级黑杯</option>
+			<option value="6">20级潜水学妹</option>
+			<option value="7">20级北斋</option>
+			<option value="8">15级泳装樱</option>
                     </select>
                 </td>
                 <td>御主礼装</td>
@@ -222,6 +225,15 @@
                         <option value="0">无</option>
                         <option value="1">战斗服</option>
                         <option value="2">04服</option>
+			<option value="3">骑士王服</option>
+			<option value="4">初始服</option>
+			<option value="5">西服</option>
+			<option value="6">泳装</option>
+			<option value="7">月海</option>
+			<option value="8">月背</option>
+			<option value="9">极地服</option>
+			<option value="10">夏威夷衫</option>
+			<option value="11">新年服</option>
                     </select>
                 </td>
             </tr>
@@ -456,6 +468,15 @@
 		$("txtCardAtk").value=1671;
                 $("txtCardHp").value=0;
                 break;
+	    case "6":
+	    case "7":
+		$("txtCardAtk").value=393;
+		$("txtCardHp").value=629;
+		break;
+	    case "8":
+		$("txtCardAtk").value=0;
+		$("txtCardHp").value=1067;
+		break;
 	}
 	calTreasureSpecialRemainHpAttackRate();
     }
@@ -475,7 +496,7 @@
 
         //2.Hp最大值、剩余Hp值
         $("txtMaxHp").value = servant.hp;
-        $("txtRemainHp").value = servant.hp;
+        $("txtRemainHp").value = servant.hp + 1000;
 
         //3.宝具倍率
         changeTreasureRate(servant);
@@ -918,9 +939,9 @@
 		break;
 	    case "3":
 		treasurePowerBuff = treasurePowerBuff + 10;
-		    if(cardColor == 1.5) {
-			cardBuff = cardBuff + 10;
-		    }
+		if(cardColor == 1.5) {
+		    cardBuff = cardBuff + 10;
+		}
 		break;
 	    case "4":
 		attackBuff = attackBuff + 15;
@@ -928,6 +949,23 @@
 	    case "5":
 		treasurePowerBuff = treasurePowerBuff + 60;
 		break;
+            case "6":
+                treasurePowerBuff = treasurePowerBuff + 10;
+                if(cardColor == 1) {
+                    cardBuff = cardBuff + 10;
+                }
+                break;
+            case "7":
+                if(cardColor == 1) {
+                    cardBuff = cardBuff + 10;
+                }
+                break;
+            case "8":
+                treasurePowerBuff = treasurePowerBuff + 10;
+                if(cardColor == 0.8) {
+                    cardBuff = cardBuff + 10;
+                }
+                break;
 	}
 	switch($("ddlCls").value) {
 	    case "1":
@@ -935,6 +973,47 @@
 		break;
 	    case "2":
 		treasurePowerBuff = treasurePowerBuff + 50;
+		break;
+            case "3":
+                if(cardColor == 1.5) {
+                    cardBuff = cardBuff + 60;
+                }
+		break;
+	    case "4":
+		attackBuff = attackBuff + 50;
+                break;
+	    case "5":
+		if(cardColor == 0.8) {
+                    cardBuff = cardBuff + 50;
+                }
+                break;
+	    case "6":
+		if(cardColor == 0.8) {
+                    cardBuff = cardBuff + 30;
+                }
+                break;
+	    case "7":
+		if(cardColor == 1) {
+                    cardBuff = cardBuff + 50;
+                }
+                break;
+            case "8":
+                if(cardColor == 1) {
+                    cardBuff = cardBuff + 30;
+                }
+                break;
+	    case "9":
+		attackBuff = attackBuff + 20;
+		treasurePowerBuff = treasurePowerBuff + 10;
+		break;
+	    case "10":
+		treasurePowerBuff = treasurePowerBuff + 20;
+		if(cardColor == 1) {
+                    cardBuff = cardBuff + 30;
+                }
+		break;
+	    case "11":
+		treasurePowerBuff = treasurePowerBuff + 35;
 		break;
 	}
 
