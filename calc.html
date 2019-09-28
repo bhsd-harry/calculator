@@ -346,13 +346,13 @@
     };
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {
-        adjustOc(true);
+        adjustOc();
     }
     $("txtFufuHp").onchange = function () {
-        adjustOc(true);
+        adjustOc();
     }
     $("txtCardHp").onchange = function () {
-        adjustOc(true);
+        adjustOc();
     }
 
     //是否特攻
@@ -786,7 +786,6 @@
         let ocLevel = $("ddlOc").value;
 	let oldocLevel = $("ddlOc").oldvalue;
 	if(oldocLevel === undefined){ oldocLevel = "oc1";}
-	if(is_forced == false && ocLevel == oldocLevel)return;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
 
@@ -794,8 +793,8 @@
 		$("ddlOc").selectedIndex = 0;
 		return;
 	}
-	if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false){
-		$("txtSpecialAttackPowerBuff").value = 0;
+	if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false && is_forced == true){
+		$("txtSpecialAttackPowerBuff").value = getFloat("txtSpecialAttackPowerBuff") - ocs[ocLevel];
 	}
 	if(ocs["type"] == "TreasureSpecialAttack" && isSpecialAttack.checked == false){
 		$("txtTreasureSpecialAttack").value = 100;
@@ -834,9 +833,13 @@
                 	$("txtTreasureSpecialAttack").value = ocs[ocLevel];
         	}
         	else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
-			//let o = getFloat("txtSpecialAttackPowerBuff");
-                	//$("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
-			$("txtSpecialAttackPowerBuff").value = ocs[ocLevel];
+			if(is_forced == true) {
+				$("txtSpecialAttackPowerBuff").value = getFloat("txtSpecialAttackPowerBuff") + ocs[ocLevel];
+			}
+			else {
+				let o = getFloat("txtSpecialAttackPowerBuff");
+                        	$("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+			}
         	}
 	}
 	if (ocs["oc1"] == ocs["oc5"]) {
