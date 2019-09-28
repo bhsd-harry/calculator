@@ -224,7 +224,7 @@ function initArcher(){
     initialServant(4,"Archer", "刑部姬", "", 262, [], "地", ["中立", "夏"], [], 8895, 12476, 10770, 15127, "AAABQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 8, fixedDamageBuff: 145, critialPowerBuff: 10 });
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Archer", "罗宾汉", "Robin Hood", 13, [], "人", ["中立", "善"], [], 6715, 10187, 9088, 13812, "AABQQ", 900, 1200, 1350, 1425, 1500, 200, 212.5, 225, 237.5, 250, "TreasureSpecialAttack", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
-    initialServant(3,"Archer", "尤瑞艾莉", "Euryale", 15, [], "天", ["混沌", "善"], [], 7032, 9506, 9517, 12889, "AABQQ", 1200, 1200, 1200, 1200, 1200, 250, 250, 250, 250, 250, "TreasureSpecialAttack", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 300, critialPowerBuff: 11 });
+    initialServant(3,"Archer", "尤瑞艾莉", "Euryale", 15, [], "天", ["混沌", "善"], [], 7032, 9506, 9517, 12889, "AABQQ", 1200, 1200, 1200, 1200, 1200, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 300, critialPowerBuff: 11 }, { specialAttack: 250});
     initialServant(3,"Archer", "大卫", "David", 63, [], "天", ["秩序", "中立"], [], 7736, 8643, 10470, 11719, "AAABQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
     initialServant(3,"Archer", "幼吉尔", "Child Gil", 95, [], "天", ["混沌", "善"], [], 7696, 8731, 10415, 11838, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 175, critialPowerBuff: 10 });
     initialServant(3,"Archer", "比利小子", "Billy the Kid", 105, [], "人", ["混沌", "中庸"], [], 6890, 9506, 9325, 12889, "AABQQ", 1600, 2000, 2200, 2300, 2400, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 7, fixedDamageBuff: 0, critialPowerBuff: 10 });
@@ -328,7 +328,7 @@ function initCaster(){
     initialServant(5,"Caster", "山鲁佐德", "Scheherazade", 169, [], "人", ["秩序", "中庸"], [], 9212, 15846, 10084, 17360, "AAABQ", 600, 750, 825, 862.5, 900, 200, 225, 250, 275, 300, "TreasureSpecialAttack", 1, { cardColor: 1, cardBuff: 11.5, fixedDamageBuff: 0, critialPowerBuff: 0 }, { treasurePowerBuff: 20 });
     initialServant(5,"Caster", "山鲁佐德EN", "Scheherazade", 169, [], "人", ["秩序", "中庸"], [], 9212, 15846, 10084, 17360, "AAABQ", 450, 600, 675, 712.5, 750, 200, 225, 250, 275, 300, "TreasureSpecialAttack", 1, { cardColor: 1, cardBuff: 11.5, fixedDamageBuff: 0, critialPowerBuff: 0 }, { treasurePowerBuff: 20 });
     initialServant(5,"Caster", "尼禄・克劳狄乌斯", "Nero Claudius2", 175, [], "人", ["混沌", "夏"], [], 10857, 13685, 11885, 14992, "AABBQ", 300, 400, 450, 475, 500, 20, 30, 40, 50, 60, "TreasurePowerBuff", 1.5, { cardColor: -2, cardBuff: "8|11", fixedDamageBuff: 0, critialPowerBuff: 0 });
-    initialServant(5,"Caster", "阿纳斯塔西娅", "Анастасия", 201 ,[], "人", ["中立","中庸"],[], 10546, 14259, 11544, 15621, "AAABQ", 450, 600 ,675, 712.5, 750,0,0,0,0,0, "" , 1,{ cardColor: 1, cardBuff: 12, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(5,"Caster", "阿纳斯塔西娅", "Анастасия", 201 ,[], "人", ["中立","中庸"],[], 10546, 14259, 11544, 15621, "AAABQ", 450, 600 ,675, 712.5, 750, 0, 0, 0, 0, 0, "" , 1,{ cardColor: 1, cardBuff: 12, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(5,"Caster", "紫式部", "Murasaki Shikibu", 237 ,[], "人", ["中立","中庸"],[], 11374, 12833, 12451, 14059, "AABQQ", 450, 600 ,675, 712.5, 750, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack" , 1,{ cardColor: 1, cardBuff: 7, fixedDamageBuff: 0, critialPowerBuff: 0 });
     /******************************************4星********************************************************************/
     initialServant(4,"Caster", "伊丽莎白・巴陶里〔万圣节〕", "Erzsebet Bathory（Halloween)", 61, [], "人",["混沌","恶"],[], 8616, 11404, 10432, 13827, "AAABQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
@@ -402,7 +402,7 @@ function initAss(){
     initialServant(2,"Assassin", "咒腕的哈桑", "Hassan of the Cursed Arm", 40, [], "人",["秩序","恶"],[], 6280, 7594, 9100, 10960, "ABQQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(2,"Assassin", "夏尔・亨利・桑松", "Charles Henri Sanson", 43, [], "人",["秩序","恶"],[], 5456, 8309, 7906, 11991, "ABQQQ", 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 1.5,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(2,"Assassin", "歌剧魅影", "Phantom of the Opera", 44, [], "地",["混沌","恶"],[], 5654, 8393, 8193, 12112, "ABQQQ", 600, 750, 825, 862.5, 900, 0, 0, 0, 0, 0, "", 1,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
-    initialServant(1,"Assassin", "佐佐木小次郎", "Sasaki Koujirou", 39, [], "人",["中立","恶"],[], 5735, 6220, 8912, 9588, "ABQQQ", 1600, 2000, 2200, 2300, 2400, 20, 20, 20, 20, 20, "TreasureSpecialCardPowerAttack", 0.8,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
+    initialServant(1,"Assassin", "佐佐木小次郎", "Sasaki Koujirou", 39, [], "人",["中立","恶"],[], 5735, 6220, 8912, 9588, "ABQQQ", 1600, 2000, 2200, 2300, 2400, 0, 0, 0, 0, 0, "", 0.8,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 }, { cardPowerBuff: 20 });
     initialServant(1,"Assassin", "佐佐木小次郎EN", "Sasaki Koujirou", 39, [], "人",["中立","恶"],[], 5735, 6220, 8912, 9588, "ABQQQ", 1200, 1600, 1800, 1900, 2000, 0, 0, 0, 0, 0, "", 0.8,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
     initialServant(1,"Assassin", "夏綠蒂・科黛", "", 259, [], "人",["中立","善"],[], 5488, 6220, 8528, 9588, "AABQQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 0 });
 }
@@ -472,8 +472,10 @@ function initExtra(){
     initialServant(3,"Avenger","安东尼奥·萨列里","Antonio Salieri", 204,[],"地",["混沌","恶"],[], 8125, 7840, 10996, 10630, "AABBQ", 450, 600, 675, 712.5, 750, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
 
     //----------------------------------MoonCancer---------------------------------------------------------------------//
+    /******************************************5星********************************************************************/
+    initialServant(5,"MoonCancer", "BB", "BB Summer", 220, [], "地",["混沌","恶"],[], 11182, 14812, 12240, 16227, "AABBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 250, critialPowerBuff: 0 });
+    initialServant(5,"MoonCancer", "吉娜可＝加里吉利", "", 244, [], "天",["秩序","善"],[], 9166, 17844, 10034, 19549, "AAABQ", 450, 600, 675, 712.5, 750, 30, 30, 30, 30, 30, "TreasureSpecialDefReduceAttck", 1, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 175, critialPowerBuff: 0 });
     /******************************************4星********************************************************************/
-    initialServant(5,"MoonCancer", "BB", "BB Summer", 220, [], "地",["混沌","恶"],[], 11182, 14812, 12240, 18227, "AABBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 250, critialPowerBuff: 0 });
     initialServant(4,"MoonCancer", "BB", "BB", 166, [], "人",["混沌","善"],[], 8197, 13643, 9925, 16542, "AABQQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: 1, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 0 });
 
     //----------------------------------Alterego---------------------------------------------------------------------//

@@ -766,9 +766,10 @@
         }
         if (ocs["type"] == "") {
             clearBuff();
-			
+//	}
+//	if (ocs["oc1"] == ocs["oc5"])		
 	    $("ddlOc").selectedIndex = 0;
-        }
+	}
     }
 
     function adjustOc(is_forced){
@@ -837,6 +838,9 @@
                 	//$("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
 			$("txtSpecialAttackPowerBuff").value = ocs[ocLevel];
         	}
+	}
+	if (ocs["oc1"] == ocs["oc5"]) {
+		$("ddlOc").selectedIndex = 0;
 	}
     }
 
