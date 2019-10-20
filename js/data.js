@@ -23,8 +23,6 @@ function intialData() {
     initBerserker();
     initExtra();
 
-    initNew();
-
     //加载各等级atk和hp
     loadLvs();  
 
@@ -136,20 +134,6 @@ function initialServant(star,career, name, eName, servantNo, keys, camp, attribu
     servants[id] = model;
     id++;
 }
-function initNew(){
-	
-        
-	
-	
-	
-	
-	
-	
-	
-	
-}
-
-
 
 function initSaber(){
     initialServant(5,"Saber", "阿尔托莉雅·潘德拉贡", "Altria Pendragon", 2, [], "地", ["秩序", "善"], [], 11221, 15150, 12283, 16597, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0, critialPowerBuff: 0 });
