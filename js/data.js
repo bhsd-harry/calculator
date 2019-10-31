@@ -80,6 +80,7 @@ function loadLvs(){
 *    TreasureSpecialCardPowerAttack：R金时OC绿魔放
 *    TreasureSpecialAtkPowerAttack：B兰OC加攻
 *    TreasurePowerBuff：宫本半藏OC宝具威力提升
+*    TreasureCombinedDown：灾星简降防降色卡耐性
 * @param {Number} cardColor 卡牌倍率(B卡：1.5，A卡：1，Q卡：0.8)
 * @param {Object} careerSkill 职介技能(比如狂化EX、神性Debuff) 
 *    cardColor: 0.8(Quick)，1(Arts)，1.5(Buster)，0(All)，-1(None)，-2(Quick和Arts)，-3(Buster和Quick), -4 (Buster和Arts)
@@ -204,6 +205,7 @@ function initArcher(){
     initialServant(4,"Archer", "喀戎", "Chiron", 207, [], "天", ["秩序", "善"], [], 9294, 12250, 11253, 14853, "AABQQ", 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 150, critialPowerBuff: 10 });
     initialServant(4,"Archer", "马嘶", "", 248, [], "天", ["混沌", "中庸"], [], 10249, 11245, 12409, 13634, "ABBQQ", 600, 800, 900, 950, 1000, 600, 700, 800, 900, 1000, "TreasureSpecialRemainHpAttack", 1.5, { cardColor: 1.5, cardBuff: 5, fixedDamageBuff: 210, critialPowerBuff: 12 });
     initialServant(4,"Archer", "刑部姬", "", 262, [], "地", ["中立", "夏"], [], 8895, 12476, 10770, 15127, "AAABQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 1, cardBuff: 8, fixedDamageBuff: 145, critialPowerBuff: 10 });
+    initialServant(4,"Archer", "灾星简", "", 269, [], "人", ["混沌", "中庸"], [], 8996, 12495, 10892, 15150, "AABQQ", 1200, 1600, 1800, 1900, 2000, 10, 15, 20, 25, 30, "TreasureCombinedDown", 0.8, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0, critialPowerBuff: 11 });
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Archer", "罗宾汉", "Robin Hood", 13, [], "人", ["中立", "善"], [], 6715, 10187, 9088, 13812, "AABQQ", 900, 1200, 1350, 1425, 1500, 200, 212.5, 225, 237.5, 250, "TreasureSpecialAttack", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
     initialServant(3,"Archer", "尤瑞艾莉", "Euryale", 15, [], "天", ["混沌", "善"], [], 7032, 9506, 9517, 12889, "AABQQ", 1200, 1200, 1200, 1200, 1200, 0, 0, 0, 0, 0, "", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 300, critialPowerBuff: 11 }, { specialAttack: 250});
@@ -444,6 +446,9 @@ function initExtra(){
     initialServant(5,"Avenger", "岩窟王 爱德蒙・唐泰斯EN", "Edmond Dantes", 96, [], "人",["混沌","恶"],[], 12641, 12177, 13838, 13340, "ABBQQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 8 });
     initialServant(5,"Avenger", "贞德〔Alter〕", "Jeanne d'Arc（Alter)", 106, [], "人",["混沌","恶"],[], 13244, 11761, 14498, 12885, "AABBQ", 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 10 });
     initialServant(5,"Avenger", "魔王信長", "", 250, [], "地",["混沌","中庸"],[], 12641, 11761, 13838, 12885, "ABBBQ", 300, 400, 450, 475, 500, 150, 162.5, 175, 187.5, 200, "TreasureSpecialAttack", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 2 });
+    initialServant(5,"Avenger", "太空 伊斯塔(Art)", "", 268, [], "星",["秩序","恶"],[], 12612, 13041, 13806, 14287, "AABBQ", 450, 600, 675, 712.5, 750, 20, 30, 40, 50, 60, "TreasurePowerBuff", 1, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 270, critialPowerBuff: 16 });
+    initialServant(5,"Avenger", "太空 伊斯塔(Buster)", "", 268, [], "星",["秩序","恶"],[], 12612, 13041, 13806, 14287, "AABBQ", 300, 400, 450, 475, 500, 20, 30, 40, 50, 60, "TreasurePowerBuff", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 270, critialPowerBuff: 16 });
+    initialServant(5,"Avenger", "太空 伊斯塔(Quick)", "", 268, [], "星",["秩序","恶"],[], 12612, 13041, 13806, 14287, "AABBQ", 600, 800, 900, 950, 1000, 20, 30, 40, 50, 60, "TreasurePowerBuff", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 270, critialPowerBuff: 16 });
     /******************************************4星********************************************************************/
     initialServant(4,"Avenger", "戈尔贡", "Gorgon", 147, [], "地",["混沌","恶"],[], 10706, 10197, 12963, 12364, "AABBQ", 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 6 });
     initialServant(4,"Avenger", "戈尔贡EN", "Gorgon", 147, [], "地",["混沌","恶"],[], 10706, 10197, 12963, 12364, "AABBQ", 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0, critialPowerBuff: 6 });

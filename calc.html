@@ -756,6 +756,11 @@
         else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
             $("txtTreasurePowerBuff").value = ocs[ocLevel];
         }
+	else if (ocs["type"] == "TreasureCombinedDown") {
+	    let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+	    $("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+	    $("txtCardBuff").value = originNum + ocs[ocLevel];
+	}
         if (isSpecialAttack.checked) {//是特攻
             if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
                 $("txtTreasureSpecialAttack").value = ocs[ocLevel];
@@ -827,6 +832,12 @@
                 let o = getFloat("txtTreasurePowerBuff");
                 $("txtTreasurePowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
                 //$("txtTreasurePowerBuff").value = ocs[ocLevel];
+        }
+	else if (ocs["type"] == "TreasureCombinedDown") {
+            let o = getFloat("txtEnemyDefenceBuff");
+            $("txtEnemyDefenceBuff").value = o - ocs[ocLevel] + ocs[oldocLevel];
+	    o = getFloat("txtCardBuff");
+            $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
 	if (isSpecialAttack.checked) {//是特攻
         	if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
