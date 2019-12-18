@@ -12,9 +12,11 @@
         .servant tr:nth-child(2) td:nth-child(even) {
             width: 15%;
         }
+/*
         .servant tr:nth-child(2){
             text-align: center;
-        } 
+        }
+*/ 
         .servant tr:nth-child(2)>td:nth-child(2) input{
             width:450px;
         }
@@ -39,9 +41,18 @@
             </tr>
             <tr>
                 <td>阵营</td>
-                <td colspan="3"><span id="spanCamp"></span></td>  
+                <td><span id="spanCamp"></span></td>  
                 <td>属性</td>
-                <td colspan="3"><span id="spanAttributes"></span></td>  
+                <td><span id="spanAttributes"></span></td>
+		<td>目标数</td>
+		<td>
+		    <input type="number" id="txtNTarget" />
+		</td>
+		<td>Hit数</td>
+                <td>
+                    <input type="text" id="txtNHits" size= 10px />
+		    <input type="button" value="全鞭尸" id="btnAdjOk" onclick="adjOk()" />
+                </td>
             </tr>           
             <tr>
                 <td>等级</td>
@@ -113,7 +124,7 @@
                 </td>
                 <td>宝具倍率(%)</td>
                 <td>
-                    <input type="number" id="txtTreasureRate" />
+                    <input type="text" id="txtTreasureRate" />
                 </td>
                 <td>OC等级</td>
                 <td>
@@ -129,8 +140,6 @@
                     </label>
 		    <input type="button" value="满血" id="btnAdjHp" onclick="adjHp()" />
                 </td>
-
-
             </tr>
             <tr>
                 <td>从者职介</td>
@@ -149,7 +158,6 @@
                         <option value="1.0">MoonCancer</option>
                         <option value="1.0">Alterego</option>
                         <option value="1.0">Foreigner</option>
-
                     </select>
                 </td>            
                 <td>职介克制</td>
@@ -159,7 +167,7 @@
                         <option value="1.5">狂阶克制</option>
                         <option value="1.0">非克制</option>
 			<option value="0.5">被克制</option>
-                        <option value="1.2">Alterego- Beast III</option>
+                        <option value="1.2">Alterego-Beast III</option>
                     </select>
                 </td>
                 <td>阵营克制</td>
@@ -173,7 +181,7 @@
 
                 <td>宝具特攻(%)</td>
                 <td>
-                    <input type="number" id="txtTreasureSpecialAttack" value="100" />
+                    <input type="text" id="txtTreasureSpecialAttack" value="100" />
                 </td>
             </tr>
 
@@ -199,11 +207,11 @@
             <tr>
                 <td>特攻威力Buff(%)</td>
                 <td>
-                    <input type="number" id="txtSpecialAttackPowerBuff" value="0" />
+                    <input type="text" id="txtSpecialAttackPowerBuff" value="0" />
                 </td>
                 <td>固定伤害Buff</td>
                 <td>
-                    <input type="number" id="txtFixedDamageBuff" value="0" basicvalue="0" />
+                    <input type="text" id="txtFixedDamageBuff" value="0" basicvalue="0" />
                 </td>
                 <td>概念礼装</td>
                 <td>
@@ -217,6 +225,7 @@
 			<option value="6">20级潜水学妹</option>
 			<option value="7">20级北斋</option>
 			<option value="8">15级泳装樱</option>
+			<option value="9">100级轨迹</option>
                     </select>
                 </td>
                 <td>御主礼装</td>
@@ -234,7 +243,71 @@
 			<option value="9">极地服</option>
 			<option value="10">夏威夷衫</option>
 			<option value="11">新年服</option>
+			<option value="12">宇航服</option>
                     </select>
+                </td>
+            </tr>
+	    <tr>
+                <td>NP率(%)</td>
+                <td>
+                    <input type="text" id="txtNpGain" value="0" />
+                </td>
+		<td>敌人1</td>
+		<td>
+		    <select id="ddlEn1">
+                        <option value="1.0">1.0</option>
+                        <option value="0.8">0.8</option>
+                        <option value="0.9">0.9</option>
+                        <option value="1.1">1.1</option>
+                        <option value="1.2">1.2</option>
+                    </select>
+		    <label for="ckEn1">
+                        <input type="checkbox" id="ckEn1" value="1" /> 死灵
+                    </label>
+		</td>
+		<td>敌人2</td>
+		<td>
+                    <select id="ddlEn2">
+                        <option value="1.0">1.0</option>
+                        <option value="0.8">0.8</option>
+                        <option value="0.9">0.9</option>
+                        <option value="1.1">1.1</option>
+                        <option value="1.2">1.2</option>
+                    </select>
+                    <label for="ckEn2">
+                        <input type="checkbox" id="ckEn2" value="1" /> 死灵
+                    </label>
+		</td>
+                <td>敌人3</td>
+                <td>
+                    <select id="ddlEn3">
+                        <option value="1.0">1.0</option>
+                        <option value="0.8">0.8</option>
+                        <option value="0.9">0.9</option>
+                        <option value="1.1">1.1</option>
+                        <option value="1.2">1.2</option>
+                    </select>
+                    <label for="ckEn3">
+                        <input type="checkbox" id="ckEn3" value="1" /> 死灵
+                    </label>
+                </td>
+	    </tr>
+            <tr>
+                <td>黄金律(%)</td>
+                <td>
+                    <input type="text" id="txtNpGainBuff" value="0" />
+                </td>
+                <td>敌人1鞭尸</td>
+                <td>
+                    <input type="number" id="txtEn1Overkill" value="0" />
+                </td>
+                <td>敌人2鞭尸</td>
+                <td>
+                    <input type="number" id="txtEn2Overkill" value="0" />
+                </td>
+                <td>敌人3鞭尸</td>
+                <td>
+                    <input type="number" id="txtEn3Overkill" value="0" />
                 </td>
             </tr>
             <tr>
@@ -271,9 +344,11 @@
                 <th>攻击力Buff</th>
                 <th>特攻威力Buff</th>
                 <th>敌方防御力Buff</th>
+		<th>黄金律</th>
                 <th>伤害最小值</th>
                 <th>伤害最大值</th>
                 <th>伤害平均值</th>
+		<th>NP获取</th>
                 <th>&nbsp;</th>
             </tr>
         </table>
@@ -461,6 +536,7 @@
 	    case "2":
 	    case "3":
 	    case "4":
+	    case "9":
 	    	$("txtCardAtk").value=2000;
 		$("txtCardHp").value=0;
                 break;
@@ -490,6 +566,14 @@
         let servant = servants[id];
         //0.阵营
         $("spanCamp").innerHTML = "<a href='javascript:;' data-value='@" + servant.camp + "' onclick='autoClickSearch(this)'>" + servant.camp + "</a>"
+
+	$("txtNTarget").value = servant.target;
+	$("txtNHits").value = servant.hit;
+	$("txtNpGain").value = servant.np;
+	$("txtNpGainBuff").value = 0;
+	$("txtEn1Overkill").value = 0;
+	$("txtEn2Overkill").value = 0;
+	$("txtEn3Overkill").value = 0;
 
         //1.攻击力
         $("txtAttack").value = servant.atk;
@@ -663,6 +747,11 @@
         $("txtTreasureRate").value = Math.floor(treasureRate);
     }
 
+	function adjOk(){
+		$("txtEn1Overkill").value = $("txtNHits").value;
+		$("txtEn2Overkill").value = $("txtNHits").value;
+		$("txtEn3Overkill").value = $("txtNHits").value;
+	}
 	function adjHp(){
 		let fullHp = Number($("txtMaxHp").value) + Number($("txtFufuHp").value) + Number($("txtCardHp").value);
 		$("txtRemainHp").value = fullHp;
@@ -717,6 +806,11 @@
 
             //宝具副效果补充
             bindTreasureSideEffect(servant);
+
+	    $("txtNpGainBuff").value = 0;
+	    $("txtEn1Overkill").value = 0;
+	    $("txtEn2Overkill").value = 0;
+	    $("txtEn3Overkill").value = 0;
 	}
 	function resetBuff()
 	{
@@ -951,6 +1045,8 @@
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
 
+	let npGainBuff = getFloat("txtNpGainBuff");
+
 	switch($("ddlCes").value) {
 	    case "2":
 		treasurePowerBuff = treasurePowerBuff + 15;
@@ -977,12 +1073,19 @@
                 if(cardColor == 1) {
                     cardBuff = cardBuff + 10;
                 }
+		npGainBuff = npGainBuff + 10;
                 break;
             case "8":
                 treasurePowerBuff = treasurePowerBuff + 10;
                 if(cardColor == 0.8) {
                     cardBuff = cardBuff + 10;
                 }
+                break;
+	    case "9":
+		if(cardColor == 0.8) {
+                    cardBuff = cardBuff + 10;
+                }
+                npGainBuff = npGainBuff + 10;
                 break;
 	}
 	switch($("ddlCls").value) {
@@ -991,6 +1094,7 @@
 		break;
 	    case "2":
 		treasurePowerBuff = treasurePowerBuff + 50;
+		npGainBuff = npGainBuff + 50;
 		break;
             case "3":
                 if(cardColor == 1.5) {
@@ -1033,6 +1137,9 @@
 	    case "11":
 		treasurePowerBuff = treasurePowerBuff + 35;
 		break;
+            case "12":
+                treasurePowerBuff = treasurePowerBuff + 50;
+                break;
 	}
 
         let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * campResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
@@ -1042,6 +1149,48 @@
         resultMax = Math.floor(Math.max(0,resultMax));
 
         let resultAvg = Math.round((resultMin + resultMax) * 1.0 / 2);
+
+	let cardNpGain = 0;
+	switch(cardColor) {
+	    case 1:
+		cardNpGain = 3;
+		break;
+	    case 0.8:
+		cardNpGain = 1;
+		break;
+	}
+	let npGain1 = getFloat("txtNpGain") * cardNpGain * (1 + npGainBuff / 100) * (1 + cardBuff /100) * getFloat("ddlEn1");
+	if ($("ckEn1").checked) {
+	    npGain1 = npGain1 * 1.2;
+	}
+	npGain1 = Math.floor(npGain1 * 100) / 100;
+	let npGain1Ok = npGain1 * 1.5;
+	npGain1Ok = Math.floor(npGain1Ok * 100) /100;
+	let npGain1t = (npGain1Ok - npGain1) * getFloat("txtEn1Overkill") + npGain1 * (getFloat("txtNHits"));
+	let npGain2 = getFloat("txtNpGain") * cardNpGain * (1 + npGainBuff / 100) * (1 + cardBuff /100) * getFloat("ddlEn2");
+        if ($("ckEn2").checked) {
+            npGain2 = npGain2 * 1.2;
+        }
+        npGain2 = Math.floor(npGain2 * 100) / 100;
+        let npGain2Ok = npGain2 * 1.5;
+        npGain2Ok = Math.floor(npGain2Ok * 100) / 100;
+        let npGain2t = (npGain2Ok - npGain2) * getFloat("txtEn2Overkill") + npGain2 * (getFloat("txtNHits"));
+	let npGain3 = getFloat("txtNpGain") * cardNpGain * (1 + npGainBuff / 100) * (1 + cardBuff /100) * getFloat("ddlEn3");
+        if ($("ckEn3").checked) {
+            npGain3 = npGain3 * 1.2;
+        }
+        npGain3 = Math.floor(npGain3 * 100) / 100;
+        let npGain3Ok = npGain3 * 1.5;
+        npGain3Ok = Math.floor(npGain3Ok * 100) / 100;
+        let npGain3t = (npGain3Ok - npGain3) * getFloat("txtEn3Overkill") + npGain3 * (getFloat("txtNHits"));
+	let npGain = npGain1t;
+	switch($("txtNTarget").value) {
+	    case "3":
+		npGain = npGain + npGain3t;
+	    case "2":
+		npGain = npGain + npGain2t;
+		break;
+	}
 
         let servantName = getDdlText("ddlChooseServant");
 
@@ -1083,11 +1232,13 @@
             cardBuff: cardBuff,
             attackBuff: attackBuff,
             specialAttackPowerBuff: specialAttackPowerBuff,
+	    npGainBuff: npGainBuff,
             enemyDefenceBuff: getFloat("txtEnemyDefenceBuff"),
             min: resultMin,
             max: resultMax,
             avg: resultAvg,
-            careerResistClassName: careerResistClassName
+            careerResistClassName: careerResistClassName,
+	    npGain: npGain
         };
         resultArr.push(model);
         showResult();
@@ -1173,19 +1324,23 @@
         newRow.insertCell(-1).innerHTML = obj.specialAttackPowerBuff;
         //14.特攻威力Buff     
         newRow.insertCell(-1).innerHTML = obj.enemyDefenceBuff;
-        //15.宝具伤害最小值    
+	//15.黄金律
+	newRow.insertCell(-1).innerHTML = obj.npGainBuff;
+        //16.宝具伤害最小值    
         let min = newRow.insertCell(-1);
         min.innerHTML = obj.min;
         min.classList.add(obj.careerResistClassName);
-        //16.宝具伤害最大值  
+        //17.宝具伤害最大值  
         let max = newRow.insertCell(-1);
         max.innerHTML = obj.max;
         max.classList.add(obj.careerResistClassName);
-        //17.宝具伤害平均值       
+        //18.宝具伤害平均值       
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
         avg.classList.add(obj.careerResistClassName);
-        //18.删除操作     
+	//19.NP Gain
+	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
+        //20.删除操作     
         newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
     }
     //获取宝具颜色

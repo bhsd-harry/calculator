@@ -201,18 +201,20 @@ function bindSearchTips(){
     dlCardTips.innerHTML=`
         <option value="786">20级宝石翁</option>
         <option value="1089">40级宝石翁</option>
+	<option value="1392">60级宝石翁</option>
+	<option value="1695">80级宝石翁</option>
         <option value="2000">100级宝石翁</option>
-        <option value="332">20级虚数</option>
-        <option value="471">40级虚数</option>
-        <option value="750">80级虚数</option>
         <option value="943">20级黑杯</option>
-        <option value="1307">40级黑杯</option>
+	<option value="1307">40级黑杯</option>
+	<option value="1671">60级黑杯</option>
+        <option value="2034">80级黑杯</option>
         <option value="2400">100级黑杯</option>
+	<option value="355">15级魔性菩薩</option>
         <option value="393">20级魔性菩薩</option>
         `;
 }
 (function(){
-    let nums=document.querySelectorAll("#txtTreasurePowerBuff,#txtCardBuff,#txtAttackBuff,#txtEnemyDefenceBuff");
+    let nums=document.querySelectorAll("#txtTreasurePowerBuff,#txtCardBuff,#txtAttackBuff,#txtEnemyDefenceBuff,#txtSpecialAttackPowerBuff,#txtFixedDamageBuff,#txtNpGainBuff");
     nums.forEach(function(n){
         n.onblur=function(){
             //失去焦点后，计算值
