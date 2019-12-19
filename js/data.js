@@ -273,11 +273,12 @@ function initRider(){
     initialServant(5,"Rider", "伊凡雷帝EN", 205, "人", ["秩序", "恶"], 11619, 13284, 12719, 14553, 3,1,0, 300, 400, 450, 475, 500, 30, 40, 50, 60, 70, "TreasurePowerBuff", 1.5, { cardColor: 0.8, cardBuff: 12, fixedDamageBuff: 0});
     initialServant(5,"Rider", "阿喀琉斯", 206, "地", ["秩序", "中庸"], 11883, 13219, 13008, 14482, 3,5,0.57, 600, 800, 900, 950, 1000, 20, 30, 40, 50, 60, "TreasureSpecialCardPowerAttack", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 150});
     initialServant(5,"Rider", "李奧納多・達文西", 253, "人", ["秩序", "善"], 10883, 14112, 11913, 15460, 3,3,0.49, 450, 600, 675, 712.5, 750, 20, 25, 30, 35, 40, "TreasureSpecialCardPowerAttack", 1, { cardColor: -2, cardBuff: "8|6", fixedDamageBuff: 230});
+    initialServant(5,"Rider", "欧罗巴", 274, "天", ["中立", "善"], 11737, 12571, 12848, 13772, 3,1,0, 300, 400, 450, 475, 500, 20, 25, 30, 35, 40, "TreasureSpecialCardPowerAttack", 1.5, { cardColor: 0.8, cardBuff: "11", fixedDamageBuff: 150});
     /******************************************4星********************************************************************/
-    initialServant(4,"Rider", "玛丽・安托瓦内特", 29, "人", ["秩序", "善"], 8293, 12348, 10041, 14972, 3,5,1,800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 0});
-    initialServant(4,"Rider", "玛丽・安托瓦内特EN", 29, "人", ["秩序", "善"], 8293, 12348, 10041, 14972, 3,5,1,600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 0});
-    initialServant(4,"Rider", "马大", 30, "人", ["秩序", "善"], 8014, 13068, 9703, 15845, 3,1,0,400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 11.5, fixedDamageBuff: 150}, {cardPowerBuff : 20});
-    initialServant(4,"Rider", "马大EN", 30, "人", ["秩序", "善"], 8014, 13068, 9703, 15845, 3,1,0,300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 11.5, fixedDamageBuff: 150});
+    initialServant(4,"Rider", "玛丽・安托瓦内特", 29, "人", ["秩序", "善"], 8293, 12348, 10041, 14972, 3,5,1, 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 0});
+    initialServant(4,"Rider", "玛丽・安托瓦内特EN", 29, "人", ["秩序", "善"], 8293, 12348, 10041, 14972, 3,5,1, 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 0});
+    initialServant(4,"Rider", "马大", 30, "人", ["秩序", "善"], 8014, 13068, 9703, 15845, 3,1,0, 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 11.5, fixedDamageBuff: 150}, {cardPowerBuff : 20});
+    initialServant(4,"Rider", "马大EN", 30, "人", ["秩序", "善"], 8014, 13068, 9703, 15845, 3,1,0, 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 11.5, fixedDamageBuff: 150});
     initialServant(4,"Rider", "安妮・伯妮&玛丽・里德", 66, "人", ["混沌", "恶"], 9029, 11286, 10932, 13684, 1,6,0.84, 1600, 2000, 2200, 2300, 2400, 1200, 1400, 1600, 1800, 2000, "TreasureSpecialRemainHpAttack", 0.8, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0});
     initialServant(4,"Rider", "阿尔托莉雅・潘德拉贡〔Santa Alter〕", 73, "人", ["秩序", "善"], 9258, 11286, 11209, 13684, 3,1,0, 450, 550, 600, 625, 650, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 10, fixedDamageBuff: 0});
     initialServant(4,"Rider", "阿斯托尔福", 94, "地", ["混沌", "善"], 8937, 11172, 10821, 13546, 3,1,0.66, 800, 1000, 1100, 1150, 1200, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 11, fixedDamageBuff: 0});
@@ -294,6 +295,7 @@ function initRider(){
     initialServant(3,"Rider", "克里斯托弗·哥伦布", 172, "人", ["中立", "恶"], 6552, 9600, 8867, 13016, 3,1,0, 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0});
     initialServant(3,"Rider", "克里斯托弗·哥伦布EN", 172, "人", ["中立", "恶"], 6552, 9600, 8867, 13016, 3,1,0, 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0});
     initialServant(3,"Rider", "赤兔马", 231, "地", ["中立", "中庸"], 6434, 10483, 8708, 14214, 3,4,0.57, 600, 800, 900, 950, 1000, 0, 0, 0, 0, 0, "", 0.8, { cardColor: 0.8, cardBuff: 12, fixedDamageBuff: 0});
+    initialServant(3,"Rider", "曼迪卡尔多", 273, "人", ["中立", "中庸"], 6756, 9600, 9143, 13016, 1,4,0.86, 900, 1200, 1350, 1425, 1500, 20, 25, 30, 35, 40, "TreasureSpecialCardPowerAttack", 1, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0});
     initialServant(2,"Rider", "聖喬治", 24, "人", ["秩序", "善"], 5236, 9200, 7587, 13278, 1,4,0.85, 900, 1200, 1350, 1425, 1500, 0, 0, 0, 0, 0, "", 1, { cardColor: 0.8, cardBuff: 8, fixedDamageBuff: 0});
     initialServant(2,"Rider", "爱德华・蒂奇", 25, "人", ["混沌", "恶"], 6188, 7907, 8967, 11411, 3,1,0, 400, 500, 550, 575, 600, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0});
     initialServant(2,"Rider", "爱德华・蒂奇EN", 25, "人", ["混沌", "恶"], 6188, 7907, 8967, 11411, 3,1,0, 300, 400, 450, 475, 500, 0, 0, 0, 0, 0, "", 1.5, { cardColor: -1, cardBuff: 0, fixedDamageBuff: 0});
