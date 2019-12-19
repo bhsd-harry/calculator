@@ -104,6 +104,7 @@ function filterStr2(str) {
     return str.replace(/\s+/gi, "").replace(/[〔（・&'〕)）]/gi, "");
 }
 
+/*
 function appendCards(str){
    //BBQAA
     // <ul>
@@ -125,6 +126,7 @@ function appendCards(str){
     divCard.innerHTML="";
     divCard.appendChild(ul);
 }
+*/
 function getFullCardName(card){
     switch (card)
     {

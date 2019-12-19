@@ -31,7 +31,7 @@ function showResult() {
 function hidResult() {
     hideDiv("divResult");
 }
-
+/*
 function showWin(type,ext){
     let id = $("ddlChooseServant").value;
     if (id == "-1") {
@@ -43,7 +43,7 @@ function showWin(type,ext){
     let eName = filterStr(servant.eName);
     document.querySelector(".skillImg").src=`images/${type}/${eName}${ext}`;
 }
-
+*/
 //查询
 function search() {
     //清空从者数据数组
@@ -63,17 +63,21 @@ function search() {
         word=word.substr(1);
         servants = servants.filter(containsAttribute);
     }
+/*
     else if(word[0]=="#"){
         word=word.substr(1);
         servants = servants.filter(containsCharacteristics);
     }
+*/
     else if(word[0]=="@"){
         word=word.substr(1);
         servants = servants.filter(containsCamp);    
     }
+/*
     else{
         servants = servants.filter(contains);
     }
+*/
 
     
     
@@ -102,15 +106,19 @@ function autoClickSearch(obj){
 
 //根据关键词查询结果
 var word = "";
+/*
 function contains(servant) {
     return servant.keys.find(check);
 }
+*/
 function containsAttribute(servant) {
     return servant.attributes.find(check);
 }
+/*
 function containsCharacteristics(servant) {
     return servant.characteristics.find(check);
 }
+*/
 function containsCamp(servant){
     return servant.camp==word;
 }
@@ -171,21 +179,23 @@ function bindAttributes(servant) {
 function bindSearchTips(){
     let tips=[],
         tmpCamp,
-        tmpAttributes,
-        tmpCharacteristics;
+        tmpAttributes;
+//        tmpCharacteristics;
     servants.forEach(function(servant){
         tmpCamp=servant.camp;
         tmpAttributes=servant.attributes.clone();
-        tmpCharacteristics=servant.characteristics.clone();
+//        tmpCharacteristics=servant.characteristics.clone();
 
         tips.push(`@${tmpCamp}`);
 
         tmpAttributes.forEach(function(a){
             tips.push(`$${a}`);
         });
-    tmpCharacteristics.forEach(function(c){
+/*
+        tmpCharacteristics.forEach(function(c){
             tips.push(`#${c}`);
         });
+*/
     })
     //去重
     tips=Array.from(new Set(tips));
