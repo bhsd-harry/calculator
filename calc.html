@@ -36,7 +36,7 @@
                     <input type="text" id="txtWord" class="search" list="dlTips" autofocus />
                     <input type="button" id="btnSearch" value="查询" />&nbsp;
                     <datalist id="dlTips"></datalist>
-                    <datalist id="dlCardTips"></datalist>
+                    <datalist id="dlCraftEssenceTips"></datalist>
                 </td>
             </tr>
             <tr>
@@ -93,7 +93,7 @@
 
                 <td>礼装Atk</td>
                 <td>
-                    <input type="number" id="txtCardAtk" value="0" list="dlCardTips"/>
+                    <input type="number" id="txtCardAtk" value="0" list="dlCraftEssenceTips"/>
                 </td>
                 <td>礼装Hp</td>
                 <td>
@@ -189,7 +189,7 @@
             <tr>
                 <td>宝具威力Buff(%)</td>
                 <td>
-                    <input type="text" id="txtTreasurePowerBuff" value="0"/>
+                    <input type="text" id="txtNpStrength" value="0"/>
                 </td>
                 <td>卡牌Buff(%)</td>
                 <td>
@@ -201,17 +201,17 @@
                 </td>
                 <td>敌方防御力Buff(%)</td>
                 <td>
-                    <input type="text" id="txtEnemyDefenceBuff" value="0" />
+                    <input type="text" id="txtEnemyDefence" value="0" />
                 </td>
             </tr>
             <tr>
                 <td>特攻威力Buff(%)</td>
                 <td>
-                    <input type="text" id="txtSpecialAttackPowerBuff" value="0" />
+                    <input type="text" id="txtSpecialAttack" value="0" />
                 </td>
                 <td>固定伤害Buff</td>
                 <td>
-                    <input type="text" id="txtFixedDamageBuff" value="0" basicvalue="0" />
+                    <input type="text" id="txtDamagePlus" value="0" basicvalue="0" />
                 </td>
                 <td>概念礼装</td>
                 <td>
@@ -394,7 +394,7 @@
     $("ddlChooseServant").onchange = function () {
         $("ckIsSpecialAttack").checked = false;
         $("ckIsMaxGrail").checked = false;
-        $("txtFixedDamageBuff").value = 0;
+        $("txtDamagePlus").value = 0;
         $("txtCardBuff").dataset.value = 0;
         $("ddlLvs").selectedIndex=0;
 
@@ -614,7 +614,7 @@
             let treasurePowerBuff = treasureSideEffect.treasurePowerBuff;//宝具威力buff
             //!isNaN(null)，返回true，需要去掉这种情况
             if (treasurePowerBuff && !isNaN(treasurePowerBuff)) {//单个数值，比如1001宝具的20%宝具威力buff
-                $("txtTreasurePowerBuff").value = treasurePowerBuff;
+                $("txtNpStrength").value = treasurePowerBuff;
             }
 
             let cardPowerBuff = treasureSideEffect.cardPowerBuff;//卡牌buff
@@ -692,8 +692,8 @@
             }
             /****************************************固定伤害Buff**************************************************/
             if (!isNaN(careerSkill.fixedDamageBuff)) {
-				$("txtFixedDamageBuff").basicvalue = careerSkill.fixedDamageBuff;
-                $("txtFixedDamageBuff").value = careerSkill.fixedDamageBuff;
+				$("txtDamagePlus").basicvalue = careerSkill.fixedDamageBuff;
+                $("txtDamagePlus").value = careerSkill.fixedDamageBuff;
             }
         }
 
@@ -757,7 +757,7 @@
 	}
 	function addKM(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
-		$("txtFixedDamageBuff").value = getFloat("txtFixedDamageBuff") + 500;	
+		$("txtDamagePlus").value = getFloat("txtDamagePlus") + 500;	
 	}
 	
 	function addML(){
@@ -768,14 +768,14 @@
 		}
 	}
 	function addHL(){
-                $("txtTreasurePowerBuff").value = getFloat("txtTreasurePowerBuff") + 30;
+                $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
         	let servant = servants[$("ddlChooseServant").value];
         	if(servant.cardColor == 1.0){
                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
                 }
         }
 	function addCB(){
-		$("txtEnemyDefenceBuff").value = getFloat("txtEnemyDefenceBuff") - 30;
+		$("txtEnemyDefence").value = getFloat("txtEnemyDefence") - 30;
 		let servant = servants[$("ddlChooseServant").value];
                 if(servant.cardColor == 0.8){
                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
@@ -787,16 +787,16 @@
                 servant = servants[id];
             }
 	    $("txtTreasureSpecialAttack").value = 100;
-            $("txtSpecialAttackPowerBuff").value = 0;
-	    if(isNaN($("txtFixedDamageBuff").basicvalue)){
-		$("txtFixedDamageBuff").value = 0;}
+            $("txtSpecialAttack").value = 0;
+	    if(isNaN($("txtDamagePlus").basicvalue)){
+		$("txtDamagePlus").value = 0;}
 	    else {
-		$("txtFixedDamageBuff").value = $("txtFixedDamageBuff").basicvalue;
+		$("txtDamagePlus").value = $("txtDamagePlus").basicvalue;
 	    }
             $("txtCardBuff").value = $("txtCardBuff").dataset.value;
             $("txtAttackBuff").value = 0;
-            $("txtTreasurePowerBuff").value = 0;
-	    $("txtEnemyDefenceBuff").value = 0;
+            $("txtNpStrength").value = 0;
+	    $("txtEnemyDefence").value = 0;
             //$("ddlOc").selectedIndex = 0;
             //设置回被动卡牌buff
             let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
@@ -842,15 +842,15 @@
             $("txtAttackBuff").value = ocs[ocLevel];
         }
         else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
-            $("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+            $("txtEnemyDefence").value = 0 - ocs[ocLevel];
 
         }
         else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
-            $("txtTreasurePowerBuff").value = ocs[ocLevel];
+            $("txtNpStrength").value = ocs[ocLevel];
         }
 	else if (ocs["type"] == "TreasureCombinedDown") {
 	    let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
-	    $("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+	    $("txtEnemyDefence").value = 0 - ocs[ocLevel];
 	    $("txtCardBuff").value = originNum + ocs[ocLevel];
 	}
         if (isSpecialAttack.checked) {//是特攻
@@ -858,7 +858,7 @@
                 $("txtTreasureSpecialAttack").value = ocs[ocLevel];
             }
             else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
-                $("txtSpecialAttackPowerBuff").value = ocs[ocLevel];
+                $("txtSpecialAttack").value = ocs[ocLevel];
             }
         }
         if (ocs["type"] == "") {
@@ -891,7 +891,7 @@
 		return;
 	}
 	if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false && is_forced == true){
-		$("txtSpecialAttackPowerBuff").value = getFloat("txtSpecialAttackPowerBuff") - ocs[ocLevel];
+		$("txtSpecialAttack").value = getFloat("txtSpecialAttack") - ocs[ocLevel];
 	}
 	if(ocs["type"] == "TreasureSpecialAttack" && isSpecialAttack.checked == false){
 		$("txtTreasureSpecialAttack").value = 100;
@@ -916,18 +916,18 @@
                 //$("txtAttackBuff").value = ocs[ocLevel];
         }
         else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
-                let o = getFloat("txtEnemyDefenceBuff");
-                $("txtEnemyDefenceBuff").value = o - ocs[ocLevel] + ocs[oldocLevel];
-                //$("txtEnemyDefenceBuff").value = 0 - ocs[ocLevel];
+                let o = getFloat("txtEnemyDefence");
+                $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
+                //$("txtEnemyDefence").value = 0 - ocs[ocLevel];
         }
         else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
-                let o = getFloat("txtTreasurePowerBuff");
-                $("txtTreasurePowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
-                //$("txtTreasurePowerBuff").value = ocs[ocLevel];
+                let o = getFloat("txtNpStrength");
+                $("txtNpStrength").value = o + ocs[ocLevel] - ocs[oldocLevel];
+                //$("txtNpStrength").value = ocs[ocLevel];
         }
 	else if (ocs["type"] == "TreasureCombinedDown") {
-            let o = getFloat("txtEnemyDefenceBuff");
-            $("txtEnemyDefenceBuff").value = o - ocs[ocLevel] + ocs[oldocLevel];
+            let o = getFloat("txtEnemyDefence");
+            $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
 	    o = getFloat("txtCardBuff");
             $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
@@ -937,11 +937,11 @@
         	}
         	else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
 			if(is_forced == true) {
-				$("txtSpecialAttackPowerBuff").value = getFloat("txtSpecialAttackPowerBuff") + ocs[ocLevel];
+				$("txtSpecialAttack").value = getFloat("txtSpecialAttack") + ocs[ocLevel];
 			}
 			else {
-				let o = getFloat("txtSpecialAttackPowerBuff");
-                        	$("txtSpecialAttackPowerBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+				let o = getFloat("txtSpecialAttack");
+                        	$("txtSpecialAttack").value = o + ocs[ocLevel] - ocs[oldocLevel];
 			}
         	}
 	}
@@ -1019,7 +1019,7 @@
         let career = getFloat("ddlCareer");
 
         //9.宝具威力Buff(%)
-        let treasurePowerBuff = getFloat("txtTreasurePowerBuff");
+        let treasurePowerBuff = getFloat("txtNpStrength");
 
         //10.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");
@@ -1028,13 +1028,13 @@
         let attackBuff = getFloat("txtAttackBuff");
 
         //12.敌方防御力Buff(%)
-        let enemyDefenceBuff = getFloat("txtEnemyDefenceBuff");
+        let enemyDefenceBuff = getFloat("txtEnemyDefence");
 
         //13.特攻威力Buff(%)
-        let specialAttackPowerBuff = getFloat("txtSpecialAttackPowerBuff");
+        let specialAttackPowerBuff = getFloat("txtSpecialAttack");
 
         //15.固定伤害Buff
-        let fixedDamageBuff = getFloat("txtFixedDamageBuff");
+        let fixedDamageBuff = getFloat("txtDamagePlus");
 
         //17.宝具特攻(%)     
         let treasureSpecialAttack = getFloat("txtTreasureSpecialAttack") / 100;
@@ -1231,7 +1231,7 @@
             attackBuff: attackBuff,
             specialAttackPowerBuff: specialAttackPowerBuff,
 	    npGainBuff: npGainBuff,
-            enemyDefenceBuff: getFloat("txtEnemyDefenceBuff"),
+            enemyDefenceBuff: getFloat("txtEnemyDefence"),
             min: resultMin,
             max: resultMax,
             avg: resultAvg,

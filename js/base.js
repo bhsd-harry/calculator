@@ -91,7 +91,6 @@ function check(key) {
         return true;
     }
     return new RegExp(word, "gi").test(key);//忽略大小写
-    //return key.indexOf(word) != -1;
 }
 
 //设置本地存储信息
@@ -143,11 +142,10 @@ function bindSearchTips(){
     let tips=[],
         tmpAttribute,
         tmpAlignments;
-//        tmpCharacteristics;
+
     servants.forEach(function(servant){
         tmpAttribute=servant.attribute;
         tmpAlignments=servant.alignments.clone();
-//        tmpCharacteristics=servant.characteristics.clone();
 
         tips.push(`@${tmpAttribute}`);
 
@@ -165,8 +163,8 @@ function bindSearchTips(){
         dlTips.appendChild(opt);
     })
 
-    let dlCardTips=$("dlCardTips");
-    dlCardTips.innerHTML=`
+    let dlCraftEssenceTips=$("dlCraftEssenceTips");
+    dlCraftEssenceTips.innerHTML=`
         <option value="786">20级宝石翁</option>
         <option value="1089">40级宝石翁</option>
 	<option value="1392">60级宝石翁</option>
@@ -182,7 +180,7 @@ function bindSearchTips(){
         `;
 }
 (function(){
-    let nums=document.querySelectorAll("#txtTreasurePowerBuff,#txtCardBuff,#txtAttackBuff,#txtEnemyDefenceBuff,#txtSpecialAttackPowerBuff,#txtFixedDamageBuff,#txtNpGainBuff");
+    let nums=document.querySelectorAll("#txtNpStrength,#txtCardBuff,#txtAttackBuff,#txtEnemyDefence,#txtSpecialAttack,#txtDamagePlus,#txtNpGainBuff");
     nums.forEach(function(n){
         n.onblur=function(){
             //失去焦点后，计算值
