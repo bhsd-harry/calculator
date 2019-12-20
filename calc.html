@@ -399,16 +399,36 @@
         adjustOc();
 	$("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
     };
+
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {
-        adjustOc();
+/*
+	if(getFloat("txtRemainHp")>getFloat("txtMaxHp")+getFloat("txtFouHp")+getFloat("txtCraftEssenceHp"){
+	    adjHp();
+	}
+        calNpRemainHpDamage();
+*/
+	adjOc();
     }
     $("txtFouHp").onchange = function () {
-        adjustOc();
+/*
+        if(getFloat("txtRemainHp")>getFloat("txtMaxHp")+getFloat("txtFouHp")+getFloat("txtCraftEssenceHp"){
+            adjHp();
+        }
+        calNpRemainHpDamage();
+*/
+	adjOc();
     }
     $("txtCraftEssenceHp").onchange = function () {
-        adjustOc();
+/*
+        if(getFloat("txtRemainHp")>getFloat("txtMaxHp")+getFloat("txtFouHp")+getFloat("txtCraftEssenceHp"){
+            adjHp();
+        }
+        calNpRemainHpDamage();
+*/
+	adjOc();
     }
+
     //是否特攻
     $("ckIsSpecialAttack").onclick = function () {
 	let id=$("ddlServant").value;
@@ -426,86 +446,61 @@
 	    let npEffect = servant.npEffect;
 	    if (npEffect && npEffect.specialAttack && !isNaN(npEffect.specialAttack)) {
 		return;
-/*
-        	//!isNaN(null)，返回true，需要去掉这种情况
-                if($("ckIsSpecialAttack").checked) {
-		    $("txtNpSpecialAttack").value = npEffect.specialAttack;
-		}
-		else {
-		    $("txtNpSpecialAttack").value = 100;
-		}
-*/
 	    }
 	    else {
 		$("ckIsSpecialAttack").checked = false;
 	    }
 	}
     }
+
     //等级下拉列表选中项改变事件
     $("ddlLvs").onchange=function(){
         let id=$("ddlServant").value;
         if (id == "-1" || id == "") {
+	    $("ddlLvs").selectedIndex = 0;
             return;
         }
 
         let servant = servants[id];  
-
-        let lv=this.value;
-        //默认【圣杯MAX】非勾选状态
-        $("ckIsMaxGrail").checked=false;
-
-        if(lv!="-1"){//非默认
-            // console.log(servant.lvs[lv-1]);
-	    let mlv=0;
-	    if(servant.star<4){
-		mlv=servant.star*5+55;
-	    }
-	    else {
-		mlv=servant.star*10+40;
-	    }
-	    if(Number(lv)<=mlv){
-		$("txtAttack").value=servant.atk;
-		$("txtMaxHp").value=servant.hp;
-		$("txtRemainHp").value=servant.hp;
-	    }
-	    else if(Number(lv)>90){
-                $("txtAttack").value=servant.maxAtk;
-                $("txtMaxHp").value=servant.maxHp;
-                $("txtRemainHp").value=servant.maxHp;
-            }
-	    else if(servant.star>1){
-                lv=servant.lvs[0];
-                $("txtAttack").value=lv.a;
-                $("txtMaxHp").value=lv.h;
-                $("txtRemainHp").value=lv.h;
-	        $("ddlLvs").selectedIndex=2;
-	    }
-	    else if(Number(lv)>70){
-                lv=servant.lvs[1];
-                $("txtAttack").value=lv.a;
-                $("txtMaxHp").value=lv.h;
-                $("txtRemainHp").value=lv.h;
-                $("ddlLvs").selectedIndex=2;
-            }
-	    else {
-                lv=servant.lvs[0];
-                $("txtAttack").value=lv.a;
-                $("txtMaxHp").value=lv.h;
-                $("txtRemainHp").value=lv.h;
-                $("ddlLvs").selectedIndex=4;
-            }
-            if($("txtAttack").value==servant.maxAtk){
-                $("ckIsMaxGrail").checked=true;
-                $("ckIsMaxGrail").onchange();
-            }
-            else if($("txtAttack").value==servant.atk){
-            	$("ddlLvs").selectedIndex=0;//默认
-            }
+        let lv = this.value;
+	let maxLv = 0;
+	if(servant.star<4){
+	    maxLv = servant.star * 5 + 55;
+	}
+	else {
+	    maxLv = servant.star * 10 + 40;
+	}
+	if(Number(lv)>90){
+            $("txtAttack").value = servant.maxAtk;
+            $("txtMaxHp").value = servant.maxHp;
+            $("txtRemainHp").value = servant.maxHp;
+	    $("ckIsMaxGrail").checked = true;
         }
-        else{//默认
-            $("txtAttack").value=servant.atk;
-            $("txtMaxHp").value=servant.hp;
-            $("txtRemainHp").value=servant.hp;   
+	else {
+	    $("ckIsMaxGrail").checked = false;
+	    if(Number(lv)<=maxLv){
+		$("txtAttack").value = servant.atk;
+		$("txtMaxHp").value = servant.hp;
+		$("txtRemainHp").value = servant.hp;
+		$("ddlLvs").selectedIndex = 0;//默认
+	    }
+	    else {
+		if(servant.star>1){
+                    lv = servant.lvs[0];
+	            $("ddlLvs").selectedIndex = 2;
+		}
+		else if(Number(lv)>70){
+		    lv = servant.lvs[1];
+		    $("ddlLvs").selectedIndex = 2;
+		}
+		else {
+		    lv = servant.lvs[0];
+		    $("ddlLvs").selectedIndex = 4;
+		}
+		$("txtAttack").value = lv.a;
+        	$("txtMaxHp").value = lv.h;
+        	$("txtRemainHp").value = lv.h;
+	    }
         }
     }
 
@@ -527,7 +522,7 @@
 		$("txtCraftEssenceHp").value=0;
                 break;
 	}
-	adjustOc();
+	adjHp();
     }
 
     /***********************************************************/
@@ -676,9 +671,8 @@
 
     }
 
-
     //计算双子宝具总倍率
-    function calNpRemainHpDamageRate() {
+    function calNpRemainHpDamage() {
         let ocLevel = $("ddlOvercharge").value;
         let id = $("ddlServant").value;
         let servant = servants[id];
@@ -703,10 +697,10 @@
         npRate += additionalRate;
         //向下取整总宝具倍率
         $("txtNpCoefficient").value = Math.floor(npRate);
-
     }
+
     //计算自爆弓宝具总倍率
-    function calOcNpDamageRate() {
+    function calOcNpDamage() {
         let ocLevel = $("ddlOvercharge").value;
         let id = $("ddlServant").value;
         let servant = servants[id];
@@ -730,7 +724,7 @@
 	function adjHp(){
 		let fullHp = Number($("txtMaxHp").value) + Number($("txtFouHp").value) + Number($("txtCraftEssenceHp").value);
 		$("txtRemainHp").value = fullHp;
-		calNpRemainHpDamageRate();
+		calNpRemainHpDamage();
 	}
 	function addZhuge(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
@@ -803,10 +797,10 @@
 //        let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
 	if (ocs["type"] == "NpRemainHpDamage") {//双子宝具倍率提升
-                calNpRemainHpDamageRate();
+                calNpRemainHpDamage();
         }
         else if (ocs["type"] == "OcNpDamage") {//自爆弓倍率提升
-            calOcNpDamageRate();
+            calOcNpDamage();
         }
 	else if (ocs["type"] == "OcCardBuff") {//R金时OC绿魔放
             //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
@@ -880,10 +874,10 @@
 	}
 */
         else if (ocs["type"] == "NpRemainHpDamage") {//双子宝具特攻
-                calNpRemainHpDamageRate();
+                calNpRemainHpDamage();
         }
         else if (ocs["type"] == "OcNpDamage") {//自爆弓特攻
-                calOcNpDamageRate();
+                calOcNpDamage();
         }
 	else if (ocs["type"] == "OcCardBuff") {//R金时OC绿魔放
                 //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
@@ -952,10 +946,10 @@
 
         $("txtNpCoefficient").value = npRate;
         if (servant.oc.type == "NpRemainHpDamage") {//双子宝具特攻并且勾选了特攻
-            calNpRemainHpDamageRate();
+            calNpRemainHpDamage();
         }
         else if (servant.oc.type == "OcNpDamage") {//自爆弓特攻
-            calOcNpDamageRate();
+            calOcNpDamage();
         }
     }
     function initialServantList() {
