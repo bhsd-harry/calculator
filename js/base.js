@@ -16,7 +16,7 @@ if (typeof storage === 'object') {
 }
 
 //查询
-$("txtWord").oninput = function () {
+$("txtKey").oninput = function () {
     search();
 }
 $("btnSearch").onclick = function () {
@@ -42,7 +42,7 @@ function search() {
     initialData();
 
     //过滤关键词特殊字符
-    word = filterStr($("txtWord").value);
+    word = filterStr($("txtKey").value);
 
     //根据关键词查询匹配结果
     if(word[0]=="$"){
@@ -61,18 +61,18 @@ function search() {
     }
     servants = tmpServants;
 
-    $("ddlChooseServant").length = 0;
+    $("ddlServant").length = 0;
     if (word == "") {
-        $("ddlChooseServant").options.add(new Option("|----------------------请选择从者-------------------------|", -1));
+        $("ddlServant").options.add(new Option("|----------------------请选择从者-------------------------|", -1));
     }
     initialServantList();
-    $("ddlChooseServant").onchange();
+    $("ddlServant").onchange();
 }
 
 //点击阵营、属性和特性超链接字体
 function autoClickSearch(obj){
     if(confirm(`你确定要搜索关键词【${obj.dataset.value}】?`)){
-        $("txtWord").value=obj.dataset.value;
+        $("txtKey").value=obj.dataset.value;
         $("btnSearch").click();        
     }
 }
@@ -97,8 +97,8 @@ function check(key) {
 function setStorage() {
     if (storage) {
         //另外，在iPhone/iPad上有时设置setItem()时会出现诡异的QUOTA_EXCEEDED_ERR错误，这时一般在setItem之前，先removeItem()就ok了。
-        storage.removeItem("ddlChooseServant");
-        storage.setItem("ddlChooseServant", $("ddlChooseServant").value);
+        storage.removeItem("ddlServant");
+        storage.setItem("ddlServant", $("ddlServant").value);
 
         //清除缓存
         storage.removeItem("servants");
@@ -109,9 +109,9 @@ function setStorage() {
 function loadStorage(isTreasure) {
     $("ckIsMaxGrail").checked=false;
     if (storage) {
-        let id = storage.getItem("ddlChooseServant");
+        let id = storage.getItem("ddlServant");
         if (id!=null&&id != "" && id != "-1") {
-            $("ddlChooseServant").value = id;
+            $("ddlServant").value = id;
             if (isTreasure) {
                 changeOc();
             }

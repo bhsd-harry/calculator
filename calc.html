@@ -8,19 +8,12 @@
         .servant tr:nth-child(2) td:nth-child(odd) {
             width: 10%;
         }
-
         .servant tr:nth-child(2) td:nth-child(even) {
             width: 15%;
         }
-/*
-        .servant tr:nth-child(2){
-            text-align: center;
-        }
-*/ 
         .servant tr:nth-child(2)>td:nth-child(2) input{
             width:450px;
         }
-		
     </style>
 </head>
 <body id="content" onunload="setStorage()">
@@ -28,12 +21,12 @@
         <table class="servant">
             <tr>
                 <td colspan="8">
-                    <select id="ddlChooseServant">
+                    <select id="ddlServant">
                         <option value="-1">|----------------------请选择从者-------------------------|</option>
                     </select>
                     <label for="ckIsMaxGrail">
                         <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX</label>
-                    <input type="text" id="txtWord" class="search" list="dlTips" autofocus />
+                    <input type="text" id="txtKey" class="search" list="dlTips" autofocus />
                     <input type="button" id="btnSearch" value="查询" />&nbsp;
                     <datalist id="dlTips"></datalist>
                     <datalist id="dlCraftEssenceTips"></datalist>
@@ -51,7 +44,7 @@
 		<td>Hit数</td>
                 <td>
                     <input type="text" id="txtNHits" size= 10px />
-		    <input type="button" value="全鞭尸" id="btnAdjOk" onclick="adjOk()" />
+		    <input type="button" value="全鞭尸" id="btnAdjOverkill" onclick="adjOverkill()" />
                 </td>
             </tr>           
             <tr>
@@ -79,34 +72,29 @@
                 <td>
                     <input type="number" id="txtRemainHp" />
                 </td>                
-
             </tr>
             <tr>
                 <td>芙芙Atk</td>
                 <td>
-                    <input type="number" id="txtFufuAtk" value="1000" />
+                    <input type="number" id="txtFouAtk" value="1000" />
                 </td>
                 <td>芙芙Hp</td>
                 <td>
-                    <input type="number" id="txtFufuHp" value="1000" />
+                    <input type="number" id="txtFouHp" value="1000" />
                 </td>
-
                 <td>礼装Atk</td>
                 <td>
-                    <input type="number" id="txtCardAtk" value="0" list="dlCraftEssenceTips"/>
+                    <input type="number" id="txtCraftEssenceAtk" value="0" list="dlCraftEssenceTips"/>
                 </td>
                 <td>礼装Hp</td>
                 <td>
-                    <input type="number" id="txtCardHp" value="0" />
+                    <input type="number" id="txtCraftEssenceHp" value="0" />
                 </td>
             </tr>            
-
-
-
             <tr>
                 <td>卡色</td>
                 <td>
-                    <select id="ddlCardColor">
+                    <select id="ddlColor">
                         <option value="0.8">Quick</option>
                         <option value="1">Arts</option>
                         <option value="1.5">Buster</option>
@@ -124,11 +112,11 @@
                 </td>
                 <td>宝具倍率(%)</td>
                 <td>
-                    <input type="text" id="txtNpRate" />
+                    <input type="text" id="txtNpCoefficient" />
                 </td>
                 <td>OC等级</td>
                 <td>
-                    <select id="ddlOc" oldvalue = "oc1">
+                    <select id="ddlOvercharge" oldvalue = "oc1">
                         <option value="oc1">1</option>
                         <option value="oc2">2</option>
                         <option value="oc3">3</option>
@@ -144,7 +132,7 @@
             <tr>
                 <td>从者职介</td>
                 <td>
-                    <select id="ddlCareer">
+                    <select id="ddlClass">
                         <option value="1.00">Saber</option>
                         <option value="0.95">Archer</option>
                         <option value="1.05">Lancer</option>
@@ -162,7 +150,7 @@
                 </td>            
                 <td>职介克制</td>
                 <td>
-                    <select id="ddlCareerResist">
+                    <select id="ddlClassResist">
                         <option value="2.0">普通克制</option>
                         <option value="1.5">狂阶克制</option>
                         <option value="1.0">非克制</option>
@@ -178,14 +166,11 @@
                         <option value="0.9">被克制</option>
                     </select>
                 </td>
-
                 <td>宝具特攻(%)</td>
                 <td>
                     <input type="text" id="txtNpSpecialAttack" value="100" />
                 </td>
             </tr>
-
-
             <tr>
                 <td>宝具威力Buff(%)</td>
                 <td>
@@ -215,22 +200,22 @@
                 </td>
                 <td>概念礼装</td>
                 <td>
-                    <select id="ddlCes">
+                    <select id="ddlCraftEssence">
                         <option value="0">自定义</option>
-                        <option value="1">20级宝石</option>
-                        <option value="2">100级醉贞</option>
-                        <option value="3">100级空骑</option>
-                        <option value="4">100级相扑</option>
-                        <option value="5">80级黑杯</option>
-			<option value="6">20级潜水学妹</option>
-			<option value="7">20级北斋</option>
-			<option value="8">15级泳装樱</option>
-			<option value="9">100级轨迹</option>
+                        <option value="786">20级宝石</option>
+                        <option value="2000">100级醉贞</option>
+                        <option value="2000">100级空骑</option>
+                        <option value="2000">100级相扑</option>
+                        <option value="2034">80级黑杯</option>
+			<option value="393">20级潜水学妹</option>
+			<option value="393">20级北斋</option>
+			<option value="0">15级泳装樱</option>
+			<option value="2000">100级轨迹</option>
                     </select>
                 </td>
                 <td>御主礼装</td>
                 <td>
-                    <select id="ddlCls">
+                    <select id="ddlMysticCode">
                         <option value="0">无</option>
                         <option value="1">战斗服</option>
                         <option value="2">04服</option>
@@ -325,7 +310,6 @@
         </table>
     </div>
     <br />
-
     <div id="divResult" class="resultWrapper">
         <b>结果：<a href="javascript:;" onclick="clearTable(1)">清空</a></b>
         <table id="tbResult" class="result">
@@ -370,7 +354,7 @@
 
     //圣杯MAX勾选框改变事件
     $("ckIsMaxGrail").onchange = function () {
-        let id = $("ddlChooseServant").value;
+        let id = $("ddlServant").value;
         if (id == "-1") {
             alert("请选择从者");
             return;
@@ -391,7 +375,7 @@
         }
     }
     //下拉从者选中项发生变化事件
-    $("ddlChooseServant").onchange = function () {
+    $("ddlServant").onchange = function () {
         $("ckIsSpecialAttack").checked = false;
         $("ckIsMaxGrail").checked = false;
         $("txtDamagePlus").value = 0;
@@ -401,8 +385,8 @@
         let id = this.value;
         if (id != "-1" && id != "") {
             clearBuff();
-	    $("ddlOc").selectedIndex = 0;
-	    $("ddlOc").oldvalue = "oc1";
+	    $("ddlOvercharge").selectedIndex = 0;
+	    $("ddlOvercharge").oldvalue = "oc1";
             bindServantData(id);
 	    changeOc();
         }
@@ -413,24 +397,24 @@
     };
 
     //OC等级选中项发生变化事件
-    $("ddlOc").onchange = function () {
+    $("ddlOvercharge").onchange = function () {
         adjustOc();
-	$("ddlOc").oldvalue = $("ddlOc").value;
+	$("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
     };
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {
         adjustOc();
     }
-    $("txtFufuHp").onchange = function () {
+    $("txtFouHp").onchange = function () {
         adjustOc();
     }
-    $("txtCardHp").onchange = function () {
+    $("txtCraftEssenceHp").onchange = function () {
         adjustOc();
     }
 
     //是否特攻
     $("ckIsSpecialAttack").onclick = function () {
-	let id=$("ddlChooseServant").value;
+	let id=$("ddlServant").value;
         if (id == "-1" || id == "") {
             return;
         }
@@ -459,7 +443,7 @@
 
      //等级下拉列表选中项改变事件
     $("ddlLvs").onchange=function(){
-        let id=$("ddlChooseServant").value;
+        let id=$("ddlServant").value;
         if (id == "-1" || id == "") {
             return;
         }
@@ -525,32 +509,23 @@
         }
     }
 
-    $("ddlCes").onchange=function(){
-	switch($("ddlCes").value) {
-	    case "1":
-		$("txtCardAtk").value=786;
-		$("txtCardHp").value=0;
+    $("ddlCraftEssence").onchange=function(){
+	if($("ddlCraftEssence").selectedIndex>0) {
+	    $("txtCraftEssenceAtk").value=$("ddlCraftEssence").value;
+	}
+	switch($("ddlCraftEssence").selectedIndex) {
+	    case 0:
 		break;
-	    case "2":
-	    case "3":
-	    case "4":
-	    case "9":
-	    	$("txtCardAtk").value=2000;
-		$("txtCardHp").value=0;
+	    case 6:
+	    case 7:
+		$("txtCraftEssenceHp").value=629;
+		break;
+	    case 8:
+		$("txtCraftEssenceHp").value=1067;
+		break;
+	    default:
+		$("txtCraftEssenceHp").value=0;
                 break;
-	    case "5":
-		$("txtCardAtk").value=2034;
-                $("txtCardHp").value=0;
-                break;
-	    case "6":
-	    case "7":
-		$("txtCardAtk").value=393;
-		$("txtCardHp").value=629;
-		break;
-	    case "8":
-		$("txtCardAtk").value=0;
-		$("txtCardHp").value=1067;
-		break;
 	}
 	adjustOc();
     }
@@ -584,10 +559,10 @@
         changeNpRate(servant);
 
         //4.卡色
-        document.querySelector("#ddlCardColor option[value='" + servant.cardColor + "']").selected = true;
+        document.querySelector("#ddlColor option[value='" + servant.cardColor + "']").selected = true;
 
         //5.从者职介
-        let Classs = $("ddlCareer").options;
+        let Classs = $("ddlClass").options;
         for (let i = 0; i < Classs.length; i++) {
             let Class = Classs[i];
             if (Class.text == servant.Class) {
@@ -596,7 +571,7 @@
         }
 
         //6.职介技能
-        bindServantCareerSkillInfo(servant);
+        bindServantClassSkillInfo(servant);
 
         //7.宝具副效果补充(oc特攻只能展示一种副效果，如：1001的oc特攻只展示了宝具特攻，副效果的20宝具威力buff没展示，在这进行补充)
         bindNpSideEffect(servant);
@@ -627,12 +602,12 @@
     }
 
     //绑定从者职介信息
-    function bindServantCareerSkillInfo(servant) {
+    function bindServantClassSkillInfo(servant) {
         //{ cardColor: 1, cardBuff: 10, damagePlus: 0}
         let ClassSkill = servant.ClassSkill;
 
         if (ClassSkill) {
-            let cardColorValue = getFloat("ddlCardColor");
+            let cardColorValue = getFloat("ddlColor");
             let cardBuffs = ClassSkill.cardBuff;
             if (isNaN(cardBuffs)) {//"12|11"
                 cardBuffs = ClassSkill.cardBuff.split('|');
@@ -702,8 +677,8 @@
 
     //计算双子宝具总倍率
     function calNpRemainHpDamageRate() {
-        let ocLevel = $("ddlOc").value;
-        let id = $("ddlChooseServant").value;
+        let ocLevel = $("ddlOvercharge").value;
+        let id = $("ddlServant").value;
         let servant = servants[id];
         let ocs = servant.oc;
 
@@ -714,8 +689,8 @@
         //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
         //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
         let maxHp = getFloat("txtMaxHp");
-        let fufuHp = getFloat("txtFufuHp");
-        let cardHp = getFloat("txtCardHp");
+        let fufuHp = getFloat("txtFouHp");
+        let cardHp = getFloat("txtCraftEssenceHp");
         let totalHp = maxHp + fufuHp + cardHp;
 
         let remainHp = getFloat("txtRemainHp");
@@ -725,13 +700,13 @@
         //总宝具倍率
         npRate += additionalRate;
         //向下取整总宝具倍率
-        $("txtNpRate").value = Math.floor(npRate);
+        $("txtNpCoefficient").value = Math.floor(npRate);
 
     }
     //计算自爆弓宝具总倍率
     function calOcNpDamageRate() {
-        let ocLevel = $("ddlOc").value;
-        let id = $("ddlChooseServant").value;
+        let ocLevel = $("ddlOvercharge").value;
+        let id = $("ddlServant").value;
         let servant = servants[id];
         let ocs = servant.oc;
 
@@ -742,16 +717,16 @@
         //总宝具倍率
         npRate += ocs[ocLevel];
         //向下取整总宝具倍率
-        $("txtNpRate").value = Math.floor(npRate);
+        $("txtNpCoefficient").value = Math.floor(npRate);
     }
 
-	function adjOk(){
+	function adjOverkill(){
 		$("txtEn1Overkill").value = $("txtNHits").value;
 		$("txtEn2Overkill").value = $("txtNHits").value;
 		$("txtEn3Overkill").value = $("txtNHits").value;
 	}
 	function adjHp(){
-		let fullHp = Number($("txtMaxHp").value) + Number($("txtFufuHp").value) + Number($("txtCardHp").value);
+		let fullHp = Number($("txtMaxHp").value) + Number($("txtFouHp").value) + Number($("txtCraftEssenceHp").value);
 		$("txtRemainHp").value = fullHp;
 		calNpRemainHpDamageRate();
 	}
@@ -762,28 +737,28 @@
 	
 	function addML(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
-        	let servant = servants[$("ddlChooseServant").value];
+        	let servant = servants[$("ddlServant").value];
         	if(servant.cardColor == 1.5){
 			$("txtCardBuff").value = getFloat("txtCardBuff") + 50;
 		}
 	}
 	function addHL(){
                 $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
-        	let servant = servants[$("ddlChooseServant").value];
+        	let servant = servants[$("ddlServant").value];
         	if(servant.cardColor == 1.0){
                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
                 }
         }
 	function addCB(){
 		$("txtEnemyDefence").value = getFloat("txtEnemyDefence") - 30;
-		let servant = servants[$("ddlChooseServant").value];
+		let servant = servants[$("ddlServant").value];
                 if(servant.cardColor == 0.8){
                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
                 }
 	}
 	function clearBuff(servant){
 	    if (!servant) {
-                let id = $("ddlChooseServant").value;
+                let id = $("ddlServant").value;
                 servant = servants[id];
             }
 	    $("txtNpSpecialAttack").value = 100;
@@ -797,7 +772,7 @@
             $("txtAttackBuff").value = 0;
             $("txtNpStrength").value = 0;
 	    $("txtEnemyDefence").value = 0;
-            //$("ddlOc").selectedIndex = 0;
+            //$("ddlOvercharge").selectedIndex = 0;
             //设置回被动卡牌buff
             let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
             $("txtCardBuff").value = originNum;
@@ -819,11 +794,11 @@
     //根据OC重设所有buff
     function changeOc(servant) {
         if (!servant) {
-            let id = $("ddlChooseServant").value;
+            let id = $("ddlServant").value;
             servant = servants[id];
         }
 
-        let ocLevel = $("ddlOc").value;
+        let ocLevel = $("ddlOvercharge").value;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
 	if (ocs["type"] == "NpRemainHpDamage") {//双子宝具特攻
@@ -865,29 +840,29 @@
             clearBuff();
 //	}
 //	if (ocs["oc1"] == ocs["oc5"])		
-	    $("ddlOc").selectedIndex = 0;
+	    $("ddlOvercharge").selectedIndex = 0;
 	}
     }
 
     function adjustOc(is_forced){
-        let id = $("ddlChooseServant").value;
+        let id = $("ddlServant").value;
 	let servant = undefined;
 	if(isNaN(id) || id <= 0) {
-		$("ddlOc").selectedIndex = 0;
+		$("ddlOvercharge").selectedIndex = 0;
 		isSpecialAttack.checked = false;
 		return;
 	}
         servant = servants[id];
         
 
-        let ocLevel = $("ddlOc").value;
-	let oldocLevel = $("ddlOc").oldvalue;
+        let ocLevel = $("ddlOvercharge").value;
+	let oldocLevel = $("ddlOvercharge").oldvalue;
 	if(oldocLevel === undefined){ oldocLevel = "oc1";}
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
 
 	if(ocs["type"] == ""){
-		$("ddlOc").selectedIndex = 0;
+		$("ddlOvercharge").selectedIndex = 0;
 		return;
 	}
 	if(ocs["type"] == "SpecialAttackBuff" && isSpecialAttack.checked == false && is_forced == true){
@@ -946,21 +921,21 @@
         	}
 	}
 	if (ocs["oc1"] == ocs["oc5"]) {
-		$("ddlOc").selectedIndex = 0;
+		$("ddlOvercharge").selectedIndex = 0;
 	}
     }
 
     //宝具等级选中项发生变化事件
     function changeNpRate(servant) {
         if (!servant) {
-            let id = $("ddlChooseServant").value;
+            let id = $("ddlServant").value;
             servant = servants[id];
         }
 
         let NP = $("ddlNpLevel").value;
         let npRate = servant.NP[NP];
 
-        $("txtNpRate").value = npRate;
+        $("txtNpCoefficient").value = npRate;
         if (servant.oc.type == "NpRemainHpDamage") {//双子宝具特攻并且勾选了特攻
             calNpRemainHpDamageRate();
         }
@@ -974,10 +949,10 @@
         //         return;
         //     }
         //     let item = servants[key];
-        //     $("ddlChooseServant").options.add(new Option("【" + item.Class + "】" + item.name, item.id));
+        //     $("ddlServant").options.add(new Option("【" + item.Class + "】" + item.name, item.id));
         // }
         servants.forEach(function(servant){
-             $("ddlChooseServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));           
+             $("ddlServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));           
         })
     }
 
@@ -987,7 +962,7 @@
     var guid = 0;
     //计算宝具伤害
     function calc() {
-        if ($("ddlChooseServant").value == "-1") {
+        if ($("ddlServant").value == "-1") {
             alert("请选择从者")
             return;
         }
@@ -996,27 +971,27 @@
         let attack = getFloat("txtAttack");
 
         //2.芙芙Atk
-        let fufuAtk = getFloat("txtFufuAtk");
+        let fufuAtk = getFloat("txtFouAtk");
 
         //3.礼装Atk
-        let cardAtk = getFloat("txtCardAtk");
+        let cardAtk = getFloat("txtCraftEssenceAtk");
 
         attack += fufuAtk + cardAtk;
 
         //4.宝具倍率(%)
-        let npRate = getFloat("txtNpRate") / 100;
+        let npRate = getFloat("txtNpCoefficient") / 100;
 
         //5.卡色
-        let cardColor = getFloat("ddlCardColor");
+        let cardColor = getFloat("ddlColor");
 
         //6.职介克制
-        let ClassResist = getFloat("ddlCareerResist");
+        let ClassResist = getFloat("ddlClassResist");
 
         //7.阵营克制
         let attributeResist = getFloat("ddlAttributeResist");
 
         //8.从者职介 
-        let Class = getFloat("ddlCareer");
+        let Class = getFloat("ddlClass");
 
         //9.宝具威力Buff(%)
         let npStrength = getFloat("txtNpStrength");
@@ -1045,48 +1020,48 @@
 
 	let npGainBuff = getFloat("txtNpGainBuff");
 
-	switch($("ddlCes").value) {
-	    case "2":
+	switch($("ddlCraftEssence").selectedIndex) {
+	    case 1:
 		npStrength = npStrength + 15;
 		break;
-	    case "3":
+	    case 2:
 		npStrength = npStrength + 10;
 		if(cardColor == 1.5) {
 		    cardBuff = cardBuff + 10;
 		}
 		break;
-	    case "4":
+	    case 3:
 		attackBuff = attackBuff + 15;
 		break;
-	    case "5":
+	    case 4:
 		npStrength = npStrength + 60;
 		break;
-            case "6":
+            case 5:
                 npStrength = npStrength + 10;
                 if(cardColor == 1) {
                     cardBuff = cardBuff + 10;
                 }
                 break;
-            case "7":
+            case 6:
                 if(cardColor == 1) {
                     cardBuff = cardBuff + 10;
                 }
 		npGainBuff = npGainBuff + 10;
                 break;
-            case "8":
+            case 7:
                 npStrength = npStrength + 10;
                 if(cardColor == 0.8) {
                     cardBuff = cardBuff + 10;
                 }
                 break;
-	    case "9":
+	    case 8:
 		if(cardColor == 0.8) {
                     cardBuff = cardBuff + 10;
                 }
                 npGainBuff = npGainBuff + 10;
                 break;
 	}
-	switch($("ddlCls").value) {
+	switch($("ddlMysticCode").value) {
 	    case "1":
 		attackBuff = attackBuff + 30;
 		break;
@@ -1190,17 +1165,17 @@
 		break;
 	}
 
-        let servantName = getDdlText("ddlChooseServant");
+        let servantName = getDdlText("ddlServant");
 
         let maxHp = getFloat("txtMaxHp");
-        let fufuHp = getFloat("txtFufuHp");
-        let cardHp = getFloat("txtCardHp");
+        let fufuHp = getFloat("txtFouHp");
+        let cardHp = getFloat("txtCraftEssenceHp");
         let totalHp = maxHp + fufuHp + cardHp;
 
         let remainHp = getFloat("txtRemainHp");
 
         let NP = getDdlText("ddlNpLevel");
-        let oc = getDdlText("ddlOc");
+        let oc = getDdlText("ddlOvercharge");
 
         let isMaxGrail = $("ckIsMaxGrail").checked;
         if (isMaxGrail) {
@@ -1223,7 +1198,7 @@
             remainHp: remainHp,
             cardColor: cardColor,
             NP: NP,
-            npRate: getFloat("txtNpRate"),
+            npRate: getFloat("txtNpCoefficient"),
             npSpecialAttack: getFloat("txtNpSpecialAttack"),
             oc: oc,
             npStrength: npStrength,
