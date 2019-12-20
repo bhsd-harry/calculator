@@ -115,11 +115,11 @@
                 <td>宝具等级</td>
                 <td>
                     <select id="ddlTreasureLevel">
-                        <option value="tl1">1</option>
-                        <option value="tl2">2</option>
-                        <option value="tl3">3</option>
-                        <option value="tl4">4</option>
-                        <option value="tl5">5</option>
+                        <option value="NP1">1</option>
+                        <option value="NP2">2</option>
+                        <option value="NP3">3</option>
+                        <option value="NP4">4</option>
+                        <option value="NP5">5</option>
                     </select>
                 </td>
                 <td>宝具倍率(%)</td>
@@ -587,11 +587,11 @@
         document.querySelector("#ddlCardColor option[value='" + servant.cardColor + "']").selected = true;
 
         //5.从者职介
-        let careers = $("ddlCareer").options;
-        for (let i = 0; i < careers.length; i++) {
-            let career = careers[i];
-            if (career.text == servant.career) {
-                career.selected = true;
+        let Classs = $("ddlCareer").options;
+        for (let i = 0; i < Classs.length; i++) {
+            let Class = Classs[i];
+            if (Class.text == servant.Class) {
+                Class.selected = true;
             }
         }
 
@@ -629,27 +629,27 @@
     //绑定从者职介信息
     function bindServantCareerSkillInfo(servant) {
         //{ cardColor: 1, cardBuff: 10, fixedDamageBuff: 0}
-        let careerSkill = servant.careerSkill;
+        let ClassSkill = servant.ClassSkill;
 
-        if (careerSkill) {
+        if (ClassSkill) {
             let cardColorValue = getFloat("ddlCardColor");
-            let cardBuffs = careerSkill.cardBuff;
+            let cardBuffs = ClassSkill.cardBuff;
             if (isNaN(cardBuffs)) {//"12|11"
-                cardBuffs = careerSkill.cardBuff.split('|');
+                cardBuffs = ClassSkill.cardBuff.split('|');
             }
 
-            let cardColor = careerSkill.cardColor;
+            let cardColor = ClassSkill.cardColor;
             /************************************卡牌Buff******************************************************/
             //0.8(Quick)，1(Arts)，1.5(Buster)，0(All)，-1(None)，-2(Quick和Arts)，-3(Buster和Quick), -4(Buster和Arts)
             if ((cardColor == 0.8 || cardColor == 1 || cardColor == 1.5) && cardColor == cardColorValue) {
-                $("txtCardBuff").dataset.value = careerSkill.cardBuff;
+                $("txtCardBuff").dataset.value = ClassSkill.cardBuff;
 
-                $("txtCardBuff").value = careerSkill.cardBuff;
+                $("txtCardBuff").value = ClassSkill.cardBuff;
             }
             else if (cardColor == 0) {//215
-                $("txtCardBuff").dataset.value = careerSkill.cardBuff;
+                $("txtCardBuff").dataset.value = ClassSkill.cardBuff;
 
-                $("txtCardBuff").value = careerSkill.cardBuff;
+                $("txtCardBuff").value = ClassSkill.cardBuff;
             }
                 //Quick和Arts
             else if (cardColor == -2 && cardColorValue == 0.8 && cardBuffs && cardBuffs.length == 2) {
@@ -691,9 +691,9 @@
                 $("txtCardBuff").value = artsBuff;
             }
             /****************************************固定伤害Buff**************************************************/
-            if (!isNaN(careerSkill.fixedDamageBuff)) {
-				$("txtDamagePlus").basicvalue = careerSkill.fixedDamageBuff;
-                $("txtDamagePlus").value = careerSkill.fixedDamageBuff;
+            if (!isNaN(ClassSkill.fixedDamageBuff)) {
+				$("txtDamagePlus").basicvalue = ClassSkill.fixedDamageBuff;
+                $("txtDamagePlus").value = ClassSkill.fixedDamageBuff;
             }
         }
 
@@ -707,9 +707,9 @@
         let servant = servants[id];
         let ocs = servant.oc;
 
-        let tl = $("ddlTreasureLevel").value;
+        let NP = $("ddlTreasureLevel").value;
         //原宝具倍率
-        let treasureRate = servant.tl[tl];
+        let treasureRate = servant.NP[NP];
 
         //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
         //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
@@ -735,9 +735,9 @@
         let servant = servants[id];
         let ocs = servant.oc;
 
-        let tl = $("ddlTreasureLevel").value;
+        let NP = $("ddlTreasureLevel").value;
         //原宝具倍率
-        let treasureRate = servant.tl[tl];
+        let treasureRate = servant.NP[NP];
 
         //总宝具倍率
         treasureRate += ocs[ocLevel];
@@ -957,8 +957,8 @@
             servant = servants[id];
         }
 
-        let tl = $("ddlTreasureLevel").value;
-        let treasureRate = servant.tl[tl];
+        let NP = $("ddlTreasureLevel").value;
+        let treasureRate = servant.NP[NP];
 
         $("txtTreasureRate").value = treasureRate;
         if (servant.oc.type == "TreasureSpecialRemainHpAttack") {//双子宝具特攻并且勾选了特攻
@@ -974,10 +974,10 @@
         //         return;
         //     }
         //     let item = servants[key];
-        //     $("ddlChooseServant").options.add(new Option("【" + item.career + "】" + item.name, item.id));
+        //     $("ddlChooseServant").options.add(new Option("【" + item.Class + "】" + item.name, item.id));
         // }
         servants.forEach(function(servant){
-             $("ddlChooseServant").options.add(new Option(`【${servant.star}】【${servant.career}】${servant.name}`, servant.id));           
+             $("ddlChooseServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));           
         })
     }
 
@@ -1010,13 +1010,13 @@
         let cardColor = getFloat("ddlCardColor");
 
         //6.职介克制
-        let careerResist = getFloat("ddlCareerResist");
+        let ClassResist = getFloat("ddlCareerResist");
 
         //7.阵营克制
         let attributeResist = getFloat("ddlAttributeResist");
 
         //8.从者职介 
-        let career = getFloat("ddlCareer");
+        let Class = getFloat("ddlCareer");
 
         //9.宝具威力Buff(%)
         let treasurePowerBuff = getFloat("txtNpStrength");
@@ -1140,10 +1140,10 @@
                 break;
 	}
 
-        let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * attributeResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
+        let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
         resultMin = Math.floor(Math.max(0,resultMin));
 
-        let resultMax = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * attributeResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
+        let resultMax = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
         resultMax = Math.floor(Math.max(0,resultMax));
 
         let resultAvg = Math.round((resultMin + resultMax) * 1.0 / 2);
@@ -1199,19 +1199,19 @@
 
         let remainHp = getFloat("txtRemainHp");
 
-        let tl = getDdlText("ddlTreasureLevel");
+        let NP = getDdlText("ddlTreasureLevel");
         let oc = getDdlText("ddlOc");
 
         let isMaxGrail = $("ckIsMaxGrail").checked;
         if (isMaxGrail) {
             servantName = "<span class='text-gradient'>" + servantName + "</span>";
         }
-        let careerResistClassName = "normal";//非克制
-        if (careerResist > 1) {//克制
-            careerResistClassName = "weak";
+        let ClassResistClassName = "normal";//非克制
+        if (ClassResist > 1) {//克制
+            ClassResistClassName = "weak";
         }
-        else if (careerResist < 1) {//被克制
-            careerResistClassName = "resist";
+        else if (ClassResist < 1) {//被克制
+            ClassResistClassName = "resist";
         }
         let model = {
             guid: guid,
@@ -1222,7 +1222,7 @@
             attributeResist: getDdlText("ddlAttributeResist"),
             remainHp: remainHp,
             cardColor: cardColor,
-            tl: tl,
+            NP: NP,
             treasureRate: getFloat("txtTreasureRate"),
             treasureSpecialAttack: getFloat("txtTreasureSpecialAttack"),
             oc: oc,
@@ -1235,7 +1235,7 @@
             min: resultMin,
             max: resultMax,
             avg: resultAvg,
-            careerResistClassName: careerResistClassName,
+            ClassResistClassName: ClassResistClassName,
 	    npGain: npGain
         };
         resultArr.push(model);
@@ -1307,7 +1307,7 @@
         newRow.insertCell(-1).innerHTML = obj.attributeResist;
 
         //7.宝具等级      
-        newRow.insertCell(-1).innerHTML = obj.tl;
+        newRow.insertCell(-1).innerHTML = obj.NP;
         //8.宝具倍率      
         newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.treasureRate + "</span>"
         //9.宝具特攻(oc)  
@@ -1327,17 +1327,17 @@
         //16.宝具伤害最小值    
         let min = newRow.insertCell(-1);
         min.innerHTML = obj.min;
-        min.classList.add(obj.careerResistClassName);
+        min.classList.add(obj.ClassResistClassName);
 /*
         //17.宝具伤害最大值  
         let max = newRow.insertCell(-1);
         max.innerHTML = obj.max;
-        max.classList.add(obj.careerResistClassName);
+        max.classList.add(obj.ClassResistClassName);
 */
         //18.宝具伤害平均值       
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
-        avg.classList.add(obj.careerResistClassName);
+        avg.classList.add(obj.ClassResistClassName);
 	//19.NP Gain
 	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
         //20.删除操作     

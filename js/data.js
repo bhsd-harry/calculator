@@ -19,7 +19,7 @@ function initialData() {
     initLancer();
     initRider();
     initCaster();
-    initAss();
+    initAssassin();
     initBerserker();
     initExtra();
     //加载各等级atk和hp
@@ -47,7 +47,7 @@ function loadLvs(){
 /**
 * 初始化从者数据
 * @param {String} star 星级
-* @param {String} career 职介
+* @param {String} Class 职介
 * @param {String} name 从者名
 * @param {Number} servantNo 从者编号(茹西教王的理想鄉和wiki从者编号都一样的)
 * @param {String} attribute 阵营
@@ -59,11 +59,11 @@ function loadLvs(){
 * @param {Number} target 宝具目标数
 * @param {Number} hit 宝具hit数
 * @param {Number} np 宝具np获取率
-* @param {Number} tl1 1宝倍率
-* @param {Number} tl2 2宝倍率
-* @param {Number} tl3 3宝倍率
-* @param {Number} tl4 4宝倍率
-* @param {Number} tl5 5宝倍率
+* @param {Number} NP1 1宝倍率
+* @param {Number} NP2 2宝倍率
+* @param {Number} NP3 3宝倍率
+* @param {Number} NP4 4宝倍率
+* @param {Number} NP5 5宝倍率
 * @param {Number} oc1 100 OC
 * @param {Number} oc2 200 OC
 * @param {Number} oc3 300 OC
@@ -80,7 +80,7 @@ function loadLvs(){
 *    TreasurePowerBuff：宫本半藏OC宝具威力提升
 *    TreasureCombinedDown：灾星简降防降色卡耐性
 * @param {Number} cardColor 卡牌倍率(B卡：1.5，A卡：1，Q卡：0.8)
-* @param {Object} careerSkill 职介技能(比如狂化EX、神性Debuff) 
+* @param {Object} ClassSkill 职介技能(比如狂化EX、神性Debuff) 
 *    cardColor: 0.8(Quick)，1(Arts)，1.5(Buster)，0(All)，-1(None)，-2(Quick和Arts)，-3(Buster和Quick), -4 (Buster和Arts)
 *    cardBuff: 10(卡牌Buff), 
 *    fixedDamageBuff: 0(神性Debuff), 
@@ -89,14 +89,14 @@ function loadLvs(){
 *    cardPowerBuff：卡牌buff
 *    specialAttack: 宝具特攻
 */
-function initialServant(star,career, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, tl1, tl2, tl3, tl4, tl5, oc1, oc2, oc3, oc4, oc5, type, cardColor, careerSkill, treasureSideEffect) {
+function initialServant(star,Class, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, NP1, NP2, NP3, NP4, NP5, oc1, oc2, oc3, oc4, oc5, type, cardColor, ClassSkill, treasureSideEffect) {
     //id++;//下标最好还是从0开始
-    let tl = {};
-    tl["tl1"] = tl1;
-    tl["tl2"] = tl2;
-    tl["tl3"] = tl3;
-    tl["tl4"] = tl4;
-    tl["tl5"] = tl5;
+    let NP = {};
+    NP["NP1"] = NP1;
+    NP["NP2"] = NP2;
+    NP["NP3"] = NP3;
+    NP["NP4"] = NP4;
+    NP["NP5"] = NP5;
 
     let oc = {};
     oc["oc1"] = oc1;
@@ -110,7 +110,7 @@ function initialServant(star,career, name,servantNo, attribute, alignments, atk,
     let model = {
         id: id,
         star:star,
-        career: career,
+        Class: Class,
         name: name,
         servantNo: servantNo,
         attribute: attribute,
@@ -122,10 +122,10 @@ function initialServant(star,career, name,servantNo, attribute, alignments, atk,
         target: target,
         hit: hit,
         np: np,
-        tl: tl,
+        NP: NP,
         oc: oc,
         cardColor: cardColor,
-        careerSkill: careerSkill,
+        ClassSkill: ClassSkill,
         treasureSideEffect: treasureSideEffect
     }
     servants[id] = model;
@@ -342,7 +342,7 @@ function initCaster(){
 }
 
 
-function initAss(){
+function initAssassin(){
     //----------------------------------Assassin---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
     initialServant(5,"Assassin", "开膛手杰克", 75, "地",["混沌","恶"], 11557, 12696, 12651, 13909, 1,4,1.07, 1400, 1800, 2000, 2100, 2200, 50, 62.5, 75, 87.5, 100, "SpecialAttackPowerBuff", 0.8,{ cardColor: -1, cardBuff: 0, fixedDamageBuff: 0});
