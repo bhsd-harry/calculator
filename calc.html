@@ -114,7 +114,7 @@
                 </td>
                 <td>宝具等级</td>
                 <td>
-                    <select id="ddlTreasureLevel">
+                    <select id="ddlNpLevel">
                         <option value="NP1">1</option>
                         <option value="NP2">2</option>
                         <option value="NP3">3</option>
@@ -124,7 +124,7 @@
                 </td>
                 <td>宝具倍率(%)</td>
                 <td>
-                    <input type="text" id="txtTreasureRate" />
+                    <input type="text" id="txtNpRate" />
                 </td>
                 <td>OC等级</td>
                 <td>
@@ -181,7 +181,7 @@
 
                 <td>宝具特攻(%)</td>
                 <td>
-                    <input type="text" id="txtTreasureSpecialAttack" value="100" />
+                    <input type="text" id="txtNpSpecialAttack" value="100" />
                 </td>
             </tr>
 
@@ -408,8 +408,8 @@
         }
     }
     //宝具等级选中项发生变化事件
-    $("ddlTreasureLevel").onchange = function () {
-        changeTreasureRate();
+    $("ddlNpLevel").onchange = function () {
+        changeNpRate();
     };
 
     //OC等级选中项发生变化事件
@@ -437,18 +437,18 @@
 
         let servant = servants[id];
 	let ocs = servant.oc;
-        if(ocs["type"] == "TreasureSpecialAttack" || ocs["type"] == "SpecialAttackPowerBuff") {
+        if(ocs["type"] == "NpSpecialAttack" || ocs["type"] == "SpecialAttackBuff") {
 	    adjustOc(true);
 	}
 	else {
-	    let treasureSideEffect = servant.treasureSideEffect;
-	    if (treasureSideEffect && treasureSideEffect.specialAttack && !isNaN(treasureSideEffect.specialAttack)) {
+	    let npEffect = servant.npEffect;
+	    if (npEffect && npEffect.specialAttack && !isNaN(npEffect.specialAttack)) {
         	//!isNaN(null)，返回true，需要去掉这种情况
                 if($("ckIsSpecialAttack").checked) {
-		    $("txtTreasureSpecialAttack").value = treasureSideEffect.specialAttack;
+		    $("txtNpSpecialAttack").value = npEffect.specialAttack;
 		}
 		else {
-		    $("txtTreasureSpecialAttack").value = 100;
+		    $("txtNpSpecialAttack").value = 100;
 		}
 	    }
 	    else {
@@ -581,7 +581,7 @@
         $("txtRemainHp").value = servant.hp + 1000;
 
         //3.宝具倍率
-        changeTreasureRate(servant);
+        changeNpRate(servant);
 
         //4.卡色
         document.querySelector("#ddlCardColor option[value='" + servant.cardColor + "']").selected = true;
@@ -599,7 +599,7 @@
         bindServantCareerSkillInfo(servant);
 
         //7.宝具副效果补充(oc特攻只能展示一种副效果，如：1001的oc特攻只展示了宝具特攻，副效果的20宝具威力buff没展示，在这进行补充)
-        bindTreasureSideEffect(servant);
+        bindNpSideEffect(servant);
 
         //8.属性
         bindAlignments(servant);
@@ -608,18 +608,18 @@
 
 
     //宝具副效果补充
-    function bindTreasureSideEffect(servant) {
-        let treasureSideEffect = servant.treasureSideEffect;
-        if (treasureSideEffect) {
-            let treasurePowerBuff = treasureSideEffect.treasurePowerBuff;//宝具威力buff
+    function bindNpSideEffect(servant) {
+        let npEffect = servant.npEffect;
+        if (npEffect) {
+            let npStrength = npEffect.npStrength;//宝具威力buff
             //!isNaN(null)，返回true，需要去掉这种情况
-            if (treasurePowerBuff && !isNaN(treasurePowerBuff)) {//单个数值，比如1001宝具的20%宝具威力buff
-                $("txtNpStrength").value = treasurePowerBuff;
+            if (npStrength && !isNaN(npStrength)) {//单个数值，比如1001宝具的20%宝具威力buff
+                $("txtNpStrength").value = npStrength;
             }
 
-            let cardPowerBuff = treasureSideEffect.cardPowerBuff;//卡牌buff
-            if (cardPowerBuff && !isNaN(cardPowerBuff)) {//单个数值，比如剑兰宝具的30%蓝魔放buff
-                $("txtCardBuff").value = cardPowerBuff;
+            let cardBuff = npEffect.cardBuff;//卡牌buff
+            if (cardBuff && !isNaN(cardBuff)) {//单个数值，比如剑兰宝具的30%蓝魔放buff
+                $("txtCardBuff").value = cardBuff;
             }
 
         }
@@ -628,7 +628,7 @@
 
     //绑定从者职介信息
     function bindServantCareerSkillInfo(servant) {
-        //{ cardColor: 1, cardBuff: 10, fixedDamageBuff: 0}
+        //{ cardColor: 1, cardBuff: 10, damagePlus: 0}
         let ClassSkill = servant.ClassSkill;
 
         if (ClassSkill) {
@@ -691,9 +691,9 @@
                 $("txtCardBuff").value = artsBuff;
             }
             /****************************************固定伤害Buff**************************************************/
-            if (!isNaN(ClassSkill.fixedDamageBuff)) {
-				$("txtDamagePlus").basicvalue = ClassSkill.fixedDamageBuff;
-                $("txtDamagePlus").value = ClassSkill.fixedDamageBuff;
+            if (!isNaN(ClassSkill.damagePlus)) {
+				$("txtDamagePlus").basicvalue = ClassSkill.damagePlus;
+                $("txtDamagePlus").value = ClassSkill.damagePlus;
             }
         }
 
@@ -701,15 +701,15 @@
 
 
     //计算双子宝具总倍率
-    function calTreasureSpecialRemainHpAttackRate() {
+    function calNpRemainHpDamageRate() {
         let ocLevel = $("ddlOc").value;
         let id = $("ddlChooseServant").value;
         let servant = servants[id];
         let ocs = servant.oc;
 
-        let NP = $("ddlTreasureLevel").value;
+        let NP = $("ddlNpLevel").value;
         //原宝具倍率
-        let treasureRate = servant.NP[NP];
+        let npRate = servant.NP[NP];
 
         //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
         //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
@@ -723,26 +723,26 @@
         let additionalRate = ocs[ocLevel] * (1 - remainHp / totalHp);
 
         //总宝具倍率
-        treasureRate += additionalRate;
+        npRate += additionalRate;
         //向下取整总宝具倍率
-        $("txtTreasureRate").value = Math.floor(treasureRate);
+        $("txtNpRate").value = Math.floor(npRate);
 
     }
     //计算自爆弓宝具总倍率
-    function calTreasureSpecialExplosionAttackRate() {
+    function calOcNpDamageRate() {
         let ocLevel = $("ddlOc").value;
         let id = $("ddlChooseServant").value;
         let servant = servants[id];
         let ocs = servant.oc;
 
-        let NP = $("ddlTreasureLevel").value;
+        let NP = $("ddlNpLevel").value;
         //原宝具倍率
-        let treasureRate = servant.NP[NP];
+        let npRate = servant.NP[NP];
 
         //总宝具倍率
-        treasureRate += ocs[ocLevel];
+        npRate += ocs[ocLevel];
         //向下取整总宝具倍率
-        $("txtTreasureRate").value = Math.floor(treasureRate);
+        $("txtNpRate").value = Math.floor(npRate);
     }
 
 	function adjOk(){
@@ -753,7 +753,7 @@
 	function adjHp(){
 		let fullHp = Number($("txtMaxHp").value) + Number($("txtFufuHp").value) + Number($("txtCardHp").value);
 		$("txtRemainHp").value = fullHp;
-		calTreasureSpecialRemainHpAttackRate();
+		calNpRemainHpDamageRate();
 	}
 	function addKM(){
 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
@@ -786,7 +786,7 @@
                 let id = $("ddlChooseServant").value;
                 servant = servants[id];
             }
-	    $("txtTreasureSpecialAttack").value = 100;
+	    $("txtNpSpecialAttack").value = 100;
             $("txtSpecialAttack").value = 0;
 	    if(isNaN($("txtDamagePlus").basicvalue)){
 		$("txtDamagePlus").value = 0;}
@@ -803,7 +803,7 @@
             $("txtCardBuff").value = originNum;
 
             //宝具副效果补充
-            bindTreasureSideEffect(servant);
+            bindNpSideEffect(servant);
 
 	    $("txtNpGainBuff").value = 0;
 	    $("txtEn1Overkill").value = 0;
@@ -826,38 +826,38 @@
         let ocLevel = $("ddlOc").value;
         let isSpecialAttack = $("ckIsSpecialAttack");
         let ocs = servant.oc;
-	if (ocs["type"] == "TreasureSpecialRemainHpAttack") {//双子宝具特攻
-                calTreasureSpecialRemainHpAttackRate();
+	if (ocs["type"] == "NpRemainHpDamage") {//双子宝具特攻
+                calNpRemainHpDamageRate();
         }
-        else if (ocs["type"] == "TreasureSpecialExplosionAttack") {//自爆弓特攻
-            calTreasureSpecialExplosionAttackRate();
+        else if (ocs["type"] == "OcNpDamage") {//自爆弓特攻
+            calOcNpDamageRate();
         }
-	else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
+	else if (ocs["type"] == "OcCardBuff") {//R金时OC绿魔放
             //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
             let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
 
             $("txtCardBuff").value = originNum + ocs[ocLevel];
         }
-        else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
+        else if (ocs["type"] == "OcAtkBuff") {//B兰OC加攻
             $("txtAttackBuff").value = ocs[ocLevel];
         }
-        else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
+        else if (ocs["type"] == "NpSpecialDefReduceAttck") {//宝具前降防
             $("txtEnemyDefence").value = 0 - ocs[ocLevel];
 
         }
-        else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
+        else if (ocs["type"] == "OcNpStrength") {//宫本半藏OC宝具威力提升
             $("txtNpStrength").value = ocs[ocLevel];
         }
-	else if (ocs["type"] == "TreasureCombinedDown") {
+	else if (ocs["type"] == "CombinedDecrease") {
 	    let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
 	    $("txtEnemyDefence").value = 0 - ocs[ocLevel];
 	    $("txtCardBuff").value = originNum + ocs[ocLevel];
 	}
         if (isSpecialAttack.checked) {//是特攻
-            if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
-                $("txtTreasureSpecialAttack").value = ocs[ocLevel];
+            if (ocs["type"] == "NpSpecialAttack") {//宝具特攻
+                $("txtNpSpecialAttack").value = ocs[ocLevel];
             }
-            else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
+            else if (ocs["type"] == "SpecialAttackBuff") {//杰克女性特攻
                 $("txtSpecialAttack").value = ocs[ocLevel];
             }
         }
@@ -890,19 +890,19 @@
 		$("ddlOc").selectedIndex = 0;
 		return;
 	}
-	if(ocs["type"] == "SpecialAttackPowerBuff" && isSpecialAttack.checked == false && is_forced == true){
+	if(ocs["type"] == "SpecialAttackBuff" && isSpecialAttack.checked == false && is_forced == true){
 		$("txtSpecialAttack").value = getFloat("txtSpecialAttack") - ocs[ocLevel];
 	}
-	if(ocs["type"] == "TreasureSpecialAttack" && isSpecialAttack.checked == false){
-		$("txtTreasureSpecialAttack").value = 100;
+	if(ocs["type"] == "NpSpecialAttack" && isSpecialAttack.checked == false){
+		$("txtNpSpecialAttack").value = 100;
 	}
-        if (ocs["type"] == "TreasureSpecialRemainHpAttack") {//双子宝具特攻
-                calTreasureSpecialRemainHpAttackRate();
+        if (ocs["type"] == "NpRemainHpDamage") {//双子宝具特攻
+                calNpRemainHpDamageRate();
         }
-        else if (ocs["type"] == "TreasureSpecialExplosionAttack") {//自爆弓特攻
-                calTreasureSpecialExplosionAttackRate();
+        else if (ocs["type"] == "OcNpDamage") {//自爆弓特攻
+                calOcNpDamageRate();
         }
-	else if (ocs["type"] == "TreasureSpecialCardPowerAttack") {//R金时OC绿魔放
+	else if (ocs["type"] == "OcCardBuff") {//R金时OC绿魔放
                 //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
                 //let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
 
@@ -910,32 +910,32 @@
                 let o = getFloat("txtCardBuff");
                 $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
-        else if (ocs["type"] == "TreasureSpecialAtkPowerAttack") {//B兰OC加攻
+        else if (ocs["type"] == "OcAtkBuff") {//B兰OC加攻
                 let o = getFloat("txtAttackBuff");
                 $("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
                 //$("txtAttackBuff").value = ocs[ocLevel];
         }
-        else if (ocs["type"] == "TreasureSpecialDefReduceAttck") {//宝具前降防
+        else if (ocs["type"] == "NpSpecialDefReduceAttck") {//宝具前降防
                 let o = getFloat("txtEnemyDefence");
                 $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
                 //$("txtEnemyDefence").value = 0 - ocs[ocLevel];
         }
-        else if (ocs["type"] == "TreasurePowerBuff") {//宫本半藏OC宝具威力提升
+        else if (ocs["type"] == "OcNpStrength") {//宫本半藏OC宝具威力提升
                 let o = getFloat("txtNpStrength");
                 $("txtNpStrength").value = o + ocs[ocLevel] - ocs[oldocLevel];
                 //$("txtNpStrength").value = ocs[ocLevel];
         }
-	else if (ocs["type"] == "TreasureCombinedDown") {
+	else if (ocs["type"] == "CombinedDecrease") {
             let o = getFloat("txtEnemyDefence");
             $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
 	    o = getFloat("txtCardBuff");
             $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
 	if (isSpecialAttack.checked) {//是特攻
-        	if (ocs["type"] == "TreasureSpecialAttack") {//宝具特攻
-                	$("txtTreasureSpecialAttack").value = ocs[ocLevel];
+        	if (ocs["type"] == "NpSpecialAttack") {//宝具特攻
+                	$("txtNpSpecialAttack").value = ocs[ocLevel];
         	}
-        	else if (ocs["type"] == "SpecialAttackPowerBuff") {//杰克女性特攻
+        	else if (ocs["type"] == "SpecialAttackBuff") {//杰克女性特攻
 			if(is_forced == true) {
 				$("txtSpecialAttack").value = getFloat("txtSpecialAttack") + ocs[ocLevel];
 			}
@@ -951,21 +951,21 @@
     }
 
     //宝具等级选中项发生变化事件
-    function changeTreasureRate(servant) {
+    function changeNpRate(servant) {
         if (!servant) {
             let id = $("ddlChooseServant").value;
             servant = servants[id];
         }
 
-        let NP = $("ddlTreasureLevel").value;
-        let treasureRate = servant.NP[NP];
+        let NP = $("ddlNpLevel").value;
+        let npRate = servant.NP[NP];
 
-        $("txtTreasureRate").value = treasureRate;
-        if (servant.oc.type == "TreasureSpecialRemainHpAttack") {//双子宝具特攻并且勾选了特攻
-            calTreasureSpecialRemainHpAttackRate();
+        $("txtNpRate").value = npRate;
+        if (servant.oc.type == "NpRemainHpDamage") {//双子宝具特攻并且勾选了特攻
+            calNpRemainHpDamageRate();
         }
-        else if (servant.oc.type == "TreasureSpecialExplosionAttack") {//自爆弓特攻
-            calTreasureSpecialExplosionAttackRate();
+        else if (servant.oc.type == "OcNpDamage") {//自爆弓特攻
+            calOcNpDamageRate();
         }
     }
     function initialServantList() {
@@ -1004,7 +1004,7 @@
         attack += fufuAtk + cardAtk;
 
         //4.宝具倍率(%)
-        let treasureRate = getFloat("txtTreasureRate") / 100;
+        let npRate = getFloat("txtNpRate") / 100;
 
         //5.卡色
         let cardColor = getFloat("ddlCardColor");
@@ -1019,7 +1019,7 @@
         let Class = getFloat("ddlCareer");
 
         //9.宝具威力Buff(%)
-        let treasurePowerBuff = getFloat("txtNpStrength");
+        let npStrength = getFloat("txtNpStrength");
 
         //10.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");
@@ -1031,13 +1031,13 @@
         let enemyDefenceBuff = getFloat("txtEnemyDefence");
 
         //13.特攻威力Buff(%)
-        let specialAttackPowerBuff = getFloat("txtSpecialAttack");
+        let specialAttackBuff = getFloat("txtSpecialAttack");
 
         //15.固定伤害Buff
-        let fixedDamageBuff = getFloat("txtDamagePlus");
+        let damagePlus = getFloat("txtDamagePlus");
 
         //17.宝具特攻(%)     
-        let treasureSpecialAttack = getFloat("txtTreasureSpecialAttack") / 100;
+        let npSpecialAttack = getFloat("txtNpSpecialAttack") / 100;
         /*
             ATK×攻击补正(0.23)×[宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)]×职阶补正×职阶相性补正×阵营相性补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
             +(固定伤害BUFF—敌方固定伤害BUFF)
@@ -1047,10 +1047,10 @@
 
 	switch($("ddlCes").value) {
 	    case "2":
-		treasurePowerBuff = treasurePowerBuff + 15;
+		npStrength = npStrength + 15;
 		break;
 	    case "3":
-		treasurePowerBuff = treasurePowerBuff + 10;
+		npStrength = npStrength + 10;
 		if(cardColor == 1.5) {
 		    cardBuff = cardBuff + 10;
 		}
@@ -1059,10 +1059,10 @@
 		attackBuff = attackBuff + 15;
 		break;
 	    case "5":
-		treasurePowerBuff = treasurePowerBuff + 60;
+		npStrength = npStrength + 60;
 		break;
             case "6":
-                treasurePowerBuff = treasurePowerBuff + 10;
+                npStrength = npStrength + 10;
                 if(cardColor == 1) {
                     cardBuff = cardBuff + 10;
                 }
@@ -1074,7 +1074,7 @@
 		npGainBuff = npGainBuff + 10;
                 break;
             case "8":
-                treasurePowerBuff = treasurePowerBuff + 10;
+                npStrength = npStrength + 10;
                 if(cardColor == 0.8) {
                     cardBuff = cardBuff + 10;
                 }
@@ -1091,7 +1091,7 @@
 		attackBuff = attackBuff + 30;
 		break;
 	    case "2":
-		treasurePowerBuff = treasurePowerBuff + 50;
+		npStrength = npStrength + 50;
 		npGainBuff = npGainBuff + 50;
 		break;
             case "3":
@@ -1124,26 +1124,26 @@
                 break;
 	    case "9":
 		attackBuff = attackBuff + 20;
-		treasurePowerBuff = treasurePowerBuff + 10;
+		npStrength = npStrength + 10;
 		break;
 	    case "10":
-		treasurePowerBuff = treasurePowerBuff + 20;
+		npStrength = npStrength + 20;
 		if(cardColor == 1) {
                     cardBuff = cardBuff + 30;
                 }
 		break;
 	    case "11":
-		treasurePowerBuff = treasurePowerBuff + 35;
+		npStrength = npStrength + 35;
 		break;
             case "12":
-                treasurePowerBuff = treasurePowerBuff + 50;
+                npStrength = npStrength + 50;
                 break;
 	}
 
-        let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
+        let resultMin = attack * 0.23 * [npRate * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
         resultMin = Math.floor(Math.max(0,resultMin));
 
-        let resultMax = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
+        let resultMax = attack * 0.23 * [npRate * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
         resultMax = Math.floor(Math.max(0,resultMax));
 
         let resultAvg = Math.round((resultMin + resultMax) * 1.0 / 2);
@@ -1199,7 +1199,7 @@
 
         let remainHp = getFloat("txtRemainHp");
 
-        let NP = getDdlText("ddlTreasureLevel");
+        let NP = getDdlText("ddlNpLevel");
         let oc = getDdlText("ddlOc");
 
         let isMaxGrail = $("ckIsMaxGrail").checked;
@@ -1223,13 +1223,13 @@
             remainHp: remainHp,
             cardColor: cardColor,
             NP: NP,
-            treasureRate: getFloat("txtTreasureRate"),
-            treasureSpecialAttack: getFloat("txtTreasureSpecialAttack"),
+            npRate: getFloat("txtNpRate"),
+            npSpecialAttack: getFloat("txtNpSpecialAttack"),
             oc: oc,
-            treasurePowerBuff: treasurePowerBuff,
+            npStrength: npStrength,
             cardBuff: cardBuff,
             attackBuff: attackBuff,
-            specialAttackPowerBuff: specialAttackPowerBuff,
+            specialAttackBuff: specialAttackBuff,
 	    npGainBuff: npGainBuff,
             enemyDefenceBuff: getFloat("txtEnemyDefence"),
             min: resultMin,
@@ -1309,17 +1309,17 @@
         //7.宝具等级      
         newRow.insertCell(-1).innerHTML = obj.NP;
         //8.宝具倍率      
-        newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.treasureRate + "</span>"
+        newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.npRate + "</span>"
         //9.宝具特攻(oc)  
-        newRow.insertCell(-1).innerHTML = obj.treasureSpecialAttack + "(" + obj.oc + ")";
+        newRow.insertCell(-1).innerHTML = obj.npSpecialAttack + "(" + obj.oc + ")";
         //10.宝具威力Buff 
-        newRow.insertCell(-1).innerHTML = obj.treasurePowerBuff;
+        newRow.insertCell(-1).innerHTML = obj.npStrength;
         //11.卡牌Buff     
         newRow.insertCell(-1).innerHTML = obj.cardBuff;
         //12.攻击力Buff   
         newRow.insertCell(-1).innerHTML = obj.attackBuff;
         //13.特攻威力Buff 
-        newRow.insertCell(-1).innerHTML = obj.specialAttackPowerBuff;
+        newRow.insertCell(-1).innerHTML = obj.specialAttackBuff;
         //14.特攻威力Buff     
         newRow.insertCell(-1).innerHTML = obj.enemyDefenceBuff;
 	//15.黄金律
