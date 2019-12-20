@@ -41,9 +41,9 @@
             </tr>
             <tr>
                 <td>阵营</td>
-                <td><span id="spanCamp"></span></td>  
+                <td><span id="spanAttribute"></span></td>  
                 <td>属性</td>
-                <td><span id="spanAttributes"></span></td>
+                <td><span id="spanAlignments"></span></td>
 		<td>目标数</td>
 		<td>
 		    <input type="number" id="txtNTarget" />
@@ -172,7 +172,7 @@
                 </td>
                 <td>阵营克制</td>
                 <td>
-                    <select id="ddlCampResist">
+                    <select id="ddlAttributeResist">
                         <option value="1.0">非克制</option>
                         <option value="1.1">克制</option>
                         <option value="0.9">被克制</option>
@@ -360,8 +360,8 @@
 <script type="text/javascript">
     "use strict";
     /***********************************************************/
-    intialData();
-    intialServantList();
+    initialData();
+    initialServantList();
     loadStorage(true);
     bindSearchTips();
 
@@ -563,7 +563,7 @@
     function bindServantData(id) {
         let servant = servants[id];
         //0.阵营
-        $("spanCamp").innerHTML = "<a href='javascript:;' data-value='@" + servant.camp + "' onclick='autoClickSearch(this)'>" + servant.camp + "</a>"
+        $("spanAttribute").innerHTML = "<a href='javascript:;' data-value='@" + servant.attribute + "' onclick='autoClickSearch(this)'>" + servant.attribute + "</a>"
 
 	$("txtNTarget").value = servant.target;
 	$("txtNHits").value = servant.hit;
@@ -602,7 +602,7 @@
         bindTreasureSideEffect(servant);
 
         //8.属性
-        bindAttributes(servant);
+        bindAlignments(servant);
     }
 
 
@@ -968,7 +968,7 @@
             calTreasureSpecialExplosionAttackRate();
         }
     }
-    function intialServantList() {
+    function initialServantList() {
         // for (let key in servants) {
         //     if (isNaN(key)) {
         //         return;
@@ -1013,7 +1013,7 @@
         let careerResist = getFloat("ddlCareerResist");
 
         //7.阵营克制
-        let campResist = getFloat("ddlCampResist");
+        let attributeResist = getFloat("ddlAttributeResist");
 
         //8.从者职介 
         let career = getFloat("ddlCareer");
@@ -1140,10 +1140,10 @@
                 break;
 	}
 
-        let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * campResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
+        let resultMin = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * attributeResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
         resultMin = Math.floor(Math.max(0,resultMin));
 
-        let resultMax = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * campResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
+        let resultMax = attack * 0.23 * [treasureRate * cardColor * (1 + cardBuff / 100)] * career * careerResist * attributeResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefenceBuff / 100))* (1 + specialAttackPowerBuff / 100 + treasurePowerBuff / 100) * treasureSpecialAttack + fixedDamageBuff;
         resultMax = Math.floor(Math.max(0,resultMax));
 
         let resultAvg = Math.round((resultMin + resultMax) * 1.0 / 2);
@@ -1219,7 +1219,7 @@
             atk: attack,
             hp: totalHp,
             lv:getDdlText("ddlLvs"),
-            campResist: getDdlText("ddlCampResist"),
+            attributeResist: getDdlText("ddlAttributeResist"),
             remainHp: remainHp,
             cardColor: cardColor,
             tl: tl,
@@ -1304,7 +1304,7 @@
         newRow.insertCell(-1).innerHTML = obj.remainHp;
 */
         //6.阵营克制
-        newRow.insertCell(-1).innerHTML = obj.campResist;
+        newRow.insertCell(-1).innerHTML = obj.attributeResist;
 
         //7.宝具等级      
         newRow.insertCell(-1).innerHTML = obj.tl;

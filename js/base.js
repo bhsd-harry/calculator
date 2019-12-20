@@ -39,8 +39,7 @@ function search() {
     id = 0;
 
     //重新初始化从者数据数组
-    intialData();
-
+    initialData();
 
     //过滤关键词特殊字符
     word = filterStr($("txtWord").value);
@@ -48,13 +47,12 @@ function search() {
     //根据关键词查询匹配结果
     if(word[0]=="$"){
         word=word.substr(1);
-        servants = servants.filter(containsAttribute);
+        servants = servants.filter(containsAlignment);
     }
     else if(word[0]=="@"){
         word=word.substr(1);
-        servants = servants.filter(containsCamp);    
+        servants = servants.filter(containsAttribute);    
     }
-    
     
     //更新数组序号
     let tmpServants = [];
@@ -67,7 +65,7 @@ function search() {
     if (word == "") {
         $("ddlChooseServant").options.add(new Option("|----------------------请选择从者-------------------------|", -1));
     }
-    intialServantList();
+    initialServantList();
     $("ddlChooseServant").onchange();
 }
 
@@ -81,11 +79,11 @@ function autoClickSearch(obj){
 
 //根据关键词查询结果
 var word = "";
-function containsAttribute(servant) {
-    return servant.attributes.find(check);
+function containsAlignment(servant) {
+    return servant.alignments.find(check);
 }
-function containsCamp(servant){
-    return servant.camp==word;
+function containsAttribute(servant){
+    return servant.attribute==word;
 }
 
 function check(key) {
@@ -125,35 +123,35 @@ function loadStorage(isTreasure) {
 
 //绑定属性和特性值
 function binds(servant,key,id,flag){
-    let attributes = servant[key].clone();//数组复制，不影响原数组
-    if (attributes instanceof Array && attributes.length > 0) {
-        for (let i = 0; i < attributes.length; i++) {
-            attributes[i]= `<a href=\"javascript:;\" data-value=\"${flag}${attributes[i]}\" onclick=\"autoClickSearch(this)\">${attributes[i]}</a>`;
+    let alignments = servant[key].clone();//数组复制，不影响原数组
+    if (alignments instanceof Array && alignments.length > 0) {
+        for (let i = 0; i < alignments.length; i++) {
+            alignments[i]= `<a href=\"javascript:;\" data-value=\"${flag}${alignments[i]}\" onclick=\"autoClickSearch(this)\">${alignments[i]}</a>`;
         }
 
-        attributes = attributes.join("&nbsp;&nbsp;&nbsp;&nbsp;");
-        $(id).innerHTML = attributes;
+        alignments = alignments.join("&nbsp;&nbsp;&nbsp;&nbsp;");
+        $(id).innerHTML = alignments;
     }
 }
 
 //属性
-function bindAttributes(servant) {
-    binds(servant,"attributes","spanAttributes","$");
+function bindAlignments(servant) {
+    binds(servant,"alignments","spanAlignments","$");
 }
 //加载搜索提示(类似自动完成)
 function bindSearchTips(){
     let tips=[],
-        tmpCamp,
-        tmpAttributes;
+        tmpAttribute,
+        tmpAlignments;
 //        tmpCharacteristics;
     servants.forEach(function(servant){
-        tmpCamp=servant.camp;
-        tmpAttributes=servant.attributes.clone();
+        tmpAttribute=servant.attribute;
+        tmpAlignments=servant.alignments.clone();
 //        tmpCharacteristics=servant.characteristics.clone();
 
-        tips.push(`@${tmpCamp}`);
+        tips.push(`@${tmpAttribute}`);
 
-        tmpAttributes.forEach(function(a){
+        tmpAlignments.forEach(function(a){
             tips.push(`$${a}`);
         });
     })

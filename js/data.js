@@ -3,7 +3,7 @@ var servants = [];//定义数组
 var id = 0;
 
 
-function intialData() {
+function initialData() {
     //除非刷新页面，或者重新打开页面，完整的从者数据只会创建一次，提高执行效率
     let servantsStorage=window.localStorage.getItem("servants");
     if (servantsStorage) {
@@ -50,8 +50,8 @@ function loadLvs(){
 * @param {String} career 职介
 * @param {String} name 从者名
 * @param {Number} servantNo 从者编号(茹西教王的理想鄉和wiki从者编号都一样的)
-* @param {String} camp 阵营
-* @param {Array} attributes 属性
+* @param {String} attribute 阵营
+* @param {Array} alignments 属性
 * @param {Number} atk ATK
 * @param {Number} hp HP
 * @param {Number} maxAtk 100级ATK
@@ -89,7 +89,7 @@ function loadLvs(){
 *    cardPowerBuff：卡牌buff
 *    specialAttack: 宝具特攻
 */
-function initialServant(star,career, name,servantNo, camp, attributes, atk, hp, maxAtk, maxHp, target, hit, np, tl1, tl2, tl3, tl4, tl5, oc1, oc2, oc3, oc4, oc5, type, cardColor, careerSkill, treasureSideEffect) {
+function initialServant(star,career, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, tl1, tl2, tl3, tl4, tl5, oc1, oc2, oc3, oc4, oc5, type, cardColor, careerSkill, treasureSideEffect) {
     //id++;//下标最好还是从0开始
     let tl = {};
     tl["tl1"] = tl1;
@@ -113,8 +113,8 @@ function initialServant(star,career, name,servantNo, camp, attributes, atk, hp, 
         career: career,
         name: name,
         servantNo: servantNo,
-        camp: camp,
-        attributes: attributes,
+        attribute: attribute,
+        alignments: alignments,
         atk: atk,
         hp: hp,
         maxAtk: maxAtk,
