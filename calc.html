@@ -514,21 +514,14 @@
     //绑定从者基本信息
     function bindServantData(id) {
         let servant = servants[id];
-        //0.阵营
+        //1.阵营
         $("spanAttribute").innerHTML = "<a href='javascript:;' data-value='@" + servant.attribute + "' onclick='autoClickSearch(this)'>" + servant.attribute + "</a>"
 
+	//2.基本数据
 	$("txtNTarget").value = servant.target;
 	$("txtNHits").value = servant.hit;
 	$("txtNpGain").value = servant.np;
-	$("txtNpGainBuff").value = 0;
-	$("txtOverkill1").value = 0;
-	$("txtOverkill2").value = 0;
-	$("txtOverkill3").value = 0;
-
-        //1.攻击力
         $("txtAttack").value = servant.atk;
-
-        //2.Hp最大值、剩余Hp值
         $("txtMaxHp").value = servant.hp;
         $("txtRemainHp").value = servant.hp + 1000;
 
@@ -539,28 +532,26 @@
         document.querySelector("#ddlColor option[value='" + servant.cardColor + "']").selected = true;
 
         //5.从者职介
-        let Classs = $("ddlClass").options;
-        for (let i = 0; i < Classs.length; i++) {
-            let Class = Classs[i];
+        let Classes = $("ddlClass").options;
+        for (let i = 0; i < Classes.length; i++) {
+            let Class = Classes[i];
             if (Class.text == servant.Class) {
                 Class.selected = true;
             }
         }
 
         //6.职介技能
-        bindServantClassSkillInfo(servant);
+        bindClassSkill(servant);
 
         //7.宝具副效果补充(oc特攻只能展示一种副效果，如：1001的oc特攻只展示了宝具特攻，副效果的20宝具威力buff没展示，在这进行补充)
-        bindNpSideEffect(servant);
+        bindNpEffect(servant);
 
         //8.属性
         bindAlignments(servant);
     }
 
-
-
     //宝具副效果补充
-    function bindNpSideEffect(servant) {
+    function bindNpEffect(servant) {
         let npEffect = servant.npEffect;
         if (npEffect) {
             let npStrength = npEffect.npStrength;//宝具威力buff
@@ -568,7 +559,6 @@
             if (npStrength && !isNaN(npStrength)) {//单个数值，比如1001宝具的20%宝具威力buff
                 $("txtNpStrength").value = npStrength;
             }
-
             let cardBuff = npEffect.cardBuff;//卡牌buff
             if (cardBuff && !isNaN(cardBuff)) {//单个数值，比如剑兰宝具的30%蓝魔放buff
                 $("txtCardBuff").value = cardBuff;
@@ -581,7 +571,7 @@
     }
 
     //绑定从者职介信息
-    function bindServantClassSkillInfo(servant) {
+    function bindClassSkill(servant) {
         //{ cardColor: 1, cardBuff: 10, damagePlus: 0}
         let ClassSkill = servant.ClassSkill;
 
@@ -704,7 +694,7 @@
 		$("txtOverkill3").value = $("txtNHits").value;
 	}
 	function adjHp(){
-		let fullHp = Number($("txtMaxHp").value) + Number($("txtFouHp").value) + Number($("txtCraftEssenceHp").value);
+		let fullHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
 		$("txtRemainHp").value = fullHp;
 		calNpRemainHpDamage();
 	}
@@ -755,12 +745,14 @@
             $("txtCardBuff").value = originNum;
 
             //宝具副效果补充
-            bindNpSideEffect(servant);
+            bindNpEffect(servant);
 
 	    $("txtNpGainBuff").value = 0;
 	    $("txtOverkill1").value = 0;
 	    $("txtOverkill2").value = 0;
 	    $("txtOverkill3").value = 0;
+	    $("txtFouAtk").value = 1000;
+	    $("txtFouHp").value = 1000;
 	}
 	function resetBuff()
 	{
