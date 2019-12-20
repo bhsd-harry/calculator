@@ -104,29 +104,6 @@ function filterStr2(str) {
     return str.replace(/\s+/gi, "").replace(/[〔（・&'〕)）]/gi, "");
 }
 
-/*
-function appendCards(str){
-   //BBQAA
-    // <ul>
-    //     <li class="Buster"></li>
-    //     <li class="Buster"></li>
-    //     <li class="Quick"></li>
-    //     <li class="Arts"></li>
-    //     <li class="Arts"></li>
-    // </ul>
-    let ul=document.createElement("ul");
-    let li;
-    let divCard=document.querySelector(".cards");
-    for (let i = 0; i < str.length; i++) {
-        let card=str[i];
-        li=document.createElement("li");
-        li.className=getFullCardName(card);
-        ul.appendChild(li);
-    }
-    divCard.innerHTML="";
-    divCard.appendChild(ul);
-}
-*/
 function getFullCardName(card){
     switch (card)
     {

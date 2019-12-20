@@ -31,19 +31,6 @@ function showResult() {
 function hidResult() {
     hideDiv("divResult");
 }
-/*
-function showWin(type,ext){
-    let id = $("ddlChooseServant").value;
-    if (id == "-1") {
-        alert("请选择从者");
-        return;
-    }
-    showDiv("showSkillsWin");
-    let servant = servants[id];
-    let eName = filterStr(servant.eName);
-    document.querySelector(".skillImg").src=`images/${type}/${eName}${ext}`;
-}
-*/
 //查询
 function search() {
     //清空从者数据数组
@@ -63,22 +50,10 @@ function search() {
         word=word.substr(1);
         servants = servants.filter(containsAttribute);
     }
-/*
-    else if(word[0]=="#"){
-        word=word.substr(1);
-        servants = servants.filter(containsCharacteristics);
-    }
-*/
     else if(word[0]=="@"){
         word=word.substr(1);
         servants = servants.filter(containsCamp);    
     }
-/*
-    else{
-        servants = servants.filter(contains);
-    }
-*/
-
     
     
     //更新数组序号
@@ -106,19 +81,9 @@ function autoClickSearch(obj){
 
 //根据关键词查询结果
 var word = "";
-/*
-function contains(servant) {
-    return servant.keys.find(check);
-}
-*/
 function containsAttribute(servant) {
     return servant.attributes.find(check);
 }
-/*
-function containsCharacteristics(servant) {
-    return servant.characteristics.find(check);
-}
-*/
 function containsCamp(servant){
     return servant.camp==word;
 }
@@ -191,11 +156,6 @@ function bindSearchTips(){
         tmpAttributes.forEach(function(a){
             tips.push(`$${a}`);
         });
-/*
-        tmpCharacteristics.forEach(function(c){
-            tips.push(`#${c}`);
-        });
-*/
     })
     //去重
     tips=Array.from(new Set(tips));
