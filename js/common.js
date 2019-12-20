@@ -87,22 +87,6 @@ function filterStr(str) {
     return str.replace(/\s+/gi, "").replace(/[〔（・&'〕)）]/gi, "");
 }
 
-//下载文件
-function downloadFile(src) {
-    let a = document.createElement('a');
-    a.href=src;
-    a.download="";
-    a.click();
-}
-
-//新开标签页打开链接
-function openTab(link){
-    let a=document.createElement("a");   
-    a.target="_blank";
-    a.href=link;
-    a.click();
-}
-
 //动态加载js脚本
 function loadScript(src){
     //js/jquery-1.12.4.min.js
