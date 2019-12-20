@@ -58,15 +58,11 @@ function compare(property) {
     }
 }
 
-
-
-
 //父容器中，使其自适应内容高度
 function resizeWindow() {
     //IE中：document.frames['iframe的name'].document.getElementById('元素的ID');
     //非IE中：window.frames["iContent"].contentWindow.document.getElementById('content')
     //iframe的id与name不能一样
-    //let height = window.frames["iContent"].contentWindow ? window.frames["iContent"].contentWindow.document.getElementById('content').offsetHeight : document.frames['iContentN'].document.getElementById('content').offsetHeight;
 
     //通用方法：通过contentWindow获取到内容页面的高度
     let height = $('iContent').contentWindow.document.getElementById('content').offsetHeight;
@@ -86,34 +82,9 @@ function resizeParentWindow() {
     }
 }
 
-//判断是否拥有某个类
-function hasClass(elem, cls) {
-    cls = cls || '';
-    if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
-    return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
-}
-
-
-//过滤特殊符号（图片文件名）
-function filterStr(str) {
-    return str.replace(/\s+/gi, " ").replace(/[\s(〔（・&']/gi, "_").replace(/[〕)）]/gi, "");
-}
-
 //过滤特殊符号（搜索关键词）
-function filterStr2(str) {
+function filterStr(str) {
     return str.replace(/\s+/gi, "").replace(/[〔（・&'〕)）]/gi, "");
-}
-
-function getFullCardName(card){
-    switch (card)
-    {
-        case "B":
-          return "buster";
-        case "Q":
-          return "quick"
-        case "A":
-          return "arts";
-    }
 }
 
 //下载文件

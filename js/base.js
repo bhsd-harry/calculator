@@ -43,7 +43,7 @@ function search() {
 
 
     //过滤关键词特殊字符
-    word = filterStr2($("txtWord").value);
+    word = filterStr($("txtWord").value);
 
     //根据关键词查询匹配结果
     if(word[0]=="$"){
