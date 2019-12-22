@@ -576,71 +576,29 @@
         let ClassSkill = servant.ClassSkill;
 
         if (ClassSkill) {
-            let cardColorValue = getFloat("ddlColor");
-            let cardBuffs = ClassSkill.cardBuff;
-            if (isNaN(cardBuffs)) {//"12|11"
-                cardBuffs = ClassSkill.cardBuff.split('|');
-            }
-
-            let cardColor = ClassSkill.cardColor;
-            /************************************卡牌Buff******************************************************/
-            //0.8(Quick)，1(Arts)，1.5(Buster)，0(All)，-1(None)，-2(Quick和Arts)，-3(Buster和Quick), -4(Buster和Arts)
-            if ((cardColor == 0.8 || cardColor == 1 || cardColor == 1.5) && cardColor == cardColorValue) {
+            if (!isNaN(ClassSkill.cardBuff)) {
                 $("txtCardBuff").dataset.value = ClassSkill.cardBuff;
-
                 $("txtCardBuff").value = ClassSkill.cardBuff;
             }
-            else if (cardColor == 0) {//215
-                $("txtCardBuff").dataset.value = ClassSkill.cardBuff;
-
-                $("txtCardBuff").value = ClassSkill.cardBuff;
-            }
-                //Quick和Arts
-            else if (cardColor == -2 && cardColorValue == 0.8 && cardBuffs && cardBuffs.length == 2) {
-                let quickBuff = cardBuffs[0];
-                $("txtCardBuff").dataset.value = quickBuff;
-
-                $("txtCardBuff").value = quickBuff;
-            }
-            else if (cardColor == -2 && cardColorValue == 1 && cardBuffs && cardBuffs.length == 2) {
-                let artsBuff = cardBuffs[1];
-                $("txtCardBuff").dataset.value = artsBuff;
-
-                $("txtCardBuff").value = artsBuff;
-            }
-                //Buster和Quick
-            else if (cardColor == -3 && cardColorValue == 1.5 && cardBuffs && cardBuffs.length == 2) {
-                let busterBuff = cardBuffs[0];
-                $("txtCardBuff").dataset.value = busterBuff;
-
-                $("txtCardBuff").value = busterBuff;
-            }
-            else if (cardColor == -3 && cardColorValue == 0.8 && cardBuffs && cardBuffs.length == 2) {
-                let quickBuff = cardBuffs[1];
-                $("txtCardBuff").dataset.value = quickBuff;
-
-                $("txtCardBuff").value = quickBuff;
-            }     
-			//Buster和Arts
-            else if (cardColor == -4 && cardColorValue == 1.5 && cardBuffs && cardBuffs.length == 2) {
-                let busterBuff = cardBuffs[0];
-                $("txtCardBuff").dataset.value = busterBuff;
-
-                $("txtCardBuff").value = busterBuff;
-            }
-            else if (cardColor == -4 && cardColorValue == 1 && cardBuffs && cardBuffs.length == 2) {
-                let artsBuff = cardBuffs[1];
-                $("txtCardBuff").dataset.value = artsBuff;
-
-                $("txtCardBuff").value = artsBuff;
-            }
-            /****************************************固定伤害Buff**************************************************/
+	    else {
+                $("txtCardBuff").dataset.value = 0;
+                $("txtCardBuff").value = 0;
+	    }
             if (!isNaN(ClassSkill.damagePlus)) {
-				$("txtDamagePlus").basicvalue = ClassSkill.damagePlus;
+		$("txtDamagePlus").basicvalue = ClassSkill.damagePlus;
                 $("txtDamagePlus").value = ClassSkill.damagePlus;
             }
+	    else {
+                $("txtDamagePlus").basicvalue = 0;
+                $("txtDamagePlus").value = 0;
+	    }
         }
-
+	else {
+	    $("txtCardBuff").dataset.value = 0;
+	    $("txtCardBuff").value = 0;
+	    $("txtDamagePlus").basicvalue = 0;
+	    $("txtDamagePlus").value = 0;
+	}
     }
 
     //计算双子宝具总倍率
@@ -1177,7 +1135,7 @@
             cardColor: cardColor,
             NP: NP,
             npRate: getFloat("txtNpCoefficient"),
-            npSpecialAttack: npSpecialAttack,
+            npSpecialAttack: npSpecialAttack * 100,
             oc: oc,
             npStrength: npStrength,
             cardBuff: cardBuff,
