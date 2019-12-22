@@ -1,0 +1,520 @@
+372,442d372
+<     //下拉从者选中项发生变化事件
+<     $("ddlServant").onchange = function () {
+<         $("ckIsSpecialAttack").checked = false;
+<         $("ckIsMaxGrail").checked = false;
+<         $("txtCardBuff").dataset.value = 0;
+<         $("ddlLvs").selectedIndex=0;
+< 
+<         let id = this.value;
+<         if (id != "-1" && id != "") {
+<             clearBuff();
+<             bindServantData(id);
+< 	    setOc();
+< 	    $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
+<         }
+<     }
+<     //宝具等级选中项发生变化事件
+<     $("ddlNpLevel").onchange = function () {
+<         changeNpCoefficient();
+<     };
+< 
+<     //OC等级选中项发生变化事件
+<     $("ddlOvercharge").onchange = function () {
+<         adjustOc();
+< 	$("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
+<     };
+< 
+<     //Hp值变动事件：动态计算双子宝具倍率
+<     $("txtRemainHp").onchange = function () {
+< 	adjustNpRemainHpDamage();
+<     }
+<     $("txtFouHp").onchange = function () {
+< 	adjustNpRemainHpDamage();
+<     }
+<     $("txtCraftEssenceHp").onchange = function () {
+< 	adjustNpRemainHpDamage();
+<     }
+<     function adjustNpRemainHpDamage() {
+<         let id = $("ddlServant").value;
+<         if(id == "-1") {
+<             return;
+<         }
+<         let servant = servants[id];
+<         if (servant.oc["type"] == "NpRemainHpDamage") {//双子宝具特攻
+<             calNpRemainHpDamage();
+<         }
+<     }
+< 
+<     //是否特攻
+<     $("ckIsSpecialAttack").onclick = function () {
+< 	let id=$("ddlServant").value;
+<         if (id == "-1" || id == "") {
+< 	    $("ckIsSpecialAttack").checked = false;
+<             return;
+<         }
+< 
+<         let servant = servants[id];
+< 	let ocs = servant.oc;
+<         if(ocs["type"] == "NpSpecialAttack" || ocs["type"] == "SpecialAttackBuff") {
+< 	    return;
+< 	}
+< 	else {
+< 	    let npEffect = servant.npEffect;
+< 	    if (npEffect && npEffect.specialAttack && !isNaN(npEffect.specialAttack)) {
+< 		return;
+< 	    }
+< 	    else {
+< 		$("ckIsSpecialAttack").checked = false;
+< 	    }
+< 	}
+<     }
+< 
+488,550c417,421
+< 
+<     $("ddlCraftEssence").onchange=function(){
+< 	if($("ddlCraftEssence").selectedIndex>0) {
+< 	    $("txtCraftEssenceAtk").value=$("ddlCraftEssence").value;
+< 	}
+< 	switch($("ddlCraftEssence").selectedIndex) {
+< 	    case 0:
+< 		break;
+< 	    case 6:
+< 	    case 7:
+< 		$("txtCraftEssenceHp").value=629;
+< 		break;
+< 	    case 8:
+< 		$("txtCraftEssenceHp").value=1067;
+< 		break;
+< 	    default:
+< 		$("txtCraftEssenceHp").value=0;
+<                 break;
+< 	}
+< 	adjHp();
+<     }
+< 
+<     /***********************************************************/
+< 
+< 
+< 
+<     //绑定从者基本信息
+<     function bindServantData(id) {
+<         let servant = servants[id];
+<         //1.阵营
+<         $("spanAttribute").innerHTML = "<a href='javascript:;' data-value='@" + servant.attribute + "' onclick='autoClickSearch(this)'>" + servant.attribute + "</a>"
+< 
+< 	//2.基本数据
+< 	$("txtNTarget").value = servant.target;
+< 	$("txtNHits").value = servant.hit;
+< 	$("txtNpGain").value = servant.np;
+<         $("txtAttack").value = servant.atk;
+<         $("txtMaxHp").value = servant.hp;
+<         $("txtRemainHp").value = servant.hp + 1000;
+< 
+<         //3.宝具倍率
+<         changeNpCoefficient(servant);
+< 
+<         //4.卡色
+<         document.querySelector("#ddlColor option[value='" + servant.cardColor + "']").selected = true;
+< 
+<         //5.从者职介
+<         let Classes = $("ddlClass").options;
+<         for (let i = 0; i < Classes.length; i++) {
+<             let Class = Classes[i];
+<             if (Class.text == servant.Class) {
+<                 Class.selected = true;
+<             }
+<         }
+< 
+<         //6.职介技能
+<         bindClassSkill(servant);
+< 
+<         //7.宝具副效果补充(oc特攻只能展示一种副效果，如：1001的oc特攻只展示了宝具特攻，副效果的20宝具威力buff没展示，在这进行补充)
+<         bindNpEffect(servant);
+< 
+<         //8.属性
+<         bindAlignments(servant);
+552,570c423,425
+< 
+<     //宝具副效果补充
+<     function bindNpEffect(servant) {
+<         let npEffect = servant.npEffect;
+<         if (npEffect) {
+<             let npStrength = npEffect.npStrength;//宝具威力buff
+<             //!isNaN(null)，返回true，需要去掉这种情况
+<             if (npStrength && !isNaN(npStrength)) {//单个数值，比如1001宝具的20%宝具威力buff
+<                 $("txtNpStrength").value = npStrength;
+<             }
+<             let cardBuff = npEffect.cardBuff;//卡牌buff
+<             if (cardBuff && !isNaN(cardBuff)) {//单个数值，比如剑兰宝具的30%蓝魔放buff
+<                 $("txtCardBuff").value = cardBuff;
+<             }
+< 	    let npSpecialAttack = npEffect.specialAttack;
+< 	    if (npSpecialAttack && !isNaN(npSpecialAttack)) {
+<                 $("txtNpSpecialAttack").value = npSpecialAttack;
+< 	    }
+<         }
+572,601c427,428
+< 
+<     //绑定从者职介信息
+<     function bindClassSkill(servant) {
+<         //{ cardColor: 1, cardBuff: 10, damagePlus: 0}
+<         let ClassSkill = servant.ClassSkill;
+< 
+<         if (ClassSkill && Object.keys(ClassSkill).length > 0) {
+<             if (!isNaN(ClassSkill.cardBuff)) {
+<                 $("txtCardBuff").dataset.value = ClassSkill.cardBuff;
+<                 $("txtCardBuff").value = ClassSkill.cardBuff;
+<             }
+< 	    else {
+<                 $("txtCardBuff").dataset.value = 0;
+<                 $("txtCardBuff").value = 0;
+< 	    }
+<             if (!isNaN(ClassSkill.damagePlus)) {
+< 		$("txtDamagePlus").basevalue = ClassSkill.damagePlus;
+<                 $("txtDamagePlus").value = ClassSkill.damagePlus;
+<             }
+< 	    else {
+<                 $("txtDamagePlus").basevalue = 0;
+<                 $("txtDamagePlus").value = 0;
+< 	    }
+<         }
+< 	else {
+< 	    $("txtCardBuff").dataset.value = 0;
+< 	    $("txtCardBuff").value = 0;
+< 	    $("txtDamagePlus").basevalue = 0;
+< 	    $("txtDamagePlus").value = 0;
+< 	}
+603,629c430,431
+< 
+<     //计算双子宝具总倍率
+<     function calNpRemainHpDamage() {
+<         let ocLevel = $("ddlOvercharge").value;
+<         let id = $("ddlServant").value;
+<         let servant = servants[id];
+<         let ocs = servant.oc;
+< 
+<         let NP = $("ddlNpLevel").value;
+<         //原宝具倍率
+<         let npCoef = servant.NP[NP];
+< 
+<         //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
+<         //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
+<         let maxHp = getFloat("txtMaxHp");
+<         let fouHp = getFloat("txtFouHp");
+<         let craftEssenceHp = getFloat("txtCraftEssenceHp");
+<         let totalHp = maxHp + fouHp + craftEssenceHp;
+< 
+<         let remainHp = getFloat("txtRemainHp");
+<         //附加倍率
+<         let additionalRate = ocs[ocLevel] * (1 - remainHp / totalHp);
+< 
+<         //总宝具倍率
+<         npCoef += additionalRate;
+<         //向下取整总宝具倍率
+<         $("txtNpCoefficient").value = Math.floor(npCoef);
+631,646c433,434
+< 
+<     //计算自爆弓宝具总倍率
+<     function calOcNpDamage() {
+<         let ocLevel = $("ddlOvercharge").value;
+<         let id = $("ddlServant").value;
+<         let servant = servants[id];
+<         let ocs = servant.oc;
+< 
+<         let NP = $("ddlNpLevel").value;
+<         //原宝具倍率
+<         let npCoef = servant.NP[NP];
+< 
+<         //总宝具倍率
+<         npCoef += ocs[ocLevel];
+<         //向下取整总宝具倍率
+<         $("txtNpCoefficient").value = Math.floor(npCoef);
+648,715c436,440
+< 
+< 	$("btnAdjOverkill").onclick = function () {
+< 		$("txtOverkill1").value = $("txtNHits").value;
+< 		$("txtOverkill2").value = $("txtNHits").value;
+< 		$("txtOverkill3").value = $("txtNHits").value;
+< 	}
+< 	function adjHp(){
+< 		let fullHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
+< 		$("txtRemainHp").value = fullHp;
+< 		calNpRemainHpDamage();
+< 	}
+< 	$("btnAddZhuge").onclick = function(){
+< 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
+< 		$("txtDamagePlus").value = getFloat("txtDamagePlus") + 500;	
+< 	}
+< 	
+< 	$("btnAddMerlin").onclick = function(){
+< 		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
+<         	if($("ddlColor").value == 1.5){
+< 			$("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+< 		}
+< 	}
+< 	$("btnAddTamamo").onclick = function(){
+<                 $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
+<         	if($("ddlColor").value == 1){
+<                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+<                 }
+<         }
+< 	$("btnAddSkadi").onclick = function(){
+< 		$("txtEnemyDefence").value = getFloat("txtEnemyDefence") - 30;
+<                 if($("ddlColor").value == 0.8){
+<                         $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+<                 }
+< 	}
+< 	function clearBuff(servant){
+< 	    if (!servant) {
+<                 let id = $("ddlServant").value;
+<                 servant = servants[id];
+<             }
+< 	    $("txtNpSpecialAttack").value = 100;
+<             $("txtSpecialAttack").value = 0;
+< 	    if(isNaN($("txtDamagePlus").basevalue)){
+< 		$("txtDamagePlus").value = 0;}
+< 	    else {
+< 		$("txtDamagePlus").value = $("txtDamagePlus").basevalue;
+< 	    }
+<             $("txtCardBuff").value = $("txtCardBuff").dataset.value;
+<             $("txtAttackBuff").value = 0;
+<             $("txtNpStrength").value = 0;
+< 	    $("txtEnemyDefence").value = 0;
+<             //设置回被动卡牌buff
+<             let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+<             $("txtCardBuff").value = originNum;
+< 
+<             //宝具副效果补充
+<             bindNpEffect(servant);
+< 
+< 	    $("txtNpGainBuff").value = 0;
+< 	    $("txtOverkill1").value = 0;
+< 	    $("txtOverkill2").value = 0;
+< 	    $("txtOverkill3").value = 0;
+< 	    $("txtFouAtk").value = 1000;
+< 	    $("txtFouHp").value = 1000;
+< 	}
+< 	$("btnClearBuff").onclick = function()
+< 	{
+< 		clearBuff();
+< 		setOc();
+717,722c442,449
+< 	
+<     //根据OC重设所有buff
+<     function setOc(servant) {
+<         if (!servant) {
+<             let id = $("ddlServant").value;
+<             servant = servants[id];
+---
+>     //是否特攻
+>     $("ckIsSpecialAttack").onclick = function () {
+>         let id=$("ddlServant").value;
+>         if (id == "-1") {
+>             $("ckIsSpecialAttack").checked = false;
+>             return;
+724,725c451
+< 
+<         let ocLevel = $("ddlOvercharge").value;
+---
+>         let servant = servants[id];
+727,744c453,454
+< 	if (ocs["type"] == "NpRemainHpDamage") {//双子宝具倍率提升
+<                 calNpRemainHpDamage();
+<         }
+<         else if (ocs["type"] == "OcNpDamage") {//自爆弓倍率提升
+<             calOcNpDamage();
+<         }
+< 	else if (ocs["type"] == "OcCardBuff") {//R金时OC绿魔放
+<             //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
+<             let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+< 
+<             $("txtCardBuff").value = originNum + ocs[ocLevel];
+<         }
+<         else if (ocs["type"] == "OcAtkBuff") {//B兰OC加攻
+<             $("txtAttackBuff").value = ocs[ocLevel];
+<         }
+<         else if (ocs["type"] == "DefDecrease") {//宝具前降防
+<             $("txtEnemyDefence").value = 0 - ocs[ocLevel];
+< 
+---
+>         if(ocs["type"] == "NpSpecialAttack" || ocs["type"] == "SpecialAttackBuff") {
+>             return;
+746,747c456,458
+<         else if (ocs["type"] == "OcNpStrength") {//宫本半藏OC宝具威力提升
+<             $("txtNpStrength").value = ocs[ocLevel];
+---
+>         let npEffect = servant.npEffect;
+>         if (npEffect && npEffect.specialAttack) {
+>             return;
+749,755c460,465
+< 	else if (ocs["type"] == "CombinedDecrease") {
+< 	    let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+< 	    $("txtEnemyDefence").value = 0 - ocs[ocLevel];
+< 	    $("txtCardBuff").value = originNum + ocs[ocLevel];
+< 	}
+< 	else if (ocs["type"] == "NpSpecialAttack") {//宝具特攻
+<             $("txtNpSpecialAttack").value = ocs[ocLevel];
+---
+>         $("ckIsSpecialAttack").checked = false;
+>     }
+>     //礼装
+>     $("ddlCraftEssence").onchange=function(){
+>         if($("ddlCraftEssence").selectedIndex == 0) {
+>             return;
+757,758c467,478
+<         else if (ocs["type"] == "SpecialAttackBuff") {//杰克女性特攻
+<             $("txtSpecialAttack").value = ocs[ocLevel];
+---
+> 	$("txtCraftEssenceAtk").value = $("ddlCraftEssence").value;
+>         switch($("ddlCraftEssence").selectedIndex) {
+>             case 6:
+>             case 7:
+>                 $("txtCraftEssenceHp").value = 629;
+>                 break;
+>             case 8:
+>                 $("txtCraftEssenceHp").value = 1067;
+>                 break;
+>             default:
+>                 $("txtCraftEssenceHp").value = 0;
+>                 break;
+760,763c480
+<         else if (ocs["type"] == "") {
+<             clearBuff();
+< 	    $("ddlOvercharge").selectedIndex = 0;
+< 	}
+---
+>         adjHp();
+765,789c482,490
+< 
+<     function adjustOc(is_forced){
+<         let id = $("ddlServant").value;
+< 	let servant = undefined;
+< 	if(isNaN(id) || id <= 0) {
+< 		$("ddlOvercharge").selectedIndex = 0;
+< 		isSpecialAttack.checked = false;
+< 		return;
+< 	}
+<         servant = servants[id];
+< 
+<         let ocLevel = $("ddlOvercharge").value;
+< 	let oldocLevel = $("ddlOvercharge").oldvalue;
+< 	if(oldocLevel === undefined){ oldocLevel = "oc1";}
+<         let ocs = servant.oc;
+< 
+< 	if(ocs["type"] == ""){
+< 		$("ddlOvercharge").selectedIndex = 0;
+< 		return;
+< 	}
+<         else if (ocs["type"] == "NpRemainHpDamage") {//双子宝具特攻
+<                 calNpRemainHpDamage();
+<         }
+<         else if (ocs["type"] == "OcNpDamage") {//自爆弓特攻
+<                 calOcNpDamage();
+---
+>     //队友buff
+>     $("btnAddZhuge").onclick = function () {
+>         $("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
+>         $("txtDamagePlus").value = getFloat("txtDamagePlus") + 500;     
+>     }
+>     $("btnAddMerlin").onclick = function () {
+>         $("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
+>         if($("ddlColor").value == 1.5){
+>             $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+791,825c492,496
+< 	else if (ocs["type"] == "OcCardBuff") {//R金时OC绿魔放
+<                 //由于多了职介技能(被动buff)，这里稍微麻烦点，需要做累加操作。
+<                 //let originNum = getTxtAttrFloatNum("txtCardBuff", "value");
+< 
+<                 //$("txtCardBuff").value = originNum + ocs[ocLevel];
+<                 let o = getFloat("txtCardBuff");
+<                 $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+<         }
+<         else if (ocs["type"] == "OcAtkBuff") {//B兰OC加攻
+<                 let o = getFloat("txtAttackBuff");
+<                 $("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+<                 //$("txtAttackBuff").value = ocs[ocLevel];
+<         }
+<         else if (ocs["type"] == "DefDecrease") {//宝具前降防
+<                 let o = getFloat("txtEnemyDefence");
+<                 $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
+<                 //$("txtEnemyDefence").value = 0 - ocs[ocLevel];
+<         }
+<         else if (ocs["type"] == "OcNpStrength") {//宫本半藏OC宝具威力提升
+<                 let o = getFloat("txtNpStrength");
+<                 $("txtNpStrength").value = o + ocs[ocLevel] - ocs[oldocLevel];
+<                 //$("txtNpStrength").value = ocs[ocLevel];
+<         }
+< 	else if (ocs["type"] == "CombinedDecrease") {
+<             let o = getFloat("txtEnemyDefence");
+<             $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
+< 	    o = getFloat("txtCardBuff");
+<             $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+<         }
+< 	else if (ocs["type"] == "NpSpecialAttack") {//宝具特攻
+<             $("txtNpSpecialAttack").value = ocs[ocLevel];
+<         }
+<         else if (ocs["type"] == "SpecialAttackBuff") {//杰克女性特攻
+<             let o = getFloat("txtSpecialAttack");
+<             $("txtSpecialAttack").value = o + ocs[ocLevel] - ocs[oldocLevel];
+---
+>     }
+>     $("btnAddTamamo").onclick = function () {
+>         $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
+>         if($("ddlColor").value == 1){
+>             $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+828,833c499,502
+< 
+<     //宝具等级选中项发生变化事件
+<     function changeNpCoefficient(servant) {
+<         if (!servant) {
+<             let id = $("ddlServant").value;
+<             servant = servants[id];
+---
+>     $("btnAddSkadi").onclick = function () {
+>         $("txtEnemyDefence").value = getFloat("txtEnemyDefence") - 30;
+>         if($("ddlColor").value == 0.8){
+>             $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+834a504
+>     }
+836,844c506,521
+<         let NP = $("ddlNpLevel").value;
+<         let npCoef = servant.NP[NP];
+< 
+<         $("txtNpCoefficient").value = npCoef;
+<         if (servant.oc.type == "NpRemainHpDamage") {//双子宝具特攻并且勾选了特攻
+<             calNpRemainHpDamage();
+<         }
+<         else if (servant.oc.type == "OcNpDamage") {//自爆弓特攻
+<             calOcNpDamage();
+---
+>     //////////////////////////////////////////////////////////////////////////////////////////////
+>     //下拉从者选中项发生变化事件
+>     $("ddlServant").onchange = function () {
+>         $("ckIsMaxGrail").checked = false;
+> 	$("ddlLvs").selectedIndex = 0;
+> 	$("txtFouAtk").value = 1000;
+> 	$("txtFouHp").value = 1000;
+> 	$("ckIsSpecialAttack").checked = false;
+> 	$("txtNpSpecialAttack").value = 100;
+>         let id = this.value;
+>         if (id != "-1") {
+>             bindServantData(id);
+> 	    adjHp();
+> 	    clearBuff();
+> 	    setOc();
+> 	    $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
+846a524,534
+>     //OC等级选中项发生变化事件
+>     $("ddlOvercharge").onchange = function () {
+>         adjustOc();
+> 	$("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
+>     };
+>     $("btnClearBuff").onclick = function () {
+>         clearBuff();
+>         setOc();
+>     }
+> 
+>     /***********************************************************/
+852a541
+>     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

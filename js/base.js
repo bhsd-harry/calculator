@@ -113,7 +113,7 @@ function loadStorage(isTreasure) {
         if (id!=null&&id != "" && id != "-1") {
             $("ddlServant").value = id;
             if (isTreasure) {
-                changeOc();
+                setOc();
             }
             bindServantData(id);
         }
