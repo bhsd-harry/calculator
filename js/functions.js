@@ -36,10 +36,10 @@ function calNpRemainHpDamage() {
 function changeNpCoefficient() {
     let servant = servants[$("ddlServant").value];
     $("txtNpCoefficient").value = servant.NP[$("ddlNpLevel").value];
-    if (servant.oc.type == "NpRemainHpDamage") {//双子宝具特攻并且勾选了特攻
+    if (servant.oc.type == "NpRemainHpDamage") {//双子宝具
         calNpRemainHpDamage();
     }
-    else if (servant.oc.type == "OcNpDamage") {//自爆弓特攻
+    else if (servant.oc.type == "OcNpDamage") {//自爆弓
         calOcNpDamage();
     }
 }
@@ -47,7 +47,6 @@ function changeNpCoefficient() {
 function calOcNpDamage() {
     let servant = servants[$("ddlServant").value];
     let ocLevel = $("ddlOvercharge").value;
-    //总宝具倍率
     let npCoef = servant.NP[$("ddlNpLevel").value] + servant.oc[ocLevel];
     $("txtNpCoefficient").value = npCoef;
 }
@@ -66,7 +65,7 @@ function bindServantData(id) {
     changeNpCoefficient();
     //4.卡色
     document.querySelector("#ddlColor option[value='" + servant.cardColor + "']").selected = true;
-    //5.从者职介
+    /技能/5.从者职介
     let Classes = $("ddlClass").options;
     for (let i = 0; i < Classes.length; i++) {
         let Class = Classes[i];
@@ -129,7 +128,7 @@ function clearBuff(){
 //根据OC设置buff
 function setOc() {
     let id = $("ddlServant").value;
-    if(id == "-1")}
+    if(id == "-1"){
 	$("ddlOvercharge").selectedIndex = 0;
 	return;
     }
