@@ -533,6 +533,8 @@
             return;
         }
         let servant = servants[id];
+//	let ocs = servant.oc;
+//	let npEffect = servant.npEffect;
         if (servant.oc["type"] == "NpRemainHpDamage") {//双子宝具特攻
             calNpRemainHpDamage();
         }
@@ -540,6 +542,8 @@
     //计算双子宝具总倍率
     function calNpRemainHpDamage() {
         let servant = servants[$("ddlServant").value];
+//	let ocs = servant.oc;
+//	let npEffect = servant.npEffect;
         let ocLevel = $("ddlOvercharge").value;
         //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
         //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
@@ -549,7 +553,15 @@
         let totalHp = maxHp + fouHp + craftEssenceHp;
         let remainHp = getFloat("txtRemainHp");
         //附加倍率
+//        let additionalCoef = 0;
+//	if(ocs["type"] == "NpRemainHpDamage") {
         let additionalCoef = servant.oc[ocLevel] * Math.max(0, 1 - remainHp / totalHp);
+//	}
+/*
+	else if(npEffect && npEffect.npRemainHpDamage) {
+	    additionalCoef = npEffect.npRemainHpDamage * Math.max(0, 1 - remainHp / totalHp);
+	}
+*/
         //总宝具倍率
         let npCoef = servant.NP[$("ddlNpLevel").value] + additionalCoef;
         //向下取整总宝具倍率
@@ -558,6 +570,8 @@
     //宝具等级选中项发生变化事件
     function changeNpCoefficient() {
         let servant = servants[$("ddlServant").value];
+//	let ocs = servant.oc;
+//	let npEffect = servant.npEffect;
 	$("txtNpCoefficient").value = servant.NP[$("ddlNpLevel").value];
         if (servant.oc.type == "NpRemainHpDamage") {//双子宝具
             calNpRemainHpDamage();
@@ -635,6 +649,11 @@
 	if (npEffect && npEffect.npSpecialAttack) {
             $("txtNpSpecialAttack").value = npSpecialAttack;
         }
+/*
+	if (npEffect && npEffect.npRemainHpDamage) {
+	    calNpRemainHpDamage();
+	}
+*/
     }
     function clearBuff(){
 	$("txtNpStrength").value = $("txtNpStrength").basevalue;
@@ -658,8 +677,11 @@
         let servant = servants[id];
         let ocs = servant.oc;
         let ocLevel = $("ddlOvercharge").value;
+	if (ocs["oc1"] == ocs["oc5"]) {
+	    $("ddlOvercharge").selectedIndex = 0;
+	}
 	if (ocs["type"] == "NpRemainHpDamage") {//双子宝具倍率提升
-                calNpRemainHpDamage();
+            calNpRemainHpDamage();
         }
         else if (ocs["type"] == "OcNpDamage") {//自爆弓倍率提升
             calOcNpDamage();
@@ -672,7 +694,6 @@
         }
         else if (ocs["type"] == "DefDecrease") {//宝具前降防
             $("txtEnemyDefence").value = 0 - ocs[ocLevel];
-
         }
         else if (ocs["type"] == "OcNpStrength") {//宫本半藏OC宝具威力提升
             $("txtNpStrength").value = $("txtNpStrength").basevalue + ocs[ocLevel];
@@ -687,9 +708,6 @@
         else if (ocs["type"] == "SpecialAttackBuff") {//杰克女性特攻
             $("txtSpecialAttack").value = ocs[ocLevel];
         }
-        else if (ocs["type"] == "") {
-	    $("ddlOvercharge").selectedIndex = 0;
-	}
     }
     function adjustOc(is_forced){
         let id = $("ddlServant").value;
@@ -701,30 +719,30 @@
 	let ocs = servant.oc;
         let ocLevel = $("ddlOvercharge").value;
 	let oldocLevel = $("ddlOvercharge").oldvalue;
-	if(ocs["type"] == "" || ocs["oc1"] == ocs["oc5"]){
+	if(ocs["oc1"] == ocs["oc5"]){
 	    $("ddlOvercharge").selectedIndex = 0;
 	}
         else if (ocs["type"] == "NpRemainHpDamage") {//双子宝具
-                calNpRemainHpDamage();
+            calNpRemainHpDamage();
         }
         else if (ocs["type"] == "OcNpDamage") {//自爆弓
-                calOcNpDamage();
+            calOcNpDamage();
         }
 	else if (ocs["type"] == "OcCardBuff") {//R金时OC绿魔放
-                let o = getFloat("txtCardBuff");
-                $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            let o = getFloat("txtCardBuff");
+            $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
         else if (ocs["type"] == "OcAtkBuff") {//B兰OC加攻
-                let o = getFloat("txtAttackBuff");
-                $("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            let o = getFloat("txtAttackBuff");
+            $("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
         else if (ocs["type"] == "DefDecrease") {//宝具前降防
-                let o = getFloat("txtEnemyDefence");
-                $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
+            let o = getFloat("txtEnemyDefence");
+            $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
         }
         else if (ocs["type"] == "OcNpStrength") {//宫本半藏OC宝具威力提升
-                let o = getFloat("txtNpStrength");
-                $("txtNpStrength").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            let o = getFloat("txtNpStrength");
+            $("txtNpStrength").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
 	else if (ocs["type"] == "CombinedDecrease") {
             let o = getFloat("txtEnemyDefence");
