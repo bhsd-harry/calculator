@@ -530,6 +530,12 @@
             setOc();
     }
 
+    /***********************************************************/
+    function initialServantList() {
+        servants.forEach(function(servant){
+             $("ddlServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));           
+        })
+    }
     function adjustNpRemainHpDamage() {
         let id = $("ddlServant").value;
         if(id == "-1") {
@@ -540,10 +546,6 @@
             calNpRemainHpDamage();
         }
     }
-
-    /***********************************************************/
-
-
 
     //绑定从者基本信息
     function bindServantData(id) {
@@ -684,29 +686,6 @@
 		let fullHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
 		$("txtRemainHp").value = fullHp;
 		calNpRemainHpDamage();
-	}
-	$("btnAddZhuge").onclick = function(){
-		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
-		$("txtDamagePlus").value = getFloat("txtDamagePlus") + 500;	
-	}
-	
-	$("btnAddMerlin").onclick = function(){
-		$("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
-        	if($("ddlColor").value == 1.5){
-			$("txtCardBuff").value = getFloat("txtCardBuff") + 50;
-		}
-	}
-	$("btnAddTamamo").onclick = function(){
-                $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
-        	if($("ddlColor").value == 1){
-                        $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
-                }
-        }
-	$("btnAddSkadi").onclick = function(){
-		$("txtEnemyDefence").value = getFloat("txtEnemyDefence") - 30;
-                if($("ddlColor").value == 0.8){
-                        $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
-                }
 	}
 	function clearBuff(servant){
 	    if (!servant) {
@@ -868,12 +847,6 @@
             calOcNpDamage();
         }
     }
-    function initialServantList() {
-        servants.forEach(function(servant){
-             $("ddlServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));           
-        })
-    }
-
 
     var resultArr = [];
     var rankIndex = 0;
