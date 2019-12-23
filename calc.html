@@ -884,7 +884,7 @@
 		break;
 	}
         /*
-            ATK×攻击补正(0.23)×[宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)]×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
+            ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
         let resultMin = atk * 0.23 * npCoef * cardColor * (1 + cardBuff / 100) * Class * ClassResist * attributeResist * 0.9 * Math.max(0, 1 + attackBuff / 100 - enemyDefence / 100) * (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
@@ -928,12 +928,12 @@
         if ($("ckIsMaxGrail").checked) {
             servantName = "<span class='text-gradient'>" + servantName + "</span>";
         }
-        let ClassResistClassName = "normal";//非克制
+        let ClassResistType = "normal";//非克制
         if (ClassResist > 1) {//克制
-            ClassResistClassName = "weak";
+            ClassResistType = "weak";
         }
         else if (ClassResist < 1) {//被克制
-            ClassResistClassName = "resist";
+            ClassResistType = "resist";
         }
         let model = {
             guid: guid,
@@ -954,7 +954,7 @@
 	    npGainBuff: npGainBuff,
             min: resultMin,
             avg: resultAvg,
-            ClassResistClassName: ClassResistClassName,
+            ClassResistType: ClassResistType,
 	    npGain: npGain
         };
         resultArr.push(model);
@@ -1036,11 +1036,11 @@
         //15.宝具伤害最小值    
         let min = newRow.insertCell(-1);
         min.innerHTML = obj.min;
-        min.classList.add(obj.ClassResistClassName);
+        min.classList.add(obj.ClassResistType);
         //16.宝具伤害平均值       
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
-        avg.classList.add(obj.ClassResistClassName);
+        avg.classList.add(obj.ClassResistType);
 	//17.NP获取
 	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
         //18.删除操作     

@@ -62,9 +62,6 @@ function loadLvs(){
 * @param {Number} NP4 4宝倍率
 * @param {Number} NP5 5宝倍率
 * @param {Number} oc1 100 OC
-* @param {Number} oc2 200 OC
-* @param {Number} oc3 300 OC
-* @param {Number} oc4 400 OC
 * @param {Number} oc5 500 OC
 * @param {String} type OC类型，目前有以下8种
 *    NpSpecialAttack：宝具特攻
@@ -97,9 +94,9 @@ function initialServant(star,Class, name,servantNo, attribute, alignments, atk, 
 
     let oc = {};
     oc["oc1"] = oc1;
-    oc["oc2"] = oc2;
-    oc["oc3"] = oc3;
-    oc["oc4"] = oc4;
+    oc["oc2"] = (oc1 * 3 + oc5) / 4;
+    oc["oc3"] = (oc1 + oc5) / 2;
+    oc["oc4"] = (oc1 + oc5 * 3) / 4;
     oc["oc5"] = oc5;
 
     oc["type"] = type;
