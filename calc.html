@@ -533,17 +533,17 @@
             return;
         }
         let servant = servants[id];
-//	let ocs = servant.oc;
-//	let npEffect = servant.npEffect;
-        if (servant.oc["type"] == "NpRemainHpDamage") {//双子宝具特攻
+	let npEffect = servant.npEffect;
+	let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
+        if (servant.oc["type"] == "NpRemainHpDamage" || isNpRemainHpDamage) {//双子宝具特攻
             calNpRemainHpDamage();
         }
     }
     //计算双子宝具总倍率
     function calNpRemainHpDamage() {
         let servant = servants[$("ddlServant").value];
-//	let ocs = servant.oc;
-//	let npEffect = servant.npEffect;
+	let ocs = servant.oc;
+	let npEffect = servant.npEffect;
         let ocLevel = $("ddlOvercharge").value;
         //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
         //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
@@ -553,15 +553,13 @@
         let totalHp = maxHp + fouHp + craftEssenceHp;
         let remainHp = getFloat("txtRemainHp");
         //附加倍率
-//        let additionalCoef = 0;
-//	if(ocs["type"] == "NpRemainHpDamage") {
-        let additionalCoef = servant.oc[ocLevel] * Math.max(0, 1 - remainHp / totalHp);
-//	}
-/*
+        let additionalCoef = 0;
+	if(ocs["type"] == "NpRemainHpDamage") {
+            additionalCoef = servant.oc[ocLevel] * Math.max(0, 1 - remainHp / totalHp);
+	}
 	else if(npEffect && npEffect.npRemainHpDamage) {
 	    additionalCoef = npEffect.npRemainHpDamage * Math.max(0, 1 - remainHp / totalHp);
 	}
-*/
         //总宝具倍率
         let npCoef = servant.NP[$("ddlNpLevel").value] + additionalCoef;
         //向下取整总宝具倍率
@@ -570,13 +568,14 @@
     //宝具等级选中项发生变化事件
     function changeNpCoefficient() {
         let servant = servants[$("ddlServant").value];
-//	let ocs = servant.oc;
-//	let npEffect = servant.npEffect;
+	let ocs = servant.oc;
+	let npEffect = servant.npEffect;
+	let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
 	$("txtNpCoefficient").value = servant.NP[$("ddlNpLevel").value];
-        if (servant.oc.type == "NpRemainHpDamage") {//双子宝具
+        if (ocs.type == "NpRemainHpDamage" || isNpRemainHpDamage) {//双子宝具
             calNpRemainHpDamage();
         }
-        else if (servant.oc.type == "OcNpDamage") {//自爆弓
+        else if (ocs.type == "OcNpDamage") {//自爆弓
             calOcNpDamage();
         }
     }
@@ -649,11 +648,6 @@
 	if (npEffect && npEffect.npSpecialAttack) {
             $("txtNpSpecialAttack").value = npSpecialAttack;
         }
-/*
-	if (npEffect && npEffect.npRemainHpDamage) {
-	    calNpRemainHpDamage();
-	}
-*/
     }
     function clearBuff(){
 	$("txtNpStrength").value = $("txtNpStrength").basevalue;
