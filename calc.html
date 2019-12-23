@@ -133,7 +133,7 @@
                 <td>从者职介</td>
                 <td>
                     <select id="ddlClass">
-                        <option value="1.00">Saber</option>
+                        <option value="1.0">Saber</option>
                         <option value="0.95">Archer</option>
                         <option value="1.05">Lancer</option>
                         <option value="1.0">Rider</option>
@@ -201,7 +201,6 @@
                 <td>概念礼装</td>
                 <td>
                     <select id="ddlCraftEssence">
-                        <option value="0">自定义</option>
                         <option value="786">20级宝石</option>
                         <option value="2000">100级醉贞</option>
                         <option value="2000">100级空骑</option>
@@ -211,12 +210,12 @@
 			<option value="393">20级北斋</option>
 			<option value="0">15级泳装樱</option>
 			<option value="2000">100级轨迹</option>
+			<option value="0">自定义</option>
                     </select>
                 </td>
                 <td>御主礼装</td>
                 <td>
                     <select id="ddlMysticCode">
-                        <option value="0">无</option>
                         <option value="0">战斗服</option>
                         <option value="50">04服</option>
 			<option value="0">骑士王服</option>
@@ -229,6 +228,7 @@
 			<option value="20">夏威夷衫</option>
 			<option value="35">新年服</option>
 			<option value="50">宇航服</option>
+			<option value="0">无</option>
                     </select>
                 </td>
             </tr>
@@ -441,36 +441,18 @@
         }
         changeNpCoefficient();
     };
-    //是否特攻
-    $("ckIsSpecialAttack").onclick = function () {
-        let id=$("ddlServant").value;
-        if (id == "-1") {
-            $("ckIsSpecialAttack").checked = false;
-            return;
-        }
-        let servant = servants[id];
-        let ocs = servant.oc;
-        if(ocs["type"] == "NpSpecialAttack" || ocs["type"] == "SpecialAttackBuff") {
-            return;
-        }
-        let npEffect = servant.npEffect;
-        if (npEffect && npEffect.specialAttack) {
-            return;
-        }
-        $("ckIsSpecialAttack").checked = false;
-    }
     //礼装
     $("ddlCraftEssence").onchange=function(){
-        if($("ddlCraftEssence").selectedIndex == 0) {
+        if($("ddlCraftEssence").selectedIndex == 9) {
             return;
         }
 	$("txtCraftEssenceAtk").value = $("ddlCraftEssence").value;
         switch($("ddlCraftEssence").selectedIndex) {
+            case 5:
             case 6:
-            case 7:
                 $("txtCraftEssenceHp").value = 629;
                 break;
-            case 8:
+            case 7:
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
@@ -511,7 +493,6 @@
         $("ddlLvs").selectedIndex=0;
         $("txtFouAtk").value = 1000;
         $("txtFouHp").value = 1000;
-        $("ckIsSpecialAttack").checked = false;
         $("txtNpSpecialAttack").value = 100;
 	initialEffects();
     }
@@ -776,6 +757,15 @@
         let atk = getFloat("txtAttack") + getFloat("txtFouAtk") + getFloat("txtCraftEssenceAtk");
         //2.卡色
         let cardColor = getFloat("ddlColor");
+        let cardNpCoef = 0;
+        switch(cardColor) {
+            case 1:
+                cardNpCoef = 3;
+                break;
+            case 0.8:
+                cardNpCoef = 1;
+                break;
+        }
         //3.宝具倍率(%)
         let npCoef = getFloat("txtNpCoefficient") / 100;
         //4.从者职介 
@@ -792,6 +782,7 @@
         let attackBuff = getFloat("txtAttackBuff");
         //12.敌方防御力Buff(%)
         let enemyDefence = getFloat("txtEnemyDefence");
+	enemyDefence = Math.max(-100, enemyDefence);
         //13.特攻威力Buff(%)与宝具特攻(%)
         let specialAttackBuff = 0;
 	let npSpecialAttack = 1;
@@ -802,43 +793,44 @@
         //14.固定伤害Buff
         let damagePlus = getFloat("txtDamagePlus");
 	//15.黄金律
+	let baseNp = getFloat("txtNpGain");
         let npGainBuff = getFloat("txtNpGainBuff");
         //16.礼装
 	switch($("ddlCraftEssence").selectedIndex) {
-	    case 2:
+	    case 1:
 		npStrength = npStrength + 15;
 		break;
-	    case 3:
+	    case 2:
 		npStrength = npStrength + 10;
 		if(cardColor == 1.5) {
 		    cardBuff = cardBuff + 10;
 		}
 		break;
-	    case 4:
+	    case 3:
 		attackBuff = attackBuff + 15;
 		break;
-	    case 5:
+	    case 4:
 		npStrength = npStrength + 60;
 		break;
-            case 6:
+            case 5:
                 npStrength = npStrength + 10;
                 if(cardColor == 1) {
                     cardBuff = cardBuff + 10;
                 }
                 break;
-            case 7:
+            case 6:
                 if(cardColor == 1) {
                     cardBuff = cardBuff + 10;
                 }
 		npGainBuff = npGainBuff + 10;
                 break;
-            case 8:
+            case 7:
                 npStrength = npStrength + 10;
                 if(cardColor == 0.8) {
                     cardBuff = cardBuff + 10;
                 }
                 break;
-	    case 9:
+	    case 8:
 		if(cardColor == 0.8) {
                     cardBuff = cardBuff + 10;
                 }
@@ -848,44 +840,44 @@
 	//17.御主装备
 	npStrength = npStrength + getFloat("ddlMysticCode");
 	switch($("ddlMysticCode").selectedIndex) {
-	    case 1:
+	    case 0:
 		attackBuff = attackBuff + 30;
 		break;
-	    case 2:
+	    case 1:
 		npGainBuff = npGainBuff + 50;
 		break;
-            case 3:
+            case 2:
                 if(cardColor == 1.5) {
                     cardBuff = cardBuff + 60;
                 }
 		break;
-	    case 4:
+	    case 3:
 		attackBuff = attackBuff + 50;
                 break;
-	    case 5:
+	    case 4:
 		if(cardColor == 0.8) {
                     cardBuff = cardBuff + 50;
                 }
                 break;
-	    case 6:
+	    case 5:
 		if(cardColor == 0.8) {
                     cardBuff = cardBuff + 30;
                 }
                 break;
-	    case 7:
+	    case 6:
 		if(cardColor == 1) {
                     cardBuff = cardBuff + 50;
                 }
                 break;
-            case 8:
+            case 7:
                 if(cardColor == 1) {
                     cardBuff = cardBuff + 30;
                 }
                 break;
-	    case 9:
+	    case 8:
 		attackBuff = attackBuff + 20;
 		break;
-	    case 10:
+	    case 9:
 		if(cardColor == 1) {
                     cardBuff = cardBuff + 30;
                 }
@@ -895,70 +887,45 @@
             ATK×攻击补正(0.23)×[宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)]×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
-        let resultMin = atk * 0.23 * [npCoef * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 0.9 * Math.max(0,(1 + attackBuff / 100 - enemyDefence / 100))* (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
-        resultMin = Math.floor(Math.max(0,resultMin));
-
-        let resultMax = atk * 0.23 * [npCoef * cardColor * (1 + cardBuff / 100)] * Class * ClassResist * attributeResist * 1.1 * Math.max(0,(1 + attackBuff / 100 - enemyDefence / 100))* (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
-        resultMax = Math.floor(Math.max(0,resultMax));
-
-        let resultAvg = Math.round((resultMin + resultMax) * 1.0 / 2);
-
-	let cardNpGain = 0;
-	switch(cardColor) {
-	    case 1:
-		cardNpGain = 3;
-		break;
-	    case 0.8:
-		cardNpGain = 1;
-		break;
-	}
-	let npGain1 = getFloat("txtNpGain") * cardNpGain * (1 + npGainBuff / 100) * (1 + cardBuff /100) * getFloat("ddlEnemyClass1");
+        let resultMin = atk * 0.23 * npCoef * cardColor * (1 + cardBuff / 100) * Class * ClassResist * attributeResist * 0.9 * Math.max(0, 1 + attackBuff / 100 - enemyDefence / 100) * (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
+        resultMin = Math.floor(resultMin);
+        let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + cardBuff / 100) * Class * ClassResist * attributeResist * Math.max(0, 1 + attackBuff / 100 - enemyDefence / 100) * (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
+        resultAvg = Math.floor(resultAvg);
+	let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + cardBuff /100);
+	let npGain1 = npGainBase * getFloat("ddlEnemyClass1");
 	if ($("ckIsUndying1").checked) {
 	    npGain1 = npGain1 * 1.2;
 	}
 	npGain1 = Math.floor(npGain1 * 100) / 100;
-	let npGain1Ok = npGain1 * 1.5;
-	npGain1Ok = Math.floor(npGain1Ok * 100) /100;
-	let npGain1t = (npGain1Ok - npGain1) * getFloat("txtOverkill1") + npGain1 * (getFloat("txtNHits"));
-	let npGain2 = getFloat("txtNpGain") * cardNpGain * (1 + npGainBuff / 100) * (1 + cardBuff /100) * getFloat("ddlEnemyClass2");
+	let npGainOverkill = Math.floor(npGain1 * 150) / 100;
+	npGain1 = (npGainOverkill - npGain1) * getFloat("txtOverkill1") + npGain1 * getFloat("txtNHits");
+	let npGain2 = npGainBase * getFloat("ddlEnemyClass2");
         if ($("ckIsUndying2").checked) {
             npGain2 = npGain2 * 1.2;
         }
         npGain2 = Math.floor(npGain2 * 100) / 100;
-        let npGain2Ok = npGain2 * 1.5;
-        npGain2Ok = Math.floor(npGain2Ok * 100) / 100;
-        let npGain2t = (npGain2Ok - npGain2) * getFloat("txtOverkill2") + npGain2 * (getFloat("txtNHits"));
-	let npGain3 = getFloat("txtNpGain") * cardNpGain * (1 + npGainBuff / 100) * (1 + cardBuff /100) * getFloat("ddlEnemyClass3");
+        npGainOverkill = Math.floor(npGain2 * 150) / 100;
+        npGain2 = (npGainOverkill - npGain2) * getFloat("txtOverkill2") + npGain2 * (getFloat("txtNHits"));
+	let npGain3 = npGainBase * getFloat("ddlEnemyClass3");
         if ($("ckIsUndying3").checked) {
             npGain3 = npGain3 * 1.2;
         }
         npGain3 = Math.floor(npGain3 * 100) / 100;
-        let npGain3Ok = npGain3 * 1.5;
-        npGain3Ok = Math.floor(npGain3Ok * 100) / 100;
-        let npGain3t = (npGain3Ok - npGain3) * getFloat("txtOverkill3") + npGain3 * (getFloat("txtNHits"));
-	let npGain = npGain1t;
+        npGainOverkill = Math.floor(npGain3 * 150) / 100;
+        npGain3 = (npGainOverkill - npGain3) * getFloat("txtOverkill3") + npGain3 * (getFloat("txtNHits"));
+	let npGain = npGain1;
 	switch($("txtNTarget").value) {
 	    case "3":
-		npGain = npGain + npGain3t;
+		npGain = npGain + npGain3;
 	    case "2":
-		npGain = npGain + npGain2t;
+		npGain = npGain + npGain2;
 		break;
 	}
 
         let servantName = getDdlText("ddlServant");
-
-        let maxHp = getFloat("txtMaxHp");
-        let fouHp = getFloat("txtFouHp");
-        let craftEssenceHp = getFloat("txtCraftEssenceHp");
-        let totalHp = maxHp + fouHp + craftEssenceHp;
-
-        let remainHp = getFloat("txtRemainHp");
-
         let NP = getDdlText("ddlNpLevel");
         let oc = getDdlText("ddlOvercharge");
-
-        let isMaxGrail = $("ckIsMaxGrail").checked;
-        if (isMaxGrail) {
+        if ($("ckIsMaxGrail").checked) {
             servantName = "<span class='text-gradient'>" + servantName + "</span>";
         }
         let ClassResistClassName = "normal";//非克制
@@ -971,24 +938,21 @@
         let model = {
             guid: guid,
             servantName: servantName,
+	    lv:getDdlText("ddlLvs"),
             atk: atk,
-            hp: totalHp,
-            lv:getDdlText("ddlLvs"),
             attributeResist: getDdlText("ddlAttributeResist"),
-            remainHp: remainHp,
+	    NP: NP,
             cardColor: cardColor,
-            NP: NP,
-            npCoef: getFloat("txtNpCoefficient"),
+            npCoef: npCoef * 100,
             npSpecialAttack: npSpecialAttack * 100,
             oc: oc,
             npStrength: npStrength,
             cardBuff: cardBuff,
             attackBuff: attackBuff,
             specialAttackBuff: specialAttackBuff,
+	    enemyDefence: enemyDefence,
 	    npGainBuff: npGainBuff,
-            enemyDefence: getFloat("txtEnemyDefence"),
             min: resultMin,
-            max: resultMax,
             avg: resultAvg,
             ClassResistClassName: ClassResistClassName,
 	    npGain: npGain
@@ -1027,7 +991,6 @@
             resultArr.length = 0;
             hidResult();
         }
-
         rankIndex = 0;
         let tb = $("tbResult");
         let len = tb.rows.length;
@@ -1044,47 +1007,43 @@
         let newRow = tb.insertRow(-1);
         //1.排名
         newRow.insertCell(-1).innerHTML = rankIndex;
-
         //2.从者
         newRow.insertCell(-1).innerHTML = obj.servantName;
-
         //3.等级
         newRow.insertCell(-1).innerHTML = obj.lv;      
-
         //4.ATK          
         newRow.insertCell(-1).innerHTML = obj.atk;
-        //6.阵营克制
+        //5.阵营克制
         newRow.insertCell(-1).innerHTML = obj.attributeResist;
-
-        //7.宝具等级      
+        //6.宝具等级      
         newRow.insertCell(-1).innerHTML = obj.NP;
-        //8.宝具倍率      
+        //7.宝具倍率      
         newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.npCoef + "</span>"
-        //9.宝具特攻(oc)  
+        //8.宝具特攻(oc)  
         newRow.insertCell(-1).innerHTML = obj.npSpecialAttack + "(" + obj.oc + ")";
-        //10.宝具威力Buff 
+        //9.宝具威力Buff 
         newRow.insertCell(-1).innerHTML = obj.npStrength;
-        //11.卡牌Buff     
+        //10.卡牌Buff     
         newRow.insertCell(-1).innerHTML = obj.cardBuff;
-        //12.攻击力Buff   
+        //11.攻击力Buff   
         newRow.insertCell(-1).innerHTML = obj.attackBuff;
-        //13.特攻威力Buff 
+        //12.特攻威力Buff 
         newRow.insertCell(-1).innerHTML = obj.specialAttackBuff;
-        //14.特攻威力Buff     
+        //13.敌方防御Buff     
         newRow.insertCell(-1).innerHTML = obj.enemyDefence;
-	//15.黄金律
+	//14.黄金律
 	newRow.insertCell(-1).innerHTML = obj.npGainBuff;
-        //16.宝具伤害最小值    
+        //15.宝具伤害最小值    
         let min = newRow.insertCell(-1);
         min.innerHTML = obj.min;
         min.classList.add(obj.ClassResistClassName);
-        //18.宝具伤害平均值       
+        //16.宝具伤害平均值       
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
         avg.classList.add(obj.ClassResistClassName);
-	//19.NP Gain
+	//17.NP获取
 	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
-        //20.删除操作     
+        //18.删除操作     
         newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
     }
     //获取宝具颜色
@@ -1096,7 +1055,6 @@
                 return "blue";
             case 0.8:
                 return "green";
-
         }
     }
 </script>

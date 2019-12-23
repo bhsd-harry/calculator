@@ -184,7 +184,8 @@ function bindSearchTips(){
     nums.forEach(function(n){
         n.onblur=function(){
             //失去焦点后，计算值
-            this.value=eval2(this.value);   
+            this.value=eval2(this.value);
+	    this.value=this.value;
         }
     })
 })();
