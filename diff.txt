@@ -306,13 +306,6 @@
 <         if (!servant) {
 <             let id = $("ddlServant").value;
 <             servant = servants[id];
----
->     //是否特攻
->     $("ckIsSpecialAttack").onclick = function () {
->         let id=$("ddlServant").value;
->         if (id == "-1") {
->             $("ckIsSpecialAttack").checked = false;
->             return;
 724,725c451
 < 
 <         let ocLevel = $("ddlOvercharge").value;
@@ -337,9 +330,6 @@
 <         else if (ocs["type"] == "DefDecrease") {//宝具前降防
 <             $("txtEnemyDefence").value = 0 - ocs[ocLevel];
 < 
----
->         if(ocs["type"] == "NpSpecialAttack" || ocs["type"] == "SpecialAttackBuff") {
->             return;
 746,747c456,458
 <         else if (ocs["type"] == "OcNpStrength") {//宫本半藏OC宝具威力提升
 <             $("txtNpStrength").value = ocs[ocLevel];

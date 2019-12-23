@@ -369,46 +369,167 @@
         }
 	adjHp();
     }
+    //等级下拉列表选中项改变事件
+    $("ddlLvs").onchange=function(){
+        let id=$("ddlServant").value;
+        if (id == "-1") {
+            $("ddlLvs").selectedIndex = 0;
+            return;
+        }
+        let servant = servants[id];  
+        let lv = this.value;
+        let maxLv = servant.star * 5 + 55;
+        if(servant.star >= 4){
+            maxLv = servant.star * 10 + 40;
+        }
+        if(lv > 90){
+            $("txtAttack").value = servant.maxAtk;
+            $("txtMaxHp").value = servant.maxHp;
+            $("ckIsMaxGrail").checked = true;
+        }
+        else {
+            $("ckIsMaxGrail").checked = false;
+            if(lv <= maxLv){
+                $("txtAttack").value = servant.atk;
+                $("txtMaxHp").value = servant.hp;
+                $("ddlLvs").selectedIndex = 0;//默认
+            }
+            else {
+                if(servant.star > 1){
+                    lv = servant.lvs[0];
+                    $("ddlLvs").selectedIndex = 2;
+                }
+                else if(lv > 70){
+                    lv = servant.lvs[1];
+                    $("ddlLvs").selectedIndex = 2;
+                }
+                else {
+                    lv = servant.lvs[0];
+                    $("ddlLvs").selectedIndex = 4;
+                }
+                $("txtAttack").value = lv.a;
+                $("txtMaxHp").value = lv.h;
+            }
+        }
+        adjHp();
+    }
+    //全鞭尸
+    $("btnAdjOverkill").onclick = function () {
+            $("txtOverkill1").value = $("txtNHits").value;
+            $("txtOverkill2").value = $("txtNHits").value;
+            $("txtOverkill3").value = $("txtNHits").value;
+    }
+    //Hp值变动事件：动态计算双子宝具倍率
+    $("txtRemainHp").onchange = function () {
+        adjustNpRemainHpDamage();
+    }
+    $("txtFouHp").onchange = function () {
+        adjustNpRemainHpDamage();
+    }
+    $("txtCraftEssenceHp").onchange = function () {
+        adjustNpRemainHpDamage();
+    }
+    //宝具等级选中项发生变化事件
+    $("ddlNpLevel").onchange = function () {
+        let id = $("ddlServant").value;
+        if(id == "-1"){
+            return;
+        }
+        changeNpCoefficient();
+    };
+    //是否特攻
+    $("ckIsSpecialAttack").onclick = function () {
+        let id=$("ddlServant").value;
+        if (id == "-1") {
+            $("ckIsSpecialAttack").checked = false;
+            return;
+        }
+        let servant = servants[id];
+        let ocs = servant.oc;
+        if(ocs["type"] == "NpSpecialAttack" || ocs["type"] == "SpecialAttackBuff") {
+            return;
+        }
+        let npEffect = servant.npEffect;
+        if (npEffect && npEffect.specialAttack) {
+            return;
+        }
+        $("ckIsSpecialAttack").checked = false;
+    }
+    //礼装
+    $("ddlCraftEssence").onchange=function(){
+        if($("ddlCraftEssence").selectedIndex == 0) {
+            return;
+        }
+	$("txtCraftEssenceAtk").value = $("ddlCraftEssence").value;
+        switch($("ddlCraftEssence").selectedIndex) {
+            case 6:
+            case 7:
+                $("txtCraftEssenceHp").value=629;
+                break;
+            case 8:
+                $("txtCraftEssenceHp").value=1067;
+                break;
+            default:
+                $("txtCraftEssenceHp").value=0;
+                break;
+        }
+        adjHp();
+    }
+    //队友buff
+    $("btnAddZhuge").onclick = function(){
+        $("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
+        $("txtDamagePlus").value = getFloat("txtDamagePlus") + 500;     
+    }
+        
+    $("btnAddMerlin").onclick = function(){
+        $("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
+        if($("ddlColor").value == 1.5){
+            $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+        }
+    }
+    $("btnAddTamamo").onclick = function(){
+        $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
+        if($("ddlColor").value == 1){
+            $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+        }
+    }
+    $("btnAddSkadi").onclick = function(){
+        $("txtEnemyDefence").value = getFloat("txtEnemyDefence") - 30;
+        if($("ddlColor").value == 0.8){
+            $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
     //下拉从者选中项发生变化事件
     $("ddlServant").onchange = function () {
-        $("ckIsSpecialAttack").checked = false;
         $("ckIsMaxGrail").checked = false;
-        $("txtCardBuff").dataset.value = 0;
         $("ddlLvs").selectedIndex=0;
-
+        $("txtFouAtk").value = 1000;
+        $("txtFouHp").value = 1000;
+        $("ckIsSpecialAttack").checked = false;
+        $("txtNpSpecialAttack").value = 100;
+        $("txtCardBuff").dataset.value = 0;
         let id = this.value;
-        if (id != "-1" && id != "") {
-            clearBuff();
+        if (id != "-1") {
             bindServantData(id);
+	    adjHp()
+            clearBuff();
 	    setOc();
 	    $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
         }
     }
-    //宝具等级选中项发生变化事件
-    $("ddlNpLevel").onchange = function () {
-	let id = $("ddlServant").value;
-	if(id == "-1"){
-	    return;
-	}
-        changeNpCoefficient();
-    };
-
     //OC等级选中项发生变化事件
     $("ddlOvercharge").onchange = function () {
         adjustOc();
 	$("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
     };
+    $("btnClearBuff").onclick = function()
+    {
+            clearBuff();
+            setOc();
+    }
 
-    //Hp值变动事件：动态计算双子宝具倍率
-    $("txtRemainHp").onchange = function () {
-	adjustNpRemainHpDamage();
-    }
-    $("txtFouHp").onchange = function () {
-	adjustNpRemainHpDamage();
-    }
-    $("txtCraftEssenceHp").onchange = function () {
-	adjustNpRemainHpDamage();
-    }
     function adjustNpRemainHpDamage() {
         let id = $("ddlServant").value;
         if(id == "-1") {
@@ -418,97 +539,6 @@
         if (servant.oc["type"] == "NpRemainHpDamage") {//双子宝具特攻
             calNpRemainHpDamage();
         }
-    }
-
-    //是否特攻
-    $("ckIsSpecialAttack").onclick = function () {
-	let id=$("ddlServant").value;
-        if (id == "-1" || id == "") {
-	    $("ckIsSpecialAttack").checked = false;
-            return;
-        }
-
-        let servant = servants[id];
-	let ocs = servant.oc;
-        if(ocs["type"] == "NpSpecialAttack" || ocs["type"] == "SpecialAttackBuff") {
-	    return;
-	}
-	else {
-	    let npEffect = servant.npEffect;
-	    if (npEffect && npEffect.specialAttack && !isNaN(npEffect.specialAttack)) {
-		return;
-	    }
-	    else {
-		$("ckIsSpecialAttack").checked = false;
-	    }
-	}
-    }
-
-    //等级下拉列表选中项改变事件
-    $("ddlLvs").onchange=function(){
-        let id=$("ddlServant").value;
-        if (id == "-1") {
-	    $("ddlLvs").selectedIndex = 0;
-            return;
-        }
-
-        let servant = servants[id];  
-        let lv = this.value;
-	let maxLv = servant.star * 5 + 55;
-	if(servant.star >= 4){
-	    maxLv = servant.star * 10 + 40;
-	}
-	if(lv>90){
-            $("txtAttack").value = servant.maxAtk;
-            $("txtMaxHp").value = servant.maxHp;
-	    $("ckIsMaxGrail").checked = true;
-        }
-	else {
-	    $("ckIsMaxGrail").checked = false;
-	    if(lv<=maxLv){
-		$("txtAttack").value = servant.atk;
-		$("txtMaxHp").value = servant.hp;
-		$("ddlLvs").selectedIndex = 0;//默认
-	    }
-	    else {
-		if(servant.star>1){
-                    lv = servant.lvs[0];
-	            $("ddlLvs").selectedIndex = 2;
-		}
-		else if(lv>70){
-		    lv = servant.lvs[1];
-		    $("ddlLvs").selectedIndex = 2;
-		}
-		else {
-		    lv = servant.lvs[0];
-		    $("ddlLvs").selectedIndex = 4;
-		}
-		$("txtAttack").value = lv.a;
-        	$("txtMaxHp").value = lv.h;
-	    }
-        }
-	adjHp();
-    }
-
-    $("ddlCraftEssence").onchange=function(){
-	if($("ddlCraftEssence").selectedIndex>0) {
-	    $("txtCraftEssenceAtk").value=$("ddlCraftEssence").value;
-	}
-	switch($("ddlCraftEssence").selectedIndex) {
-	    case 0:
-		break;
-	    case 6:
-	    case 7:
-		$("txtCraftEssenceHp").value=629;
-		break;
-	    case 8:
-		$("txtCraftEssenceHp").value=1067;
-		break;
-	    default:
-		$("txtCraftEssenceHp").value=0;
-                break;
-	}
-	adjHp();
     }
 
     /***********************************************************/
@@ -650,11 +680,6 @@
         $("txtNpCoefficient").value = Math.floor(npCoef);
     }
 
-	$("btnAdjOverkill").onclick = function () {
-		$("txtOverkill1").value = $("txtNHits").value;
-		$("txtOverkill2").value = $("txtNHits").value;
-		$("txtOverkill3").value = $("txtNHits").value;
-	}
 	function adjHp(){
 		let fullHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
 		$("txtRemainHp").value = fullHp;
@@ -712,11 +737,6 @@
 	    $("txtOverkill3").value = 0;
 	    $("txtFouAtk").value = 1000;
 	    $("txtFouHp").value = 1000;
-	}
-	$("btnClearBuff").onclick = function()
-	{
-		clearBuff();
-		setOc();
 	}
 	
     //根据OC重设所有buff
