@@ -695,7 +695,7 @@
 	else if (ocs.type == "OcCardBuff") {//R金时OC绿魔放
             $("txtCardBuff").value = $("txtCardBuff").basevalue + ocs[ocLevel];
         }
-        else if (ocs.type == "OcAtkBuff") {//B兰OC加攻
+        else if (ocs.type == "OcAttackBuff") {//B兰OC加攻
             $("txtAttackBuff").value = ocs[ocLevel];
         }
         else if (ocs.type == "DefDecrease") {//宝具前降防
@@ -738,7 +738,7 @@
             let o = getFloat("txtCardBuff");
             $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
-        else if (ocs.type == "OcAtkBuff") {//B兰OC加攻
+        else if (ocs.type == "OcAttackBuff") {//B兰OC加攻
             let o = getFloat("txtAttackBuff");
             $("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
         }
