@@ -45,13 +45,14 @@ function search() {
     word = filterStr($("txtKey").value);
 
     //根据关键词查询匹配结果
-    if(word[0]=="$"){
-        word=word.substr(1);
-        servants = servants.filter(containsAlignment);
-    }
-    else if(word[0]=="@"){
-        word=word.substr(1);
-        servants = servants.filter(containsAttribute);    
+    switch(word[0]) {
+	case "$":
+            word=word.substr(1);
+            servants = servants.filter(containsAlignment);
+    	    break;
+        case "@":
+            word=word.substr(1);
+            servants = servants.filter(containsAttribute);    
     }
     
     //更新数组序号

@@ -84,125 +84,58 @@ function loadLvs(){
 */
 function initialServant(star,Class, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, NpType, oc1, oc5, type, cardColor, ClassSkill, npEffect) {
     //id++;//下标最好还是从0开始
-    let NP = {};
-    if(NpType == "BusterAll1") {
-        NP["NP1"] = 300;
-        NP["NP2"] = 400;
-        NP["NP3"] = 450;
-        NP["NP4"] = 475;
-        NP["NP5"] = 500;
-    }
-    else if(NpType == "BusterAll2") {
-        NP["NP1"] = 400;
-        NP["NP2"] = 500;
-        NP["NP3"] = 550;
-        NP["NP4"] = 575;
-        NP["NP5"] = 600;
-    }
-    else if(NpType == "BusterAll3") {
-        NP["NP1"] = 450;
-        NP["NP2"] = 550;
-        NP["NP3"] = 600;
-        NP["NP4"] = 625;
-        NP["NP5"] = 650;
-    }
-    else if(NpType == "BusterAll4") {
-        NP["NP1"] = 300;
-        NP["NP2"] = 450;
-        NP["NP3"] = 525;
-        NP["NP4"] = 562.5;
-        NP["NP5"] = 600;
-    }
-    else if(NpType == "BusterAll5") {
-        NP["NP1"] = 400;
-        NP["NP2"] = 550;
-        NP["NP3"] = 625;
-        NP["NP4"] = 662.5;
-        NP["NP5"] = 700;
-    }
-    if(NpType == "BusterSingle1") {
-        NP["NP1"] = 600;
-        NP["NP2"] = 800;
-        NP["NP3"] = 900;
-        NP["NP4"] = 950;
-        NP["NP5"] = 1000;
-    }
-    else if(NpType == "BusterSingle2") {
-        NP["NP1"] = 800;
-        NP["NP2"] = 1000;
-        NP["NP3"] = 1100;
-        NP["NP4"] = 1150;
-        NP["NP5"] = 1200;
-    }
-    else if(NpType == "BusterSingle3") {
-        NP["NP1"] = 700;
-        NP["NP2"] = 900;
-        NP["NP3"] = 1000;
-        NP["NP4"] = 1050;
-        NP["NP5"] = 1100;
-    }
-    else if(NpType == "QuickAll3") {
-        NP["NP1"] = 900;
-        NP["NP2"] = 1100;
-        NP["NP3"] = 1200;
-        NP["NP4"] = 1250;
-        NP["NP5"] = 1300;
-    }
-    else if(NpType == "QuickSingle1") {
-        NP["NP1"] = 1200;
-        NP["NP2"] = 1600;
-        NP["NP3"] = 1800;
-        NP["NP4"] = 1900;
-        NP["NP5"] = 2000;
-    }
-    else if(NpType == "QuickSingle2") {
-        NP["NP1"] = 1600;
-        NP["NP2"] = 2000;
-        NP["NP3"] = 2200;
-        NP["NP4"] = 2300;
-        NP["NP5"] = 2400;
-    }
-    else if(NpType == "QuickSingle3") {
-        NP["NP1"] = 1400;
-        NP["NP2"] = 1800;
-        NP["NP3"] = 2000;
-        NP["NP4"] = 2100;
-        NP["NP5"] = 2200;
-    }
-    else if(NpType == "ArtsAll1") {
-        NP["NP1"] = 450;
-        NP["NP2"] = 600;
-        NP["NP3"] = 675;
-        NP["NP4"] = 712.5;
-        NP["NP5"] = 750;
-    }
-    else if(NpType == "ArtsAll2") {
-        NP["NP1"] = 600;
-        NP["NP2"] = 750;
-        NP["NP3"] = 825;
-        NP["NP4"] = 862.5;
-        NP["NP5"] = 900;
-    }
-    else if(NpType == "ArtsSingle1") {
-        NP["NP1"] = 900;
-        NP["NP2"] = 1200;
-        NP["NP3"] = 1350;
-        NP["NP4"] = 1425;
-        NP["NP5"] = 1500;
-    }
-    else if(NpType == "ArtsSingle2") {
-        NP["NP1"] = 1200;
-        NP["NP2"] = 1500;
-        NP["NP3"] = 1650;
-        NP["NP4"] = 1725;
-        NP["NP5"] = 1800;
-    }
-    else if(NpType == "NpSpecialAttack") {
-        NP["NP1"] = 150;
-        NP["NP2"] = 200;
-        NP["NP3"] = 225;
-        NP["NP4"] = 237.5;
-        NP["NP5"] = 250;
+    let NP = [];
+    switch(NpType) {
+	case "BusterAll1":
+	    NP = [300, 400, 450, 475, 500];
+	    break;
+	case "BusterAll2":
+	    NP = [400, 500, 550, 575, 600];
+	    break;
+	case "BusterAll3":
+	    NP = [450, 550, 600, 625, 650];
+	    break;
+	case "BusterAll4":
+	    NP = [300, 450, 525, 562.5, 600];
+	    break;
+	case "BusterAll5":
+	    NP = [400, 550, 625, 662.5, 700];
+	    break;
+	case "BusterSingle1":
+	    NP = [600, 800, 900, 950, 1000];
+	    break;
+	case "BusterSingle2":
+	    NP = [800, 1000, 1100, 1150, 1200];
+	    break;
+	case "BusterSingle3":
+	    NP = [700, 900, 1000, 1050, 1100];
+	    break;
+	case "QuickAll3":
+	    NP = [900, 1100, 1200, 1250, 1300];
+	    break;
+	case "QuickSingle1":
+	    NP = [1200, 1600, 1800, 1900, 2000];
+	    break;
+	case "QuickSingle2":
+	    NP = [1600, 2000, 2200, 2300, 2400];
+	    break;
+	case "QuickSingle3":
+	    NP = [1400, 1800, 2000, 2100, 2200];
+	    break;
+	case "ArtsAll1":
+	    NP = [450, 600, 675, 712.5, 750];
+	    break;
+	case "ArtsAll2":
+	    NP = [600, 750, 825, 862.5, 900];
+	    break;
+	case "ArtsSingle1":
+	    NP = [900, 1200, 1350, 1425, 1500];
+	    break;
+	case "ArtsSingle2":
+	    NP = [1200, 1500, 1650, 1725, 1800];
+	    break;
+	case "NpSpecialAttack":
+	    NP = [150, 200, 225, 237.5, 250];
     }
 
     let oc = {};
@@ -453,8 +386,8 @@ function initAssassin(){
     initialServant(5,"Assassin", "克利奥帕特拉", 139, "人", ["秩序", "中庸"], 11088, 13402, 12138, 14682, 3,1,0, "BusterAll2", 30, 70, "OcCardBuff", 1.5, {damagePlus: 125});
     initialServant(5,"Assassin", "克利奥帕特拉EN", 139, "人", ["秩序", "中庸"], 11088, 13402, 12138, 14682, 3,1,0, "BusterAll1", 30, 70, "OcCardBuff", 1.5, {damagePlus: 125});
     initialServant(5,"Assassin", "“山之翁”", 154, "人", ["秩序", "恶"], 11848, 13338, 12969, 14612, 1,1,0, "BusterSingle1", 0, 0, "", 1.5);
-    initialServant(5,"Assassin", "賽米拉米斯", 199, "地", ["秩序", "惡"], 11309, 13266, 12379, 14533, 3,1,0, "BusterAll2", 10, 50, "OcNpStrength", 1.5, {damagePlus: 150});
-    initialServant(5,"Assassin", "賽米拉米斯EN", 199, "地", ["秩序", "惡"], 11309, 13266, 12379, 14533, 3,1,0, "BusterAll1", 10, 50, "OcNpStrength", 1.5, {damagePlus: 150});
+    initialServant(5,"Assassin", "賽米拉米斯", 199, "地", ["秩序", "恶"], 11309, 13266, 12379, 14533, 3,1,0, "BusterAll2", 10, 50, "OcNpStrength", 1.5, {damagePlus: 150});
+    initialServant(5,"Assassin", "賽米拉米斯EN", 199, "地", ["秩序", "恶"], 11309, 13266, 12379, 14533, 3,1,0, "BusterAll1", 10, 50, "OcNpStrength", 1.5, {damagePlus: 150});
     initialServant(5,"Assassin", "李书文", 235, "人", ["中立", "恶"], 11470, 12568, 12556, 13769, 1,1,0.99, "ArtsSingle1", 20, 40, "DefDecrease", 1, {cardBuff: 8});
     initialServant(5,"Assassin", "伽摩", 239, "天", ["混沌", "恶"], 11528, 12889, 12619, 14120, 1,10,0.74, "QuickSingle1", 20, 40, "OcCardBuff", 0.8, {cardBuff: 10, damagePlus: 225});
     /******************************************4星********************************************************************/
