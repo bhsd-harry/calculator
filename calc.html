@@ -457,7 +457,6 @@
                 break;
             default:
                 $("txtCraftEssenceHp").value = 0;
-                break;
         }
         adjHp();
     }
@@ -571,6 +570,10 @@
 	let ocs = servant.oc;
 	let npEffect = servant.npEffect;
 	let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
+	if(npEffect && npEffect.npCoefficient) {
+            $("txtNpSpecialAttack").value = servant.NP[$("ddlNpLevel").value];
+	    return;
+	}
 	$("txtNpCoefficient").value = servant.NP[$("ddlNpLevel").value];
         if (ocs.type == "NpRemainHpDamage" || isNpRemainHpDamage) {//双子宝具
             calNpRemainHpDamage();
@@ -653,6 +656,9 @@
 	}
 	else {
 	    $("txtEnemyDefence").basevalue = 0;
+	}
+	if (npEffect && npEffect.npCoefficient) {
+	    $("txtNpCoefficient").value = npEffect.npCoefficient;
 	}
     }
     function clearBuff(){
@@ -782,7 +788,6 @@
                 break;
             case 0.8:
                 cardNpCoef = 1;
-                break;
         }
         //3.宝具倍率(%)
         let npCoef = getFloat("txtNpCoefficient") / 100;
@@ -853,7 +858,6 @@
                     cardBuff = cardBuff + 10;
                 }
                 npGainBuff = npGainBuff + 10;
-                break;
 	}
 	//17.御主装备
 	npStrength = npStrength + getFloat("ddlMysticCode");
@@ -899,7 +903,6 @@
 		if(cardColor == 1) {
                     cardBuff = cardBuff + 30;
                 }
-		break;
 	}
         /*
             ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
@@ -937,7 +940,6 @@
 		npGain = npGain + npGain3;
 	    case "2":
 		npGain = npGain + npGain2;
-		break;
 	}
 
         let servantName = getDdlText("ddlServant");

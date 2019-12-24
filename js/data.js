@@ -80,6 +80,7 @@ function loadLvs(){
 *    specialAttack: 宝具特攻
 *    npRemainHpDamage: 背水
 *    defDecrease: 降防
+*    npCoefficient: 固定宝具倍率
 */
 function initialServant(star,Class, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, NpType, oc1, oc5, type, cardColor, ClassSkill, npEffect) {
     //id++;//下标最好还是从0开始
@@ -196,12 +197,12 @@ function initialServant(star,Class, name,servantNo, attribute, alignments, atk, 
         NP["NP4"] = 1725;
         NP["NP5"] = 1800;
     }
-    else if(NpType == "ArtsSingle3") {
-        NP["NP1"] = 1200;
-        NP["NP2"] = 1200;
-        NP["NP3"] = 1200;
-        NP["NP4"] = 1200;
-        NP["NP5"] = 1200;
+    else if(NpType == "NpSpecialAttack") {
+        NP["NP1"] = 150;
+        NP["NP2"] = 200;
+        NP["NP3"] = 225;
+        NP["NP4"] = 237.5;
+        NP["NP5"] = 250;
     }
 
     let oc = {};
@@ -310,7 +311,7 @@ function initArcher(){
     initialServant(4,"Archer", "南丁格尔（圣诞）", 271, "人", ["秩序", "善"], 9859, 11080, 11936, 13434, 3,6,0.6, "BusterSingle1", 0, 0, "", 0.8);
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Archer", "罗宾汉", 13, "人", ["中立", "善"], 6715, 10187, 9088, 13812, 1,1,0.87, "ArtsSingle1", 200, 250, "NpSpecialAttack", 1);
-    initialServant(3,"Archer", "尤瑞艾莉", 15, "天", ["混沌", "善"], 7032, 9506, 9517, 12889, 1,1,0.9, "ArtsSingle3", 0, 0, "", 1, {damagePlus: 300}, { specialAttack: 250});
+    initialServant(3,"Archer", "尤瑞艾莉", 15, "天", ["混沌", "善"], 7032, 9506, 9517, 12889, 1,1,0.9, "NpSpecialAttack", 0, 0, "", 1, {damagePlus: 300}, { npCoefficient: 1200 });
     initialServant(3,"Archer", "大卫", 63, "天", ["秩序", "中立"], 7736, 8643, 10470, 11719, 1,1,0, "BusterSingle1", 0, 0, "", 1.5);
     initialServant(3,"Archer", "幼吉尔", 95, "天", ["混沌", "善"], 7696, 8731, 10415, 11838, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {damagePlus: 175});
     initialServant(3,"Archer", "比利小子", 105, "人", ["混沌", "中庸"], 6890, 9506, 9325, 12889, 1,3,0.56, "QuickSingle2", 0, 0, "", 0.8, {cardBuff: 7});
