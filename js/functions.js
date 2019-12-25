@@ -188,7 +188,6 @@ function adjustOc(is_forced){
         $("ddlOvercharge").selectedIndex = 0;
         return;
     }
-    let o;
     switch(ocs.type) {
         case "NpRemainHpDamage":
             calNpRemainHpDamage();
@@ -197,32 +196,25 @@ function adjustOc(is_forced){
             calOcNpDamage();
             break;
         case "OcCardBuff":
-            o = getFloat("txtCardBuff");
-            $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            $("txtCardBuff").value -= ocs[oldocLevel] - ocs[ocLevel];
             break;
         case "OcAttackBuff":
-            o = getFloat("txtAttackBuff");
-            $("txtAttackBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            $("txtAttackBuff").value -= ocs[oldocLevel] - ocs[ocLevel];
             break;
         case "DefDecrease":
-            o = getFloat("txtEnemyDefence");
-            $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
+            $("txtEnemyDefence").value -= ocs[ocLevel] - ocs[oldocLevel];
             break;
         case "OcNpStrength":
-            o = getFloat("txtNpStrength");
-            $("txtNpStrength").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            $("txtNpStrength").value -= ocs[oldocLevel] - ocs[ocLevel];
             break;
         case "CombinedDecrease":
-            o = getFloat("txtEnemyDefence");
-            $("txtEnemyDefence").value = o - ocs[ocLevel] + ocs[oldocLevel];
-            o = getFloat("txtCardBuff");
-            $("txtCardBuff").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            $("txtEnemyDefence").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtCardBuff").value -= ocs[oldocLevel] - ocs[ocLevel];
             break;
         case "NpSpecialAttack":
             $("txtNpSpecialAttack").value = ocs[ocLevel];
             break;
         case "SpecialAttackBuff":
-            o = getFloat("txtSpecialAttack");
-            $("txtSpecialAttack").value = o + ocs[ocLevel] - ocs[oldocLevel];
+            $("txtSpecialAttack").value -= ocs[oldocLevel] - ocs[ocLevel];
     }
 }
