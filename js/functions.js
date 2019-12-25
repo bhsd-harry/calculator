@@ -141,7 +141,7 @@ function setOc() {
     let servant = servants[id];
     let ocs = servant.oc;
     let ocLevel = $("ddlOvercharge").value;
-    if (ocs["oc1"] == ocs["oc5"]) {
+    if (ocs.oc1 == ocs.oc5) {
         $("ddlOvercharge").selectedIndex = 0;
     }
     switch(ocs.type) {
@@ -184,7 +184,7 @@ function adjustOc(is_forced){
     let ocs = servant.oc;
     let ocLevel = $("ddlOvercharge").value;
     let oldocLevel = $("ddlOvercharge").oldvalue;
-    if(ocs["oc1"] == ocs["oc5"]){
+    if(ocs.oc1 == ocs.oc5){
         $("ddlOvercharge").selectedIndex = 0;
         return;
     }

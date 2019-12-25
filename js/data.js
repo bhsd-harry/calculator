@@ -138,12 +138,12 @@ function initialServant(star,Class, name,servantNo, attribute, alignments, atk, 
     }
 
     let oc = {};
-    oc["oc1"] = oc1;
-    oc["oc2"] = (oc1 * 3 + oc5) / 4;
-    oc["oc3"] = (oc1 + oc5) / 2;
-    oc["oc4"] = (oc1 + oc5 * 3) / 4;
-    oc["oc5"] = oc5;
-    oc["type"] = type;
+    oc.oc1 = oc1;
+    oc.oc2 = (oc1 * 3 + oc5) / 4;
+    oc.oc3 = (oc1 + oc5) / 2;
+    oc.oc4 = (oc1 + oc5 * 3) / 4;
+    oc.oc5 = oc5;
+    oc.type = type;
 
     let model = {
         id: id,
