@@ -83,7 +83,6 @@ function loadLvs(){
 *    npCoefficient: 固定宝具倍率
 */
 function initialServant(star,Class, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, NpType, oc1, oc5, type, cardColor, ClassSkill, npEffect) {
-    //id++;//下标最好还是从0开始
     let NP = [];
     switch(NpType) {
 	case "BusterAll1":

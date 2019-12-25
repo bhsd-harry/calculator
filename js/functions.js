@@ -39,21 +39,16 @@ function calNpRemainHpDamage() {
     let ocLevel = $("ddlOvercharge").value;
     //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
     //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
-    let maxHp = getFloat("txtMaxHp");
-    let fouHp = getFloat("txtFouHp");
-    let craftEssenceHp = getFloat("txtCraftEssenceHp");
-    let totalHp = maxHp + fouHp + craftEssenceHp;
+    let totalHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
     let remainHp = getFloat("txtRemainHp");
+    let npCoef = servant.NP[$("ddlNpLevel").selectedIndex];
     //附加倍率
-    let additionalCoef;
     if(ocs.type == "NpRemainHpDamage") {
-        additionalCoef = servant.oc[ocLevel] * Math.max(0, 1 - remainHp / totalHp);
+        npCoef += servant.oc[ocLevel] * Math.max(0, 1 - remainHp / totalHp);
     }
     else if(npEffect && npEffect.npRemainHpDamage) {
-        additionalCoef = npEffect.npRemainHpDamage * Math.max(0, 1 - remainHp / totalHp);
+        npCoef += npEffect.npRemainHpDamage * Math.max(0, 1 - remainHp / totalHp);
     }
-    //总宝具倍率
-    let npCoef = servant.NP[$("ddlNpLevel").selectedIndex] + additionalCoef;
     //向下取整总宝具倍率
     $("txtNpCoefficient").value = Math.floor(npCoef * 10) / 10;
 }
@@ -109,7 +104,7 @@ function bindNpEffect(servant) {
         $("txtNpStrength").basevalue = 0;
     }
     if (npEffect && npEffect.cardBuff) {//单个数值，比如剑兰宝具的30%蓝魔放buff
-        $("txtCardBuff").basevalue = $("txtCardBuff").basevalue + npEffect.cardBuff;
+        $("txtCardBuff").basevalue += npEffect.cardBuff;
     }
     if (npEffect && npEffect.npSpecialAttack) {
         $("txtNpSpecialAttack").value = npSpecialAttack;

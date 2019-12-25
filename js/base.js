@@ -47,11 +47,11 @@ function search() {
     //根据关键词查询匹配结果
     switch(word[0]) {
 	case "$":
-            word=word.substr(1);
+            word = word.substr(1);
             servants = servants.filter(containsAlignment);
     	    break;
         case "@":
-            word=word.substr(1);
+            word = word.substr(1);
             servants = servants.filter(containsAttribute);    
     }
     

@@ -594,87 +594,87 @@
         //16.礼装
 	switch($("ddlCraftEssence").selectedIndex) {
 	    case 1:
-		npStrength = npStrength + 15;
+		npStrength += 15;
 		break;
 	    case 2:
-		npStrength = npStrength + 10;
+		npStrength += 10;
 		if(cardColor == 1.5) {
-		    cardBuff = cardBuff + 10;
+		    cardBuff += 10;
 		}
 		break;
 	    case 3:
-		attackBuff = attackBuff + 15;
+		attackBuff += 15;
 		break;
 	    case 4:
-		npStrength = npStrength + 60;
+		npStrength += 60;
 		break;
             case 5:
-                npStrength = npStrength + 10;
+                npStrength += 10;
                 if(cardColor == 1) {
-                    cardBuff = cardBuff + 10;
+                    cardBuff += 10;
                 }
                 break;
             case 6:
                 if(cardColor == 1) {
-                    cardBuff = cardBuff + 10;
+                    cardBuff += 10;
                 }
-		npGainBuff = npGainBuff + 10;
+		npGainBuff += 10;
                 break;
             case 7:
-                npStrength = npStrength + 10;
+                npStrength += 10;
                 if(cardColor == 0.8) {
-                    cardBuff = cardBuff + 10;
+                    cardBuff += 10;
                 }
                 break;
 	    case 8:
 		if(cardColor == 0.8) {
-                    cardBuff = cardBuff + 10;
+                    cardBuff += 10;
                 }
-                npGainBuff = npGainBuff + 10;
+                npGainBuff += 10;
 	}
 	//17.御主装备
-	npStrength = npStrength + getFloat("ddlMysticCode");
+	npStrength += getFloat("ddlMysticCode");
 	switch($("ddlMysticCode").selectedIndex) {
 	    case 0:
-		attackBuff = attackBuff + 30;
+		attackBuff += 30;
 		break;
 	    case 1:
-		npGainBuff = npGainBuff + 50;
+		npGainBuff += 50;
 		break;
             case 2:
                 if(cardColor == 1.5) {
-                    cardBuff = cardBuff + 60;
+                    cardBuff += 60;
                 }
 		break;
 	    case 3:
-		attackBuff = attackBuff + 50;
+		attackBuff += 50;
                 break;
 	    case 4:
 		if(cardColor == 0.8) {
-                    cardBuff = cardBuff + 50;
+                    cardBuff += 50;
                 }
                 break;
 	    case 5:
 		if(cardColor == 0.8) {
-                    cardBuff = cardBuff + 30;
+                    cardBuff += 30;
                 }
                 break;
 	    case 6:
 		if(cardColor == 1) {
-                    cardBuff = cardBuff + 50;
+                    cardBuff += 50;
                 }
                 break;
             case 7:
                 if(cardColor == 1) {
-                    cardBuff = cardBuff + 30;
+                    cardBuff += 30;
                 }
                 break;
 	    case 8:
-		attackBuff = attackBuff + 20;
+		attackBuff += 20;
 		break;
 	    case 9:
 		if(cardColor == 1) {
-                    cardBuff = cardBuff + 30;
+                    cardBuff += 30;
                 }
 	}
         /*
@@ -688,21 +688,21 @@
 	let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + cardBuff /100);
 	let npGain1 = npGainBase * getFloat("ddlEnemyClass1");
 	if ($("ckIsUndying1").checked) {
-	    npGain1 = npGain1 * 1.2;
+	    npGain1 *= 1.2;
 	}
 	npGain1 = Math.floor(npGain1 * 100) / 100;
 	let npGainOverkill = Math.floor(npGain1 * 150) / 100;
 	npGain1 = (npGainOverkill - npGain1) * getFloat("txtOverkill1") + npGain1 * getFloat("txtNHits");
 	let npGain2 = npGainBase * getFloat("ddlEnemyClass2");
         if ($("ckIsUndying2").checked) {
-            npGain2 = npGain2 * 1.2;
+            npGain2 *= 1.2;
         }
         npGain2 = Math.floor(npGain2 * 100) / 100;
         npGainOverkill = Math.floor(npGain2 * 150) / 100;
         npGain2 = (npGainOverkill - npGain2) * getFloat("txtOverkill2") + npGain2 * (getFloat("txtNHits"));
 	let npGain3 = npGainBase * getFloat("ddlEnemyClass3");
         if ($("ckIsUndying3").checked) {
-            npGain3 = npGain3 * 1.2;
+            npGain3 *= 1.2;
         }
         npGain3 = Math.floor(npGain3 * 100) / 100;
         npGainOverkill = Math.floor(npGain3 * 150) / 100;
@@ -710,9 +710,9 @@
 	let npGain = npGain1;
 	switch($("txtNTarget").value) {
 	    case "3":
-		npGain = npGain + npGain3;
+		npGain += npGain3;
 	    case "2":
-		npGain = npGain + npGain2;
+		npGain += npGain2;
 	}
 
         let servantName = getDdlText("ddlServant");
