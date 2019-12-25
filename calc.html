@@ -472,6 +472,9 @@
         if($("ddlColor").value == 1.5){
             $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
         }
+	$("txtMaxHp").value = getFloat("txtMaxHp") + 3000;
+	$("txtRemainHp").value = getFloat("txtRemainHp") + 3000;
+	adjustNpRemainHpDamage();
     }
     $("btnAddTamamo").onclick = function(){
         $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
