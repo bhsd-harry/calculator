@@ -23,60 +23,6 @@ function showResult() {
 function hidResult() {
     hideDiv("divResult");
 }
-//查询
-function search() {
-    //清空从者数据数组
-    servants.length = 0;
-    //重置计数器
-    id = 0;
-
-    //重新初始化从者数据数组
-    initialData();
-
-    //过滤关键词特殊字符
-    word = "";
-
-    //根据关键词查询匹配结果
-    switch(word[0]) {
-	case "$":
-            word = word.substr(1);
-            servants = servants.filter(containsAlignment);
-    	    break;
-        case "@":
-            word = word.substr(1);
-            servants = servants.filter(containsAttribute);    
-    }
-    
-    //更新数组序号
-    let tmpServants = [];
-    for (let i = 0, l = servants.length; i < l; i++) {
-        tmpServants[servants[i].id] = servants[i];
-    }
-    servants = tmpServants;
-
-    $("ddlServant").length = 0;
-    if (word == "") {
-        $("ddlServant").options.add(new Option("|----------------------请选择从者-------------------------|", -1));
-    }
-    initialServantList();
-    $("ddlServant").onchange();
-}
-
-//根据关键词查询结果
-var word = "";
-function containsAlignment(servant) {
-    return servant.alignments.find(check);
-}
-function containsAttribute(servant){
-    return servant.attribute==word;
-}
-
-function check(key) {
-    if (word == "") {
-        return true;
-    }
-    return new RegExp(word, "gi").test(key);//忽略大小写
-}
 
 //设置本地存储信息
 function setStorage() {
