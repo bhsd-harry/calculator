@@ -119,9 +119,6 @@
                         <option value="3">4</option>
                         <option value="4">5</option>
                     </select>
-                    <label for="ckIsSpecialAttack">
-                        <input type="checkbox" id="ckIsSpecialAttack" value="1" /> 特攻
-                    </label>
                 </td>
                 <td>宝具倍率(%)</td>
                 <td>
@@ -216,11 +213,19 @@
                 <td>敌人1</td>
                 <td>
                     <select id="ddlEnemyClass1">
-                        <option value="1.0">Default</option>
-                        <option value="0.8">Berserker</option>
-                        <option value="0.9">Assassin</option>
-                        <option value="1.1">Rider</option>
-                        <option value="1.2">Caster/MC</option>
+                        <option value="0">Saber</option>
+                        <option value="1">Archer</option>
+                        <option value="2">Lancer</option>
+                        <option value="3">Rider</option>
+                        <option value="4">Caster</option>
+                        <option value="5">Assassin</option>
+                        <option value="6">Berserker</option>
+                        <option value="7">Ruler</option>
+                        <option value="8">Avenger</option>
+                        <option value="9">Shielder</option>
+                        <option value="10">MoonCancer</option>
+                        <option value="11">Alterego</option>
+                        <option value="12">Foreigner</option>
                     </select>
                     <label for="ckIsUndying1">
                         <input type="checkbox" id="ckIsUndying1" value="1" /> 死灵
@@ -229,11 +234,19 @@
                 <td>敌人2</td>
                 <td>
                     <select id="ddlEnemyClass2">
-                        <option value="1.0">Default</option>
-                        <option value="0.8">Berserker</option>
-                        <option value="0.9">Assassin</option>
-                        <option value="1.1">Rider</option>
-                        <option value="1.2">Caster/MC</option>
+                        <option value="0">Saber</option>
+                        <option value="1">Archer</option>
+                        <option value="2">Lancer</option>
+                        <option value="3">Rider</option>
+                        <option value="4">Caster</option>
+                        <option value="5">Assassin</option>
+                        <option value="6">Berserker</option>
+                        <option value="7">Ruler</option>
+                        <option value="8">Avenger</option>
+                        <option value="9">Shielder</option>
+                        <option value="10">MoonCancer</option>
+                        <option value="11">Alterego</option>
+                        <option value="12">Foreigner</option>
                     </select>
                     <label for="ckIsUndying2">
                         <input type="checkbox" id="ckIsUndying2" value="1" /> 死灵
@@ -242,11 +255,19 @@
                 <td>敌人3</td>
                 <td>
                     <select id="ddlEnemyClass3">
-                        <option value="1.0">Default</option>
-                        <option value="0.8">Berserker</option>
-                        <option value="0.9">Assassin</option>
-                        <option value="1.1">Rider</option>
-                        <option value="1.2">Caster/MC</option>
+                        <option value="0">Saber</option>
+                        <option value="1">Archer</option>
+                        <option value="2">Lancer</option>
+                        <option value="3">Rider</option>
+                        <option value="4">Caster</option>
+                        <option value="5">Assassin</option>
+                        <option value="6">Berserker</option>
+                        <option value="7">Ruler</option>
+                        <option value="8">Avenger</option>
+                        <option value="9">Shielder</option>
+                        <option value="10">MoonCancer</option>
+                        <option value="11">Alterego</option>
+                        <option value="12">Foreigner</option>
                     </select>
                     <label for="ckIsUndying3">
                         <input type="checkbox" id="ckIsUndying3" value="1" /> 死灵
@@ -272,29 +293,50 @@
                         <option value="12">宇航服</option>
                     </select>
                 </td>
-                <td>阵营克制</td>
+                <td>敌人1阵营</td>
                 <td>
                     <select id="ddlAttributeResist1">
-                        <option value="1.0">非克制</option>
-                        <option value="1.1">克制</option>
-                        <option value="0.9">被克制</option>
+                        <option value="0">默认</option>
+                        <option value="1">天</option>
+                        <option value="2">地</option>
+                        <option value="3">人</option>
+                        <option value="4">星</option>
+                        <option value="5">兽</option>
                     </select>
+                    <label for="ckIsSpecialAttack1">
+                        <input type="checkbox" id="ckIsSpecialAttack1" value="1" /> 特攻
+                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy1" />
                 </td>
-                <td>阵营克制</td>
+                <td>敌人2阵营</td>
                 <td>
                     <select id="ddlAttributeResist2">
-                        <option value="1.0">非克制</option>
-                        <option value="1.1">克制</option>
-                        <option value="0.9">被克制</option>
+                        <option value="0">默认</option>
+                        <option value="1">天</option>
+                        <option value="2">地</option>
+                        <option value="3">人</option>
+                        <option value="4">星</option>
+                        <option value="5">兽</option>
                     </select>
+                    <label for="ckIsSpecialAttack2">
+                        <input type="checkbox" id="ckIsSpecialAttack2" value="1" /> 特攻
+                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy2" />
                 </td>
-                <td>阵营克制</td>
+                <td>敌人3阵营</td>
                 <td>
                     <select id="ddlAttributeResist3">
-                        <option value="1.0">非克制</option>
-                        <option value="1.1">克制</option>
-                        <option value="0.9">被克制</option>
+                        <option value="0">默认</option>
+                        <option value="1">天</option>
+                        <option value="2">地</option>
+                        <option value="3">人</option>
+                        <option value="4">星</option>
+                        <option value="5">兽</option>
                     </select>
+                    <label for="ckIsSpecialAttack3">
+                        <input type="checkbox" id="ckIsSpecialAttack3" value="1" /> 特攻
+                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy3" />
                 </td>
             </tr>
 	    <tr>
@@ -302,16 +344,16 @@
                 <td>
                     <input type="text" id="txtAttackBuff" value="0" />
                 </td>
-                <td>敌方防御力Buff(%)</td>
+                <td>敌人1防御Buff(%)</td>
                 <td>
                     <input type="text" id="txtEnemyDefence1" value="0" basevalue="0"/>
                 </td>
 
-                <td>敌方防御力Buff(%)</td>
+                <td>敌人2防御Buff(%)</td>
                 <td>
                     <input type="text" id="txtEnemyDefence2" value="0" basevalue="0"/>
                 </td>
-                <td>敌方防御力Buff(%)</td>
+                <td>敌人3防御Buff(%)</td>
                 <td>
                     <input type="text" id="txtEnemyDefence3" value="0" basevalue="0"/>
                 </td>
@@ -321,17 +363,17 @@
                 <td>
                     <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
                 </td>
-                <td>卡牌Buff(%)</td>
+                <td>敌人1卡牌耐性(%)</td>
                 <td>
-                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                    <input type="text" id="txtCardResist1" value="0" basevalue="0"/>
                 </td>
-                <td>卡牌Buff(%)</td>
+                <td>敌人1卡牌耐性(%)</td>
                 <td>
-                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                    <input type="text" id="txtCardResist2" value="0" basevalue="0"/>
                 </td>
-                <td>卡牌Buff(%)</td>
+                <td>敌人1卡牌耐性(%)</td>
                 <td>
-                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                    <input type="text" id="txtCardResist3" value="0" basevalue="0"/>
                 </td>
 	    </tr>
 	    <tr>
@@ -412,3 +454,6 @@
     </div>
 </body>
 </html>
+<script src="js/lvs.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>

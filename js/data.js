@@ -68,6 +68,7 @@ function loadLvs(){
 *    OcCardBuff：R金时OC绿魔放
 *    OcAttackBuff：B兰OC加攻
 *    DefDecrease: 教授降防
+*    CardDecrease: 狂那降色卡耐性
 *    OcNpStrength：宫本半藏OC宝具威力提升
 *    CombinedDecrease：灾星简降防降色卡耐性
 * @param {Number} cardColor 卡牌倍率(B卡：1.5，A卡：1，Q卡：0.8)
@@ -432,7 +433,7 @@ function initBerserker(){
     initialServant(5,"Berserker", "土方岁三", 161, "人", ["秩序", "恶"], 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle2", 800, 1200, "NpRemainHpDamage", 1.5, {cardBuff: 5});
     initialServant(5,"Berserker", "土方岁三EN", 161, "人", ["秩序", "恶"], 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle1", 600, 1000, "NpRemainHpDamage", 1.5, {cardBuff: 5});
     initialServant(5,"Berserker", "项羽", 226, "人", ["秩序", "中庸"], 11613, 13770, 12712, 15086, 3,5,0.51, "BusterSingle1", 20, 60, "OcNpStrength", 0.8);
-    initialServant(5,"Berserker", "阿周那〔Alter〕", 247, "天", ["秩序", "善恶"], 11669, 13837, 12773, 15159, 3,1,0, "BusterAll1", 20, 60, "OcCardBuff", 1.5, {cardBuff: 12, damagePlus: 250});
+    initialServant(5,"Berserker", "阿周那〔Alter〕", 247, "天", ["秩序", "善恶"], 11669, 13837, 12773, 15159, 3,1,0, "BusterAll1", 20, 60, "CardDecrease", 1.5, {cardBuff: 12, damagePlus: 250});
     initialServant(5,"Berserker", "宮本武藏", 261, "人", ["混沌", "善"], 12712, 12150, 13915, 13311, 3,4,0.51, "ArtsAll1", 0, 0, "", 1, {damagePlus: 125});
     /******************************************4星********************************************************************/
     initialServant(4,"Berserker", "赫拉克勒斯", 47, "天", ["混沌", "狂"], 10655, 10327, 12901, 12521, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {cardBuff: 8, damagePlus: 200});

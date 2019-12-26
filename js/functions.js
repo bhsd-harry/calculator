@@ -152,6 +152,7 @@ function setOc() {
             calOcNpDamage();
             break;
         case "OcCardBuff": //R金时OC绿魔放
+	case "CardDecrease":
             $("txtCardBuff").value = $("txtCardBuff").basevalue + ocs[ocLevel];
             break;
         case "OcAttackBuff": //B兰OC加攻
@@ -196,6 +197,7 @@ function adjustOc(is_forced){
             calOcNpDamage();
             break;
         case "OcCardBuff":
+	case "CardDecrease":
             $("txtCardBuff").value -= ocs[oldocLevel] - ocs[ocLevel];
             break;
         case "OcAttackBuff":
