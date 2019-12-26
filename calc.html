@@ -212,15 +212,15 @@
                 <td>
                     <select id="ddlCraftEssence">
                         <option value="0">自定义</option>
-                        <option value="786">20级宝石</option>
-                        <option value="2000">100级醉贞</option>
-                        <option value="2000">100级空骑</option>
-                        <option value="2000">100级相扑</option>
-                        <option value="2034">80级黑杯</option>
-                        <option value="393">20级潜水学妹</option>
-                        <option value="393">20级北斋</option>
-                        <option value="0">15级泳装樱</option>
-                        <option value="2000">100级轨迹</option>
+                        <option value="1">20级宝石</option>
+                        <option value="2">100级醉贞</option>
+                        <option value="3">100级空骑</option>
+                        <option value="4">100级相扑</option>
+                        <option value="5">80级黑杯</option>
+                        <option value="6">20级潜水学妹</option>
+                        <option value="7">20级北斋</option>
+                        <option value="8">15级泳装樱</option>
+                        <option value="9">100级轨迹</option>
                     </select>
                 </td>
 		<td>敌人1</td>
@@ -268,18 +268,18 @@
                 <td>
                     <select id="ddlMysticCode">
                         <option value="0">无</option>
-                        <option value="0">战斗服</option>
-                        <option value="50">04服</option>
-                        <option value="0">骑士王服</option>
-                        <option value="0">初始服</option>
-                        <option value="0">西服</option>
-                        <option value="0">泳装</option>
-                        <option value="0">月海</option>
-                        <option value="0">月背</option>
-                        <option value="10">极地服</option>
-                        <option value="20">夏威夷衫</option>
-                        <option value="35">新年服</option>
-                        <option value="50">宇航服</option>
+                        <option value="1">战斗服</option>
+                        <option value="2">04服</option>
+                        <option value="3">骑士王服</option>
+                        <option value="4">初始服</option>
+                        <option value="5">西服</option>
+                        <option value="6">泳装</option>
+                        <option value="7">月海</option>
+                        <option value="8">月背</option>
+                        <option value="9">极地服</option>
+                        <option value="10">夏威夷衫</option>
+                        <option value="11">新年服</option>
+                        <option value="12">宇航服</option>
                     </select>
                 </td>
                 <td>敌人1鞭尸</td>
@@ -444,16 +444,26 @@
         if(this.selectedIndex == 0) {
             return;
         }
-	$("txtCraftEssenceAtk").value = this.value;
         switch(this.selectedIndex) {
+	    case 1:
+		$("txtCraftEssenceAtk").value = 786;
+		$("txtCraftEssenceHp").value = 0;
+		break;
+	    case 5:
+		$("txtCraftEssenceAtk").value = 2034;
+                $("txtCraftEssenceHp").value = 0;
+		break;
             case 6:
             case 7:
+		$("txtCraftEssenceAtk").value = 393;
                 $("txtCraftEssenceHp").value = 629;
                 break;
             case 8:
+		$("txtCraftEssenceAtk").value = 0;
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
+		$("txtCraftEssenceAtk").value = 2000;
                 $("txtCraftEssenceHp").value = 0;
         }
         adjHp();
@@ -633,12 +643,12 @@
                 npGainBuff += 10;
 	}
 	//17.御主装备
-	npStrength += getFloat("ddlMysticCode");
 	switch($("ddlMysticCode").selectedIndex) {
 	    case 1:
 		attackBuff += 30;
 		break;
 	    case 2:
+		npStrength += 50;
 		npGainBuff += 50;
 		break;
             case 3:
@@ -671,11 +681,19 @@
                 break;
 	    case 9:
 		attackBuff += 20;
+		npStrength += 10;
 		break;
 	    case 10:
+		npStrength += 20;
 		if(cardColor == 1) {
                     cardBuff += 30;
                 }
+		break;
+	    case 11:
+		npStrength += 35;
+		break;
+	    case 12:
+		npStrength += 50;
 	}
         /*
             ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
