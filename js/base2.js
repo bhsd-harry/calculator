@@ -15,14 +15,6 @@ if (typeof storage === 'object') {
     }
 }
 
-//查询
-$("txtKey").oninput = function () {
-    search();
-}
-$("btnSearch").onclick = function () {
-    search();
-}
-
 //显示查询结果
 function showResult() {
     showDiv("divResult");
@@ -42,7 +34,7 @@ function search() {
     initialData();
 
     //过滤关键词特殊字符
-    word = filterStr($("txtKey").value);
+    word = "";
 
     //根据关键词查询匹配结果
     switch(word[0]) {
@@ -68,14 +60,6 @@ function search() {
     }
     initialServantList();
     $("ddlServant").onchange();
-}
-
-//点击阵营、属性和特性超链接字体
-function autoClickSearch(obj){
-    if(confirm(`你确定要搜索关键词【${obj.dataset.value}】?`)){
-        $("txtKey").value=obj.dataset.value;
-        $("btnSearch").click();        
-    }
 }
 
 //根据关键词查询结果
@@ -126,7 +110,7 @@ function binds(servant,key,id,flag){
     let alignments = servant[key].clone();//数组复制，不影响原数组
     if (alignments instanceof Array && alignments.length > 0) {
         for (let i = 0, l = alignments.length; i < l; i++) {
-            alignments[i]= `<a href=\"javascript:;\" data-value=\"${flag}${alignments[i]}\" onclick=\"autoClickSearch(this)\">${alignments[i]}</a>`;
+            alignments[i]= `<a href=\"javascript:;\" data-value=\"${flag}${alignments[i]}\" >${alignments[i]}</a>`;
         }
 
         alignments = alignments.join("&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -140,30 +124,6 @@ function bindAlignments(servant) {
 }
 //加载搜索提示(类似自动完成)
 function bindSearchTips(){
-    let tips=[],
-        tmpAttribute,
-        tmpAlignments;
-
-    servants.forEach(function(servant){
-        tmpAttribute=servant.attribute;
-        tmpAlignments=servant.alignments.clone();
-
-        tips.push(`@${tmpAttribute}`);
-
-        tmpAlignments.forEach(function(a){
-            tips.push(`$${a}`);
-        });
-    })
-    //去重
-    tips=Array.from(new Set(tips));
-    //加载属性和特性的搜索提示(类似自动完成)
-    let dlTips=$("dlTips");
-    tips.forEach(function(t){
-        let opt=document.createElement("option");
-        opt.value=t;
-        dlTips.appendChild(opt);
-    })
-
     let dlCraftEssenceTips=$("dlCraftEssenceTips");
     dlCraftEssenceTips.innerHTML=`
         <option value="786">20级宝石翁</option>
