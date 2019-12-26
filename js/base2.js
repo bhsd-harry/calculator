@@ -120,8 +120,7 @@ function binds(servant,key,id,flag){
 
 //加载搜索提示(类似自动完成)
 function bindSearchTips(){
-    let dlCraftEssenceTips=$("dlCraftEssenceTips");
-    dlCraftEssenceTips.innerHTML=`
+    $("dlCraftEssenceTips").innerHTML=`
         <option value="786">20级宝石翁</option>
         <option value="1089">40级宝石翁</option>
 	<option value="1392">60级宝石翁</option>
