@@ -339,7 +339,7 @@
 <script src="js/lvs.js"></script>
 <script src="js/data.js"></script>
 <script src="js/common.js"></script>
-<script src="js/base.js"></script>
+<script src="js/base2.js"></script>
 <script src="js/functions.js"></script>
 <script type="text/javascript">
     "use strict";
@@ -520,7 +520,7 @@
     function bindServantData(id) {
         let servant = servants[id];
         //1.阵营
-        $("spanAttribute").innerHTML = "<a href='javascript:;' data-value='@" + servant.attribute + "' onclick='autoClickSearch(this)'>" + servant.attribute + "</a>"
+        $("spanAttribute").innerHTML = servant.attribute;
 	//2.基本数据
 	$("txtNTarget").value = servant.target;
 	$("txtNHits").value = servant.hit;

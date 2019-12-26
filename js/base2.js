@@ -110,7 +110,7 @@ function binds(servant,key,id,flag){
     let alignments = servant[key].clone();//数组复制，不影响原数组
     if (alignments instanceof Array && alignments.length > 0) {
         for (let i = 0, l = alignments.length; i < l; i++) {
-            alignments[i]= `<a href=\"javascript:;\" data-value=\"${flag}${alignments[i]}\" >${alignments[i]}</a>`;
+            alignments[i]="";
         }
 
         alignments = alignments.join("&nbsp;&nbsp;&nbsp;&nbsp;");
