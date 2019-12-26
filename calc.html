@@ -380,10 +380,7 @@
         }
         let servant = servants[id];  
         let lv = this.value;
-        let maxLv = servant.star * 5 + 55;
-        if(servant.star >= 4){
-            maxLv = servant.star * 10 + 40;
-        }
+        let maxLv = (servant.star < 4? servant.star * 5 + 55 : servant.star * 10 + 40);
         if(lv > 90){
             $("txtAttack").value = servant.maxAtk;
             $("txtMaxHp").value = servant.maxHp;
