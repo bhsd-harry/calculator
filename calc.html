@@ -211,6 +211,7 @@
                 <td>概念礼装</td>
                 <td>
                     <select id="ddlCraftEssence">
+                        <option value="0">自定义</option>
                         <option value="786">20级宝石</option>
                         <option value="2000">100级醉贞</option>
                         <option value="2000">100级空骑</option>
@@ -220,7 +221,6 @@
                         <option value="393">20级北斋</option>
                         <option value="0">15级泳装樱</option>
                         <option value="2000">100级轨迹</option>
-                        <option value="0">自定义</option>
                     </select>
                 </td>
 		<td>敌人1</td>
@@ -267,6 +267,7 @@
                 <td>御主礼装</td>
                 <td>
                     <select id="ddlMysticCode">
+                        <option value="0">无</option>
                         <option value="0">战斗服</option>
                         <option value="50">04服</option>
                         <option value="0">骑士王服</option>
@@ -279,7 +280,6 @@
                         <option value="20">夏威夷衫</option>
                         <option value="35">新年服</option>
                         <option value="50">宇航服</option>
-                        <option value="0">无</option>
                     </select>
                 </td>
                 <td>敌人1鞭尸</td>
@@ -441,16 +441,16 @@
     };
     //礼装
     $("ddlCraftEssence").onchange=function(){
-        if(this.selectedIndex == 9) {
+        if(this.selectedIndex == 0) {
             return;
         }
 	$("txtCraftEssenceAtk").value = this.value;
         switch(this.selectedIndex) {
-            case 5:
             case 6:
+            case 7:
                 $("txtCraftEssenceHp").value = 629;
                 break;
-            case 7:
+            case 8:
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
@@ -593,40 +593,40 @@
         let npGainBuff = getFloat("txtNpGainBuff");
         //16.礼装
 	switch($("ddlCraftEssence").selectedIndex) {
-	    case 1:
+	    case 2:
 		npStrength += 15;
 		break;
-	    case 2:
+	    case 3:
 		npStrength += 10;
 		if(cardColor == 1.5) {
 		    cardBuff += 10;
 		}
 		break;
-	    case 3:
+	    case 4:
 		attackBuff += 15;
 		break;
-	    case 4:
+	    case 5:
 		npStrength += 60;
 		break;
-            case 5:
+            case 6:
                 npStrength += 10;
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
                 break;
-            case 6:
+            case 7:
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
 		npGainBuff += 10;
                 break;
-            case 7:
+            case 8:
                 npStrength += 10;
                 if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
                 break;
-	    case 8:
+	    case 9:
 		if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
@@ -635,44 +635,44 @@
 	//17.御主装备
 	npStrength += getFloat("ddlMysticCode");
 	switch($("ddlMysticCode").selectedIndex) {
-	    case 0:
+	    case 1:
 		attackBuff += 30;
 		break;
-	    case 1:
+	    case 2:
 		npGainBuff += 50;
 		break;
-            case 2:
+            case 3:
                 if(cardColor == 1.5) {
                     cardBuff += 60;
                 }
 		break;
-	    case 3:
+	    case 4:
 		attackBuff += 50;
                 break;
-	    case 4:
+	    case 5:
 		if(cardColor == 0.8) {
                     cardBuff += 50;
                 }
                 break;
-	    case 5:
+	    case 6:
 		if(cardColor == 0.8) {
                     cardBuff += 30;
                 }
                 break;
-	    case 6:
+	    case 7:
 		if(cardColor == 1) {
                     cardBuff += 50;
                 }
                 break;
-            case 7:
+            case 8:
                 if(cardColor == 1) {
                     cardBuff += 30;
                 }
                 break;
-	    case 8:
+	    case 9:
 		attackBuff += 20;
 		break;
-	    case 9:
+	    case 10:
 		if(cardColor == 1) {
                     cardBuff += 30;
                 }
