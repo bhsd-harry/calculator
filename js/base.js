@@ -57,7 +57,7 @@ function search() {
     
     //更新数组序号
     let tmpServants = [];
-    for (let i = 0; i < servants.length; i++) {
+    for (let i = 0, l = servants.length; i < l; i++) {
         tmpServants[servants[i].id] = servants[i];
     }
     servants = tmpServants;
@@ -125,7 +125,7 @@ function loadStorage(isTreasure) {
 function binds(servant,key,id,flag){
     let alignments = servant[key].clone();//数组复制，不影响原数组
     if (alignments instanceof Array && alignments.length > 0) {
-        for (let i = 0; i < alignments.length; i++) {
+        for (let i = 0, l = alignments.length; i < l; i++) {
             alignments[i]= `<a href=\"javascript:;\" data-value=\"${flag}${alignments[i]}\" onclick=\"autoClickSearch(this)\">${alignments[i]}</a>`;
         }
 

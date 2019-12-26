@@ -524,7 +524,7 @@
         document.querySelector("#ddlColor option[value='" + servant.cardColor + "']").selected = true;
         //5.从者职介
         let Classes = $("ddlClass").options;
-        for (let i = 0; i < Classes.length; i++) {
+        for (let i = 0, l = Classes.length; i < l; i++) {
             let Class = Classes[i];
             if (Class.text == servant.Class) {
                 Class.selected = true;
@@ -759,15 +759,16 @@
     function reSort() {
         resultArr.sort(compare("avg"));
         clearTable();
-        for (let i = 0; i < resultArr.length; i++) {
+        for (let i = 0, l = resultArr.length; i < l; i++) {
             createTr(resultArr[i]);
         }
     }
     //删除指定行
     function delTr(obj, guid) {
-        for (let i = 0; i < resultArr.length; i++) {
+        for (let i = 0, l = resultArr.length; i < l; i++) {
             if (resultArr[i].guid == guid) {
                 resultArr.remove(i);
+		break;
             }
         }
         let deleteRow = obj.parentElement.parentElement;
