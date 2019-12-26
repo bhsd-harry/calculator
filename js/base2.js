@@ -51,19 +51,6 @@ function loadStorage(isTreasure) {
     }
 }
 
-//绑定属性和特性值
-function binds(servant,key,id,flag){
-    let alignments = servant[key].clone();//数组复制，不影响原数组
-    if (alignments instanceof Array && alignments.length > 0) {
-        for (let i = 0, l = alignments.length; i < l; i++) {
-            alignments[i]="";
-        }
-
-        alignments = alignments.join("&nbsp;&nbsp;&nbsp;&nbsp;");
-        $(id).innerHTML = alignments;
-    }
-}
-
 //加载搜索提示(类似自动完成)
 function bindSearchTips(){
     $("dlCraftEssenceTips").innerHTML=`
@@ -91,4 +78,3 @@ function bindSearchTips(){
         }
     })
 })();
-
