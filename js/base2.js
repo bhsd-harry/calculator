@@ -118,10 +118,6 @@ function binds(servant,key,id,flag){
     }
 }
 
-//属性
-function bindAlignments(servant) {
-    binds(servant,"alignments","spanAlignments","$");
-}
 //加载搜索提示(类似自动完成)
 function bindSearchTips(){
     let dlCraftEssenceTips=$("dlCraftEssenceTips");

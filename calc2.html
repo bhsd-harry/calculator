@@ -27,7 +27,6 @@
                     <label for="ckIsMaxGrail">
                         <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX
 		    </label>
-                    <datalist id="dlTips"></datalist>
                     <datalist id="dlCraftEssenceTips"></datalist>
                 </td>
             </tr>
@@ -64,8 +63,6 @@
                 </td>
                 <td>阵营</td>
                 <td><span id="spanAttribute"></span></td>  
-                <td>属性</td>
-                <td><span id="spanAlignments"></span></td>
             </tr>           
             <tr>
                 <td>攻击力</td>
@@ -543,8 +540,6 @@
         bindClassSkill(servant);
         //7.宝具副效果补充(oc特攻只能展示一种副效果，如：1001的oc特攻只展示了宝具特攻，副效果的20宝具威力buff没展示，在这进行补充)
         bindNpEffect(servant);
-        //8.属性
-        bindAlignments(servant);
     }
 
     /////////////////////////////////////////////////////////////////////////
