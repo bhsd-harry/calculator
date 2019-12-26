@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        .servant tr:nth-child(2) td:nth-child(odd) {
+            width: 10%;
+        }
+        .servant tr:nth-child(2) td:nth-child(even) {
+            width: 15%;
+        }
+        .servant tr:nth-child(2)>td:nth-child(2) input{
+            width:450px;
+        }
+    </style>
+</head>
+<body id="content">
+    <div id="divServant">
+        <table class="servant">
+            <tr>
+                <td colspan="8">
+                    <select id="ddlChooseServant">
+                        <option value="-1">|----------------------请选择从者-------------------------|</option>
+                    </select>
+                    <label for="ckIsMaxGrail">
+                        <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX
+		    </label>
+                    <datalist id="dlCraftEssenceTips"></datalist>
+                </td>
+            </tr>
+            <tr>
+                <td>等级</td>
+                <td>
+                    <select id="ddlLvs">
+                        <option value="-1">默认</option>
+                        <option value="100">Lv.100</option>
+                        <option value="90">Lv.90</option>
+                        <option value="80">Lv.80</option>
+                        <option value="70">Lv.70</option>
+                        <option value="65">Lv.65</option>
+                        <option value="60">Lv.60</option>
+                    </select>
+                </td>
+                <td>从者职介</td>
+                <td>
+                    <select id="ddlClass">
+                        <option value="1.0">Saber</option>
+                        <option value="0.95">Archer</option>
+                        <option value="1.05">Lancer</option>
+                        <option value="1.0">Rider</option>
+                        <option value="0.9">Caster</option>
+                        <option value="0.9">Assassin</option>
+                        <option value="1.1">Berserker</option>
+                        <option value="1.1">Ruler</option>
+                        <option value="1.1">Avenger</option>
+                        <option value="1.0">Shielder</option>
+                        <option value="1.0">MoonCancer</option>
+                        <option value="1.0">Alterego</option>
+                        <option value="1.0">Foreigner</option>
+                    </select>
+                </td>
+                <td>阵营</td>
+                <td><span id="spanAttribute"></span></td>
+                <td>卡色</td>
+                <td>
+                    <select id="ddlColor">
+                        <option value="0.8">Quick</option>
+                        <option value="1">Arts</option>
+                        <option value="1.5">Buster</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>攻击力</td>
+                <td>
+                    <input type="text" id="txtAttack" />
+                </td>
+                <td>芙芙Atk</td>
+                <td>
+                    <input type="text" id="txtFouAtk" value="1000" />
+                </td>
+                <td>礼装Atk</td>
+                <td>
+                    <input type="text" id="txtCraftEssenceAtk" value="0" list="dlCraftEssenceTips"/>
+                </td>
+                <td>NP率(%)</td>
+                <td>
+                    <input type="text" id="txtNpGain" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td>Hp最大值</td>
+                <td>
+                    <input type="text" id="txtMaxHp" />
+                </td>
+                <td>芙芙Hp</td>
+                <td>
+                    <input type="text" id="txtFouHp" value="1000" />
+                </td>
+                <td>礼装Hp</td>
+                <td>
+                    <input type="text" id="txtCraftEssenceHp" value="0" />
+                </td>
+                <td>剩余Hp值</td>
+                <td>
+                    <input type="text" id="txtRemainHp" size=12px />
+                    <input type="button" value="满血" id="btnAdjHp" />
+                </td>
+            </tr>
+            <tr>
+                <td>宝具等级</td>
+                <td>
+                    <select id="ddlNpLevel">
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                        <option value="2">3</option>
+                        <option value="3">4</option>
+                        <option value="4">5</option>
+                    </select>
+                    <label for="ckIsSpecialAttack">
+                        <input type="checkbox" id="ckIsSpecialAttack" value="1" /> 特攻
+                    </label>
+                </td>
+                <td>宝具倍率(%)</td>
+                <td>
+                    <input type="text" id="txtNpCoefficient" />
+                </td>
+                <td>OC等级</td>
+                <td>
+                    <select id="ddlOvercharge" oldvalue = "oc1">
+                        <option value="oc1">1</option>
+                        <option value="oc2">2</option>
+                        <option value="oc3">3</option>
+                        <option value="oc4">4</option>
+                        <option value="oc5">5</option>
+                    </select>
+                </td>
+                <td>目标数</td>
+                <td>
+                    <input type="text" id="txtNTarget" />
+                </td>
+            </tr>
+            <tr>
+		<td>技能1</td>
+		<td>
+		    <select id="ddlSkill1">
+                        <option value="0">无</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+		</td>
+                <td>技能2</td>
+                <td>
+                    <select id="ddlSkill2">
+                        <option value="0">无</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSkill3">
+                        <option value="0">无</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+                <td>Hit数</td>
+                <td>
+                    <input type="text" id="txtNHits" size=10px />
+                    <input type="button" value="全鞭尸" id="btnAdjOverkill" />
+                </td>
+	    </tr>
+	    <tr>
+                <td>概念礼装</td>
+                <td>
+                    <select id="ddlCraftEssence">
+                        <option value="0">自定义</option>
+                        <option value="1">20级宝石</option>
+                        <option value="2">100级醉贞</option>
+                        <option value="3">100级空骑</option>
+                        <option value="4">100级相扑</option>
+                        <option value="5">80级黑杯</option>
+                        <option value="6">20级潜水学妹</option>
+                        <option value="7">20级北斋</option>
+                        <option value="8">15级泳装樱</option>
+                        <option value="9">100级轨迹</option>
+                    </select>
+                </td>
+                <td>敌人1</td>
+                <td>
+                    <select id="ddlEnemyClass1">
+                        <option value="1.0">Default</option>
+                        <option value="0.8">Berserker</option>
+                        <option value="0.9">Assassin</option>
+                        <option value="1.1">Rider</option>
+                        <option value="1.2">Caster/MC</option>
+                    </select>
+                    <label for="ckIsUndying1">
+                        <input type="checkbox" id="ckIsUndying1" value="1" /> 死灵
+                    </label>
+                </td>
+                <td>敌人2</td>
+                <td>
+                    <select id="ddlEnemyClass2">
+                        <option value="1.0">Default</option>
+                        <option value="0.8">Berserker</option>
+                        <option value="0.9">Assassin</option>
+                        <option value="1.1">Rider</option>
+                        <option value="1.2">Caster/MC</option>
+                    </select>
+                    <label for="ckIsUndying2">
+                        <input type="checkbox" id="ckIsUndying2" value="1" /> 死灵
+                    </label>
+                </td>
+                <td>敌人3</td>
+                <td>
+                    <select id="ddlEnemyClass3">
+                        <option value="1.0">Default</option>
+                        <option value="0.8">Berserker</option>
+                        <option value="0.9">Assassin</option>
+                        <option value="1.1">Rider</option>
+                        <option value="1.2">Caster/MC</option>
+                    </select>
+                    <label for="ckIsUndying3">
+                        <input type="checkbox" id="ckIsUndying3" value="1" /> 死灵
+                    </label>
+                </td>
+	    </tr>
+            <tr>
+                <td>御主礼装</td>
+                <td>
+                    <select id="ddlMysticCode">
+                        <option value="0">无</option>
+                        <option value="1">战斗服</option>
+                        <option value="2">04服</option>
+                        <option value="3">骑士王服</option>
+                        <option value="4">初始服</option>
+                        <option value="5">西服</option>
+                        <option value="6">泳装</option>
+                        <option value="7">月海</option>
+                        <option value="8">月背</option>
+                        <option value="9">极地服</option>
+                        <option value="10">夏威夷衫</option>
+                        <option value="11">新年服</option>
+                        <option value="12">宇航服</option>
+                    </select>
+                </td>
+                <td>阵营克制</td>
+                <td>
+                    <select id="ddlAttributeResist1">
+                        <option value="1.0">非克制</option>
+                        <option value="1.1">克制</option>
+                        <option value="0.9">被克制</option>
+                    </select>
+                </td>
+                <td>阵营克制</td>
+                <td>
+                    <select id="ddlAttributeResist2">
+                        <option value="1.0">非克制</option>
+                        <option value="1.1">克制</option>
+                        <option value="0.9">被克制</option>
+                    </select>
+                </td>
+                <td>阵营克制</td>
+                <td>
+                    <select id="ddlAttributeResist3">
+                        <option value="1.0">非克制</option>
+                        <option value="1.1">克制</option>
+                        <option value="0.9">被克制</option>
+                    </select>
+                </td>
+            </tr>
+	    <tr>
+                <td>攻击力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtAttackBuff" value="0" />
+                </td>
+                <td>敌方防御力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtEnemyDefence1" value="0" basevalue="0"/>
+                </td>
+
+                <td>敌方防御力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtEnemyDefence2" value="0" basevalue="0"/>
+                </td>
+                <td>敌方防御力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtEnemyDefence3" value="0" basevalue="0"/>
+                </td>
+	    </tr>
+	    <tr>
+                <td>卡牌Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                </td>
+                <td>卡牌Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                </td>
+                <td>卡牌Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                </td>
+                <td>卡牌Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                </td>
+	    </tr>
+	    <tr>
+                <td>宝具威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtNpStrength" value="0" basevalue="0"/>
+                </td>
+                <td>特攻威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtSpecialAttack" value="0" />
+                </td>
+                <td>宝具特攻(%)</td>
+                <td>
+                    <input type="text" id="txtNpSpecialAttack" value="100" />
+                </td>
+                <td>固定伤害Buff</td>
+                <td>
+                    <input type="text" id="txtDamagePlus" value="0" basevalue="0" />
+                </td>
+	    </tr>
+	    <tr>
+                <td>黄金律(%)</td>
+                <td>
+                    <input type="text" id="txtNpGainBuff" value="0" />
+                </td>
+                <td>敌人1鞭尸</td>
+                <td>
+                    <input type="text" id="txtOverkill1" value="0" />
+                </td>
+                <td>敌人2鞭尸</td>
+                <td>
+                    <input type="text" id="txtOverkill2" value="0" />
+                </td>
+                <td>敌人3鞭尸</td>
+                <td>
+                    <input type="text" id="txtOverkill3" value="0" />
+                </td>
+	    </tr>
+            <tr>
+                <td colspan="8">
+                    <input type="button" value="孔   明" id="btnAddZhuge" />
+                    <input type="button" value="梅   林" id="btnAddMerlin" />
+                    <input type="button" value="狐   狸" id="btnAddTamamo" />
+                    <input type="button" value="斯卡蒂" id="btnAddSkadi" />
+                    <input type="button" value="清   空" id="btnClearBuff" />
+                    <input type="button" value="计   算" id="btnCalcute" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div id="divResult" class="resultWrapper">
+        <b>结果：<a href="javascript:;" >清空</a></b>
+        <table id="tbResult" class="result">
+            <tr>
+                <th>排名</th>
+                <th>从者</th>
+                <th>等级</th>
+                <th>ATK</th>
+                <th>阵营克制</th>
+                <th>宝具等级(oc)</th>
+                <th>宝具倍率</th>
+                <th>攻击力Buff</th>
+                <th>卡牌Buff</th>
+                <th>宝具威力Buff</th>
+                <th>宝具特攻</th>
+                <th>黄金律</th>
+                <th>伤害最小值</th>
+                <th>伤害平均值</th>
+                <th>伤害最小值</th>
+                <th>伤害平均值</th>
+                <th>伤害最小值</th>
+                <th>伤害平均值</th>
+                <th>NP获取</th>
+                <th>&nbsp;</th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
