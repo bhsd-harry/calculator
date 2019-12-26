@@ -319,14 +319,14 @@
                 <th>等级</th>
                 <th>ATK</th>
                 <th>阵营克制</th>
-                <th>宝具等级</th>
+                <th>宝具等级(oc)</th>
                 <th>宝具倍率</th>
-                <th>宝具特攻(oc)</th>
-                <th>宝具威力Buff</th>
-                <th>卡牌Buff</th>
                 <th>攻击力Buff</th>
-                <th>特攻威力Buff</th>
                 <th>敌方防御力Buff</th>
+                <th>卡牌Buff</th>
+                <th>宝具威力Buff</th>
+                <th>特攻威力Buff</th>
+                <th>宝具特攻</th>
 		<th>黄金律</th>
                 <th>伤害最小值</th>
                 <th>伤害平均值</th>
@@ -809,22 +809,22 @@
         newRow.insertCell(-1).innerHTML = obj.atk;
         //5.阵营克制
         newRow.insertCell(-1).innerHTML = obj.attributeResist;
-        //6.宝具等级      
-        newRow.insertCell(-1).innerHTML = obj.NP;
+        //6.宝具等级(oc)
+        newRow.insertCell(-1).innerHTML = obj.NP + "(" + obj.oc + ")";
         //7.宝具倍率      
         newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.npCoef + "</span>"
-        //8.宝具特攻(oc)  
-        newRow.insertCell(-1).innerHTML = obj.npSpecialAttack + "(" + obj.oc + ")";
-        //9.宝具威力Buff 
-        newRow.insertCell(-1).innerHTML = obj.npStrength;
-        //10.卡牌Buff     
-        newRow.insertCell(-1).innerHTML = obj.cardBuff;
-        //11.攻击力Buff   
+        //8.攻击力Buff
         newRow.insertCell(-1).innerHTML = obj.attackBuff;
-        //12.特攻威力Buff 
-        newRow.insertCell(-1).innerHTML = obj.specialAttackBuff;
-        //13.敌方防御Buff     
+        //9.敌方防御Buff
         newRow.insertCell(-1).innerHTML = obj.enemyDefence;
+        //10.卡牌Buff
+        newRow.insertCell(-1).innerHTML = obj.cardBuff;
+        //11.宝具威力Buff
+        newRow.insertCell(-1).innerHTML = obj.npStrength;
+        //12.特攻威力Buff
+        newRow.insertCell(-1).innerHTML = obj.specialAttackBuff;
+        //13.宝具特攻(oc)  
+        newRow.insertCell(-1).innerHTML = obj.npSpecialAttack;
 	//14.黄金律
 	newRow.insertCell(-1).innerHTML = obj.npGainBuff;
         //15.宝具伤害最小值    
