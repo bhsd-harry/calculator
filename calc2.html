@@ -759,16 +759,22 @@
 	}
         //10.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");
-	let cardResist1 = getFloat("txtCardResist1");
-	let cardResist2 = getFloat("txtCardResist2");
-	let cardResist3 = getFloat("txtCardResist3");
+	let cardResist = [0, 0, 0];
+	for(let i=1, l="";i<=3;i++){
+	    l = i.toString();
+	    cardResist[i-1] = getFloat("txtCardResist"+l);
+	}
         //9.宝具威力Buff(%)
         let npStrength = getFloat("txtNpStrength");
         //13.特攻威力Buff(%)与宝具特攻(%)
-	let npSpecialAttack = 1;
-	if($("ckIsSpecialAttack1").checked) {
-	    npStrength += getFloat("txtSpecialAttack");
-	    npSpecialAttack = getFloat("txtNpSpecialAttack") / 100;
+	let specialAttackBuff = [0, 0, 0];
+	let npSpecialAttack = [1, 1, 1];
+	for(let i=1, l="";i<=3;i++){
+	    l = i.toString();
+	    if($("ckIsSpecialAttack"+l).checked) {
+		specialAttackBuff[i-1] = getFloat("txtSpecialAttack");
+		npSpecialAttack[i-1] = getFloat("txtNpSpecialAttack") / 100;
+	    }
 	}
         //14.固定伤害Buff
         let damagePlus = getFloat("txtDamagePlus");
@@ -865,9 +871,12 @@
             ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
-        let resultMin1 = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist1) / 100) * Class * ClassResist[0] * attributeResist[0] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + npStrength / 100) * npSpecialAttack + damagePlus;
-        resultMin1 = Math.floor(resultMin1);
-        let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist1) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + npStrength / 100) * npSpecialAttack + damagePlus;
+	let resultMin = [0, 0, 0];
+	for(let i=0;i<3;i++){
+	    resultMin[i] = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[i]) / 100) * Class * ClassResist[i] * attributeResist[i] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[i]) / 100) * (1 + (npStrength + specialAttackBuff[i]) / 100) * npSpecialAttack[i] + damagePlus;
+	    resultMin[i] = Math.floor(resultMin[i]);
+	}
+        let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
         resultAvg = Math.floor(resultAvg);
 	let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + cardBuff /100);
 	let npGain1 = npGainBase * getFloat("ddlEnemyClass1");
@@ -919,17 +928,16 @@
             servantName: servantName,
 	    lv:getDdlText("ddlLvs"),
             atk: atk,
-            attributeResist: attributeResist,
 	    NP: NP,
             cardColor: cardColor,
             npCoef: npCoef * 100,
-            npSpecialAttack: npSpecialAttack * 100,
             oc: oc,
-            npStrength: npStrength,
-            cardBuff: cardBuff,
             attackBuff: attackBuff - enemyDefence[0],
+            cardBuff: cardBuff - cardResist[0],
+            npStrength: npStrength + specialAttackBuff[0],
+            npSpecialAttack: npSpecialAttack[0] * 100,
 	    npGainBuff: npGainBuff,
-            min: resultMin1,
+            min: resultMin,
             avg: resultAvg,
             ClassResistType: ClassResistType,
 	    npGain: npGain
@@ -1006,20 +1014,20 @@
 	//14.黄金律
 	newRow.insertCell(-1).innerHTML = obj.npGainBuff;
         //15.宝具伤害最小值    
-        let min = newRow.insertCell(-1);
-        min.innerHTML = obj.min;
-        min.classList.add(obj.ClassResistType[0]);
+        let min1 = newRow.insertCell(-1);
+        min1.innerHTML = obj.min[0];
+        min1.classList.add(obj.ClassResistType[0]);
         //16.宝具伤害平均值       
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
         avg.classList.add(obj.ClassResistType[0]);
         //15.宝具伤害最小值   
         let min2 = newRow.insertCell(-1);
-        min2.innerHTML = obj.min;
+        min2.innerHTML = obj.min[1];
         min2.classList.add(obj.ClassResistType[1]);
         //15.宝具伤害最小值   
         let min3 = newRow.insertCell(-1);
-        min3.innerHTML = obj.min;
+        min3.innerHTML = obj.min[2];
         min3.classList.add(obj.ClassResistType[2]);
 	//17.NP获取
 	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
