@@ -278,15 +278,15 @@
                 <td>御主礼装</td>
                 <td>
                     <select id="ddlMysticCode">
-                        <option value="">无</option>
-                        <option value="0-1">战斗服</option>
+                        <option value="0-1">无</option>
+                        <option value="0-2">战斗服</option>
                         <option value="50-1">04服</option>
-                        <option value="0-2">骑士王服</option>
-                        <option value="0-3">初始服</option>
-                        <option value="0-4">西服</option>
-                        <option value="0-5">泳装</option>
-                        <option value="0-6">月海</option>
-                        <option value="0-7">月背</option>
+                        <option value="0-3">骑士王服</option>
+                        <option value="0-4">初始服</option>
+                        <option value="0-5">西服</option>
+                        <option value="0-6">泳装</option>
+                        <option value="0-7">月海</option>
+                        <option value="0-8">月背</option>
                         <option value="10">极地服</option>
                         <option value="20">夏威夷衫</option>
                         <option value="35">新年服</option>
@@ -727,45 +727,47 @@
 	let attributeResistMatrix = [];
 	switch($("spanAttribute").innerHTML) {
 	    case "天":
-		attributeResistMatrix = [1, 1.1, 0.9, 1, 1];
+		attributeResistMatrix = [1, 1, 1.1, 0.9, 1, 1];
 		break;
 	    case "地":
-		attributeResistMatrix = [0.9, 1, 1.1, 1, 1];
+		attributeResistMatrix = [1, 0.9, 1, 1.1, 1, 1];
 		break;
 	    case "人":
-		attributeResistMatrix = [1.1, 0.9, 1, 1, 1];
+		attributeResistMatrix = [1, 1.1, 0.9, 1, 1, 1];
 		break;
 	    case "星":
-		attributeResistMatrix = [1, 1, 1, 1, 1.1];
+		attributeResistMatrix = [1, 1, 1, 1, 1, 1.1];
 		break;
 	    case "兽":
-		attributeResistMatrix = [1, 1, 1, 1.1, 1];
+		attributeResistMatrix = [1, 1, 1, 1, 1.1, 1];
 		break;
 	    default:
-		attributeResistMatrix = [1, 1, 1, 1, 1];
+		attributeResistMatrix = [1, 1, 1, 1, 1, 1];
 	}
 	for(let i=1, l="";i<=3;i++) {
 	    l = i.toString();
 	    attributeResist[i-1] = attributeResistMatrix[$("ddlEnemyAttribute"+l).selectedIndex];
 	}
-        //9.宝具威力Buff(%)
-        let npStrength = getFloat("txtNpStrength");
-        //10.卡牌Buff(%)
-        let cardBuff = getFloat("txtCardBuff");
         //11.攻击力Buff(%)
         let attackBuff = getFloat("txtAttackBuff");
         //12.敌方防御力Buff(%)
-        let enemyDefence1 = getFloat("txtEnemyDefence1");
-	enemyDefence1 = Math.max(-100, enemyDefence1);
-        let enemyDefence2 = getFloat("txtEnemyDefence2");
-        enemyDefence2 = Math.max(-100, enemyDefence2);
-        let enemyDefence3 = getFloat("txtEnemyDefence3");
-        enemyDefence3 = Math.max(-100, enemyDefence3);
+	let enemyDefence = [0, 0, 0];
+	for(let i=1, l="";i<=3;i++){
+	    l = i.toString();
+	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+l);
+	    enemyDefence[i-1] = Math.max(-100, enemyDefence[i-1]);
+	}
+        //10.卡牌Buff(%)
+        let cardBuff = getFloat("txtCardBuff");
+	let cardResist1 = getFloat("txtCardResist1");
+	let cardResist2 = getFloat("txtCardResist2");
+	let cardResist3 = getFloat("txtCardResist3");
+        //9.宝具威力Buff(%)
+        let npStrength = getFloat("txtNpStrength");
         //13.特攻威力Buff(%)与宝具特攻(%)
-        let specialAttackBuff = 0;
 	let npSpecialAttack = 1;
 	if($("ckIsSpecialAttack1").checked) {
-	    specialAttackBuff = getFloat("txtSpecialAttack");
+	    npStrength += getFloat("txtSpecialAttack");
 	    npSpecialAttack = getFloat("txtNpSpecialAttack") / 100;
 	}
         //14.固定伤害Buff
@@ -863,9 +865,9 @@
             ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
-        let resultMin = atk * 0.23 * npCoef * cardColor * (1 + cardBuff / 100) * Class * ClassResist[0] * attributeResist[0] * 0.9 * Math.max(0, 1 + attackBuff / 100 - enemyDefence1 / 100) * (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
-        resultMin = Math.floor(resultMin);
-        let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + cardBuff / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + attackBuff / 100 - enemyDefence1 / 100) * (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
+        let resultMin1 = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist1) / 100) * Class * ClassResist[0] * attributeResist[0] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + npStrength / 100) * npSpecialAttack + damagePlus;
+        resultMin1 = Math.floor(resultMin1);
+        let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist1) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + npStrength / 100) * npSpecialAttack + damagePlus;
         resultAvg = Math.floor(resultAvg);
 	let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + cardBuff /100);
 	let npGain1 = npGainBase * getFloat("ddlEnemyClass1");
@@ -925,11 +927,9 @@
             oc: oc,
             npStrength: npStrength,
             cardBuff: cardBuff,
-            attackBuff: attackBuff,
-            specialAttackBuff: specialAttackBuff,
-	    enemyDefence: enemyDefence1,
+            attackBuff: attackBuff - enemyDefence[0],
 	    npGainBuff: npGainBuff,
-            min: resultMin,
+            min: resultMin1,
             avg: resultAvg,
             ClassResistType: ClassResistType,
 	    npGain: npGain
@@ -996,11 +996,11 @@
         //7.宝具倍率      
         newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.npCoef + "</span>"
         //8.攻击力Buff
-        newRow.insertCell(-1).innerHTML = obj.attackBuff - obj.enemyDefence;
+        newRow.insertCell(-1).innerHTML = obj.attackBuff;
         //10.卡牌Buff
         newRow.insertCell(-1).innerHTML = obj.cardBuff;
         //11.宝具威力Buff
-        newRow.insertCell(-1).innerHTML = obj.npStrength + obj.specialAttackBuff;
+        newRow.insertCell(-1).innerHTML = obj.npStrength;
         //13.宝具特攻(oc)  
         newRow.insertCell(-1).innerHTML = obj.npSpecialAttack;
 	//14.黄金律
