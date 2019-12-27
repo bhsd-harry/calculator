@@ -119,9 +119,6 @@
                         <option value="3">4</option>
                         <option value="4">5</option>
                     </select>
-                    <label for="ckIsSpecialAttack">
-                        <input type="checkbox" id="ckIsSpecialAttack" value="1" /> 特攻
-                    </label>
                 </td>
                 <td>宝具倍率(%)</td>
                 <td>
@@ -201,16 +198,16 @@
                 <td>概念礼装</td>
                 <td>
                     <select id="ddlCraftEssence">
-                        <option value="0">自定义</option>
-                        <option value="1">20级宝石</option>
-                        <option value="2">100级醉贞</option>
-                        <option value="3">100级空骑</option>
-                        <option value="4">100级相扑</option>
-                        <option value="5">80级黑杯</option>
-                        <option value="6">20级潜水学妹</option>
-                        <option value="7">20级北斋</option>
-                        <option value="8">15级泳装樱</option>
-                        <option value="9">100级轨迹</option>
+                        <option value="">自定义</option>
+                        <option value="786">20级宝石</option>
+                        <option value="2000-1">100级醉贞</option>
+                        <option value="2000-2">100级空骑</option>
+                        <option value="2000-3">100级相扑</option>
+                        <option value="2034">80级黑杯</option>
+                        <option value="393-1">20级潜水学妹</option>
+                        <option value="393-2">20级北斋</option>
+                        <option value="0">15级泳装樱</option>
+                        <option value="2000-4">100级轨迹</option>
                     </select>
                 </td>
                 <td>敌人1</td>
@@ -257,40 +254,53 @@
                 <td>御主礼装</td>
                 <td>
                     <select id="ddlMysticCode">
-                        <option value="0">无</option>
-                        <option value="1">战斗服</option>
-                        <option value="2">04服</option>
-                        <option value="3">骑士王服</option>
-                        <option value="4">初始服</option>
-                        <option value="5">西服</option>
-                        <option value="6">泳装</option>
-                        <option value="7">月海</option>
-                        <option value="8">月背</option>
-                        <option value="9">极地服</option>
-                        <option value="10">夏威夷衫</option>
-                        <option value="11">新年服</option>
-                        <option value="12">宇航服</option>
+                        <option value="">无</option>
+                        <option value="0-1">战斗服</option>
+                        <option value="50-1">04服</option>
+                        <option value="0-2">骑士王服</option>
+                        <option value="0-3">初始服</option>
+                        <option value="0-4">西服</option>
+                        <option value="0-5">泳装</option>
+                        <option value="0-6">月海</option>
+                        <option value="0-7">月背</option>
+                        <option value="10">极地服</option>
+                        <option value="20">夏威夷衫</option>
+                        <option value="35">新年服</option>
+                        <option value="50-2">宇航服</option>
                     </select>
                 </td>
-	    </tr>
-            <tr>
-                <td>职介克制</td>
+                <td>敌人1阵营</td>
                 <td>
-                    <select id="ddlClassResist">
-                        <option value="2.0">普通克制</option>
-                        <option value="1.5">狂阶克制</option>
-                        <option value="1.0">非克制</option>
-			<option value="0.5">被克制</option>
-                        <option value="1.2">Alterego-Beast III</option>
-                    </select>
-                </td>
-                <td>阵营克制</td>
-                <td>
-                    <select id="ddlAttributeResist">
+                    <select id="ddlAttribute1">
                         <option value="1.0">非克制</option>
                         <option value="1.1">克制</option>
                         <option value="0.9">被克制</option>
                     </select>
+                    <label for="ckIsSpecialAttack1">
+                        <input type="checkbox" id="ckIsSpecialAttack1" value="1" /> 特攻
+                    </label>
+                </td>
+                <td>敌人2阵营</td>
+                <td>
+                    <select id="ddlAttribute2">
+                        <option value="1.0">非克制</option>
+                        <option value="1.1">克制</option>
+                        <option value="0.9">被克制</option>
+                    </select>
+                    <label for="ckIsSpecialAttack2">
+                        <input type="checkbox" id="ckIsSpecialAttack2" value="1" /> 特攻
+                    </label>
+                </td>
+                <td>敌人3阵营</td>
+                <td>
+                    <select id="ddlAttribute3">
+                        <option value="1.0">非克制</option>
+                        <option value="1.1">克制</option>
+                        <option value="0.9">被克制</option>
+                    </select>
+                    <label for="ckIsSpecialAttack3">
+                        <input type="checkbox" id="ckIsSpecialAttack3" value="1" /> 特攻
+                    </label>
                 </td>
             </tr>
             <tr>
@@ -492,26 +502,16 @@
         if(this.selectedIndex == 0) {
             return;
         }
+        $("txtCraftEssenceAtk").value = parseInt(this.value);
         switch(this.selectedIndex) {
-	    case 1:
-		$("txtCraftEssenceAtk").value = 786;
-		$("txtCraftEssenceHp").value = 0;
-		break;
-	    case 5:
-		$("txtCraftEssenceAtk").value = 2034;
-                $("txtCraftEssenceHp").value = 0;
-		break;
             case 6:
             case 7:
-		$("txtCraftEssenceAtk").value = 393;
                 $("txtCraftEssenceHp").value = 629;
                 break;
             case 8:
-		$("txtCraftEssenceAtk").value = 0;
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
-		$("txtCraftEssenceAtk").value = 2000;
                 $("txtCraftEssenceHp").value = 0;
         }
         adjHp();
@@ -623,9 +623,9 @@
         //4.从者职介 
         let Class = getFloat("ddlClass");
         //5.职介克制
-        let ClassResist = getFloat("ddlClassResist");
+        let ClassResist = 1;
         //6.阵营克制
-        let attributeResist = getFloat("ddlAttributeResist");
+        let attributeResist = 1;
         //9.宝具威力Buff(%)
         let npStrength = getFloat("txtNpStrength");
         //10.卡牌Buff(%)
@@ -638,7 +638,7 @@
         //13.特攻威力Buff(%)与宝具特攻(%)
         let specialAttackBuff = 0;
 	let npSpecialAttack = 1;
-	if($("ckIsSpecialAttack").checked) {
+	if($("ckIsSpecialAttack1").checked) {
 	    specialAttackBuff = getFloat("txtSpecialAttack");
 	    npSpecialAttack = getFloat("txtNpSpecialAttack") / 100;
 	}
@@ -689,12 +689,12 @@
                 npGainBuff += 10;
 	}
 	//17.御主装备
+        npStrength += parseInt($("ddlMysticCode").value);
 	switch($("ddlMysticCode").selectedIndex) {
 	    case 1:
 		attackBuff += 30;
 		break;
 	    case 2:
-		npStrength += 50;
 		npGainBuff += 50;
 		break;
             case 3:
@@ -727,19 +727,11 @@
                 break;
 	    case 9:
 		attackBuff += 20;
-		npStrength += 10;
 		break;
 	    case 10:
-		npStrength += 20;
 		if(cardColor == 1) {
                     cardBuff += 30;
                 }
-		break;
-	    case 11:
-		npStrength += 35;
-		break;
-	    case 12:
-		npStrength += 50;
 	}
         /*
             ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
@@ -797,7 +789,7 @@
             servantName: servantName,
 	    lv:getDdlText("ddlLvs"),
             atk: atk,
-            attributeResist: getDdlText("ddlAttributeResist"),
+            attributeResist: 1,
 	    NP: NP,
             cardColor: cardColor,
             npCoef: npCoef * 100,
