@@ -544,6 +544,7 @@
     var resultArr = [];
     var rankIndex = 0;
     var guid = 0;
+    var cardNpBase = [1, 3, 0];
     //计算宝具伤害
     function calc() {
         if ($("ddlServant").value == "-1") {
@@ -555,14 +556,7 @@
         let atk = getFloat("txtAttack") + getFloat("txtFouAtk") + getFloat("txtCraftEssenceAtk");
         //2.卡色
         let cardColor = getFloat("ddlColor");
-        let cardNpCoef = 0;
-        switch(cardColor) {
-            case 1:
-                cardNpCoef = 3;
-                break;
-            case 0.8:
-                cardNpCoef = 1;
-        }
+        let cardNpCoef = cardNpBase[$("ddlColor").selectedIndex];
         //3.宝具倍率(%)
         let npCoef = getFloat("txtNpCoefficient") / 100;
         //4.从者职介 
