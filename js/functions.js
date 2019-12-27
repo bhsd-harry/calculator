@@ -110,7 +110,7 @@ function bindNpEffect(servant) {
         $("txtNpSpecialAttack").value = npSpecialAttack;
     }
     if (npEffect && npEffect.defDecrease) {
-        $("txtEnemyDefence").basevalue = 0 - npEffect.defDecrease;
+        $("txtEnemyDefence").basevalue = -npEffect.defDecrease;
     }
     else {
         $("txtEnemyDefence").basevalue = 0;
@@ -153,20 +153,20 @@ function setOc() {
             break;
         case "OcCardBuff": //R金时OC绿魔放
 	case "CardDecrease":
-            $("txtCardBuff").value = $("txtCardBuff").basevalue + ocs[ocLevel];
+            $("txtCardBuff").value -= -ocs[ocLevel];
             break;
         case "OcAttackBuff": //B兰OC加攻
             $("txtAttackBuff").value = ocs[ocLevel];
             break;
         case "DefDecrease": //宝具前降防
-            $("txtEnemyDefence").value = $("txtEnemyDefence").basevalue - ocs[ocLevel];
+            $("txtEnemyDefence").value -= ocs[ocLevel];
             break;
         case "OcNpStrength": //宫本半藏OC宝具威力提升
-            $("txtNpStrength").value = $("txtNpStrength").basevalue + ocs[ocLevel];
+            $("txtNpStrength").value -= -ocs[ocLevel];
             break;
         case "CombinedDecrease":
-            $("txtEnemyDefence").value = $("txtEnemyDefence").basevalue - ocs[ocLevel];
-            $("txtCardBuff").value = $("txtCardBuff").basevalue + ocs[ocLevel];
+            $("txtEnemyDefence").value -= ocs[ocLevel];
+            $("txtCardBuff").value -= -ocs[ocLevel];
             break;
         case "NpSpecialAttack": //宝具特攻
             $("txtNpSpecialAttack").value = ocs[ocLevel];
@@ -175,7 +175,7 @@ function setOc() {
             $("txtSpecialAttack").value = ocs[ocLevel];
     }
 }
-function adjustOc(is_forced){
+function adjustOc(){
     let id = $("ddlServant").value;
     if(id == "-1") {
         $("ddlOvercharge").selectedIndex = 0;

@@ -346,21 +346,21 @@
                 </td>
                 <td>敌人1防御Buff(%)</td>
                 <td>
-                    <input type="text" id="txtEnemyDefence1" value="0" basevalue="0"/>
+                    <input type="text" id="txtEnemyDefence1" value="0" basevalue=0/>
                 </td>
                 <td>敌人2防御Buff(%)</td>
                 <td>
-                    <input type="text" id="txtEnemyDefence2" value="0" basevalue="0"/>
+                    <input type="text" id="txtEnemyDefence2" value="0" />
                 </td>
                 <td>敌人3防御Buff(%)</td>
                 <td>
-                    <input type="text" id="txtEnemyDefence3" value="0" basevalue="0"/>
+                    <input type="text" id="txtEnemyDefence3" value="0" />
                 </td>
 	    </tr>
 	    <tr>
                 <td>卡牌Buff(%)</td>
                 <td>
-                    <input type="text" id="txtCardBuff" value="0" basevalue="0"/>
+                    <input type="text" id="txtCardBuff" value="0" basevalue=0/>
                 </td>
                 <td>敌人1卡牌耐性(%)</td>
                 <td>
@@ -378,7 +378,7 @@
             <tr>
                 <td>宝具威力Buff(%)</td>
                 <td>
-                    <input type="text" id="txtNpStrength" value="0" basevalue="0"/>
+                    <input type="text" id="txtNpStrength" value="0" basevalue=0/>
                 </td>
                 <td>特攻威力Buff(%)</td>
                 <td>
@@ -390,7 +390,7 @@
                 </td>
                 <td>固定伤害Buff</td>
                 <td>
-                    <input type="text" id="txtDamagePlus" value="0" basevalue="0" />
+                    <input type="text" id="txtDamagePlus" value="0" basevalue=0 />
                 </td>
             </tr>
             <tr>
@@ -576,29 +576,31 @@
     }
     //队友buff
     $("btnAddZhuge").onclick = function(){
-        $("txtAttackBuff").value = getFloat("txtAttackBuff") + 30;
-        $("txtDamagePlus").value = getFloat("txtDamagePlus") + 500;     
+        $("txtAttackBuff").value -= -30;
+        $("txtDamagePlus").value -= -500;     
     }
         
     $("btnAddMerlin").onclick = function(){
-        $("txtAttackBuff").value = getFloat("txtAttackBuff") + 20;
+        $("txtAttackBuff").value -= -20;
         if($("ddlColor").value == 1.5){
-            $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+            $("txtCardBuff").value -= -50;
         }
-	$("txtMaxHp").value = getFloat("txtMaxHp") + 3000;
-	$("txtRemainHp").value = getFloat("txtRemainHp") + 3000;
+	$("txtMaxHp").value -= -3000;
+	$("txtRemainHp").value -= -3000;
 	adjustNpRemainHpDamage();
     }
     $("btnAddTamamo").onclick = function(){
-        $("txtNpStrength").value = getFloat("txtNpStrength") + 30;
+        $("txtNpStrength").value -= -30;
         if($("ddlColor").value == 1){
-            $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+            $("txtCardBuff").value -= -50;
         }
     }
     $("btnAddSkadi").onclick = function(){
-        $("txtEnemyDefence1").value = getFloat("txtEnemyDefence1") - 30;
+        $("txtEnemyDefence1").value -= 30;
+        $("txtEnemyDefence2").value -= 30;
+        $("txtEnemyDefence3").value -= 30;
         if($("ddlColor").value == 0.8){
-            $("txtCardBuff").value = getFloat("txtCardBuff") + 50;
+            $("txtCardBuff").value -= -50;
         }
     }
 
@@ -618,8 +620,8 @@
 	this.oldvalue = this.value;
     };
     $("btnClearBuff").onclick = function() {
-            clearBuff();
-            setOc();
+        clearBuff();
+        setOc();
     }
 
     /***********************************************************/

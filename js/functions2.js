@@ -123,7 +123,7 @@ function bindNpEffect(servant) {
         $("txtNpSpecialAttack").value = npSpecialAttack;
     }
     if (npEffect && npEffect.defDecrease) {
-        $("txtEnemyDefence1").basevalue = 0 - npEffect.defDecrease;
+        $("txtEnemyDefence1").basevalue = -npEffect.defDecrease;
     }
     else {
         $("txtEnemyDefence1").basevalue = 0;
@@ -133,10 +133,16 @@ function bindNpEffect(servant) {
     }
 }
 function clearBuff(){
-    $("txtNpStrength").value = $("txtNpStrength").basevalue;
-    $("txtCardBuff").value = $("txtCardBuff").basevalue;
     $("txtAttackBuff").value = 0;
-    $("txtEnemyDefence1").value = $("txtEnemyDefence1").basevalue;
+    let enemyDefence = $("txtEnemyDefence1").basevalue;
+    $("txtEnemyDefence1").value = enemyDefence;
+    $("txtEnemyDefence2").value = enemyDefence;
+    $("txtEnemyDefence3").value = enemyDefence;
+    $("txtCardBuff").value = $("txtCardBuff").basevalue;
+    $("txtCardResist1").value = 0;
+    $("txtCardResist2").value = 0;
+    $("txtCardResist3").value = 0;
+    $("txtNpStrength").value = $("txtNpStrength").basevalue;
     $("txtSpecialAttack").value = 0;
     $("txtDamagePlus").value = $("txtDamagePlus").basevalue;
     $("txtNpGainBuff").value = 0;
@@ -165,21 +171,31 @@ function setOc() {
             calOcNpDamage();
             break;
         case "OcCardBuff": //R金时OC绿魔放
+            $("txtCardBuff").value -= -ocs[ocLevel];
+            break;
 	case "CardDecrease":
-            $("txtCardBuff").value = $("txtCardBuff").basevalue + ocs[ocLevel];
+            $("txtCardResist1").value = -ocs[ocLevel];
+            $("txtCardResist2").value = -ocs[ocLevel];
+            $("txtCardResist3").value = -ocs[ocLevel];
             break;
         case "OcAttackBuff": //B兰OC加攻
             $("txtAttackBuff").value = ocs[ocLevel];
             break;
         case "DefDecrease": //宝具前降防
-            $("txtEnemyDefence1").value = $("txtEnemyDefence1").basevalue - ocs[ocLevel];
+            $("txtEnemyDefence1").value -= ocs[ocLevel];
+            $("txtEnemyDefence2").value -= ocs[ocLevel];
+            $("txtEnemyDefence3").value -= ocs[ocLevel];
             break;
         case "OcNpStrength": //宫本半藏OC宝具威力提升
-            $("txtNpStrength").value = $("txtNpStrength").basevalue + ocs[ocLevel];
+            $("txtNpStrength").value -= -ocs[ocLevel];
             break;
         case "CombinedDecrease":
-            $("txtEnemyDefence1").value = $("txtEnemyDefence1").basevalue - ocs[ocLevel];
-            $("txtCardBuff").value = $("txtCardBuff").basevalue + ocs[ocLevel];
+            $("txtEnemyDefence1").value -= ocs[ocLevel];
+            $("txtEnemyDefence2").value -= ocs[ocLevel];
+            $("txtEnemyDefence3").value -= ocs[ocLevel];
+            $("txtCardResist1").value = -ocs[ocLevel];
+            $("txtCardResist2").value = -ocs[ocLevel];
+            $("txtCardResist3").value = -ocs[ocLevel];
             break;
         case "NpSpecialAttack": //宝具特攻
             $("txtNpSpecialAttack").value = ocs[ocLevel];
@@ -188,7 +204,7 @@ function setOc() {
             $("txtSpecialAttack").value = ocs[ocLevel];
     }
 }
-function adjustOc(is_forced){
+function adjustOc(){
     let id = $("ddlServant").value;
     if(id == "-1") {
         $("ddlOvercharge").selectedIndex = 0;
@@ -210,21 +226,31 @@ function adjustOc(is_forced){
             calOcNpDamage();
             break;
         case "OcCardBuff":
-	case "CardDecrease":
             $("txtCardBuff").value -= ocs[oldocLevel] - ocs[ocLevel];
+            break;
+	case "CardDecrease":
+            $("txtCardResist1").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtCardResist2").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtCardResist3").value -= ocs[ocLevel] - ocs[oldocLevel];
             break;
         case "OcAttackBuff":
             $("txtAttackBuff").value -= ocs[oldocLevel] - ocs[ocLevel];
             break;
         case "DefDecrease":
             $("txtEnemyDefence1").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtEnemyDefence2").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtEnemyDefence3").value -= ocs[ocLevel] - ocs[oldocLevel];
             break;
         case "OcNpStrength":
             $("txtNpStrength").value -= ocs[oldocLevel] - ocs[ocLevel];
             break;
         case "CombinedDecrease":
             $("txtEnemyDefence1").value -= ocs[ocLevel] - ocs[oldocLevel];
-            $("txtCardBuff").value -= ocs[oldocLevel] - ocs[ocLevel];
+            $("txtEnemyDefence2").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtEnemyDefence3").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtCardResist1").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtCardResist2").value -= ocs[ocLevel] - ocs[oldocLevel];
+            $("txtCardResist3").value -= ocs[ocLevel] - ocs[oldocLevel];
             break;
         case "NpSpecialAttack":
             $("txtNpSpecialAttack").value = ocs[ocLevel];
