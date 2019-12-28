@@ -565,28 +565,28 @@
         let ClassResist = getFloat("ddlClassResist");
         //6.阵营克制
         let attributeResist = getFloat("ddlAttributeResist");
-        //9.宝具威力Buff(%)
-        let npStrength = getFloat("txtNpStrength");
-        //10.卡牌Buff(%)
-        let cardBuff = getFloat("txtCardBuff");
-        //11.攻击力Buff(%)
+        //7.攻击力Buff(%)
         let attackBuff = getFloat("txtAttackBuff");
-        //12.敌方防御力Buff(%)
+        //8.敌方防御力Buff(%)
         let enemyDefence = getFloat("txtEnemyDefence");
-	enemyDefence = Math.max(-100, enemyDefence);
-        //13.特攻威力Buff(%)与宝具特攻(%)
+        enemyDefence = Math.max(-100, enemyDefence);
+        //9.卡牌Buff(%)
+        let cardBuff = getFloat("txtCardBuff");
+        //10.宝具威力Buff(%)
+        let npStrength = getFloat("txtNpStrength");
+        //11.特攻威力Buff(%)与宝具特攻(%)
         let specialAttackBuff = 0;
 	let npSpecialAttack = 1;
 	if($("ckIsSpecialAttack").checked) {
 	    specialAttackBuff = getFloat("txtSpecialAttack");
 	    npSpecialAttack = getFloat("txtNpSpecialAttack") / 100;
 	}
-        //14.固定伤害Buff
+        //12.固定伤害Buff
         let damagePlus = getFloat("txtDamagePlus");
-	//15.黄金律
+	//13.黄金律
 	let baseNp = getFloat("txtNpGain");
         let npGainBuff = getFloat("txtNpGainBuff");
-        //16.礼装
+        //14.礼装
 	switch($("ddlCraftEssence").selectedIndex) {
 	    case 2:
 		npStrength += 15;
@@ -627,7 +627,7 @@
                 }
                 npGainBuff += 10;
 	}
-	//17.御主装备
+	//15.御主装备
 	npStrength += parseInt($("ddlMysticCode").value);
 	switch($("ddlMysticCode").selectedIndex) {
 	    case 1:
@@ -681,33 +681,24 @@
         let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + cardBuff / 100) * Class * ClassResist * attributeResist * Math.max(0, 1 + attackBuff / 100 - enemyDefence / 100) * (1 + specialAttackBuff / 100 + npStrength / 100) * npSpecialAttack + damagePlus;
         resultAvg = Math.floor(resultAvg);
 	let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + cardBuff /100);
-	let npGain1 = npGainBase * getFloat("ddlEnemyClass1");
-	if ($("ckIsUndying1").checked) {
-	    npGain1 *= 1.2;
+	let npGain = [0, 0, 0];
+	let nHits = getFloat("txtNHits");
+	for(let i=1, l="";i<=3;i++){
+	    l = i.toString();
+	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+l);
+	    if ($("ckIsUndying"+l).checked) {
+		npGainNormal *= 1.2;
+	    }
+	    npGainNormal = Math.floor(npGainNormal * 100) / 100;
+	    let npGainOverkill = Math.floor(npGainNormal * 150) / 100;
+	    npGain[i-1] = (npGainOverkill - npGainNormal) * getFloat("txtOverkill"+l) + npGainNormal * nHits;
 	}
-	npGain1 = Math.floor(npGain1 * 100) / 100;
-	let npGainOverkill = Math.floor(npGain1 * 150) / 100;
-	npGain1 = (npGainOverkill - npGain1) * getFloat("txtOverkill1") + npGain1 * getFloat("txtNHits");
-	let npGain2 = npGainBase * getFloat("ddlEnemyClass2");
-        if ($("ckIsUndying2").checked) {
-            npGain2 *= 1.2;
-        }
-        npGain2 = Math.floor(npGain2 * 100) / 100;
-        npGainOverkill = Math.floor(npGain2 * 150) / 100;
-        npGain2 = (npGainOverkill - npGain2) * getFloat("txtOverkill2") + npGain2 * (getFloat("txtNHits"));
-	let npGain3 = npGainBase * getFloat("ddlEnemyClass3");
-        if ($("ckIsUndying3").checked) {
-            npGain3 *= 1.2;
-        }
-        npGain3 = Math.floor(npGain3 * 100) / 100;
-        npGainOverkill = Math.floor(npGain3 * 150) / 100;
-        npGain3 = (npGainOverkill - npGain3) * getFloat("txtOverkill3") + npGain3 * (getFloat("txtNHits"));
-	let npGain = npGain1;
+	let npGainTotal = npGain[0];
 	switch($("txtNTarget").value) {
 	    case "3":
-		npGain += npGain3;
+		npGainTotal += npGain[2];
 	    case "2":
-		npGain += npGain2;
+		npGainTotal += npGain[1];
 	}
 
         let servantName = getDdlText("ddlServant");
@@ -743,7 +734,7 @@
             min: resultMin,
             avg: resultAvg,
             ClassResistType: ClassResistType,
-	    npGain: npGain
+	    npGainTotal: npGainTotal
         };
         resultArr.push(model);
         showResult();
@@ -831,7 +822,7 @@
         avg.innerHTML = obj.avg;
         avg.classList.add(obj.ClassResistType);
 	//17.NP获取
-	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
+	newRow.insertCell(-1).innerHTML = obj.npGainTotal.toFixed(2);
         //18.删除操作     
         newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
     }
