@@ -84,7 +84,7 @@
                 </td>
                 <td>NP率(%)</td>
                 <td>
-                    <input type="text" id="txtNpGain" value="0" />
+                    <input type="text" id="txtBaseNp" value="0" />
                 </td>
 	    </tr>
 	    <tr>
@@ -518,7 +518,7 @@
 	$("txtNHits").value = servant.hit;
         $("txtAttack").value = servant.atk;
         $("txtMaxHp").value = servant.hp;
-	$("txtNpGain").value = servant.np;
+	$("txtBaseNp").value = servant.np;
         //3.宝具倍率
         changeNpCoefficient();
         //4.卡色
@@ -584,7 +584,7 @@
         //12.固定伤害Buff
         let damagePlus = getFloat("txtDamagePlus");
 	//13.黄金律
-	let baseNp = getFloat("txtNpGain");
+	let baseNp = getFloat("txtBaseNp");
         let npGainBuff = getFloat("txtNpGainBuff");
         //14.礼装
 	switch($("ddlCraftEssence").selectedIndex) {
