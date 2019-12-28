@@ -718,7 +718,8 @@
 	    case 12:
                 ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0.5, 2];
 	}
-        for(let i=1, l="";i<=3;i++) {
+        let nTarget = getFloat("txtNTarget");
+        for(let i=1, l="";i<=nTarget;i++) {
 	    l = i.toString();
 	    ClassResist[i-1] = ClassResistMatrix[$("ddlEnemyClass"+l).selectedIndex];
 	}
@@ -744,7 +745,7 @@
 	    default:
 		attributeResistMatrix = [1, 1, 1, 1, 1, 1];
 	}
-	for(let i=1, l="";i<=3;i++) {
+	for(let i=1, l="";i<=nTarget;i++) {
 	    l = i.toString();
 	    attributeResist[i-1] = attributeResistMatrix[$("ddlEnemyAttribute"+l).selectedIndex];
 	}
@@ -752,7 +753,7 @@
         let attackBuff = getFloat("txtAttackBuff");
         //8.敌方防御力Buff(%)
 	let enemyDefence = [0, 0, 0];
-	for(let i=1, l="";i<=3;i++){
+	for(let i=1, l="";i<=nTarget;i++){
 	    l = i.toString();
 	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+l);
 	    enemyDefence[i-1] = Math.max(-100, enemyDefence[i-1]);
@@ -760,7 +761,7 @@
         //9.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");
 	let cardResist = [0, 0, 0];
-	for(let i=1, l="";i<=3;i++){
+	for(let i=1, l="";i<=nTarget;i++){
 	    l = i.toString();
 	    cardResist[i-1] = getFloat("txtCardResist"+l);
 	}
@@ -769,7 +770,7 @@
         //11.特攻威力Buff(%)与宝具特攻(%)
 	let specialAttackBuff = [0, 0, 0];
 	let npSpecialAttack = [1, 1, 1];
-	for(let i=1, l="";i<=3;i++){
+	for(let i=1, l="";i<=nTarget;i++){
 	    l = i.toString();
 	    if($("ckIsSpecialAttack"+l).checked) {
 		specialAttackBuff[i-1] = getFloat("txtSpecialAttack");
@@ -872,32 +873,25 @@
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
 	let resultMin = [0, 0, 0];
-	for(let i=0;i<3;i++){
+	for(let i=0;i<nTarget;i++){
 	    resultMin[i] = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[i]) / 100) * Class * ClassResist[i] * attributeResist[i] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[i]) / 100) * (1 + (npStrength + specialAttackBuff[i]) / 100) * npSpecialAttack[i] + damagePlus;
 	    resultMin[i] = Math.floor(resultMin[i]);
 	}
         let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
         resultAvg = Math.floor(resultAvg);
 
-	let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + cardBuff /100);
-	let npGain = [0, 0, 0];
+	let npGain = 0;
 	let nHits = getFloat("txtNHits");
-	for(let i=1, l="";i<=3;i++){
+	for(let i=1, l="";i<=nTarget;i++){
 	    l = i.toString();
+	    let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + (cardBuff - cardResist[i-1]) / 100);
 	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+l);
 	    if ($("ckIsUndying"+l).checked) {
 		npGainNormal *= 1.2;
 	    }
 	    npGainNormal = Math.floor(npGainNormal * 100) / 100;
 	    let npGainOverkill = Math.floor(npGainNormal * 150) / 100;
-	    npGain[i-1] = (npGainOverkill - npGainNormal) * getFloat("txtOverkill"+l) + npGainNormal * nHits;
-	}
-	let npGainTotal = npGain[0];
-	switch($("txtNTarget").value) {
-	    case "3":
-		npGainTotal += npGain[2];
-	    case "2":
-		npGainTotal += npGain[1];
+	    npGain += (npGainOverkill - npGainNormal) * getFloat("txtOverkill"+l) + npGainNormal * nHits;
 	}
 
         let servantName = getDdlText("ddlServant");
@@ -907,7 +901,7 @@
             servantName = "<span class='text-gradient'>" + servantName + "</span>";
         }
         let ClassResistType = ["normal", "normal", "normal"];//非克制
-	for(let i=0;i<3;i++) {
+	for(let i=0;i<nTarget;i++) {
             if (ClassResist[i] > 1) {//克制
                 ClassResistType[i] = "weak";
             }
@@ -932,7 +926,7 @@
             min: resultMin,
             avg: resultAvg,
             ClassResistType: ClassResistType,
-	    npGainTotal: npGainTotal
+	    npGain: npGain
         };
         resultArr.push(model);
         showResult();
@@ -1013,16 +1007,16 @@
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
         avg.classList.add(obj.ClassResistType[0]);
-        //14.宝具伤害最小值   
+        //14.宝具伤害最小值
         let min2 = newRow.insertCell(-1);
         min2.innerHTML = obj.min[1];
         min2.classList.add(obj.ClassResistType[1]);
-        //15.宝具伤害最小值   
+        //15.宝具伤害最小值
         let min3 = newRow.insertCell(-1);
         min3.innerHTML = obj.min[2];
         min3.classList.add(obj.ClassResistType[2]);
 	//16.NP获取
-	newRow.insertCell(-1).innerHTML = obj.npGainTotal.toFixed(2);
+	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
         //17.删除操作     
         newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
     }
