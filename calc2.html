@@ -876,9 +876,10 @@
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
 	let resultMin = [0, 0, 0];
-	for(let i=0;i<nTarget;i++){
-	    resultMin[i] = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[i]) / 100) * Class * ClassResist[i] * attributeResist[i] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[i]) / 100) * (1 + (npStrength + specialAttackBuff[i]) / 100) * npSpecialAttack[i] + damagePlus;
-	    resultMin[i] = Math.floor(resultMin[i]);
+	for(let i=1, l="";i<=nTarget;i++){
+	    l = i.toString();
+	    resultMin[i-1] = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[i-1]) / 100) * Class * ClassResist[i-1] * attributeResist[i-1] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[i-1]) / 100) * (1 + (npStrength + specialAttackBuff[i-1]) / 100) * npSpecialAttack[i-1] + damagePlus;
+	    resultMin[i-1] = Math.floor(Math.floor(resultMin[i-1]) * parseInt($("spanOverkill"+l).innerHTML) / 100);
 	}
         let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
         resultAvg = Math.floor(resultAvg);
