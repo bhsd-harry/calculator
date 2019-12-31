@@ -400,17 +400,17 @@
                 </td>
                 <td>敌人1鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill1" value="0" size=14px/>
+                    <input type="text" id="txtOverkill1" value="0" size=14px onchange="calPerDamage(1)"/>
 		    <span id="spanOverkill1">100%</span>
                 </td>
                 <td>敌人2鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill2" value="0" size=14px/>
+                    <input type="text" id="txtOverkill2" value="0" size=14px onchange="calPerDamage(2)"/>
                     <span id="spanOverkill2">100%</span>
                 </td>
                 <td>敌人3鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill3" value="0" size=14px/>
+                    <input type="text" id="txtOverkill3" value="0" size=14px onchange="calPerDamage(3)"/>
                     <span id="spanOverkill3">100%</span>
                 </td>
             </tr>
@@ -532,9 +532,12 @@
     }
     //全鞭尸
     $("btnAdjOverkill").onclick = function () {
-            $("txtOverkill1").value = $("txtNHits").value;
-            $("txtOverkill2").value = $("txtNHits").value;
-            $("txtOverkill3").value = $("txtNHits").value;
+        $("txtOverkill1").value = $("txtNHits").value;
+        $("txtOverkill2").value = $("txtNHits").value;
+        $("txtOverkill3").value = $("txtNHits").value;
+	calPerDamage(1);
+	calPerDamage(2);
+	calPerDamage(3);
     }
     //Hp值变动事件：动态计算双子宝具倍率
     $("txtRemainHp").onchange = function () {

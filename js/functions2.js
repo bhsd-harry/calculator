@@ -1,4 +1,25 @@
 "use strict";
+function calPerDamage(label) {
+    let id = $("ddlServant").value;
+    if(id == -1) {
+	return;
+    }
+    let ok = getFloat("txtOverkill"+label);
+    if(ok<2){
+	$("spanOverkill"+label).innerHTML = "100%";
+    }
+    else{
+	//Adjust $("spanOverkill").innerHTML
+	let servant = servants[id];
+	let damageDist = servant.damageDist;
+	let perDamage = 0;
+	let nHits = getFloat("txtNHits") - ok;
+	for(let i=0;i<=nHits;i++){
+	    perDamage += damageDist[i];
+	}
+	$("spanOverkill"+label).innerHTML = perDamage.toString() + "%";
+    }
+}
 function apply(label) {
     let Class = $("ddlEnemyClass"+label).selectedIndex;
     let isUndying = $("ckIsUndying"+label).checked;
@@ -40,11 +61,10 @@ function adjustNpRemainHpDamage() {
     let servant = servants[id];
     let npEffect = servant.npEffect;
     let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
-    if (servant.oc.type == "NpRemainHpDamage" || isNpRemainHpDamage) {//双子宝具特攻
+    if (servant.oc.type == "NpRemainHpDamage" || isNpRemainHpDamage) {
         calNpRemainHpDamage();
     }
 }
-//计算双子宝具总倍率
 function calNpRemainHpDamage() {
     let servant = servants[$("ddlServant").value];
     let ocs = servant.oc;
@@ -149,6 +169,9 @@ function clearBuff(){
     $("txtOverkill1").value = 0;
     $("txtOverkill2").value = 0;
     $("txtOverkill3").value = 0;
+    $("spanOverkill1").innerHTML = "100%";
+    $("spanOverkill2").innerHTML = "100%";
+    $("spanOverkill3").innerHTML = "100%";
 }
 //根据OC重设所有buff
 function setOc() {
