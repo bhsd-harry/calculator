@@ -1,4 +1,6 @@
 "use strict";
+function bindSkill(label) {
+}
 function calPerDamage(label) {
     let id = $("ddlServant").value;
     if(id == -1) {
