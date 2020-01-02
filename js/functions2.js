@@ -22,7 +22,7 @@ function calPerDamage(label) {
 	$("spanOverkill"+label).innerHTML = perDamage.toString() + "%";
     }
 }
-function apply(label) {
+function applyEnemy(label) {
     let Class = $("ddlEnemyClass"+label).selectedIndex;
     let isUndying = $("ckIsUndying"+label).checked;
     let attribute = $("ddlEnemyAttribute"+label).selectedIndex;
