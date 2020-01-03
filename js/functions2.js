@@ -1,15 +1,33 @@
 "use strict";
 function bindSkill(label) {
     let id = $("ddlServant").value;
-    if(id == -1) { return; }
+    let skillLv = $("ddlSkill"+label).value;
+    if(id == -1 || skillLv == 0) { return; }
     let servant = servants[id];
     let skill = servant["skill"+label];
     if(!skill) { return; }
+    if(skill.xx) {
+    }
+}
+function changeSkill(label) {
+    let id = $("ddlServant").value;
+    if(id == -1) { return; }
+    let oldLv = $("ddlSkill"+label).oldvalue;
+    if(oldLv == 0) {
+	bindSkill(label);
+	return;
+    }
+    let servant = servants[id];
+    let skill = servant["skill"+label];
+    if(!skill) { return; }
+    let skillLv = $("ddlSkill"+label).value;
+    if(skill.xx) {
+    }
 }
 function calPerDamage(label) {
     let id = $("ddlServant").value;
     if(id == -1) { return; }
-    let ok = getFloat("txtOverkill"+label);
+    let ok = getInt("txtOverkill"+label);
     if(ok<2){
 	$("spanOverkill"+label).innerHTML = "100%";
     }
@@ -18,7 +36,7 @@ function calPerDamage(label) {
 	let servant = servants[id];
 	let damageDist = servant.damageDist;
 	let perDamage = 0;
-	let nHits = getFloat("txtNHits") - ok;
+	let nHits = getInt("txtNHits") - ok;
 	for(let i=0;i<=nHits;i++){
 	    perDamage += damageDist[i];
 	}
@@ -49,12 +67,18 @@ function initialEffects() {
         bindServantData(id);
         adjHp()
         clearBuff();
+	bindSkill("1");
+	bindSkill("2");
+	bindSkill("3");
         setOc();
         $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
+	$("ddlSkill1").oldvalue = $("ddlSkill1").value;
+	$("ddlSkill2").oldvalue = $("ddlSkill2").value;
+	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
     }
 }
 function adjHp(){
-    let totalHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
+    let totalHp = getInt("txtMaxHp") + getInt("txtFouHp") + getInt("txtCraftEssenceHp");
     $("txtRemainHp").value = totalHp;
     adjustNpRemainHpDamage();
 }
@@ -77,8 +101,8 @@ function calNpRemainHpDamage() {
     let ocLevel = $("ddlOvercharge").value;
     //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
     //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
-    let totalHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
-    let remainHp = getFloat("txtRemainHp");
+    let totalHp = getInt("txtMaxHp") + getInt("txtFouHp") + getInt("txtCraftEssenceHp");
+    let remainHp = getInt("txtRemainHp");
     let npCoef = servant.NP[$("ddlNpLevel").selectedIndex];
     //附加倍率
     if(ocs.type == "NpRemainHpDamage") {

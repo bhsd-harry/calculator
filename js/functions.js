@@ -15,7 +15,7 @@ function initialEffects() {
     }
 }
 function adjHp(){
-    let totalHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
+    let totalHp = getInt("txtMaxHp") + getInt("txtFouHp") + getInt("txtCraftEssenceHp");
     $("txtRemainHp").value = totalHp;
     adjustNpRemainHpDamage();
 }
@@ -39,8 +39,8 @@ function calNpRemainHpDamage() {
     let ocLevel = $("ddlOvercharge").value;
     //附加倍率《超蓄力威力提升》 (此倍率×自身已损失HP所占百分比,与宝具倍率加算)
     //【※总倍率＝攻击倍率+HP特攻倍率*(1—现在HP/最大HP)】
-    let totalHp = getFloat("txtMaxHp") + getFloat("txtFouHp") + getFloat("txtCraftEssenceHp");
-    let remainHp = getFloat("txtRemainHp");
+    let totalHp = getInt("txtMaxHp") + getInt("txtFouHp") + getInt("txtCraftEssenceHp");
+    let remainHp = getInt("txtRemainHp");
     let npCoef = servant.NP[$("ddlNpLevel").selectedIndex];
     //附加倍率
     if(ocs.type == "NpRemainHpDamage") {

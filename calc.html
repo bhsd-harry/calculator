@@ -553,7 +553,7 @@
         }
         guid++;
         //1.攻击力
-        let atk = getFloat("txtAttack") + getFloat("txtFouAtk") + getFloat("txtCraftEssenceAtk");
+        let atk = getInt("txtAttack") + getInt("txtFouAtk") + getInt("txtCraftEssenceAtk");
         //2.卡色
         let cardColor = getFloat("ddlColor");
         let cardNpCoef = cardNpBase[$("ddlColor").selectedIndex];
@@ -683,8 +683,8 @@
 
 	let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + cardBuff /100);
 	let npGain = 0;
-	let nHits = getFloat("txtNHits");
-	let nTarget = getFloat("txtNTarget");
+	let nHits = getInt("txtNHits");
+	let nTarget = getInt("txtNTarget");
 	for(let i=1, l="";i<=nTarget;i++){
 	    l = i.toString();
 	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+l);
@@ -693,7 +693,7 @@
 	    }
 	    npGainNormal = Math.floor(npGainNormal * 100) / 100;
 	    let npGainOverkill = Math.floor(npGainNormal * 150) / 100;
-	    npGain += (npGainOverkill - npGainNormal) * getFloat("txtOverkill"+l) + npGainNormal * nHits;
+	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+l) + npGainNormal * nHits;
 	}
 
         let servantName = getDdlText("ddlServant");
