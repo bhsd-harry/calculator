@@ -8,6 +8,9 @@ function $(id) {
 function getFloat(id) {
     return parseFloat($(id).value);
 }
+function getInt(id) {
+    return parseInt($(id).value);
+}
 //显示div层
 function showDiv(id) {
     $(id).style.display = "block";

@@ -6,7 +6,7 @@ function initialServantList() {
 }
 function initialEffects() {
     let id = $("ddlServant").value;
-    if (id != "-1") {
+    if (id != -1) {
         bindServantData(id);
         adjHp()
         clearBuff();
@@ -21,7 +21,7 @@ function adjHp(){
 }
 function adjustNpRemainHpDamage() {
     let id = $("ddlServant").value;
-    if(id == "-1") {
+    if(id == -1) {
         return;
     }
     let servant = servants[id];
@@ -134,7 +134,7 @@ function clearBuff(){
 //根据OC重设所有buff
 function setOc() {
     let id = $("ddlServant").value;
-    if(id == "-1"){
+    if(id == -1){
         $("ddlOvercharge").selectedIndex = 0;
         return;
     }
@@ -177,7 +177,7 @@ function setOc() {
 }
 function adjustOc(){
     let id = $("ddlServant").value;
-    if(id == "-1") {
+    if(id == -1) {
         $("ddlOvercharge").selectedIndex = 0;
         return;
     }
