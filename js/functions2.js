@@ -2,18 +2,57 @@
 function bindSkill(label) {
     let id = $("ddlServant").value;
     let skillLv = $("ddlSkill"+label).value;
-    if(id == -1 || skillLv == 0) { return; }
+    if(id == -1 || skillLv == -1) { return; }
     let servant = servants[id];
     let skill = servant["skill"+label];
     if(!skill) { return; }
-    if(skill.xx) {
+    let buff = [];
+    if(buff = skill.attackBuff) {
+	let attackBuff = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtAttackBuff").value -= -attackBuff;
+    }
+    if(buff = skill.defDecreaseSingle) {
+	let defDecrease = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtEnemyDefence1").value -= defDecrease;
+    }
+    if(buff = skill.defDecreaseAll) {
+	let defDecrease = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtEnemyDefence1").value -= defDecrease;
+	$("txtEnemyDefence2").value -= defDecrease;
+	$("txtEnemyDefence3").value -= defDecrease;
+    }
+    if(buff = skill.cardBuff) {
+	let cardBuff = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtCardBuff").value -= -cardBuff;
+    }
+    if(buff = skill.cardDecrease) {
+	let cardDecrease = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtCardResist1").value -= cardDecrease;
+	$("txtCardResist2").value -= cardDecrease;
+	$("txtCardResist3").value -= cardDecrease;
+    }
+    if(buff = skill.npStrength) {
+	let npStrength = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtNpStrength").value -= -npStrength;
+    }
+    if(buff = skill.specialAttack) {
+	let specialAttack = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtSpecialAttack").value -= specialAttack;
+    }
+    if(buff = skill.damagePlus) {
+	let damagePlus = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtDamagePlus").value -= -damagePlus;
+    }
+    if(buff = skill.npGainBuff) {
+	let npGainBuff = buff[0] + (buff[1] - buff[0]) / 10 * skillLv;
+	$("txtNpGainBuff").value -= -npGainBuff;
     }
 }
 function changeSkill(label) {
     let id = $("ddlServant").value;
     if(id == -1) { return; }
     let oldLv = $("ddlSkill"+label).oldvalue;
-    if(oldLv == 0) {
+    if(oldLv == -1) {
 	bindSkill(label);
 	return;
     }
@@ -21,7 +60,46 @@ function changeSkill(label) {
     let skill = servant["skill"+label];
     if(!skill) { return; }
     let skillLv = $("ddlSkill"+label).value;
-    if(skill.xx) {
+    let buff = [];
+    if(buff = skill.attackBuff) {
+	let attackBuff = (buff[1] - buff[0]) / 10 * (oldLv - skillLv);
+	$("txtAttackBuff").value -= attackBuff;
+    }
+    if(buff = skill.defDecreaseSingle) {
+	let defDecrease = (buff[1] - buff[0]) / 10 * (skillLv - oldLv);
+	$("txtEnemyDefence1").value -= defDecrease;
+    }
+    if(buff = skill.defDecreaseAll) {
+	let defDecrease = (buff[1] - buff[0]) / 10 * (skillLv - oldLv);
+	$("txtEnemyDefence1").value -= defDecrease;
+	$("txtEnemyDefence2").value -= defDecrease;
+	$("txtEnemyDefence3").value -= defDecrease;
+    }
+    if(buff = skill.cardBuff) {
+	let cardBuff = (buff[1] - buff[0]) / 10 * (oldLv - skillLv);
+	$("txtCardBuff").value -= cardBuff;
+    }
+    if(buff = skill.cardDecrease) {
+	let cardDecrease = (buff[1] - buff[0]) / 10 * (skillLv - oldLv);
+	$("txtCardResist1").value -= cardDecrease;
+	$("txtCardResist2").value -= cardDecrease;
+	$("txtCardResist3").value -= cardDecrease;
+    }
+    if(buff = skill.npStrength) {
+	let npStrength = (buff[1] - buff[0]) / 10 * (oldLv - skillLv);
+	$("txtNpStrength").value -= npStrength;
+    }
+    if(buff = skill.specialAttack) {
+	let specialAttack = (buff[1] - buff[0]) / 10 * (oldLv - skillLv);
+	$("txtSpecialAttack").value -= specialAttack;
+    }
+    if(buff = skill.damagePlus) {
+	let damagePlus = (buff[1] - buff[0]) / 10 * (oldLv - skillLv);
+	$("txtDamagePlus").value -= damagePlus;
+    }
+    if(buff = skill.npGainBuff) {
+	let npGainBuff = (buff[1] - buff[0]) / 10 * (oldLv - skillLv);
+	$("txtNpGainBuff").value -= npGainBuff;
     }
 }
 function calPerDamage(label) {
