@@ -226,7 +226,7 @@ function initSaber(){
     initialServant(5,"Saber", "阿尔提拉EN", 8, "人", ["混沌", "善"], 12343, 13907, 13511, 15236, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npStrength: [9,18]}, {}, {attackBuff: [10,30]}, [], {damagePlus: 175});
     initialServant(5,"Saber", "沖田総司", 68, "人", ["中立", "中庸"], 12068, 13225, 13210, 14489, 1,3,1.09, "QuickSingle1", 0, 0, "", 0.8, {cardBuff: [30,50]}, {}, {}, [16,33], {cardBuff: 2});
     initialServant(5,"Saber", "莫德雷德", 76, "地", ["混沌", "中庸"], 11723, 14680, 12833, 16083, 3,1,0, "BusterAll2", 180, 220, "NpSpecialAttack", 1.5, {cardBuff: [30,50]});
-    initialServant(5,"Saber", "尼禄・克劳狄乌斯〔花嫁〕", 90, "人", ["混沌", "花嫁"], 11607, 14248, 12706, 15609, 1,2,0.7, "ArtsSingle2", 0, 0, "", 1, {}, {attackBuff: [30,40]}, {}, [25]);
+    initialServant(5,"Saber", "尼禄・克劳狄乌斯〔花嫁〕", 90, "人", ["混沌", "花嫁"], 11607, 14248, 12706, 15609, 1,2,0.7, "ArtsSingle2", 0, 0, "", 1, {npGainBuff: [35,45]}, {attackBuff: [30,40]}, {}, 25);
     initialServant(5,"Saber", "两仪式", 91, "人", ["中立", "中庸"], 10721, 15453, 11736, 16929, 3,1,0.84, "ArtsAll2", 0, 0, "", 1, {cardBuff: [25,40]}, {attackBuff: [15,25]}, {}, [], {cardBuff: 6});
     initialServant(5,"Saber", "两仪式EN", 91, "人", ["中立", "中庸"], 10721, 15453, 11736, 16929, 3,1,0.84, "ArtsAll1", 0, 0, "", 1, {cardBuff: [25,40]}, {attackBuff: [15,25]}, {}, [], {cardBuff: 6});
     initialServant(5,"Saber", "宫本武藏", 153, "人", ["混沌", "善"], 12037, 13635, 13176, 14938, 1,1,0, "BusterSingle1", 20, 60, "OcNpStrength", 1.5, {}, {npStrength: [30,50]});
@@ -235,27 +235,28 @@ function initSaber(){
     initialServant(5,"Saber", "剪舌麻雀的红阎魔", 234, "地", ["秩序", "善"], 11607, 13960, 12706, 15294, 1,5,0.56, "ArtsSingle1", 40, 60, "SpecialAttackBuff", 1, {}, {defDecreaseAll: [10,20]}, {attackBuff: [10,20]}, [6,13,20,26], {cardBuff: 10});
     initialServant(5,"Saber", "阿斯托尔福", 270, "地", ["混沌", "善"], 11694, 14248, 12801, 15609, 1,9,0.52, "QuickSingle1", 20, 40, "OcCardBuff", 0.8, {}, {}, {attackBuff: [10,20]}, [2,4,6,8,11,13,15,17], {cardBuff: 10});
 /******************************************4星********************************************************************/
-    initialServant(4,"Saber", "阿尔托莉雅·潘德拉贡〔Alter〕", 3, "人", ["秩序", "恶"], 10248, 11589, 12408, 14051, 3,1,0, "BusterAll3", 0, 0, "", 1.5);
-    initialServant(4,"Saber", "阿尔托莉雅·潘德拉贡〔Lily〕", 4, "地", ["秩序", "善"], 7726, 10623, 9355, 12880, 3,1,0, "BusterAll5", 0, 0, "", 1.5);
-    initialServant(4,"Saber", "阿尔托莉雅·潘德拉贡〔Lily〕EN", 4, "地", ["秩序", "善"], 7726, 10623, 9355, 12880, 3,1,0, "BusterAll4", 0, 0, "", 1.5);
+    initialServant(4,"Saber", "阿尔托莉雅·潘德拉贡〔Alter〕", 3, "人", ["秩序", "恶"], 10248, 11589, 12408, 14051, 3,1,0, "BusterAll3", 0, 0, "", 1.5, {cardBuff: [30,50]}, {}, {attackBuff: [6,12]});
+    initialServant(4,"Saber", "阿尔托莉雅·潘德拉贡〔Lily〕", 4, "地", ["秩序", "善"], 7726, 10623, 9355, 12880, 3,1,0, "BusterAll5", 0, 0, "", 1.5, {}, {cardBuff: [30,50]});
+    initialServant(4,"Saber", "阿尔托莉雅·潘德拉贡〔Lily〕EN", 4, "地", ["秩序", "善"], 7726, 10623, 9355, 12880, 3,1,0, "BusterAll4", 0, 0, "", 1.5, {}, {cardBuff: [30,50]});
     initialServant(4,"Saber", "尼禄・克劳狄乌斯", 5, "人", ["混沌", "善"], 9449, 11753, 11441, 14250, 3,1,0.84, "ArtsAll2", 0, 0, "", 1);
-    initialServant(4,"Saber", "齐格弗里德", 6, "地", ["混沌", "善"], 8181, 14165, 9905, 17175, 3,1,0, "BusterAll2", 150, 200, "NpSpecialAttack", 1.5);
-    initialServant(4,"Saber", "罗摩", 101, "天", ["秩序", "善"], 9854, 11993, 11931, 14541, 1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, [], {damagePlus: 200});
-    initialServant(4,"Saber", "兰斯洛特", 121, "地", ["秩序", "善"], 9949, 11589, 12046, 14051, 1,1,0.83, "ArtsSingle1", 0, 0, "", 1, [], {}, { cardBuff: 30 });
-    initialServant(4,"Saber", "高文", 123, "地", ["秩序", "善"], 10173, 11419, 12317, 13845, 3,1,0, "BusterAll1", 0, 0, "", 1.5);
-    initialServant(4,"Saber", "伊丽莎白・巴陶里〔勇者〕", 138, "地", ["混沌", "善"], 9899, 11248, 11986, 13638, 1,1,0, "BusterSingle1", 0, 0, "", 1.5);
-    initialServant(4,"Saber", "铃鹿御前", 165, "天", ["中立", "恶"], 9544, 11753, 11556, 14250, 3,1,0, "BusterAll1", 0, 0, "", 1.5, [], {damagePlus: 200});
-    initialServant(4,"Saber", "弗兰肯斯坦", 176, "地", ["中立", "夏"], 9353, 11993, 11325, 14541, 1,5,0.7, "QuickSingle1", 0, 0, "", 0.8, [6,13,20,26], {cardBuff: 12});
-    initialServant(4,"Saber", "柳生但马守宗矩", 187, "人", ["秩序", "中庸"], 9999, 11135, 12107, 13501, 1,4,0.81, "ArtsSingle1", 0, 0, "", 1, [10,20,30]);
-    initialServant(4,"Saber", "女王梅芙", 221, "地", ["混沌", "恶"], 8017, 13609, 9707, 16501, 1,6,0.72, "ArtsSingle1", 0, 0, "", 1, [4,9,14,19,23]);	
-    initialServant(4,"Saber", "迪尔姆德·奥迪那", 223, "地", ["秩序", "中庸"], 10048, 11362, 12166, 13776, 1,10,0.73, "QuickSingle1", 0, 0, "", 0.8, [1,3,5,7,9,10,12,14,16], {cardBuff: 8});
-    initialServant(4,"Saber", "拉克什米・芭伊", 245, "人", ["秩序", "善"], 9949, 11362, 12046, 13776, 3,4,1.01, "BusterSingle1", 0, 0, "", 0.8, [10,20,30], {cardBuff: 8, damagePlus: 200});
-    initialServant(4,"Saber", "葛飾北齋", 264, "人", ["混沌", "善"], 9389, 11873, 11368, 14396, 1,8,0.46, "ArtsSingle1", 30, 70, "OcNpStrength", 1, [2,5,8,11,13,16,19], {damagePlus: 100});
+    initialServant(4,"Saber", "齐格弗里德", 6, "地", ["混沌", "善"], 8181, 14165, 9905, 17175, 3,1,0, "BusterAll2", 150, 200, "NpSpecialAttack", 1.5, {}, {}, {specialAttack: [50,80], cardBuff: [30,50]});
+    initialServant(4,"Saber", "罗摩", 101, "天", ["秩序", "善"], 9854, 11993, 11931, 14541, 1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {}, {attackBuff: [9,18]}, {}, [], {damagePlus: 200});
+    initialServant(4,"Saber", "兰斯洛特", 121, "地", ["秩序", "善"], 9949, 11589, 12046, 14051, 1,1,0.83, "ArtsSingle1", 0, 0, "", 1, {}, {}, {}, [], {}, { cardBuff: 30 });
+    initialServant(4,"Saber", "高文", 123, "地", ["秩序", "善"], 10173, 11419, 12317, 13845, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {attackBuff: [20,20], cardBuff: [20,30]}, {attackBuff: [10,20]});
+    initialServant(4,"Saber", "高文EN", 123, "地", ["秩序", "善"], 10173, 11419, 12317, 13845, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {attackBuff: [20,20]}, {attackBuff: [6,12]});
+    initialServant(4,"Saber", "伊丽莎白・巴陶里〔勇者〕", 138, "地", ["混沌", "善"], 9899, 11248, 11986, 13638, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {cardBuff: [20,40]});
+    initialServant(4,"Saber", "铃鹿御前", 165, "天", ["中立", "恶"], 9544, 11753, 11556, 14250, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,40]}, {}, {npStrength: [20,20]}, [], {damagePlus: 200});
+    initialServant(4,"Saber", "弗兰肯斯坦", 176, "地", ["中立", "夏"], 9353, 11993, 11325, 14541, 1,5,0.7, "QuickSingle1", 0, 0, "", 0.8, {npGainBuff: [40,80]}, {}, {attackBuff: [10,20], npStrength: [10,20]}, [6,13,20,26], {cardBuff: 12});
+    initialServant(4,"Saber", "柳生但马守宗矩", 187, "人", ["秩序", "中庸"], 9999, 11135, 12107, 13501, 1,4,0.81, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [30,50]}, {attackBuff: [10,20]}, {npGainBuff: [30,50]}, [10,20,30]);
+    initialServant(4,"Saber", "女王梅芙", 221, "地", ["混沌", "恶"], 8017, 13609, 9707, 16501, 1,6,0.72, "ArtsSingle1", 0, 0, "", 1, {}, {cardDecrease: [10,20]}, {attackBuff: [10,20]}, [4,9,14,19,23]);	
+    initialServant(4,"Saber", "迪尔姆德·奥迪那", 223, "地", ["秩序", "中庸"], 10048, 11362, 12166, 13776, 1,10,0.73, "QuickSingle1", 0, 0, "", 0.8, {cardBuff: [10,20], attackBuff: [10,20]}, {}, {npGainBuff: [20,30]}, [1,3,5,7,9,10,12,14,16], {cardBuff: 8});
+    initialServant(4,"Saber", "拉克什米・芭伊", 245, "人", ["秩序", "善"], 9949, 11362, 12046, 13776, 3,4,1.01, "BusterSingle1", 0, 0, "", 0.8, {attackBuff: [10,20]}, {}, {}, [10,20,30], {cardBuff: 8, damagePlus: 200});
+    initialServant(4,"Saber", "葛飾北齋", 264, "人", ["混沌", "善"], 9389, 11873, 11368, 14396, 1,8,0.46, "ArtsSingle1", 30, 70, "OcNpStrength", 1, {}, {}, {cardBuff: [20,30]}, [2,5,8,11,13,16,19], {damagePlus: 100});
     /******************************************3星及以下********************************************************************/
-    initialServant(3,"Saber", "盖乌斯・尤里乌斯・凯撒", 7, "人", ["中立", "中庸"], 7497, 9595, 10146, 13009, 1,10,1.1, "QuickSingle1", 0, 0, "", 0.8, [1,3,5,7,9,10,12,14,16], {cardBuff: 8, damagePlus: 150});
-    initialServant(3,"Saber", "弗格斯・马克・罗伊", 72, "地", ["秩序", "中庸"], 7460, 9786, 10096, 13268, 3,1,0, "BusterAll2", 0, 0, "", 1.5);
-    initialServant(3,"Saber", "贝狄威尔", 126, "星", ["秩序", "善"], 7627, 9595, 10322, 13009, 1,1,0, "BusterSingle2", 30, 90, "OcCardBuff", 1.5);
-    initialServant(1,"Saber", "伊阿宋", 254, "地", ["秩序", "善"], 5457, 7575, 8479, 11677, 3,5,0.37, "ArtsAll1", 20, 40, "OcCardBuff", 1, [6,13,20,26]);
+    initialServant(3,"Saber", "盖乌斯・尤里乌斯・凯撒", 7, "人", ["中立", "中庸"], 7497, 9595, 10146, 13009, 1,10,1.1, "QuickSingle1", 0, 0, "", 0.8, {npStrength: [9,18]}, {attackBuff: [8,16]}, {}, [1,3,5,7,9,10,12,14,16], {cardBuff: 8, damagePlus: 150});
+    initialServant(3,"Saber", "弗格斯・马克・罗伊", 72, "地", ["秩序", "中庸"], 7460, 9786, 10096, 13268, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {attackBuff: [10,30]});
+    initialServant(3,"Saber", "贝狄威尔", 126, "星", ["秩序", "善"], 7627, 9595, 10322, 13009, 1,1,0, "BusterSingle2", 30, 90, "OcCardBuff", 1.5, {npStrength: [8,16]});
+    initialServant(1,"Saber", "伊阿宋", 254, "地", ["秩序", "善"], 5457, 7575, 8479, 11677, 3,5,0.37, "ArtsAll1", 20, 40, "OcCardBuff", 1, {}, {}, {attackBuff: [10,20]}, [6,13,20,26]);
 }
 
 function initArcher(){
@@ -340,7 +341,7 @@ function initLancer(){
     initialServant(3,"Lancer", "库・丘林〔Prototype〕", 20, "天", ["秩序", "中庸"], 7082, 10098, 9584, 13691, 1,1,1.08, "QuickSingle1", 0, 0, "", 0.8, [], {damagePlus: 175});
     initialServant(3,"Lancer", "罗穆路斯", 22, "星", ["混沌", "中立"], 7239, 9883, 9797, 13400, 3,1,0, "BusterAll1", 0, 0, "", 1.5);
     initialServant(3,"Lancer", "赫克托耳", 64, "人", ["秩序", "中立"], 6928, 10200, 9376, 13829, 3,1,0, "BusterAll2", 0, 0, "", 1.5);
-    initialServant(3,"Lancer", "迪尔姆德・奥迪纳", 71, "地", ["秩序", "中庸"], 6877, 10098, 9307, 13691, 1,2,0.79, "QuickSingle2", 0, 0, "", 0.8, [60]);
+    initialServant(3,"Lancer", "迪尔姆德・奥迪纳", 71, "地", ["秩序", "中庸"], 6877, 10098, 9307, 13691, 1,2,0.79, "QuickSingle2", 0, 0, "", 0.8, 60);
     initialServant(3,"Lancer", "豹人", 148, "地", ["混沌", "中庸"], 7022, 9593, 9503, 13007, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, [], {cardBuff: 2, damagePlus: 200});
     initialServant(2,"Lancer", "加雷斯", 256, "地", ["秩序", "善"], 5413, 9537, 7844, 13764, 1,1,0, "BusterSingle1", 0, 0, "", 1.5);
 }

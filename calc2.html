@@ -801,7 +801,7 @@
         //12.固定伤害Buff
         let damagePlus = getFloat("txtDamagePlus");
 	//13.黄金律
-	let baseNp = getFloat("txtBaseNp");
+	let baseNp = Math.round(getFloat("txtBaseNp") * 100);
         let npGainBuff = getFloat("txtNpGainBuff");
         //14.礼装
 	switch($("ddlCraftEssence").selectedIndex) {
@@ -911,8 +911,8 @@
 	    if ($("ckIsUndying"+l).checked) {
 		npGainNormal *= 1.2;
 	    }
-	    npGainNormal = Math.floor(npGainNormal * 100) / 100;
-	    let npGainOverkill = Math.floor(npGainNormal * 150) / 100;
+	    npGainNormal = Math.floor(npGainNormal);
+	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
 	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+l) + npGainNormal * nHits;
 	}
 
@@ -948,7 +948,7 @@
             min: resultMin,
             avg: resultAvg,
             ClassResistType: ClassResistType,
-	    npGain: npGain
+	    npGain: npGain / 100
         };
         resultArr.push(model);
         showResult();
