@@ -682,7 +682,8 @@
     var cardNpBase = [1, 3, 0];
     //计算宝具伤害
     function calc() {
-        if ($("ddlServant").value == -1) {
+	let id = $("ddlServant").value;
+        if (id == -1) {
             alert("请选择从者")
             return;
         }
@@ -738,6 +739,52 @@
 		break;
 	    case 12:
                 ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0.5, 2];
+	}
+	let servant = servants[id];
+	let npEffect = servant.npEffect;
+	if(npEffect && npEffect.resistClass) {
+	    let ClassNo = -1;
+	    switch(npEffect.resistClass[0]) {
+		case "Saber":
+		    ClassNo = 0;
+		    break;
+		case "Archer":
+                    ClassNo = 1;
+                    break;
+		case "Lancer":
+                    ClassNo = 2;
+                    break;
+		case "Rider":
+                    ClassNo = 3;
+                    break;
+		case "Caster":
+                    ClassNo = 4;
+                    break;
+		case "Assassin":
+                    ClassNo = 5;
+                    break;
+		case "Berserker":
+                    ClassNo = 6;
+                    break;
+		case "Ruler":
+                    ClassNo = 7;
+                    break;
+		case "Avenger":
+                    ClassNo = 8;
+                    break;
+		case "Shielder":
+                    ClassNo = 9;
+                    break;
+		case "MoonCancer":
+                    ClassNo = 10;
+                    break;
+		case "Alterego":
+                    ClassNo = 11;
+                    break;
+		case "Foreigner":
+                    ClassNo = 12;
+	    }
+	    ClassResistMatrix[ClassNo] = npEffect.resistClass[1];
 	}
         let nTarget = getInt("txtNTarget");
         for(let i=1, l="";i<=nTarget;i++) {
