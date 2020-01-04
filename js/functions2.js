@@ -25,7 +25,11 @@ function bindSkill(label) {
 	let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtCardBuff").value -= -cardBuff;
     }
-    if(buff = skill.cardDecrease) {
+    if(buff = skill.cardDecreaseSingle) {
+        let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardResist1").value -= cardDecrease;
+    }
+    if(buff = skill.cardDecreaseAll) {
 	let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtCardResist1").value -= cardDecrease;
 	$("txtCardResist2").value -= cardDecrease;
@@ -84,7 +88,12 @@ function changeSkill(label) {
 	let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtCardBuff").value -= o - cardBuff;
     }
-    if(buff = skill.cardDecrease) {
+    if(buff = skill.cardDecreaseSingle) {
+        o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
+        let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtCardResist1").value -= cardDecrease - o;
+    }
+    if(buff = skill.cardDecreaseAll) {
 	o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
 	let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtCardResist1").value -= cardDecrease - o;
