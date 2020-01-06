@@ -544,7 +544,7 @@ function initExtra(){
     initialServant(5,"Avenger", "岩窟王 爱德蒙・唐泰斯", 96, "人", ["混沌", "恶"], 12641, 12177, 13838, 13340, 3,8,0.62, "BusterSingle2", 0, 0, "", 0.8, {attackBuff: [30,50]}, {npGainBuff: [20,50]}, {}, [3,6,10,13,16,13,10]);
     initialServant(5,"Avenger", "岩窟王 爱德蒙・唐泰斯EN", 96, "人", ["混沌", "恶"], 12641, 12177, 13838, 13340, 3,8,0.62, "BusterSingle1", 0, 0, "", 0.8, {attackBuff: [30,50]}, {npGainBuff: [20,50]}, {}, [3,6,10,13,16,13,10]);
     initialServant(5,"Avenger", "贞德〔Alter〕", 106, "人", ["混沌", "恶"], 13244, 11761, 14498, 12885, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {attackBuff: [10,20]}, {cardBuff: [30,50]});
-    initialServant(5,"Avenger", "魔王信長", 250, "地", ["混沌", "中庸"], 12641, 11761, 13838, 12885, 3,1,0, "BusterAll1", 150, 200, "NpSpecialAttack", 1.5, {attackBuff: [20,30]});
+    initialServant(5,"Avenger", "魔王信長", 250, "地", ["混沌", "中庸"], 12641, 11761, 13838, 12885, 3,1,0, "BusterAll1", 150, 200, "NpSpecialAttack", 1.5, {attackBuff: [20,30], accAttackBuff: [10,20]});
     initialServant(5,"Avenger", "太空 伊斯塔(Arts)", 268, "星", ["秩序", "恶"], 12612, 13041, 13806, 14287, 3,3,0.69, "ArtsAll1", 20, 60, "OcNpStrength", 1, {attackBuff: [10,20]}, {npStrength: [10,20]}, {randomCardBuff: [20,20]}, [16,33], {damagePlus: 270});
     initialServant(5,"Avenger", "太空 伊斯塔(Buster)", 268, "星", ["秩序", "恶"], 12612, 13041, 13806, 14287, 3,1,0, "BusterAll1", 20, 60, "OcNpStrength", 1.5, {attackBuff: [10,20]}, {npStrength: [10,20]}, {randomCardBuff: [20,20]}, [], {damagePlus: 270});
     initialServant(5,"Avenger", "太空 伊斯塔(Quick)", 268, "星", ["秩序", "恶"], 12612, 13041, 13806, 14287, 3,3,0.69, "BusterSingle1", 20, 60, "OcNpStrength", 0.8, {attackBuff: [10,20]}, {npStrength: [10,20]}, {randomCardBuff: [20,20]}, [16,33], {damagePlus: 270});
