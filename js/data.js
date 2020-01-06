@@ -535,8 +535,8 @@ function initExtra(){
     initialServant(5,"Ruler", "天草四郎", 93, "人", ["秩序", "善"], 10972, 14107, 12011, 15455, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {}, {cardBuff: [20,30]});
     initialServant(5,"Ruler", "阿爾托莉亞・潘德拉剛", 265, "天", ["秩序", "夏"], 9593, 16912, 10501, 18528, 3,1,0, "BusterAll1", 20, 40, "OcCardBuff", 1.5, {attackBuff: [20,30]}, {}, {attackBuff: [20,40]});
     /******************************************4星********************************************************************/
-    initialServant(4,"Ruler", "马大", 135, "人", ["秩序", "善"], 9546, 11250, 11558, 13640, 1,1,0, "BusterSingle2", 20, 60, "DefDecrease", 1.5, {}, {}, {specialAttack: [50,100]});
-    initialServant(4,"Ruler", "马大EN", 135, "人", ["秩序", "善"], 9546, 11250, 11558, 13640, 1,1,0, "BusterSingle1", 10, 50, "DefDecrease", 1.5, {}, {}, {specialAttack: [50,100]});
+    initialServant(4,"Ruler", "马大", 135, "人", ["秩序", "善"], 9546, 11250, 11558, 13640, 1,1,0, "BusterSingle2", 20, 60, "DefDecrease", 1.5, {randomAttackBuff: [10,20]}, {}, {specialAttack: [50,100]});
+    initialServant(4,"Ruler", "马大EN", 135, "人", ["秩序", "善"], 9546, 11250, 11558, 13640, 1,1,0, "BusterSingle1", 10, 50, "DefDecrease", 1.5, {randomAttackBuff: [10,20]}, {}, {specialAttack: [50,100]});
     initialServant(4,"Ruler", "魁札尔·科亚特尔", 233, "天", ["秩序", "善"], 9687, 11306, 11729, 13708, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {attackBuff: [10,20]}, {}, {cardBuff: [20,30]}, [], {damagePlus: 250});
     initialServant(4,"Ruler", "阿斯特蕾亞", 242, "天", ["秩序", "善"], 9734, 11531, 11786, 13981, 1,8,0.43, "ArtsSingle1", 150, 200, "NpSpecialAttack", 1, {attackBuff: [10,20], npGainBuff: [10,20]}, {cardBuff: [20,30]}, {}, [2,5,8,11,13,16,19], {cardBuff: 10, damagePlus: 225});
     //----------------------------------Avenger---------------------------------------------------------------------//
