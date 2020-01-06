@@ -155,7 +155,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-		    <label for="ckNoMiss1" onchange="randomSkill('1')">
+		    <label for="ckNoMiss1" onchange="randomSkill(1)">
                         <input type="checkbox" id="ckNoMiss1" /> 命中
                     </label>
                 </td>
@@ -174,7 +174,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckNoMiss2" onchange="randomSkill('2')">
+                    <label for="ckNoMiss2" onchange="randomSkill(2)">
                         <input type="checkbox" id="ckNoMiss2" /> 命中
                     </label>
                 </td>
@@ -193,7 +193,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckNoMiss3" onchange="randomSkill('3')">
+                    <label for="ckNoMiss3" onchange="randomSkill(3)">
                         <input type="checkbox" id="ckNoMiss3" /> 命中
                     </label>
                 </td>
@@ -315,7 +315,7 @@
                     <label for="ckIsSpecialAttack1">
                         <input type="checkbox" id="ckIsSpecialAttack1" /> 特攻
                     </label>
-                    <input type="button" value="应用" id="btnApplyEnemy1" onclick="applyEnemy('1')"/>
+                    <input type="button" value="应用" id="btnApplyEnemy1" onclick="applyEnemy(1)"/>
                 </td>
                 <td>敌人2阵营</td>
                 <td>
@@ -330,7 +330,7 @@
                     <label for="ckIsSpecialAttack2">
                         <input type="checkbox" id="ckIsSpecialAttack2" /> 特攻
                     </label>
-                    <input type="button" value="应用" id="btnApplyEnemy2" onclick="applyEnemy('2')"/>
+                    <input type="button" value="应用" id="btnApplyEnemy2" onclick="applyEnemy(2)"/>
                 </td>
                 <td>敌人3阵营</td>
                 <td>
@@ -345,7 +345,7 @@
                     <label for="ckIsSpecialAttack3">
                         <input type="checkbox" id="ckIsSpecialAttack3" /> 特攻
                     </label>
-                    <input type="button" value="应用" id="btnApplyEnemy3" onclick="applyEnemy('3')"/>
+                    <input type="button" value="应用" id="btnApplyEnemy3" onclick="applyEnemy(3)"/>
                 </td>
             </tr>
             <tr>
@@ -409,17 +409,17 @@
                 </td>
                 <td>敌人1鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill1" value="0" size=14px onchange="calPerDamage('1')"/>
+                    <input type="text" id="txtOverkill1" value="0" size=14px onchange="calPerDamage(1)"/>
 		    <span id="spanOverkill1">100%</span>
                 </td>
                 <td>敌人2鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill2" value="0" size=14px onchange="calPerDamage('2')"/>
+                    <input type="text" id="txtOverkill2" value="0" size=14px onchange="calPerDamage(2)"/>
                     <span id="spanOverkill2">100%</span>
                 </td>
                 <td>敌人3鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill3" value="0" size=14px onchange="calPerDamage('3')"/>
+                    <input type="text" id="txtOverkill3" value="0" size=14px onchange="calPerDamage(3)"/>
                     <span id="spanOverkill3">100%</span>
                 </td>
             </tr>
@@ -545,9 +545,9 @@
         $("txtOverkill1").value = $("txtNHits").value;
         $("txtOverkill2").value = $("txtNHits").value;
         $("txtOverkill3").value = $("txtNHits").value;
-	calPerDamage("1");
-	calPerDamage("2");
-	calPerDamage("3");
+	calPerDamage(1);
+	calPerDamage(2);
+	calPerDamage(3);
     }
     //宝具等级选中项发生变化事件
     $("ddlNpLevel").onchange = function () {
@@ -579,11 +579,13 @@
 	this.value = "累加 " + this.count;
 	let servant = servants[id];
 	for(let i=1;i<=3;i++) {
-	    let skill = servant["skill"+i.toString()];
-	    if(!skill) { continue; }
-	    if(buff = skill.accumulateAttackBuff) {
-		let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        	$("txtAttackBuff").value -= -attackBuff;
+	    let skill = servant["skill"+i];
+	    let skillLv = $("ddlSkill"+i).value;
+	    if(!skill || skillLv == -1) { continue; }
+	    let buff = [];
+	    if(buff = skill.accDefDecreaseSingle) {
+		let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        	$("txtEnemyDefence1").value -= defDecrease;
     	    }
 	}
     }
@@ -632,22 +634,22 @@
 	this.oldvalue = this.value;
     };
     $("ddlSkill1").onchange = function () {
-	changeSkill("1");
+	changeSkill(1);
 	this.oldvalue = this.value;
     }
     $("ddlSkill2").onchange = function () {
-        changeSkill("2");
+        changeSkill(2);
         this.oldvalue = this.value;
     }
     $("ddlSkill3").onchange = function () {
-        changeSkill("3");
+        changeSkill(3);
         this.oldvalue = this.value;
     }
     $("btnClearBuff").onclick = function() {
         clearBuff();
-	bindSkill("1");
-	bindSkill("2");
-	bindSkill("3");
+	bindSkill(1);
+	bindSkill(2);
+	bindSkill(3);
         setOc();
     }
 
@@ -794,9 +796,8 @@
 	    ClassResistMatrix[ClassNo] = npEffect.resistClass[1];
 	}
         let nTarget = getInt("txtNTarget");
-        for(let i=1, l="";i<=nTarget;i++) {
-	    l = i.toString();
-	    ClassResist[i-1] = ClassResistMatrix[$("ddlEnemyClass"+l).selectedIndex];
+        for(let i=1;i<=nTarget;i++) {
+	    ClassResist[i-1] = ClassResistMatrix[$("ddlEnemyClass"+i).selectedIndex];
 	}
         //6.阵营克制
         let attributeResist = [1, 1, 1];
@@ -820,34 +821,30 @@
 	    default:
 		attributeResistMatrix = [1, 1, 1, 1, 1, 1];
 	}
-	for(let i=1, l="";i<=nTarget;i++) {
-	    l = i.toString();
-	    attributeResist[i-1] = attributeResistMatrix[$("ddlEnemyAttribute"+l).selectedIndex];
+	for(let i=1;i<=nTarget;i++) {
+	    attributeResist[i-1] = attributeResistMatrix[$("ddlEnemyAttribute"+i).selectedIndex];
 	}
         //7.攻击力Buff(%)
         let attackBuff = getFloat("txtAttackBuff");
         //8.敌方防御力Buff(%)
 	let enemyDefence = [0, 0, 0];
-	for(let i=1, l="";i<=nTarget;i++){
-	    l = i.toString();
-	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+l);
+	for(let i=1;i<=nTarget;i++){
+	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+i);
 	    enemyDefence[i-1] = Math.max(-100, enemyDefence[i-1]);
 	}
         //9.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");
 	let cardResist = [0, 0, 0];
-	for(let i=1, l="";i<=nTarget;i++){
-	    l = i.toString();
-	    cardResist[i-1] = getFloat("txtCardResist"+l);
+	for(let i=1;i<=nTarget;i++){
+	    cardResist[i-1] = getFloat("txtCardResist"+i);
 	}
         //10.宝具威力Buff(%)
         let npStrength = getFloat("txtNpStrength");
         //11.特攻威力Buff(%)与宝具特攻(%)
 	let specialAttackBuff = [0, 0, 0];
 	let npSpecialAttack = [1, 1, 1];
-	for(let i=1, l="";i<=nTarget;i++){
-	    l = i.toString();
-	    if($("ckIsSpecialAttack"+l).checked) {
+	for(let i=1;i<=nTarget;i++){
+	    if($("ckIsSpecialAttack"+i).checked) {
 		specialAttackBuff[i-1] = getFloat("txtSpecialAttack");
 		npSpecialAttack[i-1] = getFloat("txtNpSpecialAttack") / 100;
 	    }

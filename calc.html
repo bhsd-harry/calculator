@@ -681,15 +681,14 @@
 	let npGain = 0;
 	let nHits = getInt("txtNHits");
 	let nTarget = getInt("txtNTarget");
-	for(let i=1, l="";i<=nTarget;i++){
-	    l = i.toString();
-	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+l);
-	    if ($("ckIsUndying"+l).checked) {
+	for(let i=1;i<=nTarget;i++){
+	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+i);
+	    if ($("ckIsUndying"+i).checked) {
 		npGainNormal *= 1.2;
 	    }
 	    npGainNormal = Math.floor(npGainNormal);
 	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
-	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+l) + npGainNormal * nHits;
+	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+i) + npGainNormal * nHits;
 	}
 
         let servantName = getDdlText("ddlServant");

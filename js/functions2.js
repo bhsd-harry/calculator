@@ -7,6 +7,7 @@ function randomSkill(label) {
     let skill = servant["skill"+label];
     if(!skill) { return; }
     let noMiss = $("ckNoMiss"+label).checked;
+    let buff = [];
     if(buff = skill.randomAttackBuff) {
 	let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtAttackBuff").value -= (noMiss? -attackBuff : attackBuff);
@@ -33,7 +34,7 @@ function bindSkill(label) {
 	let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtAttackBuff").value -= -attackBuff;
     }
-    if(buff = skill.randomAttackBuff && noMiss) {
+    if((buff = skill.randomAttackBuff) && noMiss) {
         let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtAttackBuff").value -= -attackBuff;
     }
@@ -51,7 +52,7 @@ function bindSkill(label) {
 	let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtCardBuff").value -= -cardBuff;
     }
-    if(buff = skill.randomCardBuff && noMiss) {
+    if((buff = skill.randomCardBuff) && noMiss) {
         let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtCardBuff").value -= -cardBuff;
     }
@@ -69,7 +70,7 @@ function bindSkill(label) {
 	let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtNpStrength").value -= -npStrength;
     }
-    if(buff = skill.randomNpStrength && noMiss) {
+    if((buff = skill.randomNpStrength) && noMiss) {
         let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtNpStrength").value -= -npStrength;
     }
@@ -107,7 +108,7 @@ function changeSkill(label) {
 	let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtAttackBuff").value -= o - attackBuff;
     }
-    if(buff = skill.randomAttackBuff && noMiss) {
+    if((buff = skill.randomAttackBuff) && noMiss) {
         o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
         let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtAttackBuff").value -= o - attackBuff;
@@ -134,7 +135,7 @@ function changeSkill(label) {
 	let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtCardBuff").value -= o - cardBuff;
     }
-    if(buff = skill.randomCardBuff && noMiss) {
+    if((buff = skill.randomCardBuff) && noMiss) {
         o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
         let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtCardBuff").value -= o - cardBuff;
@@ -156,7 +157,7 @@ function changeSkill(label) {
 	let npStrength = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtNpStrength").value -= o - npStrength;
     }
-    if(buff = skill.randomNpStrength && noMiss) {
+    if((buff = skill.randomNpStrength) && noMiss) {
         o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
         let npStrength = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtNpStrength").value -= o - npStrength;
@@ -201,12 +202,11 @@ function applyEnemy(label) {
     let isUndying = $("ckIsUndying"+label).checked;
     let attribute = $("ddlEnemyAttribute"+label).selectedIndex;
     let isSpecialAttack = $("ckIsSpecialAttack"+label).checked;
-    for(let i=1, l="";i<=3;i++){
-	l=i.toString();
-        $("ddlEnemyClass"+l).selectedIndex = Class;
-        $("ckIsUndying"+l).checked = isUndying;
-        $("ddlEnemyAttribute"+l).selectedIndex = attribute;
-        $("ckIsSpecialAttack"+l).checked = isSpecialAttack;
+    for(let i=1;i<=3;i++){
+        $("ddlEnemyClass"+i).selectedIndex = Class;
+        $("ckIsUndying"+i).checked = isUndying;
+        $("ddlEnemyAttribute"+i).selectedIndex = attribute;
+        $("ckIsSpecialAttack"+i).checked = isSpecialAttack;
     }
 }
 function initialServantList() {
@@ -220,9 +220,9 @@ function initialEffects() {
         bindServantData(id);
         adjHp()
         clearBuff();
-	bindSkill("1");
-	bindSkill("2");
-	bindSkill("3");
+	bindSkill(1);
+	bindSkill(2);
+	bindSkill(3);
         setOc();
         $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
 	$("ddlSkill1").oldvalue = $("ddlSkill1").value;
