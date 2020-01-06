@@ -113,15 +113,15 @@ function changeSkill(label) {
         let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtAttackBuff").value -= o - attackBuff;
     }
-    if(buff = skill.accumulateAttackBuff) {
-        o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
-        let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtAttackBuff").value -= (o - attackBuff) * nCount;
-    }
     if(buff = skill.defDecreaseSingle) {
 	o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
 	let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtEnemyDefence1").value -= defDecrease - o;
+    }
+    if(buff = skill.accDefDecreaseSingle) {
+        o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
+        let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtEnemyDefence1").value -= (defDecrease - o) * nCount;
     }
     if(buff = skill.defDecreaseAll) {
 	o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
