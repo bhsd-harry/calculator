@@ -568,7 +568,7 @@ function initExtra(){
     initialServant(5,"Alterego", "杀生院祈荒EN", 167, "兽", ["混沌", "恶"], 11668, 14606, 12772, 16001, 3,3,0.55, "ArtsAll1", 0, 0, "", 1, {}, {defDecreaseAll: [10,30]}, {}, [16,33]);
     initialServant(5, "Alterego", "冲田总司〔Alter〕", 209, "人", ["中立", "中庸"], 12465, 12696, 13645, 13909, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,30]}, {}, {npStrength: [20,30]});
     initialServant(5,"Alterego", "西托奈", 224, "天", ["混沌", "善"], 11668, 13965, 12772, 15299, 1,6,0.83, "ArtsSingle1", 0, 0, "", 1, {}, {cardBuff: [20,30]}, {randomAttackBuff: [20,20]}, [4,9,14,19,23], {cardBuff: 10, damagePlus: 225});
-    initialServant(5,"Alterego", "帝王花", 238, "地", ["秩序", "善"], 12835, 13338, 14050, 14612, 3,1,0, "BusterAll1", 40, 80, "OcCardBuff", 1.5, {}, {}, {attackBuff: [20,40]}, [], {cardBuff: 11, damagePlus: 250});
+    initialServant(5,"Alterego", "帝王花", 238, "地", ["秩序", "善"], 12835, 13338, 14050, 14612, 3,1,0, "BusterAll1", 20, 60, "OcCardBuff", 1.5, {cardBuff: [20,20]}, {}, {attackBuff: [20,40]}, [], {cardBuff: 11, damagePlus: 250});
     /******************************************4星********************************************************************/
     initialServant(4,"Alterego", "帕森莉普", 164, "地", ["秩序", "中庸"], 10299, 10901, 12470, 13217, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {randomAttackBuff: [10,30]}, {attackBuff: [10,30]}, [], {damagePlus: 200});
     initialServant(4,"Alterego", "帕森莉普EN", 164, "地", ["秩序", "中庸"], 10299, 10901, 12470, 13217, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {}, {attackBuff: [10,30]}, [], {damagePlus: 200});
@@ -576,7 +576,7 @@ function initExtra(){
     //----------------------------------Foreigner---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
     initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯", 195, "地", ["混沌", "恶"], 12100, 13770, 13245, 15086, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {npStrength: [20,30]}, {defDecreaseAll: [10,20]}, {}, [], {cardBuff: 8, damagePlus: 175});
-    initialServant(5,"Foreigner", "葛饰北斋", 198, "人", ["混沌", "中庸"], 12100, 13230, 13245, 14494, 3,5,0.33, "ArtsAll1", 150, 200, "NpSpecialAttack", 1, {}, {cardBuff: [20,30]}, {}, [6,13,20,26], {cardBuff: 4, damagePlus: 175});
+    initialServant(5,"Foreigner", "葛饰北斋", 198, "人", ["混沌", "中庸"], 12100, 13230, 13245, 14494, 3,5,0.33, "ArtsAll1", 150, 200, "NpSpecialAttack", 1, {}, {cardBuff: [20,30]}, {accDefDecreaseSingle: [10,20]}, [6,13,20,26], {cardBuff: 4, damagePlus: 175});
     initialServant(5,"Foreigner", "杨贵妃", 275, "人", ["混沌", "善"], 12342, 13365, 13510, 14642, 1,4,0.51, "ArtsSingle1", 150, 200, "NpSpecialAttack", 1, {}, {defDecreaseAll: [10,20]}, {}, [10,20,30], {damagePlus: 175});
     /******************************************4星********************************************************************/
     initialServant(4,"Foreigner", "谜之女主角XX", 222, "星", ["秩序", "善"], 9751, 11250, 11806, 13640, 1,4,0.64, "ArtsSingle1", 20, 60, "OcAttackBuff", 1, {attackBuff: [30,50]}, {}, {specialAttack: [30,50]}, [10,20,30]);
