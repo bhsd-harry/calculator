@@ -1,4 +1,25 @@
 "use strict";
+function randomSkill(label) {
+    let id = $("ddlServant").value;
+    let skillLv = $("ddlSkill"+label).value;
+    if(id == -1 || skillLv == -1) { return; }
+    let servant = servants[id];
+    let skill = servant["skill"+label];
+    if(!skill) { return; }
+    let noMiss = $("ckNoMiss"+label).checked;
+    if(buff = skill.randomAttackBuff) {
+	let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= (noMiss? -attackBuff : attackBuff);
+    }
+    if(buff = skill.randomCardBuff) {
+        let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardBuff").value -= (noMiss? -cardBuff : cardBuff);
+    }
+    if(buff = skill.randomNpStrength) {
+        let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtNpStrength").value -= (noMiss? -npStrength : npStrength);
+    }
+}
 function bindSkill(label) {
     let id = $("ddlServant").value;
     let skillLv = $("ddlSkill"+label).value;
@@ -7,9 +28,14 @@ function bindSkill(label) {
     let skill = servant["skill"+label];
     if(!skill) { return; }
     let buff = [];
+    let noMiss = $("ckNoMiss"+label).checked;
     if(buff = skill.attackBuff) {
 	let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtAttackBuff").value -= -attackBuff;
+    }
+    if(buff = skill.randomAttackBuff && noMiss) {
+        let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= -attackBuff;
     }
     if(buff = skill.defDecreaseSingle) {
 	let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
@@ -25,6 +51,10 @@ function bindSkill(label) {
 	let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtCardBuff").value -= -cardBuff;
     }
+    if(buff = skill.randomCardBuff && noMiss) {
+        let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardBuff").value -= -cardBuff;
+    }
     if(buff = skill.cardDecreaseSingle) {
         let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtCardResist1").value -= cardDecrease;
@@ -38,6 +68,10 @@ function bindSkill(label) {
     if(buff = skill.npStrength) {
 	let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtNpStrength").value -= -npStrength;
+    }
+    if(buff = skill.randomNpStrength && noMiss) {
+        let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtNpStrength").value -= -npStrength;
     }
     if(buff = skill.specialAttack) {
 	let specialAttack = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
@@ -66,10 +100,22 @@ function changeSkill(label) {
     let skillLv = $("ddlSkill"+label).value;
     let buff = [];
     let o = 0;
+    let noMiss = $("ckNoMiss"+label).checked;
+    let nCount = $("btnAccumulate").count;
     if(buff = skill.attackBuff) {
 	o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
 	let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtAttackBuff").value -= o - attackBuff;
+    }
+    if(buff = skill.randomAttackBuff && noMiss) {
+        o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
+        let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtAttackBuff").value -= o - attackBuff;
+    }
+    if(buff = skill.accumulateAttackBuff) {
+        o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
+        let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtAttackBuff").value -= (o - attackBuff) * nCount;
     }
     if(buff = skill.defDecreaseSingle) {
 	o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
@@ -88,6 +134,11 @@ function changeSkill(label) {
 	let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtCardBuff").value -= o - cardBuff;
     }
+    if(buff = skill.randomCardBuff && noMiss) {
+        o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
+        let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtCardBuff").value -= o - cardBuff;
+    }
     if(buff = skill.cardDecreaseSingle) {
         o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
         let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
@@ -104,6 +155,11 @@ function changeSkill(label) {
 	o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
 	let npStrength = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtNpStrength").value -= o - npStrength;
+    }
+    if(buff = skill.randomNpStrength && noMiss) {
+        o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
+        let npStrength = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtNpStrength").value -= o - npStrength;
     }
     if(buff = skill.specialAttack) {
 	o = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10;
@@ -173,6 +229,13 @@ function initialEffects() {
 	$("ddlSkill2").oldvalue = $("ddlSkill2").value;
 	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
     }
+    else {
+	$("txtEnemyDefence1").basevalue = 0;
+	$("txtCardBuff").basevalue = 0;
+	$("txtNpStrength").basevalue = 0;
+	$("txtDamagePlus").basevalue = 0;
+	clearBuff();
+    }
 }
 function adjHp(){
     let totalHp = getInt("txtMaxHp") + getInt("txtFouHp") + getInt("txtCraftEssenceHp");
@@ -181,9 +244,7 @@ function adjHp(){
 }
 function adjustNpRemainHpDamage() {
     let id = $("ddlServant").value;
-    if(id == -1) {
-        return;
-    }
+    if(id == -1) { return; }
     let servant = servants[id];
     let npEffect = servant.npEffect;
     let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
@@ -279,6 +340,8 @@ function bindNpEffect(servant) {
     }
 }
 function clearBuff(){
+    $("btnAccumulate").count = 0;
+    $("btnAccumulate").value = "累   加";
     $("txtAttackBuff").value = 0;
     let enemyDefence = $("txtEnemyDefence1").basevalue;
     $("txtEnemyDefence1").value = enemyDefence;

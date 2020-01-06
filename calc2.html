@@ -93,19 +93,19 @@
 	    <tr>
                 <td>Hp最大值</td>
                 <td>
-                    <input type="text" id="txtMaxHp" />
+                    <input type="text" id="txtMaxHp" onchange="adjustNpRemainHpDamage()"/>
                 </td>
                 <td>芙芙Hp</td>
                 <td>
-                    <input type="text" id="txtFouHp" value="1000" />
+                    <input type="text" id="txtFouHp" value="1000" onchange="adjustNpRemainHpDamage()"/>
                 </td>
                 <td>礼装Hp</td>
                 <td>
-                    <input type="text" id="txtCraftEssenceHp" value="0" />
+                    <input type="text" id="txtCraftEssenceHp" value="0" onchange="adjustNpRemainHpDamage()"/>
                 </td>
                 <td>剩余Hp值</td>
                 <td>
-                    <input type="text" id="txtRemainHp" size=12px />
+                    <input type="text" id="txtRemainHp" size=12px onchange="adjustNpRemainHpDamage()"/>
                     <input type="button" value="满血" id="btnAdjHp" onclick="adjHp()" />
                 </td>                
             </tr>
@@ -155,6 +155,9 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
+		    <label for="ckNoMiss1" onchange="randomSkill('1')">
+                        <input type="checkbox" id="ckNoMiss1" /> 命中
+                    </label>
                 </td>
                 <td>技能2</td>
                 <td>
@@ -171,6 +174,9 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
+                    <label for="ckNoMiss2" onchange="randomSkill('2')">
+                        <input type="checkbox" id="ckNoMiss2" /> 命中
+                    </label>
                 </td>
                 <td>技能3</td>
                 <td>
@@ -187,6 +193,9 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
+                    <label for="ckNoMiss3" onchange="randomSkill('3')">
+                        <input type="checkbox" id="ckNoMiss3" /> 命中
+                    </label>
                 </td>
                 <td>Hit数</td>
                 <td>
@@ -418,12 +427,13 @@
             </tr>
             <tr>
                 <td colspan="8">
+		    <input type="button" value="累   加" id="btnAccumulate" count=0 />
 		    <input type="button" value="孔   明" id="btnAddZhuge" />
 		    <input type="button" value="梅   林" id="btnAddMerlin" />	
 		    <input type="button" value="狐   狸" id="btnAddTamamo" />
 		    <input type="button" value="斯卡蒂" id="btnAddSkadi" />
 		    <input type="button" value="清   空" id="btnClearBuff" />
-                    <input type="button" value="计   算" id="btnCalcute" onclick="calc()" />
+                    <input type="button" value="计   算" id="btnCalculate" />
                 </td>
             </tr>
         </table>
@@ -539,32 +549,15 @@
 	calPerDamage("2");
 	calPerDamage("3");
     }
-    //Hp值变动事件：动态计算双子宝具倍率
-    $("txtRemainHp").onchange = function () {
-        adjustNpRemainHpDamage();
-    }
-    $("txtMaxHp").onchange = function () {
-        adjustNpRemainHpDamage();
-    }
-    $("txtFouHp").onchange = function () {
-        adjustNpRemainHpDamage();
-    }
-    $("txtCraftEssenceHp").onchange = function () {
-        adjustNpRemainHpDamage();
-    }
     //宝具等级选中项发生变化事件
     $("ddlNpLevel").onchange = function () {
         let id = $("ddlServant").value;
-        if(id == -1){
-            return;
-        }
+        if(id == -1){ return; }
         changeNpCoefficient();
     };
     //礼装
     $("ddlCraftEssence").onchange=function(){
-        if(this.selectedIndex == 0) {
-            return;
-        }
+        if(this.selectedIndex == 0) { return; }
         $("txtCraftEssenceAtk").value = parseInt(this.value);
         switch(this.selectedIndex) {
             case 6:
@@ -579,12 +572,26 @@
         }
         adjHp();
     }
+    $("btnAccumulate").onclick = function(){
+	let id = $("ddlServant").value;
+	if(id == -1) { return; }
+	this.count++;
+	this.value = "累加 " + this.count;
+	let servant = servants[id];
+	for(let i=1;i<=3;i++) {
+	    let skill = servant["skill"+i.toString()];
+	    if(!skill) { continue; }
+	    if(buff = skill.accumulateAttackBuff) {
+		let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        	$("txtAttackBuff").value -= -attackBuff;
+    	    }
+	}
+    }
     //队友buff
     $("btnAddZhuge").onclick = function(){
         $("txtAttackBuff").value -= -30;
         $("txtDamagePlus").value -= -500;     
     }
-        
     $("btnAddMerlin").onclick = function(){
         $("txtAttackBuff").value -= -20;
         if($("ddlColor").value == 1.5){
@@ -681,7 +688,7 @@
     var guid = 0;
     var cardNpBase = [1, 3, 0];
     //计算宝具伤害
-    function calc() {
+    $("btnCalculate").onclick = function() {
 	let id = $("ddlServant").value;
         if (id == -1) {
             alert("请选择从者")

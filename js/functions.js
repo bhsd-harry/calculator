@@ -21,9 +21,7 @@ function adjHp(){
 }
 function adjustNpRemainHpDamage() {
     let id = $("ddlServant").value;
-    if(id == -1) {
-        return;
-    }
+    if(id == -1) { return; }
     let servant = servants[id];
     let npEffect = servant.npEffect;
     let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
