@@ -141,6 +141,11 @@ function changeSkill(label) {
         let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtCardBuff").value -= o - cardBuff;
     }
+    if(buff = skill.accCardBuff) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtCardBuff").value -= (o - cardBuff) * nCount;
+    }
     if(buff = skill.cardDecreaseSingle) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
         let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);

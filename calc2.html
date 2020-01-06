@@ -591,6 +591,10 @@
 		let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         	$("txtEnemyDefence1").value -= defDecrease;
     	    }
+	    if(buff = skill.accCardBuff) {
+		let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+		$("txtCardBuff").value -= -cardBuff;
+	    }
 	}
     }
     //队友buff
