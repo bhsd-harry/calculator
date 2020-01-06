@@ -583,6 +583,10 @@
 	    let skillLv = $("ddlSkill"+i).value;
 	    if(!skill || skillLv == -1) { continue; }
 	    let buff = [];
+	    if(buff = skill.accAttackBuff) {
+		let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+		$("txtAttackBuff").value -= -attackBuff;
+	    }
 	    if(buff = skill.accDefDecreaseSingle) {
 		let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         	$("txtEnemyDefence1").value -= defDecrease;
