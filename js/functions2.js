@@ -119,7 +119,7 @@ function changeSkill(label) {
 	let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtEnemyDefence1").value -= defDecrease - o;
     }
-    if(buff = skill.accDefDecreaseSingle) {
+    if(buff = skill.accDefDecrease) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
         let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtEnemyDefence1").value -= (defDecrease - o) * nCount;
@@ -407,7 +407,7 @@ function setOc() {
             $("txtCardResist3").value = -ocs[ocLevel];
             break;
         case "OcAttackBuff": //B兰OC加攻
-            $("txtAttackBuff").value = ocs[ocLevel];
+            $("txtAttackBuff").value -= -ocs[ocLevel];
             break;
         case "DefDecrease": //宝具前降防
             $("txtEnemyDefence1").value -= ocs[ocLevel];

@@ -79,13 +79,13 @@ function loadLvs(){
 *    randomAttackBuff：概率加攻
 *    accAttackBuff：累加加攻
 *    defDecreaseSingle：单体降防
-*    accDefDecreaseSingle：累加单体降防
+*    accDefDecrease：累加单体降防
 *    defDecreaseAll：全体降防
 *    cardBuff：魔放
 *    randomCardBuff：概率魔放
 *    accCardBuff：累加魔放
 *    cardDecreaseSingle：单体降低卡牌耐性
-*    cardDecreaseSingle：全体降低卡牌耐性
+*    cardDecreaseAll：全体降低卡牌耐性
 *    npStrength：宝威
 *    randomNpStrength：概率宝威
 *    specialAttack：特攻buff
@@ -298,7 +298,7 @@ function initArcher(){
     initialServant(4,"Archer", "阿提拉·the·圣〔诞〕", 197, "星", ["混沌", "善"], 9759, 11637, 11816, 14110, 1,10,0.59, "QuickSingle1", 0, 0, "", 0.8, {}, {npStrength: [20,30]}, {}, [1,3,5,7,9,10,12,14,16], {cardBuff: 12, damagePlus: 175});
     initialServant(4,"Archer", "浅上藤乃", 200, "人", ["秩序", "恶"], 10299, 11025, 12470, 13368, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {cardBuff: [20,35]});
     initialServant(4,"Archer", "喀戎", 207, "天", ["秩序", "善"], 9294, 12250, 11253, 14853, 1,4,0.68, "ArtsSingle1", 0, 0, "", 1, {}, {}, {cardBuff: [20,30]}, [10,20,30], {damagePlus: 150});
-    initialServant(4,"Archer", "马嘶", 248, "天", ["混沌", "中庸"], 10249, 11245, 12409, 13634, 1,1,0, "BusterSingle1", 600, 1000, "NpRemainHpDamage", 1.5, {}, {cardBuff: [20,30], accDefDecreaseSingle: [10,20]}, {}, [], {cardBuff: 5, damagePlus: 210});
+    initialServant(4,"Archer", "马嘶", 248, "天", ["混沌", "中庸"], 10249, 11245, 12409, 13634, 1,1,0, "BusterSingle1", 600, 1000, "NpRemainHpDamage", 1.5, {}, {cardBuff: [20,30], accDefDecrease: [10,20]}, {}, [], {cardBuff: 5, damagePlus: 210});
     initialServant(4,"Archer", "刑部姬", 262, "地", ["中立", "夏"], 8895, 12476, 10770, 15127, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {attackBuff: [10,20]}, {cardBuff: [20,30]}, [], {damagePlus: 145});
     initialServant(4,"Archer", "灾星简", 269, "人", ["混沌", "中庸"], 8996, 12495, 10892, 15150, 1,5,0.71, "QuickSingle1", 10, 30, "CombinedDecrease", 0.8, {}, {attackBuff: [10,20]}, {}, [6,13,20,26], {cardBuff: 10});
     initialServant(4,"Archer", "南丁格尔（圣诞）", 271, "人", ["秩序", "善"], 9859, 11080, 11936, 13434, 3,6,0.6, "BusterSingle1", 0, 0, "", 0.8, {}, {npStrength: [20,30]}, {attackBuff: [10,20]}, [4,9,14,19,23]);
@@ -511,7 +511,7 @@ function initBerserker(){
     initialServant(4,"Berserker", "弗兰肯斯坦", 82, "地", ["混沌", "中庸"], 9441, 10687, 11431, 12958, 3,6,0.83, "QuickAll3", 0, 0, "", 0.8, {npGainBuff: [25,45]}, {defDecreaseSingle: [20,30]}, {npStrength: [20,30]}, [4,9,14,19,23]);
     initialServant(4,"Berserker", "贝奥武夫", 89, "地", ["混沌", "善"], 10247, 10327, 12407, 12521, 1,1,0, "BusterSingle3", 0, 0, "", 1.5, {attackBuff: [20,30], npStrength: [10,20]}, {}, {}, [], {cardBuff: 1});
     initialServant(4,"Berserker", "茨木童子", 116, "地", ["混沌", "恶"], 9636, 10954, 11667, 13282, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [10,20], npStrength: [20,30]}, {}, {}, [], {cardBuff: 8});
-    initialServant(4,"Berserker", "茶茶", 162, "人", ["混沌", "中庸"], 8945, 11025, 10831, 13368, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {}, {defDecreaseSingle: [10,10], accDefDecreaseSingle: [5,10]}, [], {cardBuff: 3});
+    initialServant(4,"Berserker", "茶茶", 162, "人", ["混沌", "中庸"], 8945, 11025, 10831, 13368, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {}, {defDecreaseSingle: [10,10], accDefDecrease: [5,10]}, [], {cardBuff: 3});
     initialServant(4,"Berserker", "彭忒西勒亚", 171, "地", ["秩序", "善"], 10502, 10175, 12716, 12337, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,18]}, {}, {cardBuff: [10,20], specialAttack: [50,100]}, [], {cardBuff: 12, damagePlus: 175});
     initialServant(4,"Berserker", "织田信长", 178, "人", ["混沌", "夏"], 10146, 10023, 12285, 12153,1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {cardBuff: [10,20]}, {}, {randomAttackBuff: [10,20]}, [], {cardBuff: 6});
     initialServant(4,"Berserker", "阿塔兰忒〔Alter〕", 202, "地", ["混沌", "恶"], 9806, 10634, 11873, 12894, 1,5,1.05, "QuickSingle1", 0, 0, "", 0.8, {}, {cardBuff: [30,50]}, {}, [6,13,20,26]);
@@ -576,8 +576,8 @@ function initExtra(){
     //----------------------------------Foreigner---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
     initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯", 195, "地", ["混沌", "恶"], 12100, 13770, 13245, 15086, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {npStrength: [20,30]}, {defDecreaseAll: [10,20]}, {}, [], {cardBuff: 8, damagePlus: 175});
-    initialServant(5,"Foreigner", "葛饰北斋", 198, "人", ["混沌", "中庸"], 12100, 13230, 13245, 14494, 3,5,0.33, "ArtsAll1", 150, 200, "NpSpecialAttack", 1, {}, {cardBuff: [20,30]}, {accDefDecreaseSingle: [10,20]}, [6,13,20,26], {cardBuff: 4, damagePlus: 175});
-    initialServant(5,"Foreigner", "杨贵妃", 275, "人", ["混沌", "善"], 12342, 13365, 13510, 14642, 1,4,0.51, "ArtsSingle1", 150, 200, "NpSpecialAttack", 1, {}, {defDecreaseAll: [10,20]}, {}, [10,20,30], {damagePlus: 175});
+    initialServant(5,"Foreigner", "葛饰北斋", 198, "人", ["混沌", "中庸"], 12100, 13230, 13245, 14494, 3,5,0.33, "ArtsAll1", 150, 200, "NpSpecialAttack", 1, {}, {cardBuff: [20,30]}, {accDefDecrease: [10,20]}, [6,13,20,26], {cardBuff: 4, damagePlus: 175});
+    initialServant(5,"Foreigner", "杨贵妃", 275, "人", ["混沌", "善"], 12342, 13365, 13510, 14642, 1,4,0.51, "ArtsSingle1", 150, 200, "NpSpecialAttack", 1, {}, {defDecreaseAll: [10,20]}, {accDefDecrease: [10,10]}, [10,20,30], {damagePlus: 175});
     /******************************************4星********************************************************************/
     initialServant(4,"Foreigner", "谜之女主角XX", 222, "星", ["秩序", "善"], 9751, 11250, 11806, 13640, 1,4,0.64, "ArtsSingle1", 20, 60, "OcAttackBuff", 1, {attackBuff: [30,50]}, {}, {specialAttack: [30,50]}, [10,20,30]);
 }
