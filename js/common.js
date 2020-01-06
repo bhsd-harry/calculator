@@ -118,4 +118,15 @@ function eval2(str){
     }
 
     return isNaN(result)?0:result;
-}   
+}
+
+function disabling(arr) {
+    arr.forEach(function(id){
+	$(id).disabled = true;
+    })
+}
+function abling(arr) {
+    arr.forEach(function(id){
+	$(id).disabled = false;
+    })
+}

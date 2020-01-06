@@ -236,6 +236,16 @@ function initialEffects() {
 	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
     }
     else {
+/*
+	$("ckIsMaxGrail").disabled = true;
+	$("ddlLvs").disabled = true;
+	$("ddlClass").disabled = true;
+	$("spanAttribute").innerHTML = "";
+	$("ddlColor").disabled = true;
+	$("txtAtk").disabled = true;
+	$("txtFouAtk").disabled = true;
+	$("txtCraftEssenceAtk").disabled = true;
+*/
 	$("txtEnemyDefence1").basevalue = 0;
 	$("txtCardBuff").basevalue = 0;
 	$("txtNpStrength").basevalue = 0;

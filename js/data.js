@@ -520,7 +520,7 @@ function initBerserker(){
     initialServant(3,"Berserker", "吕布奉先", 49, "人", ["混沌", "恶"], 8119, 8302, 10988, 11256, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,27]}, {}, {npStrength: [20,30]}, [], {cardBuff: 10});
     initialServant(3,"Berserker", "大流士三世", 55, "人", ["秩序", "中庸"], 7608, 8763, 10297, 11881, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {}, {}, [], {cardBuff: 8});
     initialServant(3,"Berserker", "清姬", 56, "地", ["混沌", "恶"], 6644, 9166, 8992, 12428, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {defDecreaseSingle: [12,24]}, {cardBuff: [20,30]}, [], {cardBuff: 12});
-    initialServant(3,"Berserker", "森長可", 251, "人", ["混沌", "狂"], 7732, 8019, 10464, 10872, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {}, {}, [], {cardBuff: 4});
+    initialServant(3,"Berserker", "森長可", 251, "人", ["混沌", "狂"], 7732, 8019, 10464, 10872, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {accAttackBuff: [10,15]}, {}, [], {cardBuff: 4});
     initialServant(2,"Berserker", "血斧埃里克", 57, "人", ["混沌", "中庸"], 6290, 7688, 9115, 11095, 3,1,0, "BusterAll1", 30, 50, "OcAttackBuff", 1.5, {defDecreaseSingle: [10,30]}, {}, {}, [], {cardBuff: 8});
     initialServant(2,"Berserker", "莎樂美", 260, "地", ["混沌", "恶"], 6884, 6885, 9975, 9936, 1,3,0.51, "ArtsSingle1", 0, 0, "", 1, {specialAttack: [30,50], attackBuff: [10,20]}, {}, {}, [16,33]);
     initialServant(1,"Berserker", "斯巴达克斯", 50, "人", ["中立", "中庸"], 5073, 7722, 7883, 11904, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {}, {cardBuff: [20,40]}, [], {cardBuff: 12});

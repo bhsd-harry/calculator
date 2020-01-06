@@ -72,7 +72,7 @@
             <tr>
                 <td>攻击力</td>
                 <td>
-                    <input type="text" id="txtAttack" />
+                    <input type="text" id="txtAtk" />
                 </td>
                 <td>芙芙Atk</td>
                 <td>
@@ -361,12 +361,12 @@
         }
         let servant = servants[id];
         if (this.checked) {
-            $("txtAttack").value = servant.maxAtk;
+            $("txtAtk").value = servant.maxAtk;
             $("txtMaxHp").value = servant.maxHp;
             $("ddlLvs").selectedIndex = 1;
         }
         else {
-            $("txtAttack").value = servant.atk;
+            $("txtAtk").value = servant.atk;
             $("txtMaxHp").value = servant.hp;
             $("ddlLvs").selectedIndex = 0;
         }
@@ -383,14 +383,14 @@
         let lv = this.value;
         let maxLv = (servant.star < 4? servant.star * 5 + 55 : servant.star * 10 + 40);
         if(lv > 90){
-            $("txtAttack").value = servant.maxAtk;
+            $("txtAtk").value = servant.maxAtk;
             $("txtMaxHp").value = servant.maxHp;
             $("ckIsMaxGrail").checked = true;
         }
         else {
             $("ckIsMaxGrail").checked = false;
             if(lv <= maxLv){
-                $("txtAttack").value = servant.atk;
+                $("txtAtk").value = servant.atk;
                 $("txtMaxHp").value = servant.hp;
                 this.selectedIndex = 0;//默认
             }
@@ -407,7 +407,7 @@
                     lv = servant.lvs[0];
                     $("ddlLvs").selectedIndex = 4;
                 }
-                $("txtAttack").value = lv.a;
+                $("txtAtk").value = lv.a;
                 $("txtMaxHp").value = lv.h;
             }
         }
@@ -512,7 +512,7 @@
 	//2.基本数据
 	$("txtNTarget").value = servant.target;
 	$("txtNHits").value = servant.hit;
-        $("txtAttack").value = servant.atk;
+        $("txtAtk").value = servant.atk;
         $("txtMaxHp").value = servant.hp;
 	$("txtBaseNp").value = servant.np;
         //3.宝具倍率
@@ -549,7 +549,7 @@
         }
         guid++;
         //1.攻击力
-        let atk = getInt("txtAttack") + getInt("txtFouAtk") + getInt("txtCraftEssenceAtk");
+        let atk = getInt("txtAtk") + getInt("txtFouAtk") + getInt("txtCraftEssenceAtk");
         //2.卡色
         let cardColor = getFloat("ddlColor");
         let cardNpCoef = cardNpBase[$("ddlColor").selectedIndex];
