@@ -945,26 +945,24 @@
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
 	let resultMin = [0, 0, 0];
-	for(let i=1, l="";i<=nTarget;i++){
-	    l = i.toString();
+	for(let i=1;i<=nTarget;i++){
 	    resultMin[i-1] = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[i-1]) / 100) * Class * ClassResist[i-1] * attributeResist[i-1] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[i-1]) / 100) * (1 + (npStrength + specialAttackBuff[i-1]) / 100) * npSpecialAttack[i-1] + damagePlus;
-	    resultMin[i-1] = Math.floor(Math.floor(resultMin[i-1]) * parseInt($("spanOverkill"+l).innerHTML) / 100);
+	    resultMin[i-1] = Math.floor(Math.floor(resultMin[i-1]) * parseInt($("spanOverkill"+i).innerHTML) / 100);
 	}
         let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
         resultAvg = Math.floor(resultAvg);
 
 	let npGain = 0;
 	let nHits = getInt("txtNHits");
-	for(let i=1, l="";i<=nTarget;i++){
-	    l = i.toString();
+	for(let i=1;i<=nTarget;i++){
 	    let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + (cardBuff - cardResist[i-1]) / 100);
-	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+l);
-	    if ($("ckIsUndying"+l).checked) {
+	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+i);
+	    if ($("ckIsUndying"+i).checked) {
 		npGainNormal *= 1.2;
 	    }
 	    npGainNormal = Math.floor(npGainNormal);
 	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
-	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+l) + npGainNormal * nHits;
+	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+i) + npGainNormal * nHits;
 	}
 
         let servantName = getDdlText("ddlServant");
