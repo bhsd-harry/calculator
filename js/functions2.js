@@ -223,6 +223,7 @@ function initialServantList() {
 function initialEffects() {
     let id = $("ddlServant").value;
     if (id != -1) {
+	abling(["ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate"]);
         bindServantData(id);
         adjHp()
         clearBuff();
@@ -236,16 +237,8 @@ function initialEffects() {
 	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
     }
     else {
-/*
-	$("ckIsMaxGrail").disabled = true;
-	$("ddlLvs").disabled = true;
-	$("ddlClass").disabled = true;
+	disabling(["ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","txtNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate"]);
 	$("spanAttribute").innerHTML = "";
-	$("ddlColor").disabled = true;
-	$("txtAtk").disabled = true;
-	$("txtFouAtk").disabled = true;
-	$("txtCraftEssenceAtk").disabled = true;
-*/
 	$("txtEnemyDefence1").basevalue = 0;
 	$("txtCardBuff").basevalue = 0;
 	$("txtNpStrength").basevalue = 0;
