@@ -223,7 +223,7 @@ function initialServantList() {
 function initialEffects() {
     let id = $("ddlServant").value;
     if (id != -1) {
-	abling(["ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate"]);
+	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
         bindServantData(id);
         adjHp()
         clearBuff();
@@ -235,9 +235,49 @@ function initialEffects() {
 	$("ddlSkill1").oldvalue = $("ddlSkill1").value;
 	$("ddlSkill2").oldvalue = $("ddlSkill2").value;
 	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
+	let servant = servants[id];
+	let npEffect = servant.npEffect;
+	let ocs = servant.oc;
+	if((npEffect && npEffect.npRemainHpDamage) || ocs.type == "NpRemainHpDamage") {
+	    abling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
+	}
+	else {
+	    disabling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
+	}
+	if(ocs.oc1 == ocs.oc5) {
+	    disabling("ddlOvercharge");
+	}
+	else {
+	    abling("ddlOvercharge");
+	}
+	if($("txtNTarget").value == 1) {
+	    disabling("txtNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+	}
+	else {
+	    abling("txtNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+	}
+	disabling("btnAccumulate");
+	for(let i=1;i<=3;i++) {
+	    let skill = servant["skill"+i];
+	    if(skill && Object.keys(skill).length > 0) {
+	        abling("ddlSkill"+i);
+	        if(skill.randomAttackBuff || skill.randomCardBuff || skill.randomNpStrength) {
+		    abling("ckNoMiss"+i);
+	        }
+	        else {
+		    disabling("ckNoMiss"+i);
+	        }
+	    }
+	    else {
+	        disabling("ddlSkill"+i,"ckNoMiss"+i);
+	    }
+	    if(skill.accAttackBuff || skill.accDefDecrease || skill.accCardBuff) {
+		abling("btnAccumulate");
+	    }
+	}
     }
     else {
-	disabling(["ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","txtNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate"]);
+	disabling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","txtNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
 	$("spanAttribute").innerHTML = "";
 	$("txtEnemyDefence1").basevalue = 0;
 	$("txtCardBuff").basevalue = 0;

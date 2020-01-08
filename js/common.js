@@ -120,13 +120,13 @@ function eval2(str){
     return isNaN(result)?0:result;
 }
 
-function disabling(arr) {
-    arr.forEach(function(id){
-	$(id).disabled = true;
-    })
+function disabling() {
+    for(let i=0;i<arguments.length;i++) {
+	$(arguments[i]).disabled = true;
+    }
 }
-function abling(arr) {
-    arr.forEach(function(id){
-	$(id).disabled = false;
-    })
+function abling() {
+    for(let i=0;i<arguments.length;i++) {
+        $(arguments[i]).disabled = false;
+    }
 }

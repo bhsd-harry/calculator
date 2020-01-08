@@ -136,7 +136,7 @@
                 </td>
                 <td>目标数</td>
                 <td>
-                    <input type="text" id="txtNTarget" />
+                    <input type="number" id="txtNTarget" />
                 </td>
             </tr>
 	    <tr>
@@ -555,6 +555,22 @@
         if(id == -1){ return; }
         changeNpCoefficient();
     };
+    $("txtNTarget").onchange = function () {
+	let n = $("txtNTarget").value;
+	let i = 2;
+	for(;i<=n;i++) {
+	    abling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
+	}
+	for(;i<=3;i++) {
+	    disabling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
+	}
+	if(n<2) {
+	    disabling("btnApplyEnemy1");
+	}
+	else {
+	    abling("btnApplyEnemy1");
+	}
+    }
     //礼装
     $("ddlCraftEssence").onchange=function(){
         if(this.selectedIndex == 0) { return; }
