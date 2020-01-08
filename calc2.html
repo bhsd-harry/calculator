@@ -33,7 +33,7 @@
             <tr>
                 <td>等级</td>
                 <td>
-                    <select id="ddlLvs">
+                    <select id="ddlLvs" oldvalue=0>
                         <option value=-1>默认</option>
                         <option value=100>Lv.100</option>
                         <option value=90>Lv.90</option>
@@ -477,6 +477,7 @@
     initialServantList();
     loadStorage(true);
     bindSearchTips();
+    var options = [new Option("Lv.80",80),new Option("Lv.70",70),new Option("Lv.65",65),new Option("Lv.60",60)];
     initialEffects();
 
     //圣杯MAX勾选框改变事件
@@ -508,7 +509,8 @@
         }
         let servant = servants[id];  
         let lv = this.value;
-        let maxLv = (servant.star < 4? servant.star * 5 + 55 : servant.star * 10 + 40);
+	let Star = servant.star;
+        let maxLv = (Star < 4? Star * 5 + 55 : Star * 10 + 40);
         if(lv > 90){
             $("txtAtk").value = servant.maxAtk;
             $("txtMaxHp").value = servant.maxHp;
@@ -522,7 +524,7 @@
                 this.selectedIndex = 0;//默认
             }
             else {
-                if(servant.star > 1){
+                if(Star > 1){
                     lv = servant.lvs[0];
                     $("ddlLvs").selectedIndex = 2;
                 }
@@ -532,7 +534,7 @@
                 }
                 else {
                     lv = servant.lvs[0];
-                    $("ddlLvs").selectedIndex = 4;
+                    $("ddlLvs").selectedIndex = 3;
                 }
                 $("txtAtk").value = lv.a;
                 $("txtMaxHp").value = lv.h;
@@ -684,6 +686,7 @@
         //1.阵营
         $("spanAttribute").innerHTML = servant.attribute;
 	//2.基本数据
+	$("ddlLvs").selectedIndex = 0;
 	$("txtNTarget").value = servant.target;
 	$("txtNHits").value = servant.hit;
         $("txtAtk").value = servant.atk;

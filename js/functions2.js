@@ -271,10 +271,30 @@ function initialEffects() {
 	    else {
 	        disabling("ddlSkill"+i,"ckNoMiss"+i);
 	    }
-	    if(skill.accAttackBuff || skill.accDefDecrease || skill.accCardBuff) {
+	    if(skill && (skill.accAttackBuff || skill.accDefDecrease || skill.accCardBuff)) {
 		abling("btnAccumulate");
 	    }
 	}
+	if(servant.star == $("ddlLvs").oldvalue) { return; }
+	let nLvs = $("ddlLvs").length;
+	for(let i=3;i<nLvs;i++) {
+	    $("ddlLvs").remove(3);
+	}
+	switch(servant.star) {
+	    case 4:
+		$("ddlLvs").options.add(options[0]);
+		break;
+	    case 2:
+		$("ddlLvs").options.add(options[2]);
+                break;
+	    case 3:
+                $("ddlLvs").options.add(options[1]);
+		break;
+	    case 1:
+		$("ddlLvs").options.add(options[1]);
+		$("ddlLvs").options.add(options[3]);
+	}
+	$("ddlLvs").oldvalue = servant.star;
     }
     else {
 	disabling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","txtNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
