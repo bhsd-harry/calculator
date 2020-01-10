@@ -1,4 +1,13 @@
 "use strict";
+function noOverkill() {
+    $("txtOverkill1").value = 0;
+    $("txtOverkill2").value = 0;
+    $("txtOverkill3").value = 0;
+    $("spanOverkill1").innerHTML = "100%";
+    $("spanOverkill2").innerHTML = "100%";
+    $("spanOverkill3").innerHTML = "100%";
+    $("btnAdjOverkill").value = "全鞭尸";
+}
 function randomSkill(label) {
     let id = $("ddlServant").value;
     let skillLv = $("ddlSkill"+label).value;
@@ -188,12 +197,11 @@ function calPerDamage(label) {
     let id = $("ddlServant").value;
     if(id == -1) { return; }
     let ok = getInt("txtOverkill"+label);
-    if(ok<2){
+    let servant = servants[id];
+    if(ok<2 || servant.hit != $("txtNHits").value){
 	$("spanOverkill"+label).innerHTML = "100%";
     }
     else{
-	//Adjust $("spanOverkill").innerHTML
-	let servant = servants[id];
 	let damageDist = servant.damageDist;
 	let perDamage = 0;
 	let nHits = getInt("txtNHits") - ok;

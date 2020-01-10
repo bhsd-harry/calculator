@@ -558,8 +558,12 @@
         this.value = parseInt(this.value);
         adjustNpRemainHpDamage();
     }
+    $("txtNHits").onchange = function (){
+	this.value = Math.max(parseInt(this.value), 1);
+	noOverkill();
+    }
     $("txtOverkill1").onchange = function (){
-	let n = parseInt($("txtNHits").value);
+	let n = getInt("txtNHits");
 	this.value = Math.max(Math.min(parseInt(this.value), n), 0);
 	calPerDamage(1);
 	if(this.value == 0) {
@@ -570,7 +574,7 @@
         }
     }
     $("txtOverkill2").onchange = function (){
-        let n = parseInt($("txtNHits").value);
+        let n = getInt("txtNHits");
         this.value = Math.max(Math.min(parseInt(this.value), n), 0);
         calPerDamage(2);
         if(this.value == 0) {
@@ -581,7 +585,7 @@
         }
     }
     $("txtOverkill3").onchange = function (){
-        let n = parseInt($("txtNHits").value);
+        let n = getInt("txtNHits");
         this.value = Math.max(Math.min(parseInt(this.value), n), 0);
         calPerDamage(3);
         if(this.value == 0) {
@@ -605,13 +609,7 @@
 		this.value = "无鞭尸";
 		break;
 	    case "无鞭尸":
-		$("txtOverkill1").value = 0;
-                $("txtOverkill2").value = 0;
-                $("txtOverkill3").value = 0;
-		$("spanOverkill1").innerHTML = "100%";
-		$("spanOverkill2").innerHTML = "100%";
-		$("spanOverkill3").innerHTML = "100%";
-		this.value = "全鞭尸";
+		noOverkill();
 	}
     }
     //宝具等级选中项发生变化事件
