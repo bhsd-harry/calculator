@@ -461,7 +461,7 @@ function initAssassin(){
     initialServant(4,"Assassin", "卡米拉", 46, "地", ["混沌", "恶"], 9408, 10473, 11391, 12698, 1,1,0, "BusterSingle2", 150, 200, "NpSpecialAttack", 1.5, {}, {defDecreaseSingle: [10,20]});
     initialServant(4,"Assassin", "卡米拉EN", 46, "地", ["混沌", "恶"], 9408, 10473, 11391, 12698, 1,1,0, "BusterSingle1", 120, 170, "NpSpecialAttack", 1.5, {}, {defDecreaseSingle: [10,20]});
     initialServant(4,"Assassin", "两仪式〔Assassin〕", 92, "人", ["混沌", "善"], 8867, 11055, 10736, 13404, 1,3,0.8, "ArtsSingle2", 0, 0, "", 1, {cardBuff: [30,50]}, {}, {}, [16,33]);
-    initialServant(4,"Assassin", "两仪式EN", 92, "人", ["混沌", "善"], 8867, 11055, 10736, 13404, 1,3,0.8, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [30,50]}, {}, {}, [16,33]);
+    initialServant(4,"Assassin", "两仪式〔Assassin〕EN", 92, "人", ["混沌", "善"], 8867, 11055, 10736, 13404, 1,3,0.8, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [30,50]}, {}, {}, [16,33]);
     initialServant(4,"Assassin", "卫宫〔Assassin〕", 109, "人", ["混沌", "恶"], 8958, 11168, 10846, 13541, 1,15,0.28, "ArtsSingle2", 0, 0, "", 1, {cardBuff: [24,40]}, {}, {}, [6,4,8,6,8,4,6,4,2,6,2,8,2,6]);
     initialServant(4,"Assassin", "斯卡哈", 133, "星", ["中立", "善"], 9049, 11168, 10956, 13541, 3,5,0.71, "BusterSingle1", 0, 0, "", 0.8, {}, {}, {cardBuff: [30,50]}, [6,13,20,26]);
     initialServant(4,"Assassin", "燕青", 159, "人", ["混沌", "恶"], 8661, 11637, 10487, 14110, 1,11,0.71, "QuickSingle1", 0, 0, "", 0.8, {npGainBuff: [20,30]}, {cardBuff: [20,30]}, {}, [1,3,4,6,7,9,10,12,13,15], {cardBuff: 5});
