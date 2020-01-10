@@ -136,7 +136,11 @@
                 </td>
                 <td>目标数</td>
                 <td>
-                    <input type="number" id="txtNTarget" />
+                    <select id="ddlNTarget" />
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+		    </select>
                 </td>
             </tr>
 	    <tr>
@@ -618,8 +622,7 @@
         if(id == -1){ return; }
         changeNpCoefficient();
     };
-    $("txtNTarget").onchange = function () {
-	this.value = Math.max(Math.min(parseInt(this.value), 3), 1);
+    $("ddlNTarget").onchange = function () {
 	let n = this.value;
 	let i = 2;
 	for(;i<=n;i++) {
@@ -749,7 +752,7 @@
         $("spanAttribute").innerHTML = servant.attribute;
 	//2.基本数据
 	$("ddlLvs").selectedIndex = 0;
-	$("txtNTarget").value = servant.target;
+	$("ddlNTarget").selectedIndex = servant.target - 1;
 	$("txtNHits").value = servant.hit;
         $("txtAtk").value = servant.atk;
         $("txtMaxHp").value = servant.hp;
@@ -884,7 +887,7 @@
 	    }
 	    ClassResistMatrix[ClassNo] = npEffect.resistClass[1];
 	}
-        let nTarget = getInt("txtNTarget");
+        let nTarget = getInt("ddlNTarget");
         for(let i=1;i<=nTarget;i++) {
 	    ClassResist[i-1] = ClassResistMatrix[$("ddlEnemyClass"+i).selectedIndex];
 	}
