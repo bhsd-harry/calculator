@@ -235,6 +235,7 @@ function initialEffects() {
 	$("ddlSkill1").oldvalue = $("ddlSkill1").value;
 	$("ddlSkill2").oldvalue = $("ddlSkill2").value;
 	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
+        $("btnAdjOverkill").value = "全鞭尸";
 	let servant = servants[id];
 	let npEffect = servant.npEffect;
 	let ocs = servant.oc;

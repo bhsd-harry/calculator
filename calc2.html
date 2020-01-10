@@ -75,15 +75,15 @@
             <tr>
                 <td>攻击力</td>
                 <td>
-                    <input type="text" id="txtAtk" />
+                    <input type="text" id="txtAtk" onchange="this.value=parseInt(this.value)" />
                 </td>
                 <td>芙芙Atk</td>
                 <td>
-                    <input type="text" id="txtFouAtk" value="1000" />
+                    <input type="text" id="txtFouAtk" value="1000" onchange="this.value=parseInt(this.value)" />
                 </td>
                 <td>礼装Atk</td>
                 <td>
-                    <input type="text" id="txtCraftEssenceAtk" value="0" list="dlCraftEssenceTips"/>
+                    <input type="text" id="txtCraftEssenceAtk" value="0" list="dlCraftEssenceTips" onchange="this.value=parseInt(this.value)" />
                 </td>
                 <td>NP率(%)</td>
                 <td>
@@ -93,19 +93,19 @@
 	    <tr>
                 <td>Hp最大值</td>
                 <td>
-                    <input type="text" id="txtMaxHp" onchange="adjustNpRemainHpDamage()"/>
+                    <input type="text" id="txtMaxHp" />
                 </td>
                 <td>芙芙Hp</td>
                 <td>
-                    <input type="text" id="txtFouHp" value="1000" onchange="adjustNpRemainHpDamage()"/>
+                    <input type="text" id="txtFouHp" value="1000" />
                 </td>
                 <td>礼装Hp</td>
                 <td>
-                    <input type="text" id="txtCraftEssenceHp" value="0" onchange="adjustNpRemainHpDamage()"/>
+                    <input type="text" id="txtCraftEssenceHp" value="0" />
                 </td>
                 <td>剩余Hp值</td>
                 <td>
-                    <input type="text" id="txtRemainHp" size=12px onchange="adjustNpRemainHpDamage()"/>
+                    <input type="text" id="txtRemainHp" size=12px />
                     <input type="button" value="满血" id="btnAdjHp" onclick="adjHp()" />
                 </td>                
             </tr>
@@ -409,17 +409,17 @@
                 </td>
                 <td>敌人1鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill1" value="0" size=14px onchange="calPerDamage(1)"/>
+                    <input type="text" id="txtOverkill1" value="0" size=14px />
 		    <span id="spanOverkill1">100%</span>
                 </td>
                 <td>敌人2鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill2" value="0" size=14px onchange="calPerDamage(2)"/>
+                    <input type="text" id="txtOverkill2" value="0" size=14px />
                     <span id="spanOverkill2">100%</span>
                 </td>
                 <td>敌人3鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill3" value="0" size=14px onchange="calPerDamage(3)"/>
+                    <input type="text" id="txtOverkill3" value="0" size=14px />
                     <span id="spanOverkill3">100%</span>
                 </td>
             </tr>
@@ -526,15 +526,15 @@
             else {
                 if(Star > 1){
                     lv = servant.lvs[0];
-                    $("ddlLvs").selectedIndex = 2;
+                    this.selectedIndex = 2;
                 }
                 else if(lv > 70){
                     lv = servant.lvs[1];
-                    $("ddlLvs").selectedIndex = 2;
+                    this.selectedIndex = 2;
                 }
                 else {
                     lv = servant.lvs[0];
-                    $("ddlLvs").selectedIndex = 3;
+                    this.selectedIndex = 3;
                 }
                 $("txtAtk").value = lv.a;
                 $("txtMaxHp").value = lv.h;
@@ -542,14 +542,77 @@
         }
         adjHp();
     }
-    //全鞭尸
-    $("btnAdjOverkill").onclick = function () {
-        $("txtOverkill1").value = $("txtNHits").value;
-        $("txtOverkill2").value = $("txtNHits").value;
-        $("txtOverkill3").value = $("txtNHits").value;
+    $("txtMaxHp").onchange = function () {
+	this.value = parseInt(this.value);
+	adjustNpRemainHpDamage();
+    }
+    $("txtFouHp").onchange = function () {
+        this.value = parseInt(this.value);
+        adjustNpRemainHpDamage();
+    }
+    $("txtCraftEssenceHp").onchange = function () {
+        this.value = parseInt(this.value);
+        adjustNpRemainHpDamage();
+    }
+    $("txtRemainHp").onchange = function () {
+        this.value = parseInt(this.value);
+        adjustNpRemainHpDamage();
+    }
+    $("txtOverkill1").onchange = function (){
+	let n = parseInt($("txtNHits").value);
+	this.value = Math.max(Math.min(parseInt(this.value), n), 0);
 	calPerDamage(1);
-	calPerDamage(2);
-	calPerDamage(3);
+	if(this.value == 0) {
+	    $("btnAdjOverkill").value = "全鞭尸";
+	}
+	if(this.value == n) {
+            $("btnAdjOverkill").value = "无鞭尸";
+        }
+    }
+    $("txtOverkill2").onchange = function (){
+        let n = parseInt($("txtNHits").value);
+        this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+        calPerDamage(2);
+        if(this.value == 0) {
+            $("btnAdjOverkill").value = "全鞭尸";
+        }
+        if(this.value == n) {
+            $("btnAdjOverkill").value = "无鞭尸";
+        }
+    }
+    $("txtOverkill3").onchange = function (){
+        let n = parseInt($("txtNHits").value);
+        this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+        calPerDamage(3);
+        if(this.value == 0) {
+            $("btnAdjOverkill").value = "全鞭尸";
+        }
+        if(this.value == n) {
+            $("btnAdjOverkill").value = "无鞭尸";
+        }
+    }
+    //鞭尸
+    $("btnAdjOverkill").onclick = function () {
+	switch(this.value) {
+	    case "全鞭尸":
+		let n = $("txtNHits").value;
+        	$("txtOverkill1").value = n;
+        	$("txtOverkill2").value = n;
+        	$("txtOverkill3").value = n;
+		calPerDamage(1);
+		calPerDamage(2);
+		calPerDamage(3);
+		this.value = "无鞭尸";
+		break;
+	    case "无鞭尸":
+		$("txtOverkill1").value = 0;
+                $("txtOverkill2").value = 0;
+                $("txtOverkill3").value = 0;
+		$("spanOverkill1").innerHTML = "100%";
+		$("spanOverkill2").innerHTML = "100%";
+		$("spanOverkill3").innerHTML = "100%";
+		this.value = "全鞭尸";
+	}
     }
     //宝具等级选中项发生变化事件
     $("ddlNpLevel").onchange = function () {
@@ -558,7 +621,8 @@
         changeNpCoefficient();
     };
     $("txtNTarget").onchange = function () {
-	let n = $("txtNTarget").value;
+	this.value = Math.max(Math.min(parseInt(this.value), 3), 1);
+	let n = this.value;
 	let i = 2;
 	for(;i<=n;i++) {
 	    abling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
