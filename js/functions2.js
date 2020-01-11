@@ -270,7 +270,7 @@ function initialEffects() {
 	    let skill = servant["skill"+i];
 	    if(skill && Object.keys(skill).length > 0) {
 	        abling("ddlSkill"+i);
-	        if(skill.randomAttackBuff || skill.randomCardBuff || skill.randomNpStrength) {
+	        if(skill.randomAttackBuff || skill.randomCardBuff || skill.randomNpStrength || skill.randomChargeNp) {
 		    abling("ckNoMiss"+i);
 	        }
 	        else {
@@ -391,6 +391,12 @@ function bindClassSkill(servant) {
     else {
         $("txtDamagePlus").basevalue = 0;
     }
+    if(ClassSkill && ClassSkill.npGainBuff) {
+	$("txtNpGainBuff").basevalue = ClassSkill.npGainBuff;
+    }
+    else {
+	$("txtNpGainBuff").basevalue = 0;
+    }
 }
 //宝具副效果补充
 function bindNpEffect(servant) {
@@ -432,7 +438,7 @@ function clearBuff(){
     $("txtNpStrength").value = $("txtNpStrength").basevalue;
     $("txtSpecialAttack").value = 0;
     $("txtDamagePlus").value = $("txtDamagePlus").basevalue;
-    $("txtNpGainBuff").value = 0;
+    $("txtNpGainBuff").value = $("txtNpGainBuff").basevalue;
     $("txtOverkill1").value = 0;
     $("txtOverkill2").value = 0;
     $("txtOverkill3").value = 0;

@@ -409,7 +409,7 @@
             <tr>
                 <td>黄金律(%)</td>
                 <td>
-                    <input type="text" id="txtNpGainBuff" value="0" />
+                    <input type="text" id="txtNpGainBuff" value="0" basevalue=0 />
                 </td>
                 <td>敌人1鞭尸</td>
                 <td>
@@ -920,9 +920,13 @@
         let attackBuff = getFloat("txtAttackBuff");
         //8.敌方防御力Buff(%)
 	let enemyDefence = [0, 0, 0];
+	let isIgnoreDef = (npEffect && npEffect.ignoreDef);
 	for(let i=1;i<=nTarget;i++){
 	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+i);
 	    enemyDefence[i-1] = Math.max(-100, enemyDefence[i-1]);
+	    if(isIgnoreDef) {
+		enemyDefence[i-1] = Math.min(enemyDefence[i-1], 0);
+	    }
 	}
         //9.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");
@@ -1055,6 +1059,21 @@
 	    npGainNormal = Math.floor(npGainNormal);
 	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
 	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+i) + npGainNormal * nHits;
+	}
+	if(servant.oc.type == "ChargeNp") {
+	    let ocLevel = $("ddlOvercharge").value;
+	    npGain += servant.oc[ocLevel] * 100;
+	}
+	for(let i=1;i<=3;i++) {
+	    let skill = servant["skill"+i];
+	    let noMiss = $("ckNoMiss"+i).checked;
+	    if(skill && skill.randomChargeNp && noMiss) {
+		npGain += skill.randomChargeNp * 100;
+	    }
+	}
+	let ClassSkill = servant.ClassSkill;
+	if(ClassSkill && ClassSkill.chargeNp) {
+	    npGain += ClassSkill.chargeNp * 100;
 	}
 
         let servantName = getDdlText("ddlServant");
