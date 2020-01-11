@@ -95,6 +95,23 @@ function bindSkill(label) {
 	let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
 	$("txtNpGainBuff").value -= -npGainBuff;
     }
+    if(buff = skill.randomEffect) {
+	let randomIndex = $("btnSwitchEffect").count;
+	let currentEffect = Object.keys(buff)[randomIndex];
+	let currentBuff = buff[currentEffect];
+	switch(currentEffect) {
+	    case "cardBuff":
+		$("btnSwitchEffect").value = "切换 卡牌buff";
+		let cardBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+        	$("txtCardBuff").value -= -cardBuff;
+		break;
+	    case "attackBuff":
+		$("btnSwitchEffect").value = "切换 攻击buff";
+		let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+		$("txtAttackBuff").value -= -attackBuff;
+	}
+	abling("btnSwitchEffect");
+    }
 }
 function changeSkill(label) {
     let id = $("ddlServant").value;
@@ -192,6 +209,34 @@ function changeSkill(label) {
 	let npGainBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtNpGainBuff").value -= o - npGainBuff;
     }
+    if(buff = skill.randomEffect) {
+        let randomIndex = $("btnSwitchEffect").count;
+        let currentEffect = Object.keys(buff)[randomIndex];
+        let currentBuff = buff[currentEffect];
+        switch(currentEffect) {
+            case "cardBuff":
+		if(skillLv >= 0) {
+		    abling("btnSwitchEffect");
+		    $("btnSwitchEffect").value = "切换 卡牌buff";
+		}
+		o = (oldLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * oldLv * 10) / 10);
+                let cardBuff = (skillLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10);
+                $("txtCardBuff").value -= o - cardBuff;
+                break;
+            case "attackBuff":
+		if(skillLv >= 0) {
+		    abling("btnSwitchEffect");
+                    $("btnSwitchEffect").value = "切换 攻击buff";
+		}
+		o = (oldLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * oldLv * 10) / 10);
+                let attackBuff = (skillLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10);
+                $("txtAttackBuff").value -= o - attackBuff;
+        }
+	if(skillLv == -1) {
+	    disabling("btnSwitchEffect");
+	    $("btnSwitchEffect").value = "切换";
+	}
+    }
 }
 function calPerDamage(label) {
     let id = $("ddlServant").value;
@@ -232,6 +277,50 @@ function initialEffects() {
     let id = $("ddlServant").value;
     if (id != -1) {
 	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        let ocs = servant.oc;
+        if((npEffect && npEffect.npRemainHpDamage) || ocs.type == "NpRemainHpDamage") {
+            abling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
+        }
+        else {
+            disabling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
+        }
+        if(ocs.oc1 == ocs.oc5) {
+            disabling("ddlOvercharge");
+        }
+        else {
+            abling("ddlOvercharge");
+        }
+        if($("ddlNTarget").selectedIndex == 0) {
+            disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+        }
+        else {
+            abling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+        }
+        disabling("btnAccumulate","btnSwitchEffect");
+	$("btnSwitchEffect").value = "切换";
+        for(let i=1;i<=3;i++) {
+            let skill = servant["skill"+i];
+            if(skill && Object.keys(skill).length > 0) {
+                abling("ddlSkill"+i);
+                if(skill.randomAttackBuff || skill.randomCardBuff || skill.randomNpStrength || skill.randomChargeNp) {
+                    abling("ckNoMiss"+i);
+                }
+                else {
+                    disabling("ckNoMiss"+i);
+                }
+            }
+            else {
+                disabling("ddlSkill"+i,"ckNoMiss"+i);
+            }
+            if(skill && (skill.accAttackBuff || skill.accDefDecrease || skill.accCardBuff)) {
+                abling("btnAccumulate");
+            }
+            if(skill && skill.randomEffect) {
+                $("btnSwitchEffect").count = 0;
+            }
+        }
         bindServantData(id);
         adjHp()
         clearBuff();
@@ -244,46 +333,6 @@ function initialEffects() {
 	$("ddlSkill2").oldvalue = $("ddlSkill2").value;
 	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
         $("btnAdjOverkill").value = "全鞭尸";
-	let servant = servants[id];
-	let npEffect = servant.npEffect;
-	let ocs = servant.oc;
-	if((npEffect && npEffect.npRemainHpDamage) || ocs.type == "NpRemainHpDamage") {
-	    abling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
-	}
-	else {
-	    disabling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
-	}
-	if(ocs.oc1 == ocs.oc5) {
-	    disabling("ddlOvercharge");
-	}
-	else {
-	    abling("ddlOvercharge");
-	}
-	if($("ddlNTarget").selectedIndex == 0) {
-	    disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
-	}
-	else {
-	    abling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
-	}
-	disabling("btnAccumulate");
-	for(let i=1;i<=3;i++) {
-	    let skill = servant["skill"+i];
-	    if(skill && Object.keys(skill).length > 0) {
-	        abling("ddlSkill"+i);
-	        if(skill.randomAttackBuff || skill.randomCardBuff || skill.randomNpStrength || skill.randomChargeNp) {
-		    abling("ckNoMiss"+i);
-	        }
-	        else {
-		    disabling("ckNoMiss"+i);
-	        }
-	    }
-	    else {
-	        disabling("ddlSkill"+i,"ckNoMiss"+i);
-	    }
-	    if(skill && (skill.accAttackBuff || skill.accDefDecrease || skill.accCardBuff)) {
-		abling("btnAccumulate");
-	    }
-	}
 	if(servant.star == $("ddlLvs").oldvalue) { return; }
 	let nLvs = $("ddlLvs").length;
 	for(let i=3;i<nLvs;i++) {
@@ -306,7 +355,8 @@ function initialEffects() {
 	$("ddlLvs").oldvalue = servant.star;
     }
     else {
-	disabling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","ddlNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
+	disabling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","ddlNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","btnSwitchEffect","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
+	$("btnSwitchEffect").value = "切换";
 	$("spanAttribute").innerHTML = "";
 	$("txtEnemyDefence1").basevalue = 0;
 	$("txtCardBuff").basevalue = 0;

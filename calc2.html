@@ -200,6 +200,7 @@
                     <label for="ckNoMiss3" onchange="randomSkill(3)">
                         <input type="checkbox" id="ckNoMiss3" /> 命中
                     </label>
+		    <input type="button" value="切换" id="btnSwitchEffect" count=0 />
                 </td>
                 <td>Hit数</td>
                 <td>
@@ -616,6 +617,33 @@
 		noOverkill();
 	}
     }
+    $("txtEnemyDefence1").onchange = function () {
+	let id = $("ddlServant").value;
+	if(this.value <= 0 || id == -1) { return; }
+	let servant = servants[id];
+	let npEffect = servant.npEffect;
+	if(npEffect && npEffect.ignoreDef) {
+	    this.value = 0;
+	}
+    }
+    $("txtEnemyDefence2").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.ignoreDef) {
+            this.value = 0;
+        }
+    }
+    $("txtEnemyDefence3").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.ignoreDef) {
+            this.value = 0;
+        }
+    }
     //宝具等级选中项发生变化事件
     $("ddlNpLevel").onchange = function () {
         let id = $("ddlServant").value;
@@ -735,6 +763,45 @@
     $("ddlSkill3").onchange = function () {
         changeSkill(3);
         this.oldvalue = this.value;
+    }
+    $("btnSwitchEffect").onclick = function () {
+	let id = $("ddlServant").value;
+	if(id == -1) { return; }
+	let servant = servants[id];
+	let i = 1, skill = {};
+	for(;i<=3;i++) {
+	    skill = servant["skill"+i];
+	    if(skill && skill.randomEffect) { break; }
+	}
+	let skillLv = $("ddlSkill"+i).value;
+        if(skillLv == -1) { return; }
+	let buff = skill.randomEffect;
+	let effectList = Object.keys(buff);
+        let currentEffect = effectList[this.count];
+        let currentBuff = buff[currentEffect];
+        switch(currentEffect) {
+            case "cardBuff":
+                let cardBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtCardBuff").value -= cardBuff;
+                break;
+            case "attackBuff":
+                let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtAttackBuff").value -= attackBuff;
+        }
+	this.count = (this.count + 1) % effectList.length;
+	currentEffect = effectList[this.count];
+	currentBuff = buff[currentEffect];
+        switch(currentEffect) {
+            case "cardBuff":
+		$("btnSwitchEffect").value = "切换 卡牌buff";
+                let cardBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtCardBuff").value -= -cardBuff;
+                break;
+            case "attackBuff":
+		$("btnSwitchEffect").value = "切换 攻击buff";
+                let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtAttackBuff").value -= -attackBuff;
+        }
     }
     $("btnClearBuff").onclick = function() {
         clearBuff();
@@ -920,13 +987,9 @@
         let attackBuff = getFloat("txtAttackBuff");
         //8.敌方防御力Buff(%)
 	let enemyDefence = [0, 0, 0];
-	let isIgnoreDef = (npEffect && npEffect.ignoreDef);
 	for(let i=1;i<=nTarget;i++){
 	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+i);
 	    enemyDefence[i-1] = Math.max(-100, enemyDefence[i-1]);
-	    if(isIgnoreDef) {
-		enemyDefence[i-1] = Math.min(enemyDefence[i-1], 0);
-	    }
 	}
         //9.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");
@@ -1074,6 +1137,9 @@
 	let ClassSkill = servant.ClassSkill;
 	if(ClassSkill && ClassSkill.chargeNp) {
 	    npGain += ClassSkill.chargeNp * 100;
+	}
+	if(npEffect && npEffect.chargeNp) {
+	    npGain += npEffect.chargeNp * 100;
 	}
 
         let servantName = getDdlText("ddlServant");
