@@ -622,7 +622,7 @@
 	if(this.value <= 0 || id == -1) { return; }
 	let servant = servants[id];
 	let npEffect = servant.npEffect;
-	if(npEffect && npEffect.ignoreDef) {
+	if(npEffect && (npEffect.ignoreDef || npEffect.nullifyDef)) {
 	    this.value = 0;
 	}
     }
@@ -631,7 +631,7 @@
         if(this.value <= 0 || id == -1) { return; }
         let servant = servants[id];
         let npEffect = servant.npEffect;
-        if(npEffect && npEffect.ignoreDef) {
+        if(npEffect && (npEffect.ignoreDef || npEffect.nullifyDef)) {
             this.value = 0;
         }
     }
@@ -640,7 +640,34 @@
         if(this.value <= 0 || id == -1) { return; }
         let servant = servants[id];
         let npEffect = servant.npEffect;
-        if(npEffect && npEffect.ignoreDef) {
+        if(npEffect && (npEffect.ignoreDef || npEffect.nullifyDef)) {
+            this.value = 0;
+        }
+    }
+    $("txtCardResist1").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.nullifyDef) {
+            this.value = 0;
+        }
+    }
+    $("txtCardResist2").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.nullifyDef) {
+            this.value = 0;
+        }
+    }
+    $("txtCardResist3").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.nullifyDef) {
             this.value = 0;
         }
     }
