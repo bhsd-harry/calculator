@@ -109,6 +109,11 @@ function bindSkill(label) {
 		$("btnSwitchEffect").value = "切换 攻击buff";
 		let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
 		$("txtAttackBuff").value -= -attackBuff;
+		break;
+	    case "npStrength":
+		$("btnSwitchEffect").value = "切换 宝威buff";
+		let npStrength = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+		$("txtNpStrength").value -= -npStrength;
 	}
 	abling("btnSwitchEffect");
     }
@@ -231,6 +236,15 @@ function changeSkill(label) {
 		o = (oldLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * oldLv * 10) / 10);
                 let attackBuff = (skillLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10);
                 $("txtAttackBuff").value -= o - attackBuff;
+		break;
+	    case "npStrength":
+		if(skillLv >= 0) {
+                    abling("btnSwitchEffect");
+                    $("btnSwitchEffect").value = "切换 宝威buff";
+                }
+                o = (oldLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * oldLv * 10) / 10);
+                let npStrength = (skillLv == -1? 0 : currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10);
+                $("txtNpStrength").value -= o - npStrength;
         }
 	if(skillLv == -1) {
 	    disabling("btnSwitchEffect");

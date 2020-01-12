@@ -622,17 +622,25 @@
 	if(this.value <= 0 || id == -1) { return; }
 	let servant = servants[id];
 	let npEffect = servant.npEffect;
-	if(npEffect && (npEffect.ignoreDef || npEffect.nullifyDef)) {
-	    this.value = 0;
-	}
+        if(npEffect && npEffect.ignoreDef) {
+            this.value = 0;
+            alert("该宝具无视防御！");
+        }
+        if(npEffect && npEffect.nullifyDef) {
+            alert("该宝具伤害前解除防御强化！");
+        }
     }
     $("txtEnemyDefence2").onchange = function () {
         let id = $("ddlServant").value;
         if(this.value <= 0 || id == -1) { return; }
         let servant = servants[id];
         let npEffect = servant.npEffect;
-        if(npEffect && (npEffect.ignoreDef || npEffect.nullifyDef)) {
+        if(npEffect && npEffect.ignoreDef) {
             this.value = 0;
+            alert("该宝具无视防御！");
+        }
+        if(npEffect && npEffect.nullifyDef) {
+            alert("该宝具伤害前解除防御强化！");
         }
     }
     $("txtEnemyDefence3").onchange = function () {
@@ -640,8 +648,12 @@
         if(this.value <= 0 || id == -1) { return; }
         let servant = servants[id];
         let npEffect = servant.npEffect;
-        if(npEffect && (npEffect.ignoreDef || npEffect.nullifyDef)) {
+        if(npEffect && npEffect.ignoreDef) {
             this.value = 0;
+            alert("该宝具无视防御！");
+        }
+        if(npEffect && npEffect.nullifyDef) {
+            alert("该宝具伤害前解除防御强化！");
         }
     }
     $("txtCardResist1").onchange = function () {
@@ -650,7 +662,7 @@
         let servant = servants[id];
         let npEffect = servant.npEffect;
         if(npEffect && npEffect.nullifyDef) {
-            this.value = 0;
+	    alert("该宝具伤害前解除防御强化！");
         }
     }
     $("txtCardResist2").onchange = function () {
@@ -659,7 +671,7 @@
         let servant = servants[id];
         let npEffect = servant.npEffect;
         if(npEffect && npEffect.nullifyDef) {
-            this.value = 0;
+	    alert("该宝具伤害前解除防御强化！");
         }
     }
     $("txtCardResist3").onchange = function () {
@@ -668,7 +680,7 @@
         let servant = servants[id];
         let npEffect = servant.npEffect;
         if(npEffect && npEffect.nullifyDef) {
-            this.value = 0;
+	    alert("该宝具伤害前解除防御强化！");
         }
     }
     //宝具等级选中项发生变化事件
@@ -814,6 +826,10 @@
             case "attackBuff":
                 let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
                 $("txtAttackBuff").value -= attackBuff;
+		break;
+	    case "npStrength":
+		let npStrength = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+		$("txtNpStrength").value -= npStrength;
         }
 	this.count = (this.count + 1) % effectList.length;
 	currentEffect = effectList[this.count];
@@ -828,6 +844,11 @@
 		$("btnSwitchEffect").value = "切换 攻击buff";
                 let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
                 $("txtAttackBuff").value -= -attackBuff;
+		break;
+	    case "npStrength":
+		$("btnSwitchEffect").value = "切换 宝威buff";
+		let npStrength = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+		$("txtNpStrength").value -= -npStrength;
         }
     }
     $("btnClearBuff").onclick = function() {
