@@ -629,6 +629,9 @@
         if(npEffect && npEffect.nullifyDef) {
             alert("该宝具伤害前解除防御强化！");
         }
+	if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack1").checked) {
+	    alert("特攻对象解除防御强化！");
+	}
     }
     $("txtEnemyDefence2").onchange = function () {
         let id = $("ddlServant").value;
@@ -641,6 +644,9 @@
         }
         if(npEffect && npEffect.nullifyDef) {
             alert("该宝具伤害前解除防御强化！");
+        }a
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack2").checked) {
+            alert("特攻对象解除防御强化！");
         }
     }
     $("txtEnemyDefence3").onchange = function () {
@@ -655,6 +661,9 @@
         if(npEffect && npEffect.nullifyDef) {
             alert("该宝具伤害前解除防御强化！");
         }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack3").checked) {
+            alert("特攻对象解除防御强化！");
+        }
     }
     $("txtCardResist1").onchange = function () {
         let id = $("ddlServant").value;
@@ -663,6 +672,9 @@
         let npEffect = servant.npEffect;
         if(npEffect && npEffect.nullifyDef) {
 	    alert("该宝具伤害前解除防御强化！");
+        }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack1").checked) {
+            alert("特攻对象解除防御强化！");
         }
     }
     $("txtCardResist2").onchange = function () {
@@ -673,6 +685,9 @@
         if(npEffect && npEffect.nullifyDef) {
 	    alert("该宝具伤害前解除防御强化！");
         }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack2").checked) {
+            alert("特攻对象解除防御强化！");
+        }
     }
     $("txtCardResist3").onchange = function () {
         let id = $("ddlServant").value;
@@ -681,6 +696,9 @@
         let npEffect = servant.npEffect;
         if(npEffect && npEffect.nullifyDef) {
 	    alert("该宝具伤害前解除防御强化！");
+        }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack3").checked) {
+            alert("特攻对象解除防御强化！");
         }
     }
     //宝具等级选中项发生变化事件
