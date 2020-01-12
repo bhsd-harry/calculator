@@ -292,12 +292,6 @@ function initialEffects() {
         else {
             abling("ddlOvercharge");
         }
-        if($("ddlNTarget").selectedIndex == 0) {
-            disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
-        }
-        else {
-            abling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
-        }
         disabling("btnAccumulate","btnSwitchEffect");
 	$("btnSwitchEffect").value = "切换";
         for(let i=1;i<=3;i++) {
@@ -328,6 +322,12 @@ function initialEffects() {
 	bindSkill(2);
 	bindSkill(3);
         setOc();
+	if($("ddlNTarget").selectedIndex == 0) {
+            disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+        }
+        else {
+            abling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+        }
         $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
 	$("ddlSkill1").oldvalue = $("ddlSkill1").value;
 	$("ddlSkill2").oldvalue = $("ddlSkill2").value;
