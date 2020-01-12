@@ -1223,6 +1223,9 @@
                 ClassResistType[i] = "resist";
             }
 	}
+	for(let i=nTarget;i<3;i++) {
+	    ClassResistType[i] = "notTarget";
+	}
         let model = {
             guid: guid,
             servantName: servantName,
