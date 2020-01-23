@@ -1305,7 +1305,7 @@
         //5.宝具等级(oc)
         newRow.insertCell(-1).innerHTML = obj.NP + "(" + obj.oc + ")";
         //6.宝具倍率      
-        newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + obj.npCoef.toFixed(1) + "</span>"
+        newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + Math.round(obj.npCoef * 10) / 10 + "</span>"
         //7.攻击力Buff
         newRow.insertCell(-1).innerHTML = obj.attackBuff;
         //8.卡牌Buff
