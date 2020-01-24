@@ -213,15 +213,15 @@
                 <td>
                     <select id="ddlCraftEssence">
                         <option value="">自定义</option>
-                        <option value="786">20级宝石</option>
-                        <option value="2000-1">100级醉贞</option>
-                        <option value="2000-2">100级空骑</option>
-                        <option value="2000-3">100级相扑</option>
-                        <option value="2034">80级黑杯</option>
-                        <option value="393-1">20级潜水学妹</option>
-                        <option value="393-2">20级北斋</option>
-                        <option value="0">15级泳装樱</option>
-                        <option value="2000-4">100级轨迹</option>
+                        <option value="786-1">20级宝石</option>
+                        <option value="2000-2">100级醉贞</option>
+                        <option value="2000-3">100级空骑</option>
+                        <option value="2000-4">100级相扑</option>
+                        <option value="2034-5">80级黑杯</option>
+                        <option value="393-6">20级潜水学妹</option>
+                        <option value="393-7">20级北斋</option>
+                        <option value="0-8">15级泳装樱</option>
+                        <option value="2000-9">100级轨迹</option>
                     </select>
                 </td>
                 <td>敌人1</td>
@@ -292,19 +292,19 @@
                 <td>御主礼装</td>
                 <td>
                     <select id="ddlMysticCode">
-                        <option value="0-1">无</option>
-                        <option value="0-2">战斗服</option>
-                        <option value="50-1">04服</option>
+                        <option value="0-0">无</option>
+                        <option value="0-1">战斗服</option>
+                        <option value="50-2">04服</option>
                         <option value="0-3">骑士王服</option>
                         <option value="0-4">初始服</option>
                         <option value="0-5">西服</option>
                         <option value="0-6">泳装</option>
                         <option value="0-7">月海</option>
                         <option value="0-8">月背</option>
-                        <option value="10">极地服</option>
-                        <option value="20">夏威夷衫</option>
-                        <option value="35">新年服</option>
-                        <option value="50-2">宇航服</option>
+                        <option value="10-9">极地服</option>
+                        <option value="20-10">夏威夷衫</option>
+                        <option value="35-11">新年服</option>
+                        <option value="0-12">宇航服</option>
                     </select>
                 </td>
                 <td>敌人1阵营</td>
@@ -1164,6 +1164,12 @@
 		if(cardColor == 1) {
                     cardBuff += 30;
                 }
+		break;
+	    case 12:
+		npGainBuff += 40;
+		if(cardColor == 1.5) {
+		    cardBuff += 35;
+		}
 	}
         /*
             ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
