@@ -218,10 +218,11 @@
                         <option value="2000-3">100级空骑</option>
                         <option value="2000-4">100级相扑</option>
                         <option value="2034-5">80级黑杯</option>
-                        <option value="393-6">20级潜水学妹</option>
-                        <option value="393-7">20级北斋</option>
-                        <option value="0-8">15级泳装樱</option>
-                        <option value="2000-9">100级轨迹</option>
+			<option value="2400-6">100级黑杯</option>
+                        <option value="393-7">20级潜水学妹</option>
+                        <option value="393-8">20级北斋</option>
+                        <option value="0-9">15级泳装樱</option>
+                        <option value="2000-10">100级轨迹</option>
                     </select>
                 </td>
                 <td>敌人1</td>
@@ -301,11 +302,12 @@
                         <option value="0-6">泳装</option>
                         <option value="0-7">月海</option>
                         <option value="0-8">月背</option>
-                        <option value="10-9">极地服</option>
-                        <option value="20-10">夏威夷衫</option>
-                        <option value="35-11">新年服</option>
-                        <option value="50-12">宇航服</option>
-			<option value="0-13">探险服</option>
+                        <option value="10-9">1级极地服</option>
+			<option value="20-10">极地服</option>
+                        <option value="20-11">夏威夷衫</option>
+                        <option value="35-12">新年服</option>
+                        <option value="50-13">宇航服</option>
+			<option value="0-14">探险服</option>
                     </select>
                 </td>
                 <td>敌人1阵营</td>
@@ -729,11 +731,11 @@
         if(this.selectedIndex == 0) { return; }
         $("txtCraftEssenceAtk").value = parseInt(this.value);
         switch(this.selectedIndex) {
-            case 6:
             case 7:
+            case 8:
                 $("txtCraftEssenceHp").value = 629;
                 break;
-            case 8:
+            case 9:
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
@@ -1097,25 +1099,28 @@
 	    case 5:
 		npStrength += 60;
 		break;
-            case 6:
+	    case 6:
+		npStrength += 80;
+		break;
+            case 7:
                 npStrength += 10;
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
                 break;
-            case 7:
+            case 8:
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
 		npGainBuff += 10;
                 break;
-            case 8:
+            case 9:
                 npStrength += 10;
                 if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
                 break;
-	    case 9:
+	    case 10:
 		if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
@@ -1162,11 +1167,14 @@
 		attackBuff += 20;
 		break;
 	    case 10:
+		attackBuff += 40;
+		break;
+	    case 11:
 		if(cardColor == 1) {
                     cardBuff += 30;
                 }
 		break;
-	    case 13:
+	    case 14:
 		npGainBuff += 40;
 		if(cardColor == 1.5) {
 		    cardBuff += 35;
