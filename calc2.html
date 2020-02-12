@@ -767,6 +767,10 @@
 		$("txtCardBuff").value -= -cardBuff;
 	    }
 	}
+	let npEffect = servant.npEffect;
+	if(npEffect && npEffect.accAttackBuff) {
+	    $("txtAttackBuff").value -= -npEffect.accAttackBuff;
+	}
     }
     //队友buff
     $("btnAddZhuge").onclick = function(){

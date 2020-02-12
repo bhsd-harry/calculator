@@ -329,6 +329,9 @@ function initialEffects() {
                 $("btnSwitchEffect").count = 0;
             }
         }
+	if(npEffect && npEffect.accAttackBuff) {
+	    abling("btnAccumulate");
+	}
         bindServantData(id);
         adjHp()
         clearBuff();
