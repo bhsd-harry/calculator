@@ -290,10 +290,22 @@ function initialServantList() {
 function initialEffects() {
     let id = $("ddlServant").value;
     if (id != -1) {
-	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
+	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
         let servant = servants[id];
         let npEffect = servant.npEffect;
         let ocs = servant.oc;
+	if($("ddlOverkillMode").selectedIndex == 0) {
+	    abling("btnAdjOverkill");
+	    $("spanOverkillLabel1").innerHTML="敌人1鞭尸";
+            $("spanOverkillLabel2").innerHTML="敌人2鞭尸";
+            $("spanOverkillLabel3").innerHTML="敌人3鞭尸";
+	}
+	else {
+	    disabling("btnAdjOverkill");
+            $("spanOverkillLabel1").innerHTML="敌人1血量";
+            $("spanOverkillLabel2").innerHTML="敌人2血量";
+            $("spanOverkillLabel3").innerHTML="敌人3血量";
+	}
         if((npEffect && npEffect.npRemainHpDamage) || ocs.type == "NpRemainHpDamage") {
             abling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
         }
@@ -506,9 +518,16 @@ function clearBuff(){
     $("txtSpecialAttack").value = 0;
     $("txtDamagePlus").value = $("txtDamagePlus").basevalue;
     $("txtNpGainBuff").value = $("txtNpGainBuff").basevalue;
-    $("txtOverkill1").value = 0;
-    $("txtOverkill2").value = 0;
-    $("txtOverkill3").value = 0;
+    if($("ddlOverkillMode").selectedIndex == 0) {
+	$("txtOverkill1").value = 0;
+        $("txtOverkill2").value = 0;
+        $("txtOverkill3").value = 0;
+    }
+    else {
+        $("txtOverkill1").anothervalue = 0;
+        $("txtOverkill2").anothervalue = 0;
+        $("txtOverkill3").anothervalue = 0;
+    }
     $("spanOverkill1").innerHTML = "100%";
     $("spanOverkill2").innerHTML = "100%";
     $("spanOverkill3").innerHTML = "100%";

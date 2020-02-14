@@ -415,19 +415,25 @@
                 <td>
                     <input type="text" id="txtNpGainBuff" value="0" basevalue=0 />
                 </td>
-                <td>敌人1鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill1" value="0" size=14px />
+		    <span id="spanOverkillLabel1">敌人1鞭尸</span>
+		</td>
+                <td>
+                    <input type="text" id="txtOverkill1" value="0" size=14px anothervalue="0"/>
 		    <span id="spanOverkill1">100%</span>
                 </td>
-                <td>敌人2鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill2" value="0" size=14px />
+		    <span id="spanOverkillLabel2">敌人2鞭尸</span>
+		</td>
+                <td>
+                    <input type="text" id="txtOverkill2" value="0" size=14px anothervalue="0"/>
                     <span id="spanOverkill2">100%</span>
                 </td>
-                <td>敌人3鞭尸</td>
                 <td>
-                    <input type="text" id="txtOverkill3" value="0" size=14px />
+		    <span id="spanOverkillLabel3">敌人3鞭尸</span>
+		</td>
+                <td>
+                    <input type="text" id="txtOverkill3" value="0" size=14px anothervalue="0"/>
                     <span id="spanOverkill3">100%</span>
                 </td>
             </tr>
@@ -435,6 +441,10 @@
             </tr>
             <tr>
                 <td colspan="8">
+                    <select id="ddlOverkillMode"/>
+                        <option value=0>输入鞭尸数</option>
+                        <option value=1>输入血量</option>
+                    </select>
 		    <input type="button" value="累   加" id="btnAccumulate" count=0 />
 		    <input type="button" value="孔   明" id="btnAddZhuge" />
 		    <input type="button" value="梅   林" id="btnAddMerlin" />	
@@ -462,10 +472,10 @@
                 <th>宝具威力Buff</th>
                 <th>宝具特攻</th>
 		<th>黄金律</th>
-                <th>伤害最小值</th>
+                <th>伤害最小值/垫刀需求</th>
                 <th>伤害平均值</th>
-                <th>伤害最小值</th>
-                <th>伤害最小值</th>
+                <th>伤害最小值/垫刀需求</th>
+                <th>伤害最小值/垫刀需求</th>
 		<th>NP获取</th>
                 <th>&nbsp;</th>
             </tr>
@@ -570,37 +580,63 @@
 	this.value = Math.max(parseInt(this.value), 1);
 	noOverkill();
     }
+    $("ddlOverkillMode").onchange = function (){
+	if(this.selectedIndex == 1) {
+	    disabling("btnAdjOverkill");
+	    for(let i=1;i<=3;i++){
+		$("spanOverkillLabel"+i).innerHTML="敌人"+i+"血量";
+	    }
+	}
+	else {
+	    abling("btnAdjOverkill");
+            for(let i=1;i<=3;i++){
+                $("spanOverkillLabel"+i).innerHTML="敌人"+i+"鞭尸";
+	    }
+	}
+	for(let i=1,l="";i<=3;i++){
+	    l = $("txtOverkill"+i).anothervalue;
+	    if(!l) { l = "0"; }
+	    $("txtOverkill"+i).anothervalue = $("txtOverkill"+i).value;
+	    $("txtOverkill"+i).value = l;
+	}
+    }
     $("txtOverkill1").onchange = function (){
 	let n = getInt("txtNHits");
-	this.value = Math.max(Math.min(parseInt(this.value), n), 0);
-	calPerDamage(1);
-	if(this.value == 0) {
-	    $("btnAdjOverkill").value = "全鞭尸";
-	}
-	if(this.value == n) {
-            $("btnAdjOverkill").value = "无鞭尸";
+	if($("ddlOverkillMode").selectedIndex == 0) {
+	    this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+	    calPerDamage(1);
+	    if(this.value == 0) {
+	        $("btnAdjOverkill").value = "全鞭尸";
+	    }
+	    if(this.value == n) {
+                $("btnAdjOverkill").value = "无鞭尸";
+	    }
         }
     }
     $("txtOverkill2").onchange = function (){
         let n = getInt("txtNHits");
-        this.value = Math.max(Math.min(parseInt(this.value), n), 0);
-        calPerDamage(2);
-        if(this.value == 0) {
-            $("btnAdjOverkill").value = "全鞭尸";
-        }
-        if(this.value == n) {
-            $("btnAdjOverkill").value = "无鞭尸";
+	if($("ddlOverkillMode").selectedIndex == 0) {
+            this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+            calPerDamage(2);
+            if(this.value == 0) {
+                $("btnAdjOverkill").value = "全鞭尸";
+            }
+            if(this.value == n) {
+                $("btnAdjOverkill").value = "无鞭尸";
+	    }
         }
     }
     $("txtOverkill3").onchange = function (){
         let n = getInt("txtNHits");
-        this.value = Math.max(Math.min(parseInt(this.value), n), 0);
-        calPerDamage(3);
-        if(this.value == 0) {
-            $("btnAdjOverkill").value = "全鞭尸";
-        }
-        if(this.value == n) {
-            $("btnAdjOverkill").value = "无鞭尸";
+	if($("ddlOverkillMode").selectedIndex == 0) {
+            this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+            calPerDamage(3);
+            if(this.value == 0) {
+                $("btnAdjOverkill").value = "全鞭尸";
+            }
+            if(this.value == n) {
+                $("btnAdjOverkill").value = "无鞭尸";
+	    }
         }
     }
     //鞭尸
@@ -1189,15 +1225,50 @@
             +(固定伤害BUFF—敌方固定伤害BUFF)
         */
 	let resultMin = [0, 0, 0];
+	let overkill = [0, 0, 0];
+	let nHits = getInt("txtNHits");
 	for(let i=1;i<=nTarget;i++){
 	    resultMin[i-1] = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[i-1]) / 100) * Class * ClassResist[i-1] * attributeResist[i-1] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[i-1]) / 100) * (1 + (npStrength + specialAttackBuff[i-1]) / 100) * npSpecialAttack[i-1] + damagePlus;
-	    resultMin[i-1] = Math.floor(Math.floor(resultMin[i-1]) * parseInt($("spanOverkill"+i).innerHTML) / 100);
+	    resultMin[i-1] = Math.floor(resultMin[i-1]);
+	    if($("ddlOverkillMode").selectedIndex == 0) {
+		overkill[i-1] = getInt("txtOverkill"+i);
+		resultMin[i-1] = Math.floor(resultMin[i-1] * parseInt($("spanOverkill"+i).innerHTML) / 100);
+	    }
+	    else {
+		let enemyHp = getInt("txtOverkill"+i);
+		if(enemyHp > resultMin[i-1]) {
+		    overkill[i-1] = 0;
+		    resultMin[i-1] = enemyHp - resultMin[i-1];
+		}
+		else {
+		    let damageDist = servant.damageDist;
+		    let perDamage = 0;
+		    let j = 0;
+		    let effectiveDamage = 0;
+		    for(;j<nHits-1;j++) {
+			perDamage += damageDist[j];
+                        effectiveDamage = Math.floor(resultMin[i-1] * perDamage / 100);
+			if(effectiveDamage >= enemyHp) { break; }
+		    }
+		    overkill[i-1] = nHits - j;
+		    if(j == 0) {
+                        resultMin[i-1] = 0;
+		    }
+		    else if(j == nHits-1) {
+			resultMin[i-1] = enemyHp - effectiveDamage;
+		    }
+		    else {
+			perDamage -= damageDist[j];
+			effectiveDamage = Math.floor(resultMin[i-1] * perDamage / 100);
+			resultMin[i-1] = enemyHp - effectiveDamage;
+		    }
+		}
+	    }
 	}
         let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
         resultAvg = Math.floor(resultAvg);
 
 	let npGain = 0;
-	let nHits = getInt("txtNHits");
 	for(let i=1;i<=nTarget;i++){
 	    let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + (cardBuff - cardResist[i-1]) / 100);
 	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+i);
@@ -1206,7 +1277,7 @@
 	    }
 	    npGainNormal = Math.floor(npGainNormal);
 	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
-	    npGain += (npGainOverkill - npGainNormal) * getInt("txtOverkill"+i) + npGainNormal * nHits;
+	    npGain += (npGainOverkill - npGainNormal) * overkill[i-1] + npGainNormal * nHits;
 	}
 	if(servant.oc.type == "ChargeNp") {
 	    let ocLevel = $("ddlOvercharge").value;
