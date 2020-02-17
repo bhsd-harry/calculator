@@ -214,15 +214,17 @@
                     <select id="ddlCraftEssence">
                         <option value="">自定义</option>
                         <option value="786-1">20级宝石</option>
-                        <option value="2000-2">100级醉贞</option>
-                        <option value="2000-3">100级空骑</option>
-                        <option value="2000-4">100级相扑</option>
-                        <option value="2034-5">80级黑杯</option>
-			<option value="2400-6">100级黑杯</option>
-                        <option value="393-7">20级潜水学妹</option>
-                        <option value="393-8">20级北斋</option>
-                        <option value="0-9">15级泳装樱</option>
-                        <option value="2000-10">100级轨迹</option>
+			<option value="2000-2">100级宝石</option>
+			<option value="2000-3">100级美游</option>
+                        <option value="2000-4">100级醉贞</option>
+                        <option value="2000-5">100级空骑</option>
+                        <option value="2000-6">100级相扑</option>
+                        <option value="2034-7">80级黑杯</option>
+			<option value="2400-8">100级黑杯</option>
+                        <option value="393-9">20级潜水学妹</option>
+                        <option value="393-10">20级北斋</option>
+                        <option value="0-11">15级泳装樱</option>
+                        <option value="2000-12">100级轨迹</option>
                     </select>
                 </td>
                 <td>敌人1</td>
@@ -767,11 +769,11 @@
         if(this.selectedIndex == 0) { return; }
         $("txtCraftEssenceAtk").value = parseInt(this.value);
         switch(this.selectedIndex) {
-            case 7:
-            case 8:
+            case 9:
+            case 10:
                 $("txtCraftEssenceHp").value = 629;
                 break;
-            case 9:
+            case 11:
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
@@ -1124,43 +1126,46 @@
         let npGainBuff = getFloat("txtNpGainBuff");
         //14.礼装
 	switch($("ddlCraftEssence").selectedIndex) {
-	    case 2:
+	    case 3:
+		npGainBuff += 30;
+		break;
+	    case 4:
 		npStrength += 15;
 		break;
-	    case 3:
+	    case 5:
 		npStrength += 10;
 		if(cardColor == 1.5) {
 		    cardBuff += 10;
 		}
 		break;
-	    case 4:
+	    case 6:
 		attackBuff += 15;
 		break;
-	    case 5:
+	    case 7:
 		npStrength += 60;
 		break;
-	    case 6:
+	    case 8:
 		npStrength += 80;
 		break;
-            case 7:
+            case 9:
                 npStrength += 10;
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
                 break;
-            case 8:
+            case 10:
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
 		npGainBuff += 10;
                 break;
-            case 9:
+            case 11:
                 npStrength += 10;
                 if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
                 break;
-	    case 10:
+	    case 12:
 		if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
