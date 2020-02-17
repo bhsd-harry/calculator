@@ -1338,7 +1338,8 @@
             min: resultMin,
             avg: resultAvg,
             ClassResistType: ClassResistType,
-	    npGain: npGain / 100
+	    npGain: npGain / 100,
+	    overkill: overkill
         };
         resultArr.push(model);
         showResult();
@@ -1413,7 +1414,7 @@
 	newRow.insertCell(-1).innerHTML = obj.npGainBuff;
         //12.宝具伤害最小值    
         let min1 = newRow.insertCell(-1);
-        min1.innerHTML = obj.min[0];
+        min1.innerHTML = obj.min[0] + "(" + obj.overkill[0] + ")";
         min1.classList.add(obj.ClassResistType[0]);
         //13.宝具伤害平均值       
         let avg = newRow.insertCell(-1);
@@ -1421,11 +1422,11 @@
         avg.classList.add(obj.ClassResistType[0]);
         //14.宝具伤害最小值
         let min2 = newRow.insertCell(-1);
-        min2.innerHTML = obj.min[1];
+        min2.innerHTML = obj.min[1] + "(" + obj.overkill[1] + ")";
         min2.classList.add(obj.ClassResistType[1]);
         //15.宝具伤害最小值
         let min3 = newRow.insertCell(-1);
-        min3.innerHTML = obj.min[2];
+        min3.innerHTML = obj.min[2] + "(" + obj.overkill[2] + ")";
         min3.classList.add(obj.ClassResistType[2]);
 	//16.NP获取
 	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
