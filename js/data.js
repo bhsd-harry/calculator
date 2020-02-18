@@ -343,7 +343,7 @@ function initLancer(){
     initialServant(5,"Lancer", "玉藻前", 128, "天", 10726, 15147, 11741, 16594, 1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {attackBuff: [10,20]}, {defDecreaseSingle: [20,30]}, {}, [], {damagePlus: 230}, {}, {attackBuff: [10,20]}, {defDecreaseSingle: [20,30]});
     initialServant(5,"Lancer", "恩奇都", 143, "天", 10780, 15300, 11800, 16762, 1,1,0, "BusterSingle2", 30, 50, "DefDecrease", 1.5, {cardBuff: [30,50]}, {}, {}, [], {}, { specialAttack: 200 });
     initialServant(5,"Lancer", "恩奇都SC", 143, "天", 10780, 15300, 11800, 16762, 1,1,0, "BusterSingle1", 20, 40, "DefDecrease", 1.5, {cardBuff: [30,50]});
-    initialServant(5,"Lancer", "艾蕾什基伽尔", 196, "地", 10343, 16065, 11322, 17600, 3,1,0, "BusterAll1", 10, 50, "OcCardBuff", 1.5, {}, {cardBuff: [30,50]}, {}, [], {damagePlus: 225});
+    initialServant(5,"Lancer", "艾蕾什基伽尔", 196, "地", 10343, 16065, 11322, 17600, 3,1,0, "BusterAll1", 10, 50, "OcCardBuff", 1.5, {}, {cardBuff: [30,50]}, {}, [], {damagePlus: 225}, {}, {}, {}, {npGainBuff: [20,30]});
     initialServant(5,"Lancer", "布拉达曼特", 232, "地", 10833, 15682, 11858, 17180, 3,5,0.7, "BusterSingle1", 20, 60, "OcNpStrength", 0.8, {cardBuff: [20,30]}, {}, {}, [6,13,20,26]);
     /******************************************4星********************************************************************/
     initialServant(4,"Lancer", "伊丽莎白・巴陶里", 18, "人", 9122, 11870, 11045, 14392, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {attackBuff: [10,20]}, {defDecreaseSingle: [10,20]}, {}, [], {}, { ignoreDef: true }, {attackBuff: [10,20], randomAttackBuff: [10,20]}, {defDecreaseSingle: [10,20]});
@@ -361,8 +361,8 @@ function initLancer(){
     initialServant(4,"Lancer", "帕尔瓦蒂", 183, "天", 8127, 13253, 9840, 16069, 3,4,1.08, "BusterSingle1", 10, 30, "ChargeNp", 0.8, {cardBuff: [20,30], npGainBuff: [20,30]}, {attackBuff: [30,50]}, {}, [10,20,30], {damagePlus: 225});
     initialServant(4,"Lancer", "哪吒", 193, "天", 9284, 12112, 11241, 14686, 3,1,0, "BusterAll1", 20, 60, "OcNpStrength", 1.5, {cardBuff: [10,20]});
     initialServant(4,"Lancer", "瓦尔基里", 214, "天", 8037, 14025, 9731, 17005, 3,7,0.86, "BusterSingle1", 0, 0, "", 0.8, {cardBuff: [20,30], npStrength: [10,20]}, {}, {}, [3,7,10,14,17,21], {damagePlus: 200});
-    initialServant(4,"Lancer", "茨木童子(Lancer)", 217, "地", 9133, 12354, 11058, 14979, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [10,20], npStrength: [20,30]}, {}, {}, [], {cardBuff: 4}, { ignoreDef: true });
-    initialServant(4,"Lancer", "長尾景虎", 252, "人", 9617, 11360, 11644, 13774, 1,8,0.45, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [20,30]}, {npGainBuff: [20,30]}, {attackBuff: [10,20]}, [2,5,8,11,13,16,19], {damagePlus: 150});
+    initialServant(4,"Lancer", "茨木童子(Lancer)", 217, "地", 9133, 12354, 11058, 14979, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [10,20], npStrength: [20,30]}, {}, {}, [], {cardBuff: 4}, { ignoreDef: true }, {attackBuff: [10,20]});
+    initialServant(4,"Lancer", "長尾景虎", 252, "人", 9617, 11360, 11644, 13774, 1,8,0.45, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [20,30]}, {npGainBuff: [20,30]}, {attackBuff: [10,20]}, [2,5,8,11,13,16,19], {damagePlus: 150}, {}, {}, {}, {attackBuff: [10,20]});
     initialServant(4,"Lancer", "謎之Alterego・Λ", 266, "地", 9261, 11749, 11213, 14246, 3,3,0.76, "ArtsAll1", 0, 0, "", 1, {cardBuff: [10,20]}, {}, {attackBuff: [30,50]}, [16,33], {damagePlus: 200}, { ignoreDef: true });
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Lancer", "库・丘林", 17, "天", 7239, 9593, 9797, 13007, 1,1,1.07, "QuickSingle2", 0, 0, "", 0.8, {}, {}, {}, [], {damagePlus: 175});
