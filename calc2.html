@@ -452,6 +452,7 @@
 		    <input type="button" value="梅   林" id="btnAddMerlin" />	
 		    <input type="button" value="狐   狸" id="btnAddTamamo" />
 		    <input type="button" value="斯卡蒂" id="btnAddSkadi" />
+		    <input type="button" value="花   嫁" id="btnAddBride" />
 		    <input type="button" value="清   空" id="btnClearBuff" />
                     <input type="button" value="计   算" id="btnCalculate" />
                 </td>
@@ -837,6 +838,10 @@
         if($("ddlColor").value == 0.8){
             $("txtCardBuff").value -= -50;
         }
+    }
+    $("btnAddBride").onclick = function(){
+	$("txtAttackBuff").value -= -40;
+	$("txtNpGainBuff").value -= -45;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
