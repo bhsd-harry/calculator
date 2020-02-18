@@ -178,6 +178,10 @@ function bindSupport(n,i) {
         let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtNpStrength").value -= -npStrength;
     }
+    if(buff = skill.specialAttack) {
+        let specialAttack = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtSpecialAttack").value -= -specialAttack;
+    }
     if(buff = skill.npGainBuff) {
         let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtNpGainBuff").value -= -npGainBuff;
@@ -238,6 +242,11 @@ function changeSupport(n,i) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
         let npStrength = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtNpStrength").value -= o - npStrength;
+    }
+    if(buff = skill.specialAttack) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let specialAttack = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtSpecialAttack").value -= o - specialAttack;
     }
     if(buff = skill.npGainBuff) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
