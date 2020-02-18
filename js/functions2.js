@@ -131,10 +131,6 @@ function bindSupport(n,i) {
         let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtAttackBuff").value -= -attackBuff;
     }
-    if((buff = skill.randomAttackBuff) && noMiss) {
-        let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtAttackBuff").value -= -attackBuff;
-    }
 }
 function changeSupport(n,i) {
     let id = $("ddlSupport"+n).value;
@@ -359,7 +355,7 @@ function initialEffects() {
     }
     let id = $("ddlServant").value;
     if (id != -1) {
-	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
+	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnClearBuff","btnCalculate");
         let servant = servants[id];
         let npEffect = servant.npEffect;
         let ocs = servant.oc;
@@ -459,7 +455,7 @@ function initialEffects() {
 	$("ddlLvs").oldvalue = servant.star;
     }
     else {
-	disabling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","ddlNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","btnSwitchEffect","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
+	disabling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","ddlNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","btnSwitchEffect","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnClearBuff","btnCalculate");
 	$("btnSwitchEffect").value = "切换";
 	$("spanAttribute").innerHTML = "";
 	$("txtEnemyDefence1").basevalue = 0;
@@ -468,34 +464,6 @@ function initialEffects() {
 	$("txtDamagePlus").basevalue = 0;
 	clearBuff();
     }
-/*
-    for(let n=1;n<=1;n++) {
-        let sid = $("ddlSupport"+n).value;
-        if(sid == -1) {
-            disabling("ddlSupport"+n+"Skill1","ckSupport"+n+"NoMiss1","ddlSupport"+n+"Skill2","ckSupport"+n+"NoMiss2","ddlSupport"+n+"Skill3","ckSupport"+n+"NoMiss3");
-        }
-        else {
-            let support = servants[sid];
-            for(let i=1;i<=3;i++) {
-                let skill = support["support"+i];
-                if(skill && Object.keys(skill).length > 0) {
-                    abling("ddlSupport"+n+"Skill"+i);
-                    if(skill.randomAttackBuff) {
-                        abling("ckSupport"+n+"NoMiss"+i);
-                    }
-                    else {
-                        disabling("ckSupport"+n+"NoMiss"+i);
-                    }
-                    bindSupport(n,i);
-                    $("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
-                }
-                else {
-                    disabling("ddlSupport"+n+"Skill"+i,"ckSupport"+n+"NoMiss"+i);
-                }
-            }
-        }
-    }
-*/
 }
 function adjHp(){
     let totalHp = getInt("txtMaxHp") + getInt("txtFouHp") + getInt("txtCraftEssenceHp");
