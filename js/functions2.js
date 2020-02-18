@@ -135,46 +135,6 @@ function bindSupport(n,i) {
         let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtAttackBuff").value -= -attackBuff;
     }
-    if(buff = skill.defDecreaseSingle) {
-        let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtEnemyDefence1").value -= defDecrease;
-    }
-    if(buff = skill.defDecreaseAll) {
-        let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtEnemyDefence1").value -= defDecrease;
-        $("txtEnemyDefence2").value -= defDecrease;
-        $("txtEnemyDefence3").value -= defDecrease;
-    }
-    if(buff = skill.cardBuff) {
-        let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtCardBuff").value -= -cardBuff;
-    }
-    if(buff = skill.cardDecreaseSingle) {
-        let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtCardResist1").value -= cardDecrease;
-    }
-    if(buff = skill.cardDecreaseAll) {
-        let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtCardResist1").value -= cardDecrease;
-        $("txtCardResist2").value -= cardDecrease;
-        $("txtCardResist3").value -= cardDecrease;
-    }
-    if(buff = skill.npStrength) {
-        let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtNpStrength").value -= -npStrength;
-    }
-    if(buff = skill.specialAttack) {
-        let specialAttack = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtSpecialAttack").value -= -specialAttack;
-    }
-    if(buff = skill.damagePlus) {
-        let damagePlus = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtDamagePlus").value -= -damagePlus;
-    }
-    if(buff = skill.npGainBuff) {
-        let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
-        $("txtNpGainBuff").value -= -npGainBuff;
-    }
 }
 function changeSupport(n,i) {
     let id = $("ddlSupport"+n).value;
@@ -191,60 +151,6 @@ function changeSupport(n,i) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
         let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtAttackBuff").value -= o - attackBuff;
-    }
-    if((buff = skill.randomAttackBuff) && noMiss) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtAttackBuff").value -= o - attackBuff;
-    }
-    if(buff = skill.defDecreaseSingle) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtEnemyDefence1").value -= defDecrease - o;
-    }
-    if(buff = skill.defDecreaseAll) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtEnemyDefence1").value -= defDecrease - o;
-        $("txtEnemyDefence2").value -= defDecrease - o;
-        $("txtEnemyDefence3").value -= defDecrease - o;
-    }
-    if(buff = skill.cardBuff) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtCardBuff").value -= o - cardBuff;
-    }
-    if(buff = skill.cardDecreaseSingle) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtCardResist1").value -= cardDecrease - o;
-    }
-    if(buff = skill.cardDecreaseAll) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtCardResist1").value -= cardDecrease - o;
-        $("txtCardResist2").value -= cardDecrease - o;
-        $("txtCardResist3").value -= cardDecrease - o;
-    }
-    if(buff = skill.npStrength) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let npStrength = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtNpStrength").value -= o - npStrength;
-    }
-    if(buff = skill.specialAttack) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let specialAttack = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtSpecialAttack").value -= o - specialAttack;
-    }
-    if(buff = skill.damagePlus) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let damagePlus = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtDamagePlus").value -= o - damagePlus;
-    }
-    if(buff = skill.npGainBuff) {
-        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
-        let npGainBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
-        $("txtNpGainBuff").value -= o - npGainBuff;
     }
     $("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
 }
