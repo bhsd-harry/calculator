@@ -512,11 +512,13 @@
                         <option value=1>输入血量</option>
                     </select>
 		    <input type="button" value="累   加" id="btnAccumulate" count=0 />
+<!--
 		    <input type="button" value="孔   明" id="btnAddZhuge" />
 		    <input type="button" value="梅   林" id="btnAddMerlin" />	
 		    <input type="button" value="狐   狸" id="btnAddTamamo" />
 		    <input type="button" value="斯卡蒂" id="btnAddSkadi" />
 		    <input type="button" value="花   嫁" id="btnAddBride" />
+-->
 		    <input type="button" value="清   空" id="btnClearBuff" />
                     <input type="button" value="计   算" id="btnCalculate" />
                 </td>
@@ -875,6 +877,7 @@
 	    $("txtAttackBuff").value -= -npEffect.accAttackBuff;
 	}
     }
+/*
     //队友buff
     $("btnAddZhuge").onclick = function(){
         $("txtAttackBuff").value -= -30;
@@ -907,7 +910,7 @@
 	$("txtAttackBuff").value -= -40;
 	$("txtNpGainBuff").value -= -45;
     }
-
+*/
     //////////////////////////////////////////////////////////////////////////////////////////////
     //下拉从者选中项发生变化事件
     $("ddlServant").onchange = function () {
