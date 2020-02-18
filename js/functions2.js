@@ -8,6 +8,20 @@ function noOverkill() {
     $("spanOverkill3").innerHTML = "100%";
     $("btnAdjOverkill").value = "全鞭尸";
 }
+function randomSupport(n,i) {
+    let id = $("ddlSupport"+n).value;
+    let skillLv = $("ddlSupport"+n+"Skill"+i).value;
+    if(id == -1 || skillLv == -1) { return; }
+    let servant = servants[id];
+    let skill = servant["support"+i];
+    if(!skill) { return; }
+    let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
+    let buff = [];
+    if(buff = skill.randomAttackBuff) {
+	let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= (noMiss? -attackBuff : attackBuff);
+    }
+}
 function randomSkill(label) {
     let id = $("ddlServant").value;
     let skillLv = $("ddlSkill"+label).value;
@@ -127,9 +141,46 @@ function bindSupport(n,i) {
     if(!skill) { return; }
     let buff = [];
     let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
+    let color = $("ddlColor").value;
     if(buff = skill.attackBuff) {
         let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtAttackBuff").value -= -attackBuff;
+    }
+    if((buff = skill.randomAttackBuff) && noMiss) {
+        let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= -attackBuff;
+    }
+    if(buff = skill.defDecreaseSingle) {
+        let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtEnemyDefence1").value -= defDecrease;
+    }
+    if(buff = skill.defDecreaseAll) {
+        let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtEnemyDefence1").value -= defDecrease;
+        $("txtEnemyDefence2").value -= defDecrease;
+        $("txtEnemyDefence3").value -= defDecrease;
+    }
+    if((buff = skill.cardBuff) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardBuff").value -= -cardBuff;
+    }
+    if((buff = skill.cardDecreaseSingle) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardResist1").value -= cardDecrease;
+    }
+    if((buff = skill.cardDecreaseAll) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardResist1").value -= cardDecrease;
+        $("txtCardResist2").value -= cardDecrease;
+        $("txtCardResist3").value -= cardDecrease;
+    }
+    if(buff = skill.npStrength) {
+        let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtNpStrength").value -= -npStrength;
+    }
+    if(buff = skill.npGainBuff) {
+        let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtNpGainBuff").value -= -npGainBuff;
     }
 }
 function changeSupport(n,i) {
@@ -143,10 +194,55 @@ function changeSupport(n,i) {
     let buff = [];
     let o = 0;
     let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
+    let color = $("ddlColor").value;
     if(buff = skill.attackBuff) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
         let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtAttackBuff").value -= o - attackBuff;
+    }
+    if((buff = skill.randomAttackBuff) && noMiss) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtAttackBuff").value -= o - attackBuff;
+    }
+    if(buff = skill.defDecreaseSingle) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtEnemyDefence1").value -= defDecrease - o;
+    }
+    if(buff = skill.defDecreaseAll) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let defDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtEnemyDefence1").value -= defDecrease - o;
+        $("txtEnemyDefence2").value -= defDecrease - o;
+        $("txtEnemyDefence3").value -= defDecrease - o;
+    }
+    if((buff = skill.cardBuff) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let cardBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtCardBuff").value -= o - cardBuff;
+    }
+    if((buff = skill.cardDecreaseSingle) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtCardResist1").value -= cardDecrease - o;
+    }
+    if((buff = skill.cardDecreaseAll) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let cardDecrease = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtCardResist1").value -= cardDecrease - o;
+        $("txtCardResist2").value -= cardDecrease - o;
+        $("txtCardResist3").value -= cardDecrease - o;
+    }
+    if(buff = skill.npStrength) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let npStrength = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtNpStrength").value -= o - npStrength;
+    }
+    if(buff = skill.npGainBuff) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let npGainBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtNpGainBuff").value -= o - npGainBuff;
     }
     $("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
 }
