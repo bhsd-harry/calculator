@@ -114,9 +114,12 @@ function loadLvs(){
 *    chargeNp：重蓄力
 *    accAttackBuff：累加攻击buff
 */
-function initialServant(star,Class, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, NpType, oc1, oc5, type, cardColor, skill1, skill2, skill3, damageDist, ClassSkill, npEffect) {
+function initialServant(star,Class, name,servantNo, attribute, alignments, atk, hp, maxAtk, maxHp, target, hit, np, NpType, oc1, oc5, type, cardColor, skill1, skill2, skill3, damageDist, ClassSkill, npEffect, support1, support2, support3) {
     let NP = [];
     switch(NpType) {
+	case "Null":
+	    NP = [0, 0, 0, 0, 0];
+	    break;
 	case "BusterAll1":
 	    NP = [300, 400, 450, 475, 500];
 	    break;
@@ -230,6 +233,9 @@ function initialServant(star,Class, name,servantNo, attribute, alignments, atk, 
 	skill1: skill1,
 	skill2: skill2,
 	skill3: skill3,
+	support1: support1,
+	support2: support2,
+	support3: support3,
 	damageDist: damageDist,
         ClassSkill: ClassSkill,
         npEffect: npEffect
@@ -239,7 +245,7 @@ function initialServant(star,Class, name,servantNo, attribute, alignments, atk, 
 }
 
 function initSaber(){
-    initialServant(5,"Saber", "阿尔托莉雅·潘德拉贡", 2, "地", ["秩序", "善"], 11221, 15150, 12283, 16597, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {attackBuff: [9,18]}, {cardBuff: [30,50]});
+    initialServant(5,"Saber", "阿尔托莉雅·潘德拉贡", 2, "地", ["秩序", "善"], 11221, 15150, 12283, 16597, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {attackBuff: [9,18]}, {cardBuff: [30,50]}, {}, [], {}, {}, {attackBuff: [9,18]});
     initialServant(5,"Saber", "阿尔提拉", 8, "人", ["混沌", "善"], 12343, 13907, 13511, 15236, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npStrength: [10,20]}, {}, {attackBuff: [10,30]}, [], {damagePlus: 175});
     initialServant(5,"Saber", "阿尔提拉SC", 8, "人", ["混沌", "善"], 12343, 13907, 13511, 15236, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npStrength: [9,18]}, {}, {attackBuff: [10,30]}, [], {damagePlus: 175});
     initialServant(5,"Saber", "沖田総司", 68, "人", ["中立", "中庸"], 12068, 13225, 13210, 14489, 1,3,1.09, "QuickSingle1", 0, 0, "", 0.8, {cardBuff: [30,50]}, {}, {}, [16,33], {cardBuff: 2}, { ignoreDef: true });

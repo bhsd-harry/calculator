@@ -118,6 +118,42 @@ function bindSkill(label) {
 	abling("btnSwitchEffect");
     }
 }
+function bindSupport(n,i) {
+    let id = $("ddlSupport"+n).value;
+    let skillLv = $("ddlSupport"+n+"Skill"+i).value;
+    if(id == -1 || skillLv == -1) { return; }
+    let servant = servants[id];
+    let skill = servant["support"+i];
+    if(!skill) { return; }
+    let buff = [];
+    let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
+    if(buff = skill.attackBuff) {
+        let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= -attackBuff;
+    }
+    if((buff = skill.randomAttackBuff) && noMiss) {
+        let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= -attackBuff;
+    }
+}
+function changeSupport(n,i) {
+    let id = $("ddlSupport"+n).value;
+    if(id == -1) { return; }
+    let servant = servants[id];
+    let skill = servant["support"+i];
+    if(!skill) { return; }
+    let skillLv = $("ddlSupport"+n+"Skill"+i).value;
+    let oldLv = $("ddlSupport"+n+"Skill"+i).oldvalue;
+    let buff = [];
+    let o = 0;
+    let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
+    if(buff = skill.attackBuff) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtAttackBuff").value -= o - attackBuff;
+    }
+    $("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
+}
 function changeSkill(label) {
     let id = $("ddlServant").value;
     if(id == -1) { return; }
@@ -284,10 +320,43 @@ function applyEnemy(label) {
 }
 function initialServantList() {
     servants.forEach(function(servant){
-         $("ddlServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
+        if(servant.NP[0] > 0) {
+	    $("ddlServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
+	}
+	if(servant.support1 || servant.support2 || servant.support3) {
+	    $("ddlSupport1").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
+	}
     })
 }
 function initialEffects() {
+    for(let n=1;n<=1;n++) {
+        let sid = $("ddlSupport"+n).value;
+        if(sid == -1) {
+            disabling("ddlSupport"+n+"Skill1","ckSupport"+n+"NoMiss1","ddlSupport"+n+"Skill2","ckSupport"+n+"NoMiss2","ddlSupport"+n+"Skill3","ckSupport"+n+"NoMiss3");
+        }
+        else {
+            let support = servants[sid];
+            for(let i=1;i<=3;i++) {
+                let skill = support["support"+i];
+                if(skill && Object.keys(skill).length > 0) {
+                    abling("ddlSupport"+n+"Skill"+i);
+                    if(skill.randomAttackBuff) {
+                        abling("ckSupport"+n+"NoMiss"+i);
+                    }
+                    else {
+                        disabling("ckSupport"+n+"NoMiss"+i);
+                    }
+/*
+                    bindSupport(n,i);
+                    $("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
+*/
+                }
+                else {
+                    disabling("ddlSupport"+n+"Skill"+i,"ckSupport"+n+"NoMiss"+i);
+                }
+            }
+        }
+    }
     let id = $("ddlServant").value;
     if (id != -1) {
 	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnAddZhuge","btnAddMerlin","btnAddTamamo","btnAddSkadi","btnClearBuff","btnCalculate");
@@ -350,6 +419,12 @@ function initialEffects() {
 	bindSkill(1);
 	bindSkill(2);
 	bindSkill(3);
+	for(let n=1;n<=1;n++) {
+	    for(let i=1;i<=3;i++) {
+		bindSupport(n,i);
+		$("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
+	    }
+	}
         setOc();
 	if($("ddlNTarget").selectedIndex == 0) {
             disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
@@ -393,6 +468,34 @@ function initialEffects() {
 	$("txtDamagePlus").basevalue = 0;
 	clearBuff();
     }
+/*
+    for(let n=1;n<=1;n++) {
+        let sid = $("ddlSupport"+n).value;
+        if(sid == -1) {
+            disabling("ddlSupport"+n+"Skill1","ckSupport"+n+"NoMiss1","ddlSupport"+n+"Skill2","ckSupport"+n+"NoMiss2","ddlSupport"+n+"Skill3","ckSupport"+n+"NoMiss3");
+        }
+        else {
+            let support = servants[sid];
+            for(let i=1;i<=3;i++) {
+                let skill = support["support"+i];
+                if(skill && Object.keys(skill).length > 0) {
+                    abling("ddlSupport"+n+"Skill"+i);
+                    if(skill.randomAttackBuff) {
+                        abling("ckSupport"+n+"NoMiss"+i);
+                    }
+                    else {
+                        disabling("ckSupport"+n+"NoMiss"+i);
+                    }
+                    bindSupport(n,i);
+                    $("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
+                }
+                else {
+                    disabling("ddlSupport"+n+"Skill"+i,"ckSupport"+n+"NoMiss"+i);
+                }
+            }
+        }
+    }
+*/
 }
 function adjHp(){
     let totalHp = getInt("txtMaxHp") + getInt("txtFouHp") + getInt("txtCraftEssenceHp");
