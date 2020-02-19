@@ -531,35 +531,36 @@ function initBerserker(){
     /******************************************5星********************************************************************/
     initialServant(5,"Berserker", "坂田金时", 51, "人", 12712, 12150, 13915, 13311, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [30,50]}, {}, {}, [], {cardBuff: 2, damagePlus: 125}, { ignoreDef: true });
     initialServant(5,"Berserker", "弗拉德三世", 52, "地", 11499, 13770, 12587, 15086, 1,10,0.5, "ArtsSingle1", 0, 0, "", 1, {}, {attackBuff: [20,30]}, {}, [1,3,5,7,9,10,12,14,16]);
+    initialServant(5,"Berserker", "南丁格爾", 97, "人", 10184, 15221, 11148, 16675, 0,0,0, "Null", 0, 0, "", 0, {}, {}, {}, [], {}, {}, {}, {}, {cardBuff: [30,50,1.5]});
     initialServant(5,"Berserker", "库・丘林〔Alter〕", 98, "地", 12805, 12210, 14017, 13377, 1,1,0, "BusterSingle1", 30, 70, "OcAttackBuff", 1.5, {}, {}, {}, [], {cardBuff: 6, damagePlus: 150});
     initialServant(5,"Berserker", "源赖光", 114, "天", 11556, 13500, 12650, 14790, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {cardBuff: [20,30]}, {specialAttack: [30,50]}, [], {cardBuff: 12, damagePlus: 150});
-    initialServant(5,"Berserker", "谜之女主角X〔Alter〕", 155, "星", 11113, 14175, 12165, 15529, 1,9,1.07, "QuickSingle1", 150, 200, "NpSpecialAttack", 0.8, {}, {cardBuff: [20,30]}, {attackBuff: [10,20]}, [2,4,6,8,11,13,15,17]);
-    initialServant(5,"Berserker", "土方岁三", 161, "人", 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle2", 800, 1200, "NpRemainHpDamage", 1.5, {cardBuff: [10,20]}, {}, {}, [], {cardBuff: 5});
+    initialServant(5,"Berserker", "谜之女主角X〔Alter〕", 155, "星", 11113, 14175, 12165, 15529, 1,9,1.07, "QuickSingle1", 150, 200, "NpSpecialAttack", 0.8, {}, {cardBuff: [20,30]}, {attackBuff: [10,20]}, [2,4,6,8,11,13,15,17], {}, {}, {}, {}, {attackBuff: [10,20]});
+    initialServant(5,"Berserker", "土方岁三", 161, "人", 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle2", 800, 1200, "NpRemainHpDamage", 1.5, {cardBuff: [10,20]}, {}, {}, [], {cardBuff: 5}, {}, {cardBuff: [10,20,1.5]});
     initialServant(5,"Berserker", "土方岁三SC", 161, "人", 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle1", 600, 1000, "NpRemainHpDamage", 1.5, {cardBuff: [10,20]}, {}, {}, [], {cardBuff: 5});
     initialServant(5,"Berserker", "项羽", 226, "人", 11613, 13770, 12712, 15086, 3,5,0.51, "BusterSingle1", 20, 60, "OcNpStrength", 0.8, {}, {cardBuff: [20,30]}, {}, [6,13,20,26]);
     initialServant(5,"Berserker", "阿周那〔Alter〕", 247, "天", "善", 11669, 13837, 12773, 15159, 3,1,0, "BusterAll1", 20, 60, "CardDecrease", 1.5, {attackBuff: [20,30], specialAttack: [30,50]}, {}, {}, [], {cardBuff: 12, damagePlus: 250});
-    initialServant(5,"Berserker", "宮本武藏", 261, "人", 12712, 12150, 13915, 13311, 3,4,0.51, "ArtsAll1", 0, 0, "", 1, {npGainBuff: [30,50]}, {}, {attackBuff: [20,30], defDecreaseAll: [10,30]}, [10,20,30], {damagePlus: 125});
+    initialServant(5,"Berserker", "宮本武藏", 261, "人", 12712, 12150, 13915, 13311, 3,4,0.51, "ArtsAll1", 0, 0, "", 1, {npGainBuff: [30,50]}, {}, {attackBuff: [20,30], defDecreaseAll: [10,30]}, [10,20,30], {damagePlus: 125}, {}, {}, {}, {defDecreaseAll: [10,30]});
     /******************************************4星********************************************************************/
     initialServant(4,"Berserker", "赫拉克勒斯", 47, "天", 10655, 10327, 12901, 12521, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [10.5,31]}, {}, {}, [], {cardBuff: 8, damagePlus: 200});
     initialServant(4,"Berserker", "兰斯洛特", 48, "地", 10477, 10327, 12685, 12521, 3,10,0.5, "BusterSingle1", 10, 30, "OcAttackBuff", 0.8, {}, {}, {npGainBuff: [50,100]}, [3,5,3,7,8,10,12,14,16]);
     initialServant(4,"Berserker", "玉藻猫", 58, "地", 9026, 11458, 10929, 13893, 3,5,0.71, "BusterSingle2", 0, 0, "", 0.8, {attackBuff: [10,30]}, {}, {}, [6,13,20,26]);
-    initialServant(4,"Berserker", "弗兰肯斯坦", 82, "地", 9441, 10687, 11431, 12958, 3,6,0.83, "QuickAll3", 0, 0, "", 0.8, {npGainBuff: [25,45]}, {defDecreaseSingle: [20,30]}, {npStrength: [20,30]}, [4,9,14,19,23]);
+    initialServant(4,"Berserker", "弗兰肯斯坦", 82, "地", 9441, 10687, 11431, 12958, 3,6,0.83, "QuickAll3", 0, 0, "", 0.8, {npGainBuff: [25,45]}, {defDecreaseSingle: [20,30]}, {npStrength: [20,30]}, [4,9,14,19,23], {}, {}, {}, {defDecreaseSingle: [20,30]});
     initialServant(4,"Berserker", "贝奥武夫", 89, "地", 10247, 10327, 12407, 12521, 1,1,0, "BusterSingle3", 0, 0, "", 1.5, {attackBuff: [20,30], npStrength: [10,20]}, {}, {}, [], {cardBuff: 1});
-    initialServant(4,"Berserker", "茨木童子", 116, "地", 9636, 10954, 11667, 13282, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [10,20], npStrength: [20,30]}, {}, {}, [], {cardBuff: 8});
-    initialServant(4,"Berserker", "茶茶", 162, "人", 8945, 11025, 10831, 13368, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {}, {defDecreaseSingle: [10,10], accDefDecrease: [5,10]}, [], {cardBuff: 3});
-    initialServant(4,"Berserker", "彭忒西勒亚", 171, "地", 10502, 10175, 12716, 12337, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,18]}, {}, {cardBuff: [10,20], specialAttack: [50,100]}, [], {cardBuff: 12, damagePlus: 175});
+    initialServant(4,"Berserker", "茨木童子", 116, "地", 9636, 10954, 11667, 13282, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [10,20], npStrength: [20,30]}, {}, {}, [], {cardBuff: 8}, {}, {attackBuff: [10,20]});
+    initialServant(4,"Berserker", "茶茶", 162, "人", 8945, 11025, 10831, 13368, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {}, {defDecreaseSingle: [10,10], accDefDecrease: [5,10]}, [], {cardBuff: 3}, {}, {}, {}, {defDecreaseSingle: [10,10]});
+    initialServant(4,"Berserker", "彭忒西勒亚", 171, "地", 10502, 10175, 12716, 12337, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,18]}, {}, {cardBuff: [10,20], specialAttack: [50,100]}, [], {cardBuff: 12, damagePlus: 175}, {}, {attackBuff: [9,18]}, {}, {cardBuff: [10,20,1.5]});
     initialServant(4,"Berserker", "织田信长", 178, "人", 10146, 10023, 12285, 12153,1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {cardBuff: [10,20]}, {}, {randomAttackBuff: [10,20]}, [], {cardBuff: 6});
-    initialServant(4,"Berserker", "阿塔兰忒〔Alter〕", 202, "地", 9806, 10634, 11873, 12894, 1,5,1.05, "QuickSingle1", 0, 0, "", 0.8, {}, {cardBuff: [30,50]}, {}, [6,13,20,26]);
+    initialServant(4,"Berserker", "阿塔兰忒〔Alter〕", 202, "地", 9806, 10634, 11873, 12894, 1,5,1.05, "QuickSingle1", 0, 0, "", 0.8, {}, {cardBuff: [30,50]}, {}, [6,13,20,26], {}, {}, {}, {cardBuff: [30,50,0.8]});
     initialServant(4,"Berserker", "贞德〔Berserker〕", 219, "人", 10298, 9922, 12469, 12030, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {attackBuff: [10,20]}, {cardBuff: [10,20]}, [], {cardBuff: 12});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Berserker", "吕布奉先", 49, "人", 8119, 8302, 10988, 11256, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,27]}, {}, {npStrength: [20,30]}, [], {cardBuff: 10}, { ignoreDef: true });
     initialServant(3,"Berserker", "大流士三世", 55, "人", 7608, 8763, 10297, 11881, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {}, {}, [], {cardBuff: 8});
-    initialServant(3,"Berserker", "清姬", 56, "地", 6644, 9166, 8992, 12428, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {defDecreaseSingle: [12,24]}, {cardBuff: [20,30]}, [], {cardBuff: 12});
+    initialServant(3,"Berserker", "清姬", 56, "地", 6644, 9166, 8992, 12428, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {defDecreaseSingle: [12,24]}, {cardBuff: [20,30]}, [], {cardBuff: 12}, {}, {}, {defDecreaseSingle: [12,24]});
     initialServant(3,"Berserker", "森長可", 251, "人", 7732, 8019, 10464, 10872, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {accAttackBuff: [10,15]}, {}, [], {cardBuff: 4}, { ignoreDef: true });
-    initialServant(2,"Berserker", "血斧埃里克", 57, "人", 6290, 7688, 9115, 11095, 3,1,0, "BusterAll1", 30, 50, "OcAttackBuff", 1.5, {defDecreaseSingle: [10,30]}, {}, {}, [], {cardBuff: 8});
+    initialServant(2,"Berserker", "血斧埃里克", 57, "人", 6290, 7688, 9115, 11095, 3,1,0, "BusterAll1", 30, 50, "OcAttackBuff", 1.5, {defDecreaseSingle: [10,30]}, {}, {}, [], {cardBuff: 8}, {}, {defDecreaseSingle: [10,30]});
     initialServant(2,"Berserker", "莎樂美", 260, "地", 6884, 6885, 9975, 9936, 1,3,0.51, "ArtsSingle1", 0, 0, "", 1, {specialAttack: [30,50], attackBuff: [10,20]}, {}, {}, [16,33]);
     initialServant(1,"Berserker", "斯巴达克斯", 50, "人", 5073, 7722, 7883, 11904, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {}, {cardBuff: [20,40]}, [], {cardBuff: 12}, { ignoreDef: true });
-    initialServant(1,"Berserker", "保罗・班扬", 174, "地", 6044, 6196, 9391, 9551, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [10,20]}, {}, {defDecreaseAll: [10,20]}, [], {cardBuff: 4});
+    initialServant(1,"Berserker", "保罗・班扬", 174, "地", 6044, 6196, 9391, 9551, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [10,20]}, {}, {defDecreaseAll: [10,20]}, [], {cardBuff: 4}, {}, {cardBuff: [10,20,1.5]}, {}, {defDecreaseAll: [10,20]});
 }
 
 function initExtra(){

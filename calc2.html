@@ -762,7 +762,7 @@
         adjHp();
     }
     $("txtMaxHp").onchange = function () {
-	this.value = parseInt(this.value);
+	this.value = Math.round(eval2(this.value));
 	adjustNpRemainHpDamage();
     }
     $("txtFouHp").onchange = function () {
@@ -774,7 +774,7 @@
         adjustNpRemainHpDamage();
     }
     $("txtRemainHp").onchange = function () {
-        this.value = parseInt(this.value);
+        this.value = Math.round(eval2(this.value));
         adjustNpRemainHpDamage();
     }
     $("txtNHits").onchange = function (){

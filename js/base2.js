@@ -69,12 +69,22 @@ function bindSearchTips(){
         `;
 }
 (function(){
-    let nums=document.querySelectorAll("#txtAttackBuff,#txtEnemyDefence1,#txtEnemyDefence2,#txtEnemyDefence3,#txtCardBuff,#txtCardResist1,#txtCardResist2,#txtCardResist3,#txtNpStrength,#txtSpecialAttack,#txtDamagePlus,#txtNpGainBuff,#txtOverkill1,#txtOverkill2,#txtOverkill3");
+    let nums=document.querySelectorAll("#txtAttackBuff,#txtEnemyDefence1,#txtEnemyDefence2,#txtEnemyDefence3,#txtCardBuff,#txtCardResist1,#txtCardResist2,#txtCardResist3,#txtNpStrength,#txtSpecialAttack,#txtNpGainBuff");
     nums.forEach(function(n){
         n.onblur=function(){
             //失去焦点后，计算值
             let result = eval2(this.value) * 10;
 	    this.value = result.toFixed(0) / 10;
+        }
+    })
+})();
+(function(){
+    let nums=document.querySelectorAll("#txtDamagePlus,#txtOverkill1,#txtOverkill2,#txtOverkill3");
+    nums.forEach(function(n){
+        n.onblur=function(){
+            //失去焦点后，计算值
+            let result = eval2(this.value);
+            this.value = result.toFixed(0);
         }
     })
 })();
