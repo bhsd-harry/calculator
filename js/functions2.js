@@ -201,6 +201,93 @@ function bindSupport(n,i) {
         $("txtNpGainBuff").value -= -npGainBuff;
     }
 }
+function unbindSupport(n,servant,i) {
+    let skillLv = $("ddlSupport"+n+"Skill"+i).value;
+    if(!servant || skillLv == -1) { return; }
+    let skill = servant["support"+i];
+    if(!skill) { return; }
+    let buff = [];
+    let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
+    let color = $("ddlColor").value;
+    if(buff = skill.attackBuff) {
+        let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= attackBuff;
+    }
+    if((buff = skill.randomAttackBuff) && noMiss) {
+        let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtAttackBuff").value -= attackBuff;
+    }
+    if(buff = skill.defDecreaseSingle) {
+        let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtEnemyDefence1").value -= -defDecrease;
+    }
+    if(buff = skill.defDecreaseAll) {
+        let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtEnemyDefence1").value -= -defDecrease;
+        $("txtEnemyDefence2").value -= -defDecrease;
+        $("txtEnemyDefence3").value -= -defDecrease;
+    }
+    if((buff = skill.cardBuff) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardBuff").value -= cardBuff;
+    }
+    if((buff = skill.cardDecreaseSingle) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardResist1").value -= -cardDecrease;
+    }
+    if((buff = skill.cardDecreaseAll) && (color == buff[2] || (buff.length > 3 && color == buff[3]) || (buff.length > 4 && color == buff[4]))) {
+        let cardDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtCardResist1").value -= -cardDecrease;
+        $("txtCardResist2").value -= -cardDecrease;
+        $("txtCardResist3").value -= -cardDecrease;
+    }
+    if(buff = skill.npStrength) {
+        let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtNpStrength").value -= npStrength;
+    }
+    if(buff = skill.specialAttack) {
+        let specialAttack = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtSpecialAttack").value -= specialAttack;
+    }
+    if(buff = skill.damagePlus) {
+        let damagePlus = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtDamagePlus").value -= damagePlus;
+    }
+    if(buff = skill.npGainBuff) {
+        let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtNpGainBuff").value -= npGainBuff;
+    }
+}
+function initialSupport(n) {
+    let sid = $("ddlSupport"+n).value;
+    if(sid == -1) {
+        disabling("ddlSupport"+n+"Skill1","ckSupport"+n+"NoMiss1","ddlSupport"+n+"Skill2","ckSupport"+n+"NoMiss2","ddlSupport"+n+"Skill3","ckSupport"+n+"NoMiss3");
+    }
+    else {
+        let support = servants[sid];
+        for(let i=1;i<=3;i++) {
+            let skill = support["support"+i];
+            if(skill && Object.keys(skill).length > 0) {
+                abling("ddlSupport"+n+"Skill"+i);
+                if(skill.randomAttackBuff) {
+                    abling("ckSupport"+n+"NoMiss"+i);
+                }
+                else {
+                    disabling("ckSupport"+n+"NoMiss"+i);
+                }
+            }
+            else {
+                disabling("ddlSupport"+n+"Skill"+i,"ckSupport"+n+"NoMiss"+i);
+            }
+        }
+    }
+    let servant = servants[$("ddlSupport"+n).oldvalue];
+    for(let i=1;i<=3;i++) {
+	unbindSupport(n,servant,i);
+	bindSupport(n,i);
+    }
+    $("ddlSupport"+n).oldvalue = $("ddlSupport"+n).value;
+}
 function changeSupport(n,i) {
     let id = $("ddlSupport"+n).value;
     if(id == -1) { return; }
@@ -486,6 +573,7 @@ function initialEffects() {
                 }
             }
         }
+	$("ddlSupport"+n).oldvalue = $("ddlSupport"+n).value;
     }
     let id = $("ddlServant").value;
     if (id != -1) {

@@ -445,7 +445,7 @@
             <tr>
 		<td>队友1</td>
 		<td>
-		    <select id="ddlSupport1" onchange="initialEffects()">
+		    <select id="ddlSupport1" oldvalue=-1 onchange="initialSupport(1)">
                         <option value=-1>|-------------------请选择从者-------------------|</option>
                     </select>
 		</td>
@@ -510,7 +510,7 @@
             <tr>
 		<td>队友2</td>
 		<td>
-		    <select id="ddlSupport2" onchange="initialEffects()">
+		    <select id="ddlSupport2" oldvalue=-1 onchange="initialSupport(2)">
                         <option value=-1>|-------------------请选择从者-------------------|</option>
                     </select>
 		</td>
@@ -575,7 +575,7 @@
             <tr>
 		<td>队友3</td>
 		<td>
-		    <select id="ddlSupport3" onchange="initialEffects()">
+		    <select id="ddlSupport3" oldvalue=-1 onchange="initialSupport(3)">
                         <option value=-1>|-------------------请选择从者-------------------|</option>
                     </select>
 		</td>
@@ -640,7 +640,7 @@
             <tr>
 		<td>队友4</td>
 		<td>
-		    <select id="ddlSupport4" onchange="initialEffects()">
+		    <select id="ddlSupport4" oldvalue=-1 onchange="initialSupport(4)">
                         <option value=-1>|-------------------请选择从者-------------------|</option>
                     </select>
 		</td>
@@ -705,7 +705,7 @@
             <tr>
 		<td>队友5</td>
 		<td>
-		    <select id="ddlSupport5" onchange="initialEffects()">
+		    <select id="ddlSupport5" oldvalue=-1 onchange="initialSupport(5)">
                         <option value=-1>|-------------------请选择从者-------------------|</option>
                     </select>
 		</td>
@@ -827,6 +827,12 @@
     loadStorage(true);
     bindSearchTips();
     var options = [new Option("Lv.80",80),new Option("Lv.70",70),new Option("Lv.65",65),new Option("Lv.60",60)];
+    for(let i=1;i<=3;i++) {
+	$("ddlSkill"+i).selectedIndex = 10;
+	for(let n=1;n<=5;n++) {
+	    $("ddlSupport"+n+"Skill"+i).selectedIndex = 10;
+	}
+    }
     initialEffects();
 
     //圣杯MAX勾选框改变事件
