@@ -142,6 +142,16 @@ function bindSupport(n,i) {
     let buff = [];
     let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
     let color = $("ddlColor").value;
+    let str = "出现致命bug，请反馈至https://nga.178.com/read.php?tid=20424898，谢谢配合！"
+    if((buff = skill.cardBuff) && buff.length < 3) {
+	alert(str);
+    }
+    if((buff = skill.cardDecreaseSingle) && buff.length < 3) {
+        alert(str);
+    }
+    if((buff = skill.cardDecreaseAll) && buff.length < 3) {
+        alert(str);
+    }
     if(buff = skill.attackBuff) {
         let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtAttackBuff").value -= -attackBuff;
@@ -182,6 +192,10 @@ function bindSupport(n,i) {
         let specialAttack = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtSpecialAttack").value -= -specialAttack;
     }
+    if(buff = skill.damagePlus) {
+        let damagePlus = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtDamagePlus").value -= -damagePlus;
+    }
     if(buff = skill.npGainBuff) {
         let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtNpGainBuff").value -= -npGainBuff;
@@ -199,6 +213,16 @@ function changeSupport(n,i) {
     let o = 0;
     let noMiss = $("ckSupport"+n+"NoMiss"+i).checked;
     let color = $("ddlColor").value;
+    let str = "出现致命bug，请反馈至https://nga.178.com/read.php?tid=20424898，谢谢配合！";
+    if((buff = skill.cardBuff) && buff.length < 3) {
+        alert(str);
+    }
+    if((buff = skill.cardDecreaseSingle) && buff.length < 3) {
+        alert(str);
+    }
+    if((buff = skill.cardDecreaseAll) && buff.length < 3) {
+        alert(str);
+    }
     if(buff = skill.attackBuff) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
         let attackBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
@@ -247,6 +271,11 @@ function changeSupport(n,i) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
         let specialAttack = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
         $("txtSpecialAttack").value -= o - specialAttack;
+    }
+    if(buff = skill.damagePlus) {
+        o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
+        let damagePlus = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+        $("txtDamagePlus").value -= o - damagePlus;
     }
     if(buff = skill.npGainBuff) {
         o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) / 10);
@@ -426,11 +455,13 @@ function initialServantList() {
 	}
 	if(servant.support1 || servant.support2 || servant.support3) {
 	    $("ddlSupport1").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
+	    $("ddlSupport2").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
+	    $("ddlSupport3").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
 	}
     })
 }
 function initialEffects() {
-    for(let n=1;n<=1;n++) {
+    for(let n=1;n<=3;n++) {
         let sid = $("ddlSupport"+n).value;
         if(sid == -1) {
             disabling("ddlSupport"+n+"Skill1","ckSupport"+n+"NoMiss1","ddlSupport"+n+"Skill2","ckSupport"+n+"NoMiss2","ddlSupport"+n+"Skill3","ckSupport"+n+"NoMiss3");
@@ -520,7 +551,7 @@ function initialEffects() {
 	bindSkill(1);
 	bindSkill(2);
 	bindSkill(3);
-	for(let n=1;n<=1;n++) {
+	for(let n=1;n<=3;n++) {
 	    for(let i=1;i<=3;i++) {
 		bindSupport(n,i);
 		$("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;

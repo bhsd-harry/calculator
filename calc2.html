@@ -439,7 +439,9 @@
                     <span id="spanOverkill3">100%</span>
                 </td>
             </tr>
+	    <tr>
 		<td colspan="8">你可以在上面的各文本框中自行输入队友buff（支持文本框内的四则运算），也可以使用下面的从者列表</td>
+	    </tr>
             <tr>
 		<td>队友1</td>
 		<td>
@@ -502,6 +504,136 @@
                     </select>
                     <label for="ckSupport1NoMiss3" onchange="randomSupport(1,3)">
                         <input type="checkbox" id="ckSupport1NoMiss3" /> 命中
+                    </label>
+                </td>
+            </tr>
+            <tr>
+		<td>队友2</td>
+		<td>
+		    <select id="ddlSupport2" onchange="initialEffects()">
+                        <option value=-1>|-------------------请选择从者-------------------|</option>
+                    </select>
+		</td>
+		<td>技能1</td>
+		<td>
+                    <select id="ddlSupport2Skill1" oldvalue=-1 onchange="changeSupport(2,1)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport2NoMiss1" onchange="randomSupport(2,1)">
+                        <input type="checkbox" id="ckSupport2NoMiss1" /> 命中
+                    </label>
+		</td>
+		<td>技能2</td>
+		<td>
+                    <select id="ddlSupport2Skill2" oldvalue=-1 onchange="changeSupport(2,2)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport2NoMiss2" onchange="randomSupport(2,2)">
+                        <input type="checkbox" id="ckSupport2NoMiss2" /> 命中
+                    </label>
+		</td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSupport2Skill3" oldvalue=-1 onchange="changeSupport(2,3)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport2NoMiss3" onchange="randomSupport(2,3)">
+                        <input type="checkbox" id="ckSupport2NoMiss3" /> 命中
+                    </label>
+                </td>
+            </tr>
+            <tr>
+		<td>队友3</td>
+		<td>
+		    <select id="ddlSupport3" onchange="initialEffects()">
+                        <option value=-1>|-------------------请选择从者-------------------|</option>
+                    </select>
+		</td>
+		<td>技能1</td>
+		<td>
+                    <select id="ddlSupport3Skill1" oldvalue=-1 onchange="changeSupport(3,1)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport3NoMiss1" onchange="randomSupport(3,1)">
+                        <input type="checkbox" id="ckSupport3NoMiss1" /> 命中
+                    </label>
+		</td>
+		<td>技能2</td>
+		<td>
+                    <select id="ddlSupport3Skill2" oldvalue=-1 onchange="changeSupport(3,2)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport3NoMiss2" onchange="randomSupport(3,2)">
+                        <input type="checkbox" id="ckSupport3NoMiss2" /> 命中
+                    </label>
+		</td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSupport3Skill3" oldvalue=-1 onchange="changeSupport(3,3)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport3NoMiss3" onchange="randomSupport(3,3)">
+                        <input type="checkbox" id="ckSupport3NoMiss3" /> 命中
                     </label>
                 </td>
             </tr>
