@@ -538,14 +538,14 @@ function applyEnemy(label) {
 function initialServantList() {
     servants.forEach(function(servant){
         if(servant.NP[0] > 0) {
-	    $("ddlServant").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
+	    $("ddlServant").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	}
 	if(servant.support1 || servant.support2 || servant.support3) {
-	    $("ddlSupport1").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
-	    $("ddlSupport2").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
-	    $("ddlSupport3").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
-            $("ddlSupport4").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
-            $("ddlSupport5").options.add(new Option(`【${servant.star}】【${servant.Class}】${servant.name}`, servant.id));
+	    $("ddlSupport1").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+	    $("ddlSupport2").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+	    $("ddlSupport3").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+            $("ddlSupport4").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+            $("ddlSupport5").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	}
     })
 }
