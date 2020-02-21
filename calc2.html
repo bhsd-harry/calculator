@@ -1238,6 +1238,9 @@
 	currentEffect = effectList[this.count];
 	currentBuff = buff[currentEffect];
         switch(currentEffect) {
+	    case "noEffect":
+		$("btnSwitchEffect").value = "切换 无效果";
+		break;
             case "cardBuff":
 		$("btnSwitchEffect").value = "切换 卡牌buff";
                 let cardBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;

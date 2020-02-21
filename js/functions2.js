@@ -114,6 +114,9 @@ function bindSkill(label) {
 	let currentEffect = Object.keys(buff)[randomIndex];
 	let currentBuff = buff[currentEffect];
 	switch(currentEffect) {
+	    case "noEffect":
+		$("btnSwitchEffect").value = "切换 无效果";
+		break;
 	    case "cardBuff":
 		$("btnSwitchEffect").value = "切换 卡牌buff";
 		let cardBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
@@ -472,6 +475,12 @@ function changeSkill(label) {
         let currentEffect = Object.keys(buff)[randomIndex];
         let currentBuff = buff[currentEffect];
         switch(currentEffect) {
+	    case "noEffect":
+		if(skillLv >= 0) {
+                    abling("btnSwitchEffect");
+                    $("btnSwitchEffect").value = "切换 无效果";
+                }
+		break;
             case "cardBuff":
 		if(skillLv >= 0) {
 		    abling("btnSwitchEffect");
