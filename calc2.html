@@ -213,18 +213,19 @@
                 <td>
                     <select id="ddlCraftEssence">
                         <option value="">自定义</option>
-                        <option value="786-1">20级宝石</option>
-			<option value="2000-2">100级宝石</option>
-			<option value="2000-3">100级美游</option>
-                        <option value="2000-4">100级醉贞</option>
-                        <option value="2000-5">100级空骑</option>
-                        <option value="2000-6">100级相扑</option>
-                        <option value="2034-7">80级黑杯</option>
-			<option value="2400-8">100级黑杯</option>
-                        <option value="393-9">20级潜水学妹</option>
-                        <option value="393-10">20级北斋</option>
-                        <option value="0-11">15级泳装樱</option>
-                        <option value="2000-12">100级轨迹</option>
+                        <option value="786-1">20级万华镜</option>
+			<option value="2000-2">100级万华镜</option>
+			<option value="2000-3">100级苍玉</option>
+                        <option value="2000-4">100级圣夜晚餐</option>
+                        <option value="2000-5">100级天际旋荡</option>
+                        <option value="2000-6">100级黄金相扑</option>
+			<option value="943-7">20级黑之圣杯</option>
+                        <option value="2034-8">80级黑之圣杯</option>
+			<option value="2400-9">100级黑之圣杯</option>
+                        <option value="393-10">20级潜入湛蓝</option>
+                        <option value="393-11">20级绘画之夏</option>
+                        <option value="0-12">15级某个夏天</option>
+                        <option value="2000-13">100级轨迹</option>
                     </select>
                 </td>
                 <td>敌人1</td>
@@ -297,19 +298,20 @@
                     <select id="ddlMysticCode">
                         <option value="0-0">无</option>
                         <option value="0-1">战斗服</option>
-                        <option value="50-2">04服</option>
-                        <option value="0-3">骑士王服</option>
-                        <option value="0-4">初始服</option>
-                        <option value="0-5">西服</option>
-                        <option value="0-6">泳装</option>
-                        <option value="0-7">月海</option>
-                        <option value="0-8">月背</option>
+                        <option value="50-2">04年的碎片</option>
+                        <option value="0-3">金色庆典</option>
+                        <option value="0-4">初始装备</option>
+                        <option value="0-5">王室品牌</option>
+                        <option value="0-6">明亮夏日</option>
+                        <option value="0-7">月之海</option>
+                        <option value="0-8">月之背面</option>
                         <option value="10-9">1级极地服</option>
-			<option value="20-10">极地服</option>
-                        <option value="20-11">夏威夷衫</option>
-                        <option value="35-12">新年服</option>
-                        <option value="50-13">宇航服</option>
-			<option value="0-14">探险服</option>
+			<option value="15-10">6级极地服</option>
+			<option value="20-11">极地服</option>
+                        <option value="20-12">热带夏日</option>
+                        <option value="35-13">华美的新年</option>
+                        <option value="50-14">迦勒底队长</option>
+			<option value="0-15">第五元素</option>
                     </select>
                 </td>
                 <td>敌人1阵营</td>
@@ -1104,11 +1106,11 @@
         if(this.selectedIndex == 0) { return; }
         $("txtCraftEssenceAtk").value = parseInt(this.value);
         switch(this.selectedIndex) {
-            case 9:
             case 10:
+            case 11:
                 $("txtCraftEssenceHp").value = 629;
                 break;
-            case 11:
+            case 12:
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
@@ -1501,30 +1503,31 @@
 		attackBuff += 15;
 		break;
 	    case 7:
+	    case 8:
 		npStrength += 60;
 		break;
-	    case 8:
+	    case 9:
 		npStrength += 80;
 		break;
-            case 9:
+            case 10:
                 npStrength += 10;
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
                 break;
-            case 10:
+            case 11:
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
 		npGainBuff += 10;
                 break;
-            case 11:
+            case 12:
                 npStrength += 10;
                 if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
                 break;
-	    case 12:
+	    case 13:
 		if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
@@ -1571,14 +1574,17 @@
 		attackBuff += 20;
 		break;
 	    case 10:
-		attackBuff += 40;
+		attackBuff += 30;
 		break;
 	    case 11:
+		attackBuff += 40;
+		break;
+	    case 12:
 		if(cardColor == 1) {
                     cardBuff += 30;
                 }
 		break;
-	    case 14:
+	    case 15:
 		npGainBuff += 40;
 		if(cardColor == 1.5) {
 		    cardBuff += 35;
