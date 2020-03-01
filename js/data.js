@@ -595,7 +595,7 @@ function initExtra(){
     //----------------------------------Alterego---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
     initialServant(5,"Alterego", "Meltryllis", 163, "地", 11692, 13402, 12799, 14682, 1,8,0.92, "QuickSingle1", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {npStrength: [20,30]}, [2,5,8,11,13,16,19], {cardBuff: 8, damagePlus: 225});
-    initialServant(5,"Alterego", "杀生院祈荒", 167, "兽", 11668, 14606, 12772, 16001, 3,3,0.55, "ArtsAll1", 0, 0, "", 1, {cardDecreaseSingle: [20,30]}, {defDecreaseAll: [10,30]}, {}, [16,33], {}, { resistClass: ["Ruler",1.5], ignoreDef: true }, {cardDecreaseSingle: [20,30,1]}, {defDecreaseAll: [10,30]});
+    initialServant(5,"Alterego", "杀生院祈荒", 167, "兽", 11668, 14606, 12772, 16001, 3,3,0.55, "ArtsAll1", 0, 0, "", 1, {cardDecreaseSingle: [20,30]}, {defDecreaseAll: [10,30]}, {npGainBuff: [30,50]}, [16,33], {}, { resistClass: ["Ruler",1.5], ignoreDef: true }, {cardDecreaseSingle: [20,30,1]}, {defDecreaseAll: [10,30]});
     initialServant(5, "Alterego", "冲田总司〔Alter〕", 209, "人", 12465, 12696, 13645, 13909, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,30]}, {}, {npStrength: [20,30]});
     initialServant(5,"Alterego", "志度内", 224, "天", 11668, 13965, 12772, 15299, 1,6,0.83, "ArtsSingle1", 0, 0, "", 1, {}, {cardBuff: [20,30]}, {randomAttackBuff: [20,20]}, [4,9,14,19,23], {cardBuff: 10, damagePlus: 225});
     initialServant(5,"Alterego", "Kingprotea", 238, "地", 12835, 13338, 14050, 14612, 3,1,0, "BusterAll1", 20, 60, "OcCardBuff", 1.5, {randomCardBuff: [20,20]}, {}, {attackBuff: [20,40]}, [], {cardBuff: 11, damagePlus: 250});
