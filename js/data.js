@@ -394,6 +394,7 @@ function initRider(){
     initialServant(5,"Rider", "司马懿〔莱妮丝〕", 241, "人", 11427, 13543, 12509, 14837, 0,0,0, "Null", 0, 0, "", 0, {}, {}, {}, [], {}, {}, {}, {attackBuff: [20,40]});
     initialServant(5,"Rider", "达·芬奇", 253, "人", 10883, 14112, 11913, 15460, 3,3,0.49, "ArtsAll1", 20, 40, "OcCardBuff", 1, {}, {}, {npStrength: [20,30]}, [16,33], {cardBuff: 6, damagePlus: 230}, { chargeNp: 20 }, {}, {}, {npStrength: [20,30]});
     initialServant(5,"Rider", "欧罗巴", 274, "天", 11737, 12571, 12848, 13772, 3,1,0, "BusterAll1", 20, 40, "OcCardBuff", 1.5, {}, {cardBuff: [20,30]}, {defDecreaseAll: [10,20]}, [], {damagePlus: 150}, {}, {}, {}, {defDecreaseAll: [10,20]});
+    initialServant(5,"Rider", "奥德修斯", 277, "地", 11795, 13284, 12911, 14553, 3,3,0.58, "ArtsAll1", 30, 70, "OcNpStrength", 1, {cardBuff: [10,20]}, {}, {}, [16,33], {cardBuff: 10}, {}, {cardBuff: [10,20,0.8,1]});
     /******************************************4星********************************************************************/
     initialServant(4,"Rider", "玛丽·安托瓦内特", 29, "人", 8293, 12348, 10041, 14972, 3,5,1, "BusterSingle2", 0, 0, "", 0.8, {attackBuff: [10,20]}, {}, {}, [6,13,20,26], {cardBuff: 11}, {}, {attackBuff: [10,20]});
     initialServant(4,"Rider", "玛丽·安托瓦内特SC", 29, "人", 8293, 12348, 10041, 14972, 3,5,1, "BusterSingle2", 0, 0, "", 0.8, {}, {}, {}, [6,13,20,26], {cardBuff: 11});
