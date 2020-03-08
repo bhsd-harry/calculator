@@ -545,10 +545,21 @@ function applyEnemy(label) {
     }
 }
 function initialServantList() {
+    let oldLength = $("ddlServant").length;
+    for(let i=oldLength;i>0;i--){
+	$("ddlServant").remove(i);
+    }
+    let star = $("ddlFilterStar").value;
+    let Class = $("ddlFilterClass").value;
+    let attribute = $("ddlFilterAttribute").value;
     servants.forEach(function(servant){
-        if(servant.NP[0] > 0) {
+        if(servant.NP[0] > 0 && (star == -1 || servant.star == star) && (Class == -1 || servant.Class == Class) && (attribute == -1 || servant.attribute == attribute)) {
 	    $("ddlServant").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	}
+    })
+}
+function initialSupportList() {
+    servants.forEach(function(servant){
 	if(servant.support1 || servant.support2 || servant.support3) {
 	    $("ddlSupport1").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	    $("ddlSupport2").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
