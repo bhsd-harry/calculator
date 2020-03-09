@@ -69,7 +69,7 @@ function bindSearchTips(){
         `;
 }
 (function(){
-    let nums=document.querySelectorAll("#txtAttackBuff,#txtEnemyDefence1,#txtEnemyDefence2,#txtEnemyDefence3,#txtCardBuff,#txtCardResist1,#txtCardResist2,#txtCardResist3,#txtNpStrength,#txtSpecialAttack,#txtNpGainBuff");
+    let nums=document.querySelectorAll("#txtAttackBuff,#txtEnemyDefence1,#txtEnemyDefence2,#txtEnemyDefence3,#txtCardBuff,#txtCardResist1,#txtCardResist2,#txtCardResist3,#txtNpStrength,#txtSpecialAttack,#txtNpGainBuff,#txtCeAttackBuff,#txtCeBusterBuff,#txtCeArtsBuff,#txtCeQuickBuff,#txtCeNpStrength,#txtCeSpecialAttack,#txtCeNpGainBuff,#txtCeDamagePlus");
     nums.forEach(function(n){
         n.onblur=function(){
             //失去焦点后，计算值

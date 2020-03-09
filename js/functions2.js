@@ -844,6 +844,23 @@ function clearBuff(){
     $("spanOverkill1").innerHTML = "100%";
     $("spanOverkill2").innerHTML = "100%";
     $("spanOverkill3").innerHTML = "100%";
+    $("txtAttackBuff").value -= -$("txtCeAttackBuff").value;
+    let ceCardBuff = 0;
+    switch(getFloat("ddlColor")){
+        case 1.5:
+            ceCardBuff = getFloat("txtCeBusterBuff");
+            break;
+        case 1:
+            ceCardBuff = getFloat("txtCeArtsBuff");
+            break;
+        case 0.8:
+            ceCardBuff = getFloat("txtCeQuickBuff");
+    }
+    $("txtCardBuff").value -= -ceCardBuff;
+    $("txtNpStrength").value -= -$("txtCeNpStrength").value;
+    $("txtSpecialAttack").value -= -$("txtCeSpecialAttack").value;
+    $("txtNpGainBuff").value -= -$("txtCeNpGainBuff").value;
+    $("txtDamagePlus").value -= -$("txtCeDamagePlus").value;
 }
 //根据OC重设所有buff
 function setOc() {

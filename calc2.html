@@ -474,7 +474,10 @@
                 </td>
             </tr>
 	    <tr>
-		<td colspan="8">你可以在上面的各文本框中自行输入队友buff（支持文本框内的四则运算），也可以使用下面的从者列表</td>
+		<td colspan="8">
+		    你可以在上面的各文本框中自行输入队友buff（支持文本框内的四则运算），也可以使用下面的从者列表
+		    <input type="button" value="清空队友" id="btnClearSupport"/>
+		</td>
 	    </tr>
             <tr>
 		<td>队友1</td>
@@ -799,6 +802,48 @@
                     <label for="ckSupport5NoMiss3" onchange="randomSupport(5,3)">
                         <input type="checkbox" id="ckSupport5NoMiss3" /> 命中
                     </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+		    你也可以自定义礼装等固定buff（支持文本框内的四则运算），需点击“清空”或切换从者后生效；这一功能未来计划用于宝具伤害排行
+		    <input type="button" value="清空自定义Buff" id="btnClearCe" />
+		</td>
+            </tr>
+            <tr>
+                <td>攻击力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeAttackBuff" value="0" />
+                </td>
+                <td>红放Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeBusterBuff" value="0" />
+                </td>
+                <td>蓝放Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeArtsBuff" value="0" />
+                </td>
+                <td>绿放Buff</td>
+                <td>
+                    <input type="text" id="txtCeQuickBuff" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td>宝具威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeNpStrength" value="0" />
+                </td>
+                <td>特攻威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeSpecialAttack" value="0" />
+                </td>
+                <td>黄金律(%)</td>
+                <td>
+                    <input type="text" id="txtCeNpGainBuff" value="0" />
+                </td>
+                <td>固定伤害Buff</td>
+                <td>
+                    <input type="text" id="txtCeDamagePlus" value="0" />
                 </td>
             </tr>
             <tr>
@@ -1179,6 +1224,23 @@
 	if(npEffect && npEffect.accAttackBuff) {
 	    $("txtAttackBuff").value -= -npEffect.accAttackBuff;
 	}
+    }
+
+    $("btnClearSupport").onclick = function(){
+	for(let i=1;i<=5;i++){
+	    $("ddlSupport"+i).selectedIndex = 0;
+	    initialSupport(i);
+	}
+    }
+    $("btnClearCe").onclick = function(){
+	$("txtCeAttackBuff").value = 0;
+	$("txtCeBusterBuff").value = 0;
+	$("txtCeArtsBuff").value = 0;
+	$("txtCeQuickBuff").value = 0;
+	$("txtCeNpStrength").value = 0;
+	$("txtCeSpecialAttack").value = 0;
+	$("txtCeNpGainBuff").value = 0;
+	$("txtCeDamagePlus").value = 0;
     }
     //队友buff
 /*
