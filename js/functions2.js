@@ -1,4 +1,16 @@
 "use strict";
+function compare() {
+    if($("ddlLvs").selectedIndex > 2) {
+	$("ddlLvs").selectedIndex = 0;
+    }
+    let nServant = $("ddlServant").length;
+    for(let i=1;i<nServant;i++) {
+	$("ddlServant").selectedIndex = i;
+	$("txtNpSpecialAttack").value = 100;
+	initialEffects();
+//	calc();
+    }
+}
 function adjLvs() {
     let id=$("ddlServant").value;
     if (id == -1) { return; }

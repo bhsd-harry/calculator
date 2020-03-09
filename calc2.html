@@ -809,7 +809,7 @@
             </tr>
             <tr>
                 <td colspan="8">
-		    你也可以自定义礼装等固定buff（支持文本框内的四则运算），需点击“清空”或切换从者后生效；这一功能未来计划用于宝具伤害排行
+		    你也可以自定义礼装等固定buff（支持文本框内的四则运算），需点击“清空”或切换从者后生效；自定义buff可用于宝具伤害排行
 		    <input type="button" value="清空自定义Buff" id="btnClearCe" />
 		</td>
             </tr>
@@ -855,7 +855,7 @@
                         <option value=0>输入鞭尸数</option>
                         <option value=1>输入血量</option>
                     </select>
-		    <input type="button" value="累   加" id="btnAccumulate" count=0 />
+		    <input type="button" value="累加" id="btnAccumulate" count=0 />
 <!--
 		    <input type="button" value="孔   明" id="btnAddZhuge" />
 		    <input type="button" value="梅   林" id="btnAddMerlin" />	
@@ -863,8 +863,9 @@
 		    <input type="button" value="斯卡蒂" id="btnAddSkadi" />
 		    <input type="button" value="花   嫁" id="btnAddBride" />
 -->
-		    <input type="button" value="清   空" id="btnClearBuff" />
-                    <input type="button" value="计   算" id="btnCalculate" />
+		    <input type="button" value="清空" id="btnClearBuff" />
+                    <input type="button" value="计算" id="btnCalculate" onclick="calc()" />
+		    <input type="button" value="排行" id="btnCompare" onclick="compare()"/>
                 </td>
             </tr>
         </table>
@@ -1430,7 +1431,7 @@
     var guid = 0;
     var cardNpBase = [1, 3, 0];
     //计算宝具伤害
-    $("btnCalculate").onclick = function() {
+    function calc() {
 	$("txtAttackBuff").value = Math.round($("txtAttackBuff").value * 10) / 10;
 	$("txtEnemyDefence1").value = Math.round($("txtEnemyDefence1").value * 10) / 10;
 	$("txtEnemyDefence2").value = Math.round($("txtEnemyDefence2").value * 10) / 10;
