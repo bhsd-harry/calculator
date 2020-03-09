@@ -44,13 +44,16 @@
                         <option value="Alterego">Alterego</option>
                         <option value="Foreigner">Foreigner</option>
                     </select>
-                    <select id="ddlFilterAttribute" onchange="initialServantList()">
-                        <option value=-1>筛选阵营</option>
-			<option value="天">天</option>
-			<option value="地">地</option>
-			<option value="人">人</option>
-			<option value="星">星</option>
-			<option value="兽">兽</option>
+                    <select id="ddlFilterColor" onchange="initialServantList()">
+                        <option value=-1>筛选宝具卡色</option>
+			<option value=0.8>Quick</option>
+			<option value=1>Arts</option>
+			<option value=1.5>Buster</option>
+                    </select>
+                    <select id="ddlFilterNpType" onchange="initialServantList()">
+                        <option value=-1>筛选宝具类型</option>
+                        <option value=3>群体</option>
+                        <option value=1>单体</option>
                     </select>
                     <select id="ddlServant">
                         <option value=-1>|-----------请选择从者-----------|</option>
@@ -919,7 +922,13 @@
     $("ckIsMaxGrail").onchange = function () {
         let id = $("ddlServant").value;
         if (id == -1) {
-            this.checked = false;
+//            this.checked = false;
+            if (this.checked) {
+                $("ddlLvs").selectedIndex=1;
+            }
+            else {
+                $("ddlLvs").selectedIndex=0;
+            }
             return;
         }
         let servant = servants[id];
@@ -938,12 +947,18 @@
     //等级下拉列表选中项改变事件
     $("ddlLvs").onchange=function(){
         let id=$("ddlServant").value;
+	let lv = this.value;
         if (id == -1) {
-            this.selectedIndex = 0;
+//            this.selectedIndex = 0;
+	    if(lv > 90){
+                $("ckIsMaxGrail").checked = true;
+	    }
+	    else{
+                $("ckIsMaxGrail").checked = false;
+            }
             return;
         }
         let servant = servants[id];  
-        let lv = this.value;
 	let Star = servant.star;
         let maxLv = (Star < 4? Star * 5 + 55 : Star * 10 + 40);
         if(lv > 90){
@@ -956,7 +971,7 @@
             if(lv <= maxLv){
                 $("txtAtk").value = servant.atk;
                 $("txtMaxHp").value = servant.hp;
-                this.selectedIndex = 0;//默认
+//                this.selectedIndex = 0;//默认
             }
             else {
                 if(Star > 1){
@@ -1279,10 +1294,15 @@
     //////////////////////////////////////////////////////////////////////////////////////////////
     //下拉从者选中项发生变化事件
     $("ddlServant").onchange = function () {
+/*
         $("ckIsMaxGrail").checked = false;
-        $("ddlLvs").selectedIndex=0;
+        $("ddlLvs").selectedIndex = 0;
         $("txtFouAtk").value = 1000;
         $("txtFouHp").value = 1000;
+*/
+	if($("ddlLvs").selectedIndex > 2) {
+	    $("ddlLvs").selectedIndex = 0;
+	}
         $("txtNpSpecialAttack").value = 100;
 	initialEffects();
     }
@@ -1374,12 +1394,17 @@
         //1.阵营
         $("spanAttribute").innerHTML = servant.attribute;
 	//2.基本数据
-	$("ddlLvs").selectedIndex = 0;
+	if($("ddlLvs").selectedIndex > 2) {
+	    $("ddlLvs").selectedIndex = 0;
+	}
 	$("ddlNTarget").selectedIndex = servant.target - 1;
 	$("txtNHits").value = servant.hit;
         $("txtAtk").value = servant.atk;
         $("txtMaxHp").value = servant.hp;
 	$("txtBaseNp").value = servant.np;
+        if($("ddlLvs").selectedIndex > 0) {
+            adjLvs();
+        }
         //3.宝具倍率
         changeNpCoefficient();
         //4.卡色

@@ -1,4 +1,30 @@
 "use strict";
+function adjLvs() {
+    let id=$("ddlServant").value;
+    if (id == -1) { return; }
+    let servant = servants[id];  
+    let lv = $("ddlLvs").value;
+    let Star = servant.star;
+    if(lv > 90){
+	$("ckIsMaxGrail").checked = true;
+        $("txtAtk").value = servant.maxAtk;
+        $("txtMaxHp").value = servant.maxHp;
+    }
+    else {
+	$("ckIsMaxGrail").checked = false;
+        if(Star < 5){
+            if(Star > 1){
+                lv = servant.lvs[0];
+            }
+            else {
+                lv = servant.lvs[1];
+            }
+            $("txtAtk").value = lv.a;
+            $("txtMaxHp").value = lv.h;
+        }
+    }
+    adjHp();
+}
 function noOverkill() {
     $("txtOverkill1").value = 0;
     $("txtOverkill2").value = 0;
@@ -551,9 +577,10 @@ function initialServantList() {
     }
     let star = $("ddlFilterStar").value;
     let Class = $("ddlFilterClass").value;
-    let attribute = $("ddlFilterAttribute").value;
+    let color = $("ddlFilterColor").value;
+    let nTarget = $("ddlFilterNpType").value;
     servants.forEach(function(servant){
-        if(servant.NP[0] > 0 && (star == -1 || servant.star == star) && (Class == -1 || servant.Class == Class) && (attribute == -1 || servant.attribute == attribute)) {
+        if(servant.NP[0] > 0 && (star == -1 || servant.star == star) && (Class == -1 || servant.Class == Class) && (color == -1 || servant.cardColor == color) && (nTarget == -1 || servant.target == nTarget)) {
 	    $("ddlServant").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	}
     })
@@ -697,7 +724,13 @@ function initialEffects() {
 	$("ddlLvs").oldvalue = servant.star;
     }
     else {
-	disabling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp","ddlNpLevel","txtNpCoefficient","ddlOvercharge","ddlNTarget","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","btnSwitchEffect","txtNHits","btnAdjOverkill","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","txtOverkill2","txtOverkill3","btnAccumulate","btnClearBuff","btnCalculate");
+	abling("ckIsMaxGrail","ddlLvs","txtFouAtk","txtCraftEssenceAtk","txtFouHp","txtCraftEssenceHp","ddlNpLevel","ddlOvercharge","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtOverkill1","txtOverkill2","txtOverkill3");
+	let nLvs = $("ddlLvs").length;
+        for(let i=3;i<nLvs;i++) {
+            $("ddlLvs").remove(3);
+        }
+        $("ddlLvs").oldvalue = 5;
+	disabling("ddlClass","ddlColor","txtAtk","txtBaseNp","txtMaxHp","txtRemainHp","btnAdjHp","txtNpCoefficient","ddlNTarget","btnSwitchEffect","txtNHits","btnAdjOverkill","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","btnAccumulate","btnClearBuff","btnCalculate");
 	$("btnSwitchEffect").value = "切换";
 	$("spanAttribute").innerHTML = "";
 	$("txtEnemyDefence1").basevalue = 0;
@@ -865,16 +898,10 @@ function clearBuff(){
 //根据OC重设所有buff
 function setOc() {
     let id = $("ddlServant").value;
-    if(id == -1){
-        $("ddlOvercharge").selectedIndex = 0;
-        return;
-    }
+    if(id == -1){ return; }
     let servant = servants[id];
     let ocs = servant.oc;
     let ocLevel = $("ddlOvercharge").value;
-    if (ocs.oc1 == ocs.oc5) {
-        $("ddlOvercharge").selectedIndex = 0;
-    }
     switch(ocs.type) {
         case "NpRemainHpDamage": //双子宝具倍率提升
             calNpRemainHpDamage();
