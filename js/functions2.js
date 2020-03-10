@@ -1,5 +1,5 @@
 "use strict";
-function compare() {
+function compareServants() {
     if($("ddlLvs").selectedIndex > 2) {
 	$("ddlLvs").selectedIndex = 0;
     }
@@ -8,7 +8,7 @@ function compare() {
 	$("ddlServant").selectedIndex = i;
 	$("txtNpSpecialAttack").value = 100;
 	initialEffects();
-//	calc();
+	calc();
     }
 }
 function adjLvs() {
