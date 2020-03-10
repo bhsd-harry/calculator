@@ -254,13 +254,15 @@
                         <option value="2000-5">100级天际旋荡</option>
                         <option value="2000-6">100级黄金相扑</option>
 			<option value="943-7">20级黑之圣杯</option>
-                        <option value="2034-8">80级黑之圣杯</option>
-			<option value="2400-9">100级黑之圣杯</option>
-                        <option value="393-10">20级潜入湛蓝</option>
-                        <option value="393-11">20级绘画之夏</option>
-                        <option value="0-12">15级某个夏天</option>
-                        <option value="2000-13">100级轨迹</option>
-			<option value="750-14">80级虚数魔术</option>
+			<option value="1307-8">40级黑之圣杯</option>
+			<option value="1671-9">60级黑之圣杯</option>
+                        <option value="2034-10">80级黑之圣杯</option>
+			<option value="2400-11">100级黑之圣杯</option>
+                        <option value="393-12">20级潜入湛蓝</option>
+                        <option value="393-13">20级绘画之夏</option>
+                        <option value="0-14">15级某个夏天</option>
+                        <option value="2000-15">100级轨迹</option>
+			<option value="750-16">80级虚数魔术</option>
                     </select>
                 </td>
                 <td>敌人1</td>
@@ -888,6 +890,7 @@
 		<th>黄金律</th>
                 <th>伤害最小值/垫刀需求</th>
                 <th>伤害平均值</th>
+		<th>伤害最大值</th>
                 <th>伤害最小值/垫刀需求</th>
                 <th>伤害最小值/垫刀需求</th>
 		<th>NP获取</th>
@@ -1200,11 +1203,11 @@
         if(this.selectedIndex == 0) { return; }
         $("txtCraftEssenceAtk").value = parseInt(this.value);
         switch(this.selectedIndex) {
-            case 10:
-            case 11:
+            case 12:
+            case 13:
                 $("txtCraftEssenceHp").value = 629;
                 break;
-            case 12:
+            case 14:
                 $("txtCraftEssenceHp").value = 1067;
                 break;
             default:
@@ -1625,30 +1628,32 @@
 		break;
 	    case 7:
 	    case 8:
+	    case 9:
+	    case 10:
 		npStrength += 60;
 		break;
-	    case 9:
+	    case 11:
 		npStrength += 80;
 		break;
-            case 10:
+            case 12:
                 npStrength += 10;
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
                 break;
-            case 11:
+            case 13:
                 if(cardColor == 1) {
                     cardBuff += 10;
                 }
 		npGainBuff += 10;
                 break;
-            case 12:
+            case 14:
                 npStrength += 10;
                 if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
                 break;
-	    case 13:
+	    case 15:
 		if(cardColor == 0.8) {
                     cardBuff += 10;
                 }
@@ -1758,6 +1763,8 @@
 	}
         let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
         resultAvg = Math.floor(resultAvg);
+	let resultMax = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * 1.1 * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
+        resultMax = Math.floor(resultMax);
 
 	let npGain = 0;
 	for(let i=1;i<=nTarget;i++){
@@ -1823,6 +1830,7 @@
 	    npGainBuff: npGainBuff,
             min: resultMin,
             avg: resultAvg,
+	    max: resultMax,
             ClassResistType: ClassResistType,
 	    npGain: npGain / 100,
 	    overkill: overkill
@@ -1902,10 +1910,13 @@
         let min1 = newRow.insertCell(-1);
         min1.innerHTML = obj.min[0] + "(" + obj.overkill[0] + ")";
         min1.classList.add(obj.ClassResistType[0]);
-        //13.宝具伤害平均值       
+        //13.宝具伤害平均值和最大值
         let avg = newRow.insertCell(-1);
         avg.innerHTML = obj.avg;
         avg.classList.add(obj.ClassResistType[0]);
+	let max1 = newRow.insertCell(-1);
+        max1.innerHTML = obj.max;
+        max1.classList.add(obj.ClassResistType[0]);
         //14.宝具伤害最小值
         let min2 = newRow.insertCell(-1);
         min2.innerHTML = obj.min[1] + "(" + obj.overkill[1] + ")";
