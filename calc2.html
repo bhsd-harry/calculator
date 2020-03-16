@@ -21,13 +21,20 @@
         <table class="servant">
             <tr>
                 <td colspan="8">
+                    <select id="ddlServer" onchange="initialServantList()">
+                        <option value=-1>筛选服务器</option>
+                        <option value=0>日语(默认)</option>
+                        <option value=1>简中(SC)</option>
+                        <option value=2>繁中(TC)</option>
+                        <option value=3>英语(EN)</option>
+                    </select>
 		    <select id="ddlFilterStar" onchange="initialServantList()">
 			<option value=-1>筛选稀有度</option>
-			<option value=5>5</option>
-                        <option value=4>4</option>
-                        <option value=3>3</option>
-                        <option value=2>2</option>
-                        <option value=1>1</option>
+			<option value=5>5星</option>
+                        <option value=4>4星</option>
+                        <option value=3>3星</option>
+                        <option value=2>2星</option>
+                        <option value=1>1星</option>
 		    </select>
                     <select id="ddlFilterClass" onchange="initialServantList()">
 			<option value=-1>筛选职阶</option>
@@ -957,7 +964,7 @@
 	    if(lv > 90){
                 $("ckIsMaxGrail").checked = true;
 	    }
-	    else{
+	    else {
                 $("ckIsMaxGrail").checked = false;
             }
             return;
