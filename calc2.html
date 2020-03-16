@@ -21,7 +21,7 @@
         <table class="servant">
             <tr>
                 <td colspan="8">
-                    <select id="ddlServer" onchange="initialServantList()">
+                    <select id="ddlServer" >
                         <option value=-1>筛选服务器</option>
                         <option value=0>日语(默认)</option>
                         <option value=1>简中(SC)</option>
@@ -929,6 +929,10 @@
     }
     initialEffects();
 
+    $("ddlServer").onchange = function () {
+	initialServantList();
+	initialSupportList();
+    }
     //圣杯MAX勾选框改变事件
     $("ckIsMaxGrail").onchange = function () {
         let id = $("ddlServant").value;

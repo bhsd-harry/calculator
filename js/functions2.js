@@ -626,7 +626,6 @@ function initialServantList() {
     })
 }
 function initialSupportList() {
-/*
     let oldLength = $("ddlSupport1").length;
     for(let i=oldLength;i>0;i--){
         $("ddlSupport1").remove(i);
@@ -638,17 +637,15 @@ function initialSupportList() {
     let server = $("ddlServer").value;
     let nCount = 0;
     let serverValue = 0;
-*/
     servants.forEach(function(servant){
 	if(servant.support1 || servant.support2 || servant.support3) {
-//	    if(server == -1) {
+	    if(server == -1) {
 	    	$("ddlSupport1").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	    	$("ddlSupport2").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	    	$("ddlSupport3").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
             	$("ddlSupport4").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
             	$("ddlSupport5").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
-//	    }
-/*
+	    }
 	    else {
 		switch(servant.name.slice(-2)) {
                     case "SC":
@@ -680,7 +677,6 @@ function initialSupportList() {
                     nCount++;
                 }
 	    }
-*/
 	}
     })
 }
