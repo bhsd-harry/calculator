@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        .servant tr:nth-child(2) td:nth-child(odd) {
+            width: 10%;
+        }
+        .servant tr:nth-child(2) td:nth-child(even) {
+            width: 15%;
+        }
+        .servant tr:nth-child(2)>td:nth-child(2) input{
+            width:450px;
+        }
+    </style>
+</head>
+<body id="content" onunload="setStorage()">
+    <div id="divInfo">
+        <table class="servant">
+            <tr>
+                <td colspan="8">
+                    <select id="ddlServer" >
+                        <option value=-1>筛选服务器</option>
+                        <option value=0>日语(默认)</option>
+                        <option value=1>简中(SC)</option>
+                        <option value=2>繁中(TC)</option>
+                        <option value=3>英语(EN)</option>
+                    </select>
+		    <select id="ddlFilterStar" onchange="initialServantList()">
+			<option value=-1>筛选稀有度</option>
+			<option value=5>5星</option>
+                        <option value=4>4星</option>
+                        <option value=3>3星</option>
+                        <option value=2>2星</option>
+                        <option value=1>1星</option>
+		    </select>
+                    <select id="ddlFilterClass" onchange="initialServantList()">
+			<option value=-1>筛选职阶</option>
+			<option value="Saber">Saber</option>
+                        <option value="Archer">Archer</option>
+                        <option value="Lancer">Lancer</option>
+                        <option value="Rider">Rider</option>
+                        <option value="Caster">Caster</option>
+                        <option value="Assassin">Assassin</option>
+                        <option value="Berserker">Berserker</option>
+                        <option value="Ruler">Ruler</option>
+                        <option value="Avenger">Avenger</option>
+                        <option value="MoonCancer">MoonCancer</option>
+                        <option value="Alterego">Alterego</option>
+                        <option value="Foreigner">Foreigner</option>
+                    </select>
+                    <select id="ddlFilterColor" onchange="initialServantList()">
+                        <option value=-1>筛选宝具卡色</option>
+			<option value=0.8>Quick</option>
+			<option value=1>Arts</option>
+			<option value=1.5>Buster</option>
+                    </select>
+                    <select id="ddlFilterNpType" onchange="initialServantList()">
+                        <option value=-1>筛选宝具类型</option>
+                        <option value=3>群体</option>
+                        <option value=1>单体</option>
+                    </select>
+                    <select id="ddlServant">
+                        <option value=-1>|-----------请选择从者-----------|</option>
+                    </select>
+                    <label for="ckIsMaxGrail">
+                        <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX
+		    </label>
+                    <datalist id="dlCraftEssenceTips"></datalist>
+                </td>
+            </tr>
+            <tr>
+                <td>等级</td>
+                <td>
+                    <select id="ddlLvs" oldvalue=0>
+                        <option value=-1>默认</option>
+                        <option value=100>Lv.100</option>
+                        <option value=90>Lv.90</option>
+                        <option value=80>Lv.80</option>
+                        <option value=70>Lv.70</option>
+                        <option value=65>Lv.65</option>
+                        <option value=60>Lv.60</option>
+                    </select>
+                </td>
+                <td>从者职介</td>
+                <td>
+                    <select id="ddlClass">
+                        <option value=1>Saber</option>
+                        <option value=0.95>Archer</option>
+                        <option value=1.05>Lancer</option>
+                        <option value=1>Rider</option>
+                        <option value=0.9>Caster</option>
+                        <option value=0.9>Assassin</option>
+                        <option value=1.1>Berserker</option>
+                        <option value=1.1>Ruler</option>
+                        <option value=1.1>Avenger</option>
+                        <option value=1>Shielder</option>
+                        <option value=1>MoonCancer</option>
+                        <option value=1>Alterego</option>
+                        <option value=1>Foreigner</option>
+                    </select>
+                </td>
+                <td>阵营</td>
+                <td><span id="spanAttribute"></span></td>  
+                <td>卡色</td>
+                <td>
+                    <select id="ddlColor">
+                        <option value=0.8>Quick</option>
+                        <option value=1>Arts</option>
+                        <option value=1.5>Buster</option>
+                    </select>
+                </td>
+            </tr>           
+            <tr>
+                <td>攻击力</td>
+                <td>
+                    <input type="text" id="txtAtk" onchange="this.value=parseInt(this.value)" />
+                </td>
+                <td>芙芙Atk</td>
+                <td>
+                    <input type="text" id="txtFouAtk" value="1000" onchange="this.value=parseInt(this.value)" />
+                </td>
+                <td>礼装Atk</td>
+                <td>
+                    <input type="text" id="txtCraftEssenceAtk" value="0" list="dlCraftEssenceTips" onchange="this.value=parseInt(this.value)" />
+                </td>
+                <td>NP率(%)</td>
+                <td>
+                    <input type="text" id="txtBaseNp" value="0" />
+                </td>
+	    </tr>
+	    <tr>
+                <td>Hp最大值</td>
+                <td>
+                    <input type="text" id="txtMaxHp" />
+                </td>
+                <td>芙芙Hp</td>
+                <td>
+                    <input type="text" id="txtFouHp" value="1000" />
+                </td>
+                <td>礼装Hp</td>
+                <td>
+                    <input type="text" id="txtCraftEssenceHp" value="0" />
+                </td>
+                <td>剩余Hp值</td>
+                <td>
+                    <input type="text" id="txtRemainHp" size=12px />
+                    <input type="button" value="满血" id="btnAdjHp" onclick="adjHp()" />
+                </td>                
+            </tr>
+            <tr>
+                <td>宝具等级</td>
+                <td>
+                    <select id="ddlNpLevel">
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                    </select>
+                </td>
+                <td>宝具倍率(%)</td>
+                <td>
+                    <input type="text" id="txtNpCoefficient" />
+                </td>
+                <td>OC等级</td>
+                <td>
+                    <select id="ddlOvercharge" oldvalue = "oc1">
+                        <option value="oc1">1</option>
+                        <option value="oc2">2</option>
+                        <option value="oc3">3</option>
+                        <option value="oc4">4</option>
+                        <option value="oc5">5</option>
+                    </select>
+                </td>
+                <td>目标数</td>
+                <td>
+                    <select id="ddlNTarget" />
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+		    </select>
+                </td>
+            </tr>
+	    <tr>
+                <td>技能1</td>
+                <td>
+                    <select id="ddlSkill1" oldvalue=-1>
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+		    <label for="ckNoMiss1" onchange="randomSkill(1)">
+                        <input type="checkbox" id="ckNoMiss1" /> 命中
+                    </label>
+                </td>
+                <td>技能2</td>
+                <td>
+                    <select id="ddlSkill2" oldvalue=-1>
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckNoMiss2" onchange="randomSkill(2)">
+                        <input type="checkbox" id="ckNoMiss2" /> 命中
+                    </label>
+                </td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSkill3" oldvalue=-1>
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckNoMiss3" onchange="randomSkill(3)">
+                        <input type="checkbox" id="ckNoMiss3" /> 命中
+                    </label>
+		    <input type="button" value="切换" id="btnSwitchEffect" count=0 />
+                </td>
+                <td>Hit数</td>
+                <td>
+                    <input type="text" id="txtNHits" size=10px />
+                    <input type="button" value="全鞭尸" id="btnAdjOverkill" />
+                </td>
+	    </tr>
+            <tr>
+                <td>概念礼装</td>
+                <td>
+                    <select id="ddlCraftEssence">
+                        <option value="">自定义</option>
+                        <option value="786-1">20级万华镜</option>
+			<option value="2000-2">100级万华镜</option>
+			<option value="2000-3">100级苍玉</option>
+                        <option value="2000-4">100级圣夜晚餐</option>
+                        <option value="2000-5">100级天际旋荡</option>
+                        <option value="2000-6">100级黄金相扑</option>
+			<option value="943-7">20级黑之圣杯</option>
+			<option value="1307-8">40级黑之圣杯</option>
+			<option value="1671-9">60级黑之圣杯</option>
+                        <option value="2034-10">80级黑之圣杯</option>
+			<option value="2400-11">100级黑之圣杯</option>
+                        <option value="393-12">20级潜入湛蓝</option>
+                        <option value="393-13">20级绘画之夏</option>
+                        <option value="0-14">15级某个夏天</option>
+                        <option value="2000-15">100级轨迹</option>
+			<option value="750-16">80级虚数魔术</option>
+                    </select>
+                </td>
+                <td>敌人1</td>
+                <td>
+                    <select id="ddlEnemyClass1">
+                        <option value="1-1">Saber</option>
+                        <option value="1-2">Archer</option>
+                        <option value="1-3">Lancer</option>
+                        <option value="1.1">Rider</option>
+                        <option value="1.2-1">Caster</option>
+                        <option value="0.9">Assassin</option>
+                        <option value="0.8">Berserker</option>
+                        <option value="1-4">Ruler</option>
+                        <option value="1-5">Avenger</option>
+                        <option value="1-6">Shielder</option>
+                        <option value="1.2-2">MoonCancer</option>
+                        <option value="1-7">Alterego</option>
+                        <option value="1-8">Foreigner</option>
+                    </select>
+                    <label for="ckIsUndying1">
+                        <input type="checkbox" id="ckIsUndying1" /> np补正
+                    </label>
+                </td>
+                <td>敌人2</td>
+                <td>
+                    <select id="ddlEnemyClass2">
+                        <option value="1-1">Saber</option>
+                        <option value="1-2">Archer</option>
+                        <option value="1-3">Lancer</option>
+                        <option value="1.1">Rider</option>
+                        <option value="1.2-1">Caster</option>
+                        <option value="0.9">Assassin</option>
+                        <option value="0.8">Berserker</option>
+                        <option value="1-4">Ruler</option>
+                        <option value="1-5">Avenger</option>
+                        <option value="1-6">Shielder</option>
+                        <option value="1.2-2">MoonCancer</option>
+                        <option value="1-7">Alterego</option>
+                        <option value="1-8">Foreigner</option>
+                    </select>
+                    <label for="ckIsUndying2">
+                        <input type="checkbox" id="ckIsUndying2" /> np补正
+                    </label>
+                </td>
+                <td>敌人3</td>
+                <td>
+                    <select id="ddlEnemyClass3">
+                        <option value="1-1">Saber</option>
+                        <option value="1-2">Archer</option>
+                        <option value="1-3">Lancer</option>
+                        <option value="1.1">Rider</option>
+                        <option value="1.2-1">Caster</option>
+                        <option value="0.9">Assassin</option>
+                        <option value="0.8">Berserker</option>
+                        <option value="1-4">Ruler</option>
+                        <option value="1-5">Avenger</option>
+                        <option value="1-6">Shielder</option>
+                        <option value="1.2-2">MoonCancer</option>
+                        <option value="1-7">Alterego</option>
+                        <option value="1-8">Foreigner</option>
+                    </select>
+                    <label for="ckIsUndying3">
+                        <input type="checkbox" id="ckIsUndying3" /> np补正
+                    </label>
+                </td>
+            </tr>
+	    <tr>
+                <td>御主礼装</td>
+                <td>
+                    <select id="ddlMysticCode">
+                        <option value="0-0">无</option>
+                        <option value="0-1">战斗服</option>
+                        <option value="50-2">04年的碎片</option>
+                        <option value="0-3">金色庆典</option>
+                        <option value="0-4">初始装备</option>
+                        <option value="0-5">王室品牌</option>
+                        <option value="0-6">明亮夏日</option>
+                        <option value="0-7">月之海</option>
+                        <option value="0-8">月之背面</option>
+                        <option value="10-9">1级极地服</option>
+			<option value="15-10">6级极地服</option>
+			<option value="20-11">极地服</option>
+                        <option value="20-12">热带夏日</option>
+                        <option value="35-13">华美的新年</option>
+                        <option value="50-14">迦勒底队长</option>
+			<option value="0-15">第五元素</option>
+                    </select>
+                </td>
+                <td>敌人1阵营</td>
+                <td>
+                    <select id="ddlEnemyAttribute1">
+                        <option value=0>默认</option>
+                        <option value=1>天</option>
+                        <option value=2>地</option>
+                        <option value=3>人</option>
+                        <option value=4>星</option>
+                        <option value=5>兽</option>
+                    </select>
+                    <label for="ckIsSpecialAttack1">
+                        <input type="checkbox" id="ckIsSpecialAttack1" /> 特攻
+                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy1" onclick="applyEnemy(1)"/>
+                </td>
+                <td>敌人2阵营</td>
+                <td>
+                    <select id="ddlEnemyAttribute2">
+                        <option value=0>默认</option>
+                        <option value=1>天</option>
+                        <option value=2>地</option>
+                        <option value=3>人</option>
+                        <option value=4>星</option>
+                        <option value=5>兽</option>
+                    </select>
+                    <label for="ckIsSpecialAttack2">
+                        <input type="checkbox" id="ckIsSpecialAttack2" /> 特攻
+                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy2" onclick="applyEnemy(2)"/>
+                </td>
+                <td>敌人3阵营</td>
+                <td>
+                    <select id="ddlEnemyAttribute3">
+                        <option value=0>默认</option>
+                        <option value=1>天</option>
+                        <option value=2>地</option>
+                        <option value=3>人</option>
+                        <option value=4>星</option>
+                        <option value=5>兽</option>
+                    </select>
+                    <label for="ckIsSpecialAttack3">
+                        <input type="checkbox" id="ckIsSpecialAttack3" /> 特攻
+                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy3" onclick="applyEnemy(3)"/>
+                </td>
+            </tr>
+            <tr>
+                <td>攻击力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtAttackBuff" value="0" />
+                </td>
+                <td>敌人1防御Buff(%)</td>
+                <td>
+                    <input type="text" id="txtEnemyDefence1" value="0" basevalue=0/>
+                </td>
+                <td>敌人2防御Buff(%)</td>
+                <td>
+                    <input type="text" id="txtEnemyDefence2" value="0" />
+                </td>
+                <td>敌人3防御Buff(%)</td>
+                <td>
+                    <input type="text" id="txtEnemyDefence3" value="0" />
+                </td>
+	    </tr>
+	    <tr>
+                <td>卡牌Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCardBuff" value="0" basevalue=0/>
+                </td>
+                <td>敌人1卡牌耐性(%)</td>
+                <td>
+                    <input type="text" id="txtCardResist1" value="0" />
+                </td>
+                <td>敌人2卡牌耐性(%)</td>
+                <td>
+                    <input type="text" id="txtCardResist2" value="0" />
+                </td>
+                <td>敌人3卡牌耐性(%)</td>
+                <td>
+                    <input type="text" id="txtCardResist3" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td>宝具威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtNpStrength" value="0" basevalue=0/>
+                </td>
+                <td>特攻威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtSpecialAttack" value="0" />
+                </td>
+                <td>宝具特攻(%)</td>
+                <td>
+                    <input type="text" id="txtNpSpecialAttack" value="100" />
+                </td>
+                <td>固定伤害Buff</td>
+                <td>
+                    <input type="text" id="txtDamagePlus" value="0" basevalue=0 />
+                </td>
+            </tr>
+            <tr>
+                <td>黄金律(%)</td>
+                <td>
+                    <input type="text" id="txtNpGainBuff" value="0" basevalue=0 />
+                </td>
+                <td>
+		    <span id="spanOverkillLabel1">敌人1鞭尸</span>
+		</td>
+                <td>
+                    <input type="text" id="txtOverkill1" value="0" size=14px anothervalue="0"/>
+		    <span id="spanOverkill1">100%</span>
+                </td>
+                <td>
+		    <span id="spanOverkillLabel2">敌人2鞭尸</span>
+		</td>
+                <td>
+                    <input type="text" id="txtOverkill2" value="0" size=14px anothervalue="0"/>
+                    <span id="spanOverkill2">100%</span>
+                </td>
+                <td>
+		    <span id="spanOverkillLabel3">敌人3鞭尸</span>
+		</td>
+                <td>
+                    <input type="text" id="txtOverkill3" value="0" size=14px anothervalue="0"/>
+                    <span id="spanOverkill3">100%</span>
+                </td>
+            </tr>
+	    <tr>
+		<td colspan="8">
+		    你可以在上面的各文本框中自行输入队友buff（支持文本框内的四则运算），也可以使用下面的从者列表
+		    <input type="button" value="清空队友" id="btnClearSupport"/>
+		</td>
+	    </tr>
+            <tr>
+		<td>队友1</td>
+		<td>
+		    <select id="ddlSupport1" oldvalue=-1 onchange="initialSupport(1)">
+                        <option value=-1>|-----------请选择从者-----------|</option>
+                    </select>
+		</td>
+		<td>技能1</td>
+		<td>
+                    <select id="ddlSupport1Skill1" oldvalue=-1 onchange="changeSupport(1,1)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport1NoMiss1" onchange="randomSupport(1,1)">
+                        <input type="checkbox" id="ckSupport1NoMiss1" /> 命中
+                    </label>
+		</td>
+		<td>技能2</td>
+		<td>
+                    <select id="ddlSupport1Skill2" oldvalue=-1 onchange="changeSupport(1,2)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport1NoMiss2" onchange="randomSupport(1,2)">
+                        <input type="checkbox" id="ckSupport1NoMiss2" /> 命中
+                    </label>
+		</td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSupport1Skill3" oldvalue=-1 onchange="changeSupport(1,3)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport1NoMiss3" onchange="randomSupport(1,3)">
+                        <input type="checkbox" id="ckSupport1NoMiss3" /> 命中
+                    </label>
+                </td>
+            </tr>
+            <tr>
+		<td>队友2</td>
+		<td>
+		    <select id="ddlSupport2" oldvalue=-1 onchange="initialSupport(2)">
+                        <option value=-1>|-----------请选择从者-----------|</option>
+                    </select>
+		</td>
+		<td>技能1</td>
+		<td>
+                    <select id="ddlSupport2Skill1" oldvalue=-1 onchange="changeSupport(2,1)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport2NoMiss1" onchange="randomSupport(2,1)">
+                        <input type="checkbox" id="ckSupport2NoMiss1" /> 命中
+                    </label>
+		</td>
+		<td>技能2</td>
+		<td>
+                    <select id="ddlSupport2Skill2" oldvalue=-1 onchange="changeSupport(2,2)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport2NoMiss2" onchange="randomSupport(2,2)">
+                        <input type="checkbox" id="ckSupport2NoMiss2" /> 命中
+                    </label>
+		</td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSupport2Skill3" oldvalue=-1 onchange="changeSupport(2,3)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport2NoMiss3" onchange="randomSupport(2,3)">
+                        <input type="checkbox" id="ckSupport2NoMiss3" /> 命中
+                    </label>
+                </td>
+            </tr>
+            <tr>
+		<td>队友3</td>
+		<td>
+		    <select id="ddlSupport3" oldvalue=-1 onchange="initialSupport(3)">
+                        <option value=-1>|-----------请选择从者-----------|</option>
+                    </select>
+		</td>
+		<td>技能1</td>
+		<td>
+                    <select id="ddlSupport3Skill1" oldvalue=-1 onchange="changeSupport(3,1)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport3NoMiss1" onchange="randomSupport(3,1)">
+                        <input type="checkbox" id="ckSupport3NoMiss1" /> 命中
+                    </label>
+		</td>
+		<td>技能2</td>
+		<td>
+                    <select id="ddlSupport3Skill2" oldvalue=-1 onchange="changeSupport(3,2)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport3NoMiss2" onchange="randomSupport(3,2)">
+                        <input type="checkbox" id="ckSupport3NoMiss2" /> 命中
+                    </label>
+		</td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSupport3Skill3" oldvalue=-1 onchange="changeSupport(3,3)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport3NoMiss3" onchange="randomSupport(3,3)">
+                        <input type="checkbox" id="ckSupport3NoMiss3" /> 命中
+                    </label>
+                </td>
+            </tr>
+            <tr>
+		<td>队友4</td>
+		<td>
+		    <select id="ddlSupport4" oldvalue=-1 onchange="initialSupport(4)">
+                        <option value=-1>|-----------请选择从者-----------|</option>
+                    </select>
+		</td>
+		<td>技能1</td>
+		<td>
+                    <select id="ddlSupport4Skill1" oldvalue=-1 onchange="changeSupport(4,1)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport4NoMiss1" onchange="randomSupport(4,1)">
+                        <input type="checkbox" id="ckSupport4NoMiss1" /> 命中
+                    </label>
+		</td>
+		<td>技能2</td>
+		<td>
+                    <select id="ddlSupport4Skill2" oldvalue=-1 onchange="changeSupport(4,2)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport4NoMiss2" onchange="randomSupport(4,2)">
+                        <input type="checkbox" id="ckSupport4NoMiss2" /> 命中
+                    </label>
+		</td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSupport4Skill3" oldvalue=-1 onchange="changeSupport(4,3)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport4NoMiss3" onchange="randomSupport(4,3)">
+                        <input type="checkbox" id="ckSupport4NoMiss3" /> 命中
+                    </label>
+                </td>
+            </tr>
+            <tr>
+		<td>队友5</td>
+		<td>
+		    <select id="ddlSupport5" oldvalue=-1 onchange="initialSupport(5)">
+                        <option value=-1>|-----------请选择从者-----------|</option>
+                    </select>
+		</td>
+		<td>技能1</td>
+		<td>
+                    <select id="ddlSupport5Skill1" oldvalue=-1 onchange="changeSupport(5,1)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport5NoMiss1" onchange="randomSupport(5,1)">
+                        <input type="checkbox" id="ckSupport5NoMiss1" /> 命中
+                    </label>
+		</td>
+		<td>技能2</td>
+		<td>
+                    <select id="ddlSupport5Skill2" oldvalue=-1 onchange="changeSupport(5,2)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport5NoMiss2" onchange="randomSupport(5,2)">
+                        <input type="checkbox" id="ckSupport5NoMiss2" /> 命中
+                    </label>
+		</td>
+                <td>技能3</td>
+                <td>
+                    <select id="ddlSupport5Skill3" oldvalue=-1 onchange="changeSupport(5,3)">
+                        <option value=-1>无</option>
+                        <option value=0>1</option>
+                        <option value=1>2</option>
+                        <option value=2>3</option>
+                        <option value=3>4</option>
+                        <option value=4>5</option>
+                        <option value=5>6</option>
+                        <option value=6>7</option>
+                        <option value=7>8</option>
+                        <option value=8>9</option>
+                        <option value=10>10</option>
+                    </select>
+                    <label for="ckSupport5NoMiss3" onchange="randomSupport(5,3)">
+                        <input type="checkbox" id="ckSupport5NoMiss3" /> 命中
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+		    你也可以自定义礼装等固定buff（支持文本框内的四则运算），需点击“清空”或切换从者后生效；自定义buff可用于宝具伤害排行
+		    <input type="button" value="清空自定义Buff" id="btnClearCe" />
+		</td>
+            </tr>
+            <tr>
+                <td>攻击力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeAttackBuff" value="0" />
+                </td>
+                <td>红放Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeBusterBuff" value="0" />
+                </td>
+                <td>蓝放Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeArtsBuff" value="0" />
+                </td>
+                <td>绿放Buff</td>
+                <td>
+                    <input type="text" id="txtCeQuickBuff" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td>宝具威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeNpStrength" value="0" />
+                </td>
+                <td>特攻威力Buff(%)</td>
+                <td>
+                    <input type="text" id="txtCeSpecialAttack" value="0" />
+                </td>
+                <td>黄金律(%)</td>
+                <td>
+                    <input type="text" id="txtCeNpGainBuff" value="0" />
+                </td>
+                <td>固定伤害Buff</td>
+                <td>
+                    <input type="text" id="txtCeDamagePlus" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <select id="ddlOverkillMode"/>
+                        <option value=0>输入鞭尸数</option>
+                        <option value=1>输入血量</option>
+                    </select>
+		    <input type="button" value="累加" id="btnAccumulate" count=0 />
+<!--
+		    <input type="button" value="孔   明" id="btnAddZhuge" />
+		    <input type="button" value="梅   林" id="btnAddMerlin" />	
+		    <input type="button" value="狐   狸" id="btnAddTamamo" />
+		    <input type="button" value="斯卡蒂" id="btnAddSkadi" />
+		    <input type="button" value="花   嫁" id="btnAddBride" />
+-->
+		    <input type="button" value="清空" id="btnClearBuff" />
+                    <input type="button" value="计算" id="btnCalculate" onclick="calc()" />
+		    <input type="button" value="排行（功能测试中）" id="btnCompare" onclick="compareServants()"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div id="divResult" class="resultWrapper">
+        <b>结果：<a href="javascript:;" onclick="clearTable(1)">清空</a></b>
+        <table id="tbResult" class="result">
+            <tr>
+                <th>排名</th>
+                <th>从者</th>
+                <th>等级</th>
+                <th>ATK</th>
+                <th>宝具等级(oc)</th>
+                <th>宝具倍率</th>
+                <th>攻击力Buff</th>
+                <th>卡牌Buff</th>
+                <th>宝具威力Buff</th>
+                <th>宝具特攻</th>
+		<th>黄金律</th>
+                <th>伤害最小值/垫刀需求</th>
+                <th>伤害平均值</th>
+		<th>伤害最大值</th>
+                <th>伤害最小值/垫刀需求</th>
+                <th>伤害最小值/垫刀需求</th>
+		<th>NP获取</th>
+                <th>&nbsp;</th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script src="js/lvs.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/base2.js"></script>
+<script src="js/functions2.js"></script>
+<script type="text/javascript">
+    "use strict";
+    /***********************************************************/
+    initialData();
+    initialServantList();
+    initialSupportList();
+    loadStorage(true);
+    bindSearchTips();
+    var options = [new Option("Lv.80",80),new Option("Lv.70",70),new Option("Lv.65",65),new Option("Lv.60",60)];
+    for(let i=1;i<=3;i++) {
+	$("ddlSkill"+i).selectedIndex = 10;
+	for(let n=1;n<=5;n++) {
+	    $("ddlSupport"+n+"Skill"+i).selectedIndex = 10;
+	}
+    }
+    initialEffects();
+
+    $("ddlServer").onchange = function () {
+	initialServantList();
+	initialSupportList();
+    }
+    //圣杯MAX勾选框改变事件
+    $("ckIsMaxGrail").onchange = function () {
+        let id = $("ddlServant").value;
+        if (id == -1) {
+//            this.checked = false;
+            if (this.checked) {
+                $("ddlLvs").selectedIndex=1;
+            }
+            else {
+                $("ddlLvs").selectedIndex=0;
+            }
+            return;
+        }
+        let servant = servants[id];
+        if (this.checked) {
+            $("txtAtk").value = servant.maxAtk;
+            $("txtMaxHp").value = servant.maxHp;
+            $("ddlLvs").selectedIndex=1;
+        }
+        else {
+            $("txtAtk").value = servant.atk;
+            $("txtMaxHp").value = servant.hp;
+            $("ddlLvs").selectedIndex=0;
+        }
+	adjHp();
+    }
+    //等级下拉列表选中项改变事件
+    $("ddlLvs").onchange=function(){
+        let id=$("ddlServant").value;
+	let lv = this.value;
+        if (id == -1) {
+//            this.selectedIndex = 0;
+	    if(lv > 90){
+                $("ckIsMaxGrail").checked = true;
+	    }
+	    else {
+                $("ckIsMaxGrail").checked = false;
+            }
+            return;
+        }
+        let servant = servants[id];  
+	let Star = servant.star;
+        let maxLv = (Star < 4? Star * 5 + 55 : Star * 10 + 40);
+        if(lv > 90){
+            $("txtAtk").value = servant.maxAtk;
+            $("txtMaxHp").value = servant.maxHp;
+            $("ckIsMaxGrail").checked = true;
+        }
+        else {
+            $("ckIsMaxGrail").checked = false;
+            if(lv <= maxLv){
+                $("txtAtk").value = servant.atk;
+                $("txtMaxHp").value = servant.hp;
+//                this.selectedIndex = 0;//默认
+            }
+            else {
+                if(Star > 1){
+                    lv = servant.lvs[0];
+                    this.selectedIndex = 2;
+                }
+                else if(lv > 70){
+                    lv = servant.lvs[1];
+                    this.selectedIndex = 2;
+                }
+                else {
+                    lv = servant.lvs[0];
+                    this.selectedIndex = 3;
+                }
+                $("txtAtk").value = lv.a;
+                $("txtMaxHp").value = lv.h;
+            }
+        }
+        adjHp();
+    }
+    $("txtMaxHp").onchange = function () {
+	this.value = Math.round(eval2(this.value));
+	adjustNpRemainHpDamage();
+    }
+    $("txtFouHp").onchange = function () {
+        this.value = parseInt(this.value);
+        adjustNpRemainHpDamage();
+    }
+    $("txtCraftEssenceHp").onchange = function () {
+        this.value = parseInt(this.value);
+        adjustNpRemainHpDamage();
+    }
+    $("txtRemainHp").onchange = function () {
+        this.value = Math.round(eval2(this.value));
+        adjustNpRemainHpDamage();
+    }
+    $("txtNHits").onchange = function (){
+	this.value = Math.max(parseInt(this.value), 1);
+	noOverkill();
+    }
+    $("ddlOverkillMode").onchange = function (){
+	if(this.selectedIndex == 1) {
+	    disabling("btnAdjOverkill");
+	    for(let i=1;i<=3;i++){
+		$("spanOverkillLabel"+i).innerHTML="敌人"+i+"血量";
+	    }
+	}
+	else {
+	    abling("btnAdjOverkill");
+            for(let i=1;i<=3;i++){
+                $("spanOverkillLabel"+i).innerHTML="敌人"+i+"鞭尸";
+	    }
+	}
+	for(let i=1,l="";i<=3;i++){
+	    l = $("txtOverkill"+i).anothervalue;
+	    if(!l) { l = "0"; }
+	    $("txtOverkill"+i).anothervalue = $("txtOverkill"+i).value;
+	    $("txtOverkill"+i).value = l;
+	}
+    }
+    $("txtOverkill1").onchange = function (){
+	let n = getInt("txtNHits");
+	if($("ddlOverkillMode").selectedIndex == 0) {
+	    this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+	    calPerDamage(1);
+	    if(this.value == 0) {
+	        $("btnAdjOverkill").value = "全鞭尸";
+	    }
+	    if(this.value == n) {
+                $("btnAdjOverkill").value = "无鞭尸";
+	    }
+        }
+    }
+    $("txtOverkill2").onchange = function (){
+        let n = getInt("txtNHits");
+	if($("ddlOverkillMode").selectedIndex == 0) {
+            this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+            calPerDamage(2);
+            if(this.value == 0) {
+                $("btnAdjOverkill").value = "全鞭尸";
+            }
+            if(this.value == n) {
+                $("btnAdjOverkill").value = "无鞭尸";
+	    }
+        }
+    }
+    $("txtOverkill3").onchange = function (){
+        let n = getInt("txtNHits");
+	if($("ddlOverkillMode").selectedIndex == 0) {
+            this.value = Math.max(Math.min(parseInt(this.value), n), 0);
+            calPerDamage(3);
+            if(this.value == 0) {
+                $("btnAdjOverkill").value = "全鞭尸";
+            }
+            if(this.value == n) {
+                $("btnAdjOverkill").value = "无鞭尸";
+	    }
+        }
+    }
+    //鞭尸
+    $("btnAdjOverkill").onclick = function () {
+	switch(this.value) {
+	    case "全鞭尸":
+		let n = $("txtNHits").value;
+        	$("txtOverkill1").value = n;
+        	$("txtOverkill2").value = n;
+        	$("txtOverkill3").value = n;
+		calPerDamage(1);
+		calPerDamage(2);
+		calPerDamage(3);
+		this.value = "无鞭尸";
+		break;
+	    case "无鞭尸":
+		noOverkill();
+	}
+    }
+    $("txtEnemyDefence1").onchange = function () {
+	let id = $("ddlServant").value;
+	if(this.value <= 0 || id == -1) { return; }
+	let servant = servants[id];
+	let npEffect = servant.npEffect;
+        if(npEffect && npEffect.ignoreDef) {
+            this.value = 0;
+            alert("该宝具无视防御！");
+        }
+        if(npEffect && npEffect.nullifyDef) {
+            alert("该宝具伤害前解除防御强化！");
+        }
+	if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack1").checked) {
+	    alert("特攻对象解除防御强化！");
+	}
+    }
+    $("txtEnemyDefence2").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.ignoreDef) {
+            this.value = 0;
+            alert("该宝具无视防御！");
+        }
+        if(npEffect && npEffect.nullifyDef) {
+            alert("该宝具伤害前解除防御强化！");
+        }a
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack2").checked) {
+            alert("特攻对象解除防御强化！");
+        }
+    }
+    $("txtEnemyDefence3").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.ignoreDef) {
+            this.value = 0;
+            alert("该宝具无视防御！");
+        }
+        if(npEffect && npEffect.nullifyDef) {
+            alert("该宝具伤害前解除防御强化！");
+        }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack3").checked) {
+            alert("特攻对象解除防御强化！");
+        }
+    }
+    $("txtCardResist1").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.nullifyDef) {
+	    alert("该宝具伤害前解除防御强化！");
+        }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack1").checked) {
+            alert("特攻对象解除防御强化！");
+        }
+    }
+    $("txtCardResist2").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.nullifyDef) {
+	    alert("该宝具伤害前解除防御强化！");
+        }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack2").checked) {
+            alert("特攻对象解除防御强化！");
+        }
+    }
+    $("txtCardResist3").onchange = function () {
+        let id = $("ddlServant").value;
+        if(this.value <= 0 || id == -1) { return; }
+        let servant = servants[id];
+        let npEffect = servant.npEffect;
+        if(npEffect && npEffect.nullifyDef) {
+	    alert("该宝具伤害前解除防御强化！");
+        }
+        if(npEffect && npEffect.specialNullifyDef && $("ckIsSpecialAttack3").checked) {
+            alert("特攻对象解除防御强化！");
+        }
+    }
+    //宝具等级选中项发生变化事件
+    $("ddlNpLevel").onchange = function () {
+        let id = $("ddlServant").value;
+        if(id == -1){ return; }
+        changeNpCoefficient();
+    };
+    $("ddlNTarget").onchange = function () {
+	let n = this.value;
+	let i = 2;
+	for(;i<=n;i++) {
+	    abling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
+	}
+	for(;i<=3;i++) {
+	    disabling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
+	}
+	if(n<2) {
+	    disabling("btnApplyEnemy1");
+	}
+	else {
+	    abling("btnApplyEnemy1");
+	}
+    }
+    //礼装
+    $("ddlCraftEssence").onchange=function(){
+        if(this.selectedIndex == 0) { return; }
+        $("txtCraftEssenceAtk").value = parseInt(this.value);
+        switch(this.selectedIndex) {
+            case 12:
+            case 13:
+                $("txtCraftEssenceHp").value = 629;
+                break;
+            case 14:
+                $("txtCraftEssenceHp").value = 1067;
+                break;
+            default:
+                $("txtCraftEssenceHp").value = 0;
+        }
+        adjHp();
+    }
+    $("btnAccumulate").onclick = function(){
+	let id = $("ddlServant").value;
+	if(id == -1) { return; }
+	this.count++;
+	this.value = "累加 " + this.count;
+	let servant = servants[id];
+	for(let i=1;i<=3;i++) {
+	    let skill = servant["skill"+i];
+	    let skillLv = $("ddlSkill"+i).value;
+	    if(!skill || skillLv == -1) { continue; }
+	    let buff = [];
+	    if(buff = skill.accAttackBuff) {
+		let attackBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+		$("txtAttackBuff").value -= -attackBuff;
+	    }
+	    if(buff = skill.accDefDecrease) {
+		let defDecrease = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        	$("txtEnemyDefence1").value -= defDecrease;
+    	    }
+	    if(buff = skill.accCardBuff) {
+		let cardBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+		$("txtCardBuff").value -= -cardBuff;
+	    }
+	}
+	let npEffect = servant.npEffect;
+	if(npEffect && npEffect.accAttackBuff) {
+	    $("txtAttackBuff").value -= -npEffect.accAttackBuff;
+	}
+    }
+
+    $("btnClearSupport").onclick = function(){
+	for(let i=1;i<=5;i++){
+	    $("ddlSupport"+i).selectedIndex = 0;
+	    initialSupport(i);
+	}
+    }
+    $("btnClearCe").onclick = function(){
+	$("txtCeAttackBuff").value = 0;
+	$("txtCeBusterBuff").value = 0;
+	$("txtCeArtsBuff").value = 0;
+	$("txtCeQuickBuff").value = 0;
+	$("txtCeNpStrength").value = 0;
+	$("txtCeSpecialAttack").value = 0;
+	$("txtCeNpGainBuff").value = 0;
+	$("txtCeDamagePlus").value = 0;
+    }
+    //队友buff
+/*
+    $("btnAddZhuge").onclick = function(){
+        $("txtAttackBuff").value -= -30;
+        $("txtDamagePlus").value -= -500;     
+    }
+    $("btnAddMerlin").onclick = function(){
+        $("txtAttackBuff").value -= -20;
+        if($("ddlColor").value == 1.5){
+            $("txtCardBuff").value -= -50;
+        }
+	$("txtMaxHp").value -= -3000;
+	$("txtRemainHp").value -= -3000;
+	adjustNpRemainHpDamage();
+    }
+    $("btnAddTamamo").onclick = function(){
+        $("txtNpStrength").value -= -30;
+        if($("ddlColor").value == 1){
+            $("txtCardBuff").value -= -50;
+        }
+    }
+    $("btnAddSkadi").onclick = function(){
+        $("txtEnemyDefence1").value -= 30;
+        $("txtEnemyDefence2").value -= 30;
+        $("txtEnemyDefence3").value -= 30;
+        if($("ddlColor").value == 0.8){
+            $("txtCardBuff").value -= -50;
+        }
+    }
+    $("btnAddBride").onclick = function(){
+	$("txtAttackBuff").value -= -40;
+	$("txtNpGainBuff").value -= -45;
+    }
+*/
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    //下拉从者选中项发生变化事件
+    $("ddlServant").onchange = function () {
+/*
+        $("ckIsMaxGrail").checked = false;
+        $("ddlLvs").selectedIndex = 0;
+        $("txtFouAtk").value = 1000;
+        $("txtFouHp").value = 1000;
+*/
+	if($("ddlLvs").selectedIndex > 2) {
+	    $("ddlLvs").selectedIndex = 0;
+	}
+        $("txtNpSpecialAttack").value = 100;
+	initialEffects();
+    }
+    //OC等级选中项发生变化事件
+    $("ddlOvercharge").onchange = function () {
+        adjustOc();
+	this.oldvalue = this.value;
+    };
+    $("ddlSkill1").onchange = function () {
+	changeSkill(1);
+	this.oldvalue = this.value;
+    }
+    $("ddlSkill2").onchange = function () {
+        changeSkill(2);
+        this.oldvalue = this.value;
+    }
+    $("ddlSkill3").onchange = function () {
+        changeSkill(3);
+        this.oldvalue = this.value;
+    }
+    $("btnSwitchEffect").onclick = function () {
+	let id = $("ddlServant").value;
+	if(id == -1) { return; }
+	let servant = servants[id];
+	let i = 1, skill = {};
+	for(;i<=3;i++) {
+	    skill = servant["skill"+i];
+	    if(skill && skill.randomEffect) { break; }
+	}
+	let skillLv = $("ddlSkill"+i).value;
+        if(skillLv == -1) { return; }
+	let buff = skill.randomEffect;
+	let effectList = Object.keys(buff);
+        let currentEffect = effectList[this.count];
+        let currentBuff = buff[currentEffect];
+        switch(currentEffect) {
+            case "cardBuff":
+                let cardBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtCardBuff").value -= cardBuff;
+                break;
+            case "attackBuff":
+                let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtAttackBuff").value -= attackBuff;
+		break;
+	    case "npStrength":
+		let npStrength = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+		$("txtNpStrength").value -= npStrength;
+        }
+	this.count = (this.count + 1) % effectList.length;
+	currentEffect = effectList[this.count];
+	currentBuff = buff[currentEffect];
+        switch(currentEffect) {
+	    case "noEffect":
+		$("btnSwitchEffect").value = "切换 无效果";
+		break;
+            case "cardBuff":
+		$("btnSwitchEffect").value = "切换 卡牌buff";
+                let cardBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtCardBuff").value -= -cardBuff;
+                break;
+            case "attackBuff":
+		$("btnSwitchEffect").value = "切换 攻击buff";
+                let attackBuff = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+                $("txtAttackBuff").value -= -attackBuff;
+		break;
+	    case "npStrength":
+		$("btnSwitchEffect").value = "切换 宝威buff";
+		let npStrength = currentBuff[0] + Math.ceil((currentBuff[1] - currentBuff[0]) / 10 * skillLv * 10) / 10;
+		$("txtNpStrength").value -= -npStrength;
+        }
+    }
+    $("btnClearBuff").onclick = function() {
+        clearBuff();
+	bindSkill(1);
+	bindSkill(2);
+	bindSkill(3);
+        setOc();
+	for(let n=1;n<=5;n++) {
+	    for(let i=1;i<=3;i++) {
+		bindSupport(n,i);
+	    }
+	}
+    }
+
+    /***********************************************************/
+    //绑定从者基本信息
+    function bindServantData(id) {
+        let servant = servants[id];
+        //1.阵营
+        $("spanAttribute").innerHTML = servant.attribute;
+	//2.基本数据
+	if($("ddlLvs").selectedIndex > 2) {
+	    $("ddlLvs").selectedIndex = 0;
+	}
+	$("ddlNTarget").selectedIndex = servant.target - 1;
+	$("txtNHits").value = servant.hit;
+        $("txtAtk").value = servant.atk;
+        $("txtMaxHp").value = servant.hp;
+	$("txtBaseNp").value = servant.np;
+        if($("ddlLvs").selectedIndex > 0) {
+            adjLvs();
+        }
+        //3.宝具倍率
+        changeNpCoefficient();
+        //4.卡色
+        document.querySelector("#ddlColor option[value='" + servant.cardColor + "']").selected = true;
+        //5.从者职介
+        let Classes = $("ddlClass").options;
+        for (let i = 0, l = Classes.length; i < l; i++) {
+            let Class = Classes[i];
+            if (Class.text == servant.Class) {
+                Class.selected = true;
+            }
+        }
+        //6.职介技能
+        bindClassSkill(servant);
+        //7.宝具副效果补充(oc特攻只能展示一种副效果，如：1001的oc特攻只展示了宝具特攻，副效果的20宝具威力buff没展示，在这进行补充)
+        bindNpEffect(servant);
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+
+    var resultArr = [];
+    var rankIndex = 0;
+    var guid = 0;
+    var cardNpBase = [1, 3, 0];
+    //计算宝具伤害
+    function calc() {
+	$("txtAttackBuff").value = Math.round($("txtAttackBuff").value * 10) / 10;
+	$("txtEnemyDefence1").value = Math.round($("txtEnemyDefence1").value * 10) / 10;
+	$("txtEnemyDefence2").value = Math.round($("txtEnemyDefence2").value * 10) / 10;
+	$("txtEnemyDefence3").value = Math.round($("txtEnemyDefence3").value * 10) / 10;
+	$("txtCardBuff").value = Math.round($("txtCardBuff").value * 10) / 10;
+	$("txtCardResist1").value = Math.round($("txtCardResist1").value * 10) / 10;
+	$("txtCardResist2").value = Math.round($("txtCardResist2").value * 10) / 10;
+	$("txtCardResist3").value = Math.round($("txtCardResist3").value * 10) / 10;
+	$("txtNpStrength").value = Math.round($("txtNpStrength").value * 10) / 10;
+	$("txtSpecialAttack").value = Math.round($("txtSpecialAttack").value * 10) / 10;
+	$("txtNpGainBuff").value = Math.round($("txtNpGainBuff").value * 10) / 10;
+	let id = $("ddlServant").value;
+        if (id == -1) {
+            alert("请选择从者")
+            return;
+        }
+        guid++;
+        //1.攻击力
+        let atk = getInt("txtAtk") + getInt("txtFouAtk") + getInt("txtCraftEssenceAtk");
+        //2.卡色
+        let cardColor = getFloat("ddlColor");
+        let cardNpCoef = cardNpBase[$("ddlColor").selectedIndex];
+        //3.宝具倍率(%)
+        let npCoef = getFloat("txtNpCoefficient") / 100;
+        //4.从者职介 
+        let Class = getFloat("ddlClass");
+        //5.职介克制
+        let ClassResist = [1, 1, 1];
+	let ClassResistMatrix = [];
+	switch($("ddlClass").selectedIndex) {
+	    case 0:
+		ClassResistMatrix = [1, 0.5, 2, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1];
+		break;
+	    case 1:
+                ClassResistMatrix = [2, 1, 0.5, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1];
+		break;
+	    case 2:
+                ClassResistMatrix = [0.5, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1];
+		break;
+	    case 3:
+                ClassResistMatrix = [1, 1, 1, 1, 2, 0.5, 2, 0.5, 1, 1, 1, 1, 1];
+		break;
+	    case 4:
+                ClassResistMatrix = [1, 1, 1, 0.5, 1, 2, 2, 0.5, 1, 1, 1, 1, 1];
+		break;
+	    case 5:
+                ClassResistMatrix = [1, 1, 1, 2, 0.5, 1, 2, 0.5, 1, 1, 1, 1, 1];
+		break;
+	    case 6:
+                ClassResistMatrix = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1, 1.5, 1.5, 0.5];
+		break;
+	    case 7:
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 0.5, 1, 2, 1, 1];
+		break;
+	    case 8:
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1];
+		break;
+	    case 9:
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+		break;
+	    case 10:
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 0.5, 2, 1, 1, 1, 1];
+		break;
+	    case 11:
+                ClassResistMatrix = [0.5, 0.5, 0.5, 1.5, 1.5, 1.5, 2, 1, 1, 1, 1, 1, 2];
+		break;
+	    case 12:
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0.5, 2];
+	}
+	let servant = servants[id];
+	let npEffect = servant.npEffect;
+	if(npEffect && npEffect.resistClass) {
+	    let ClassNo = -1;
+	    switch(npEffect.resistClass[0]) {
+		case "Saber":
+		    ClassNo = 0;
+		    break;
+		case "Archer":
+                    ClassNo = 1;
+                    break;
+		case "Lancer":
+                    ClassNo = 2;
+                    break;
+		case "Rider":
+                    ClassNo = 3;
+                    break;
+		case "Caster":
+                    ClassNo = 4;
+                    break;
+		case "Assassin":
+                    ClassNo = 5;
+                    break;
+		case "Berserker":
+                    ClassNo = 6;
+                    break;
+		case "Ruler":
+                    ClassNo = 7;
+                    break;
+		case "Avenger":
+                    ClassNo = 8;
+                    break;
+		case "Shielder":
+                    ClassNo = 9;
+                    break;
+		case "MoonCancer":
+                    ClassNo = 10;
+                    break;
+		case "Alterego":
+                    ClassNo = 11;
+                    break;
+		case "Foreigner":
+                    ClassNo = 12;
+	    }
+	    ClassResistMatrix[ClassNo] = npEffect.resistClass[1];
+	}
+        let nTarget = getInt("ddlNTarget");
+        for(let i=1;i<=nTarget;i++) {
+	    ClassResist[i-1] = ClassResistMatrix[$("ddlEnemyClass"+i).selectedIndex];
+	}
+        //6.阵营克制
+        let attributeResist = [1, 1, 1];
+	let attributeResistMatrix = [];
+	switch($("spanAttribute").innerHTML) {
+	    case "天":
+		attributeResistMatrix = [1, 1, 1.1, 0.9, 1, 1];
+		break;
+	    case "地":
+		attributeResistMatrix = [1, 0.9, 1, 1.1, 1, 1];
+		break;
+	    case "人":
+		attributeResistMatrix = [1, 1.1, 0.9, 1, 1, 1];
+		break;
+	    case "星":
+		attributeResistMatrix = [1, 1, 1, 1, 1, 1.1];
+		break;
+	    case "兽":
+		attributeResistMatrix = [1, 1, 1, 1, 1.1, 1];
+		break;
+	    default:
+		attributeResistMatrix = [1, 1, 1, 1, 1, 1];
+	}
+	for(let i=1;i<=nTarget;i++) {
+	    attributeResist[i-1] = attributeResistMatrix[$("ddlEnemyAttribute"+i).selectedIndex];
+	}
+        //7.攻击力Buff(%)
+        let attackBuff = getFloat("txtAttackBuff");
+        //8.敌方防御力Buff(%)
+	let enemyDefence = [0, 0, 0];
+	for(let i=1;i<=nTarget;i++){
+	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+i);
+	    enemyDefence[i-1] = Math.max(-100, enemyDefence[i-1]);
+	}
+        //9.卡牌Buff(%)
+        let cardBuff = getFloat("txtCardBuff");
+	let cardResist = [0, 0, 0];
+	for(let i=1;i<=nTarget;i++){
+	    cardResist[i-1] = getFloat("txtCardResist"+i);
+	}
+        //10.宝具威力Buff(%)
+        let npStrength = getFloat("txtNpStrength");
+        //11.特攻威力Buff(%)与宝具特攻(%)
+	let specialAttackBuff = [0, 0, 0];
+	let npSpecialAttack = [1, 1, 1];
+	for(let i=1;i<=nTarget;i++){
+	    if($("ckIsSpecialAttack"+i).checked) {
+		specialAttackBuff[i-1] = getFloat("txtSpecialAttack");
+		npSpecialAttack[i-1] = getFloat("txtNpSpecialAttack") / 100;
+	    }
+	}
+        //12.固定伤害Buff
+        let damagePlus = getFloat("txtDamagePlus");
+	//13.黄金律
+	let baseNp = Math.round(getFloat("txtBaseNp") * 100);
+        let npGainBuff = getFloat("txtNpGainBuff");
+        //14.礼装
+	switch($("ddlCraftEssence").selectedIndex) {
+	    case 3:
+		npGainBuff += 30;
+		break;
+	    case 4:
+		npStrength += 15;
+		break;
+	    case 5:
+		npStrength += 10;
+		if(cardColor == 1.5) {
+		    cardBuff += 10;
+		}
+		break;
+	    case 6:
+		attackBuff += 15;
+		break;
+	    case 7:
+	    case 8:
+	    case 9:
+	    case 10:
+		npStrength += 60;
+		break;
+	    case 11:
+		npStrength += 80;
+		break;
+            case 12:
+                npStrength += 10;
+                if(cardColor == 1) {
+                    cardBuff += 10;
+                }
+                break;
+            case 13:
+                if(cardColor == 1) {
+                    cardBuff += 10;
+                }
+		npGainBuff += 10;
+                break;
+            case 14:
+                npStrength += 10;
+                if(cardColor == 0.8) {
+                    cardBuff += 10;
+                }
+                break;
+	    case 15:
+		if(cardColor == 0.8) {
+                    cardBuff += 10;
+                }
+                npGainBuff += 10;
+	}
+	//15.御主装备
+        npStrength += getInt("ddlMysticCode");
+	switch($("ddlMysticCode").selectedIndex) {
+	    case 1:
+		attackBuff += 30;
+		break;
+	    case 2:
+		npGainBuff += 50;
+		break;
+            case 3:
+                if(cardColor == 1.5) {
+                    cardBuff += 60;
+                }
+		break;
+	    case 4:
+		attackBuff += 50;
+                break;
+	    case 5:
+		if(cardColor == 0.8) {
+                    cardBuff += 50;
+                }
+                break;
+	    case 6:
+		if(cardColor == 0.8) {
+                    cardBuff += 30;
+                }
+                break;
+	    case 7:
+		if(cardColor == 1) {
+                    cardBuff += 50;
+                }
+                break;
+            case 8:
+                if(cardColor == 1) {
+                    cardBuff += 30;
+                }
+                break;
+	    case 9:
+		attackBuff += 20;
+		break;
+	    case 10:
+		attackBuff += 30;
+		break;
+	    case 11:
+		attackBuff += 40;
+		break;
+	    case 12:
+		if(cardColor == 1) {
+                    cardBuff += 30;
+                }
+		break;
+	    case 15:
+		npGainBuff += 40;
+		if(cardColor == 1.5) {
+		    cardBuff += 35;
+		}
+	}
+        /*
+            ATK×攻击补正(0.23)×宝具倍率×卡牌伤害倍率×(1+卡牌BUFF)×职阶补正×职阶相性补正×阵营相性>补正×乱数补正×(1+攻击力BUFF—敌方防御力BUFF—敌方特防威力BUFF)×(1+特攻威力BUFF+宝具威力BUFF)×宝具特攻
+            +(固定伤害BUFF—敌方固定伤害BUFF)
+        */
+	let resultMin = [0, 0, 0];
+	let overkill = [0, 0, 0];
+	let nHits = getInt("txtNHits");
+	for(let i=1;i<=nTarget;i++){
+	    resultMin[i-1] = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[i-1]) / 100) * Class * ClassResist[i-1] * attributeResist[i-1] * 0.9 * Math.max(0, 1 + (attackBuff - enemyDefence[i-1]) / 100) * (1 + (npStrength + specialAttackBuff[i-1]) / 100) * npSpecialAttack[i-1] + damagePlus;
+	    resultMin[i-1] = Math.floor(resultMin[i-1]);
+	    if($("ddlOverkillMode").selectedIndex == 0) {
+		overkill[i-1] = getInt("txtOverkill"+i);
+		resultMin[i-1] = Math.floor(resultMin[i-1] * parseInt($("spanOverkill"+i).innerHTML) / 100);
+	    }
+	    else {
+		let enemyHp = getInt("txtOverkill"+i);
+		if(enemyHp > resultMin[i-1]) {
+		    overkill[i-1] = 0;
+		    resultMin[i-1] = enemyHp - resultMin[i-1];
+		}
+		else {
+		    let damageDist = servant.damageDist;
+		    let perDamage = 0;
+		    let j = 0;
+		    let effectiveDamage = 0;
+		    for(;j<nHits-1;j++) {
+			perDamage += damageDist[j];
+                        effectiveDamage = Math.floor(resultMin[i-1] * perDamage / 100);
+			if(effectiveDamage >= enemyHp) { break; }
+		    }
+		    overkill[i-1] = nHits - j;
+		    if(j == 0) {
+                        resultMin[i-1] = 0;
+		    }
+		    else if(j == nHits-1) {
+			resultMin[i-1] = enemyHp - effectiveDamage;
+		    }
+		    else {
+			perDamage -= damageDist[j];
+			effectiveDamage = Math.floor(resultMin[i-1] * perDamage / 100);
+			resultMin[i-1] = enemyHp - effectiveDamage;
+		    }
+		}
+	    }
+	}
+        let resultAvg = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
+        resultAvg = Math.floor(resultAvg);
+	let resultMax = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * 1.1 * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
+        resultMax = Math.floor(resultMax);
+
+	let npGain = 0;
+	for(let i=1;i<=nTarget;i++){
+	    let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + (cardBuff - cardResist[i-1]) / 100);
+	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+i);
+	    if ($("ckIsUndying"+i).checked) {
+		npGainNormal *= 1.2;
+	    }
+	    npGainNormal = Math.floor(npGainNormal);
+	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
+	    npGain += (npGainOverkill - npGainNormal) * overkill[i-1] + npGainNormal * nHits;
+	}
+	if(servant.oc.type == "ChargeNp") {
+	    let ocLevel = $("ddlOvercharge").value;
+	    npGain += servant.oc[ocLevel] * 100;
+	}
+	for(let i=1;i<=3;i++) {
+	    let skill = servant["skill"+i];
+	    let noMiss = $("ckNoMiss"+i).checked;
+	    if(skill && skill.randomChargeNp && noMiss) {
+		npGain += skill.randomChargeNp * 100;
+	    }
+	}
+	let ClassSkill = servant.ClassSkill;
+	if(ClassSkill && ClassSkill.chargeNp) {
+	    npGain += ClassSkill.chargeNp * 100;
+	}
+	if(npEffect && npEffect.chargeNp) {
+	    npGain += npEffect.chargeNp * 100;
+	}
+
+        let servantName = getDdlText("ddlServant");
+        let NP = getDdlText("ddlNpLevel");
+        let oc = getDdlText("ddlOvercharge");
+        if ($("ckIsMaxGrail").checked) {
+            servantName = "<span class='text-gradient'>" + servantName + "</span>";
+        }
+        let ClassResistType = ["normal", "normal", "normal"];//非克制
+	for(let i=0;i<nTarget;i++) {
+            if (ClassResist[i] > 1) {//克制
+                ClassResistType[i] = "weak";
+            }
+            else if (ClassResist[i] < 1) {//被克制
+                ClassResistType[i] = "resist";
+            }
+	}
+	for(let i=nTarget;i<3;i++) {
+	    ClassResistType[i] = "notTarget";
+	}
+        let model = {
+            guid: guid,
+            servantName: servantName,
+	    lv:getDdlText("ddlLvs"),
+            atk: atk,
+	    NP: NP,
+            cardColor: cardColor,
+            npCoef: npCoef * 100,
+            oc: oc,
+            attackBuff: attackBuff - enemyDefence[0],
+            cardBuff: cardBuff - cardResist[0],
+            npStrength: npStrength + specialAttackBuff[0],
+            npSpecialAttack: npSpecialAttack[0] * 100,
+	    npGainBuff: npGainBuff,
+            min: resultMin,
+            avg: resultAvg,
+	    max: resultMax,
+            ClassResistType: ClassResistType,
+	    npGain: npGain / 100,
+	    overkill: overkill
+        };
+        resultArr.push(model);
+        showResult();
+        reSort();
+        resizeParentWindow();
+    }
+    //从大到小重新排序
+    function reSort() {
+        resultArr.sort(compare("avg"));
+        clearTable();
+        for (let i = 0, l = resultArr.length; i < l; i++) {
+            createTr(resultArr[i]);
+        }
+    }
+    //删除指定行
+    function delTr(obj, guid) {
+        for (let i = 0, l = resultArr.length; i < l; i++) {
+            if (resultArr[i].guid == guid) {
+                resultArr.remove(i);
+		break;
+            }
+        }
+        let deleteRow = obj.parentElement.parentElement;
+        deleteRow.parentElement.removeChild(deleteRow);
+        reSort();
+        if (!resultArr || resultArr.length <= 0) {
+            hidResult();
+        }
+        resizeParentWindow();
+    }
+    //清空table
+    function clearTable(obj) {
+        if (obj == 1) {//清空resultArr数组
+            resultArr.length = 0;
+            hidResult();
+        }
+        rankIndex = 0;
+        let tb = $("tbResult");
+        let len = tb.rows.length;
+        //清空table数据
+        for (let i = len - 1; i > 0; i--) {
+            tb.deleteRow(i);
+        }
+        resizeParentWindow();
+    }
+    //新增Tr
+    function createTr(obj) {
+        rankIndex++;
+        let tb = $("tbResult");
+        let newRow = tb.insertRow(-1);
+        //1.排名
+        newRow.insertCell(-1).innerHTML = rankIndex;
+        //2.从者
+        newRow.insertCell(-1).innerHTML = obj.servantName;
+        //3.等级
+        newRow.insertCell(-1).innerHTML = obj.lv;      
+        //4.ATK          
+        newRow.insertCell(-1).innerHTML = obj.atk;
+        //5.宝具等级(oc)
+        newRow.insertCell(-1).innerHTML = obj.NP + "(" + obj.oc + ")";
+        //6.宝具倍率      
+        newRow.insertCell(-1).innerHTML = "<span style='color:" + getColor(obj.cardColor) + ";font-weight:bold;'>" + Math.round(obj.npCoef * 10) / 10 + "</span>"
+        //7.攻击力Buff
+        newRow.insertCell(-1).innerHTML = obj.attackBuff;
+        //8.卡牌Buff
+        newRow.insertCell(-1).innerHTML = obj.cardBuff;
+        //9.宝具威力Buff
+        newRow.insertCell(-1).innerHTML = obj.npStrength;
+        //10.宝具特攻(oc)  
+        newRow.insertCell(-1).innerHTML = obj.npSpecialAttack;
+	//11.黄金律
+	newRow.insertCell(-1).innerHTML = obj.npGainBuff;
+        //12.宝具伤害最小值    
+        let min1 = newRow.insertCell(-1);
+        min1.innerHTML = obj.min[0] + "(" + obj.overkill[0] + ")";
+        min1.classList.add(obj.ClassResistType[0]);
+        //13.宝具伤害平均值和最大值
+        let avg = newRow.insertCell(-1);
+        avg.innerHTML = obj.avg;
+        avg.classList.add(obj.ClassResistType[0]);
+	let max1 = newRow.insertCell(-1);
+        max1.innerHTML = obj.max;
+        max1.classList.add(obj.ClassResistType[0]);
+        //14.宝具伤害最小值
+        let min2 = newRow.insertCell(-1);
+        min2.innerHTML = obj.min[1] + "(" + obj.overkill[1] + ")";
+        min2.classList.add(obj.ClassResistType[1]);
+        //15.宝具伤害最小值
+        let min3 = newRow.insertCell(-1);
+        min3.innerHTML = obj.min[2] + "(" + obj.overkill[2] + ")";
+        min3.classList.add(obj.ClassResistType[2]);
+	//16.NP获取
+	newRow.insertCell(-1).innerHTML = obj.npGain.toFixed(2);
+        //17.删除操作     
+        newRow.insertCell(-1).innerHTML = "<a href='javascript:;' onclick='delTr(this," + obj.guid + ")'>删</a>"
+    }
+    //获取宝具颜色
+    function getColor(num) {
+        switch (num) {
+            case 1.5:
+                return "red";
+            case 1:
+                return "blue";
+            case 0.8:
+                return "green";
+        }
+    }
+</script>
