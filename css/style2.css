@@ -1,0 +1,104 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /**禁用移动端font boosting特性，解决移动端文字字体变大的问题**/
+    max-height: 99999px;
+    -webkit-text-size-adjust: none;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+table th, table td {
+    border: 1px solid #000;
+    padding: 5px;
+}
+
+.result {
+    font-size: 12px;
+    text-align: center;
+}
+
+.servant, .result {
+    width: 100%;
+}
+
+.servant tr:nth-child(1), .servant tr:nth-child(8), .servant tr:nth-child(14), .servant tr:last-child{
+    text-align: center;
+}
+
+.close {
+    font-weight: bold;
+    font-size: 46px;
+    line-height: 46px;
+}
+
+.resultWrapper {
+    display: none;
+}
+
+input[type="checkbox"], input[type="radio"], select {
+    vertical-align: middle;
+}
+
+input[type="button"] {
+    padding: 1px 6px;
+}
+
+/****清除浮动*****/
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+/**字体颜色渐变**/
+.text-gradient {
+    display: block;
+    word-wrap: normal;
+    font-weight: bold;
+    font-family: helvetica;
+    text-align: center;
+    background: -webkit-linear-gradient(left, #4f185d, #fe5d4b); /* 背景色渐变 */
+    -webkit-background-clip: text; /* 规定背景的划分区域 */
+    -webkit-text-fill-color: transparent; /* 防止字体颜色覆盖 */
+}
+
+/*克制、被克制、非克制样式*/
+.weak, .resist, .normal {
+    font-weight: bold;
+}
+
+.weak {
+    color: red;
+}
+
+.resist {
+    color: blue;
+}
+
+.notTarget {
+    color: white;
+}
+
+.search {
+    width: 200px;
+}

@@ -595,7 +595,7 @@ function initialServantList() {
     let nCount = 0;
     let serverValue = 0;
     servants.forEach(function(servant){
-        if(servant.NP[0] > 0 && (star == -1 || servant.star == star) && (Class == -1 || servant.Class == Class) && (color == -1 || servant.cardColor == color) && (nTarget == -1 || servant.target == nTarget)) {
+        if((star == -1 || servant.star == star) && (Class == -1 || servant.Class == Class) && (color == -1 || servant.cardColor == color) && (nTarget == -1 || servant.target == nTarget)) {
 	    if(server == -1) {
 		$("ddlServant").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	    }
