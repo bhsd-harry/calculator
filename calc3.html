@@ -180,11 +180,9 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-<!--
 		    <label for="ckNoMiss1" onchange="randomSkill(1)">
                         <input type="checkbox" id="ckNoMiss1" /> 命中
                     </label>
--->
                 </td>
                 <td>技能2</td>
                 <td>
@@ -201,11 +199,9 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-<!--
                     <label for="ckNoMiss2" onchange="randomSkill(2)">
                         <input type="checkbox" id="ckNoMiss2" /> 命中
                     </label>
--->
                 </td>
                 <td>技能3</td>
                 <td>
@@ -222,12 +218,10 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-<!--
                     <label for="ckNoMiss3" onchange="randomSkill(3)">
                         <input type="checkbox" id="ckNoMiss3" /> 命中
                     </label>
 		    <input type="button" value="切换" id="btnSwitchEffect" count=0 />
--->
                 </td>
 	    </tr>
 	    <tr>
@@ -761,7 +755,7 @@
 	    $("ddlSupport"+n+"Skill"+i).selectedIndex = 10;
 	}
     }
-//    initialEffects();
+    initialEffects();
 
     $("ddlServer").onchange = function () {
 	initialServantList();

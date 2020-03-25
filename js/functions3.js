@@ -708,34 +708,8 @@ function initialEffects() {
     }
     let id = $("ddlServant").value;
     if (id != -1) {
-	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","txtAtk","txtFouAtk","txtCraftEssenceAtk","txtBaseNp","ddlNpLevel","txtNpCoefficient","txtNHits","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","txtAttackBuff","txtEnemyDefence1","txtCardBuff","txtCardResist1","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","txtOverkill1","btnClearBuff","btnCalculate");
+	abling("ckIsMaxGrail","ddlLvs","ddlClass","ddlColor","ckIsCritical","txtAtk","txtFouAtk","txtCraftEssenceAtk","ddlOrder","ckIsFirstBuster","ddlCraftEssence","ddlEnemyClass","ddlEnemyAttribute","ckIsSpecialAttack","txtEnemyDefence","txtCardResist","ddlMysticCode","txtSpecialAttack","txtAttackBuff","txtNpStrength","txtBusterBuff","txtArtsBuff","txtQuickBuff","txtDamagePlus","btnClearBuff","btnCalculate");
         let servant = servants[id];
-        let npEffect = servant.npEffect;
-        let ocs = servant.oc;
-	if($("ddlOverkillMode").selectedIndex == 0) {
-	    abling("btnAdjOverkill");
-	    $("spanOverkillLabel1").innerHTML="敌人1鞭尸";
-            $("spanOverkillLabel2").innerHTML="敌人2鞭尸";
-            $("spanOverkillLabel3").innerHTML="敌人3鞭尸";
-	}
-	else {
-	    disabling("btnAdjOverkill");
-            $("spanOverkillLabel1").innerHTML="敌人1血量";
-            $("spanOverkillLabel2").innerHTML="敌人2血量";
-            $("spanOverkillLabel3").innerHTML="敌人3血量";
-	}
-        if((npEffect && npEffect.npRemainHpDamage) || ocs.type == "NpRemainHpDamage") {
-            abling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
-        }
-        else {
-            disabling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
-        }
-        if(ocs.oc1 == ocs.oc5) {
-            disabling("ddlOvercharge");
-        }
-        else {
-            abling("ddlOvercharge");
-        }
         disabling("btnAccumulate","btnSwitchEffect");
 	$("btnSwitchEffect").value = "切换";
         for(let i=1;i<=3;i++) {
@@ -762,8 +736,8 @@ function initialEffects() {
 	if(npEffect && npEffect.accAttackBuff) {
 	    abling("btnAccumulate");
 	}
+/*
         bindServantData(id);
-        adjHp()
         clearBuff();
 	bindSkill(1);
 	bindSkill(2);
@@ -774,18 +748,10 @@ function initialEffects() {
 		$("ddlSupport"+n+"Skill"+i).oldvalue = $("ddlSupport"+n+"Skill"+i).value;
 	    }
 	}
-        setOc();
-	if($("ddlNTarget").selectedIndex == 0) {
-            disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
-        }
-        else {
-            abling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
-        }
-        $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
+*/
 	$("ddlSkill1").oldvalue = $("ddlSkill1").value;
 	$("ddlSkill2").oldvalue = $("ddlSkill2").value;
 	$("ddlSkill3").oldvalue = $("ddlSkill3").value;
-        $("btnAdjOverkill").value = "全鞭尸";
 	if(servant.star == $("ddlLvs").oldvalue) { return; }
 	let nLvs = $("ddlLvs").length;
 	for(let i=3;i<nLvs;i++) {
@@ -808,17 +774,19 @@ function initialEffects() {
 	$("ddlLvs").oldvalue = servant.star;
     }
     else {
-	abling("ckIsMaxGrail","ddlLvs","txtFouAtk","txtCraftEssenceAtk","txtFouHp","txtCraftEssenceHp","ddlNpLevel","ddlOvercharge","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtOverkill1","txtOverkill2","txtOverkill3");
+	abling("ckIsMaxGrail","ddlLvs","ddlColor","ckIsCritical","txtFouAtk","txtCraftEssenceAtk","ddlOrder","ckIsFirstBuster","ddlCraftEssence","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","ddlEnemyClass","ddlEnemyAttribute","ckIsSpecialAttack","ddlMysticCode");
 	let nLvs = $("ddlLvs").length;
         for(let i=3;i<nLvs;i++) {
             $("ddlLvs").remove(3);
         }
         $("ddlLvs").oldvalue = 5;
-	disabling("ddlClass","ddlColor","txtAtk","txtBaseNp","txtMaxHp","txtRemainHp","btnAdjHp","txtNpCoefficient","ddlNTarget","btnSwitchEffect","txtNHits","btnAdjOverkill","txtAttackBuff","txtEnemyDefence1","txtEnemyDefence2","txtEnemyDefence3","txtCardBuff","txtCardResist1","txtCardResist2","txtCardResist3","txtNpStrength","txtSpecialAttack","txtNpSpecialAttack","txtDamagePlus","txtNpGainBuff","btnAccumulate","btnClearBuff","btnCalculate");
+	disabling("ddlClass","txtAtk","btnSwitchEffect","txtEnemyDefence","txtCardResist","txtSpecialAttack","txtAttackBuff","txtNpStrength","txtBusterBuff","txtArtsBuff","txtQuickBuff","txtDamagePlus","btnAccumulate","btnClearBuff","btnCalculate");
 	$("btnSwitchEffect").value = "切换";
 	$("spanAttribute").innerHTML = "";
-	$("txtEnemyDefence1").basevalue = 0;
-	$("txtCardBuff").basevalue = 0;
+	$("txtEnemyDefence").basevalue = 0;
+	$("txtBusterBuff").basevalue = 0;
+	$("txtArtsBuff").basevalue = 0;
+	$("txtQuickBuff").basevalue = 0;
 	$("txtNpStrength").basevalue = 0;
 	$("txtDamagePlus").basevalue = 0;
 	clearBuff();
