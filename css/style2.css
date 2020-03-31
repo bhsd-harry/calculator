@@ -33,7 +33,7 @@ table th, table td {
     width: 100%;
 }
 
-.servant tr:nth-child(1), .servant tr:nth-child(8), .servant tr:nth-child(14), .servant tr:last-child{
+.servant tr:nth-child(1), .servant tr:nth-child(9), .servant tr:nth-child(15), .servant tr:last-child{
     text-align: center;
 }
 

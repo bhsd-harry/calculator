@@ -289,9 +289,7 @@
                         <option value="1-7">Alterego</option>
                         <option value="1-8">Foreigner</option>
                     </select>
-                    <label for="ckIsUndying1">
-                        <input type="checkbox" id="ckIsUndying1" /> np补正
-                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy1" onclick="applyEnemy(1)"/>
                 </td>
                 <td>敌人2</td>
                 <td>
@@ -310,9 +308,7 @@
                         <option value="1-7">Alterego</option>
                         <option value="1-8">Foreigner</option>
                     </select>
-                    <label for="ckIsUndying2">
-                        <input type="checkbox" id="ckIsUndying2" /> np补正
-                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy2" onclick="applyEnemy(2)"/>
                 </td>
                 <td>敌人3</td>
                 <td>
@@ -331,9 +327,7 @@
                         <option value="1-7">Alterego</option>
                         <option value="1-8">Foreigner</option>
                     </select>
-                    <label for="ckIsUndying3">
-                        <input type="checkbox" id="ckIsUndying3" /> np补正
-                    </label>
+                    <input type="button" value="应用" id="btnApplyEnemy3" onclick="applyEnemy(3)"/>
                 </td>
             </tr>
 	    <tr>
@@ -368,10 +362,9 @@
                         <option value=4>星</option>
                         <option value=5>兽</option>
                     </select>
-                    <label for="ckIsSpecialAttack1">
-                        <input type="checkbox" id="ckIsSpecialAttack1" /> 特攻
+                    <label for="ckIsUndying1">
+                        <input type="checkbox" id="ckIsUndying1" /> np补正
                     </label>
-                    <input type="button" value="应用" id="btnApplyEnemy1" onclick="applyEnemy(1)"/>
                 </td>
                 <td>敌人2阵营</td>
                 <td>
@@ -383,10 +376,9 @@
                         <option value=4>星</option>
                         <option value=5>兽</option>
                     </select>
-                    <label for="ckIsSpecialAttack2">
-                        <input type="checkbox" id="ckIsSpecialAttack2" /> 特攻
+                    <label for="ckIsUndying2">
+                        <input type="checkbox" id="ckIsUndying2" /> np补正
                     </label>
-                    <input type="button" value="应用" id="btnApplyEnemy2" onclick="applyEnemy(2)"/>
                 </td>
                 <td>敌人3阵营</td>
                 <td>
@@ -398,10 +390,84 @@
                         <option value=4>星</option>
                         <option value=5>兽</option>
                     </select>
-                    <label for="ckIsSpecialAttack3">
-                        <input type="checkbox" id="ckIsSpecialAttack3" /> 特攻
+                    <label for="ckIsUndying3">
+                        <input type="checkbox" id="ckIsUndying3" /> np补正
                     </label>
-                    <input type="button" value="应用" id="btnApplyEnemy3" onclick="applyEnemy(3)"/>
+                </td>
+            </tr>
+	    <tr>
+		<td>计算模式</td>
+		<td>
+		    <select id="ddlCalculator" disabled=true >
+			<option value=0>宝具</option>
+			<option value=1>指令卡</option>
+		    </select>
+		</td>
+		<td>敌人1特攻重数</td>
+		<td>
+		    <select id="ddlNSpecialAttack1">
+			<option value=0>无</option>
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+		    </select>
+                    <label for="ckIsSpecialAttack1">
+                        <input type="checkbox" id="ckIsSpecialAttack1" /> 宝具特攻
+                    </label>
+		</td>
+                <td>敌人2特攻重数</td>
+                <td>
+                    <select id="ddlNSpecialAttack2">
+                        <option value=0>无</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                    </select>
+                    <label for="ckIsSpecialAttack2">
+                        <input type="checkbox" id="ckIsSpecialAttack2" /> 宝具特攻
+                    </label>
+                </td>
+                <td>敌人3特攻重数</td>
+                <td>
+                    <select id="ddlNSpecialAttack3">
+                        <option value=0>无</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                    </select>
+                    <label for="ckIsSpecialAttack3">
+                        <input type="checkbox" id="ckIsSpecialAttack3" /> 宝具特攻
+                    </label>
+                </td>
+	    <tr>
+            <tr>
+		<td>鞭尸模式</td>
+		<td>
+                    <select id="ddlOverkillMode">
+                        <option value=0>输入鞭尸数</option>
+                        <option value=1>输入血量</option>
+                    </select>
+		</td>
+                <td>
+                    <span id="spanOverkillLabel1">敌人1鞭尸</span>
+                </td>
+                <td>
+                    <input type="text" id="txtOverkill1" value="0" size=14px anothervalue="0"/>
+                    <span id="spanOverkill1">100%</span>
+                </td>
+                <td>
+                    <span id="spanOverkillLabel2">敌人2鞭尸</span>
+                </td>
+                <td>
+                    <input type="text" id="txtOverkill2" value="0" size=14px anothervalue="0"/>
+                    <span id="spanOverkill2">100%</span>
+                </td>
+                <td>
+                    <span id="spanOverkillLabel3">敌人3鞭尸</span>
+                </td>
+                <td>
+                    <input type="text" id="txtOverkill3" value="0" size=14px anothervalue="0"/>
+                    <span id="spanOverkill3">100%</span>
                 </td>
             </tr>
             <tr>
@@ -458,36 +524,31 @@
                     <input type="text" id="txtDamagePlus" value="0" basevalue=0 />
                 </td>
             </tr>
-            <tr>
+	    <tr>
                 <td>黄金律(%)</td>
                 <td>
                     <input type="text" id="txtNpGainBuff" value="0" basevalue=0 />
                 </td>
-                <td>
-		    <span id="spanOverkillLabel1">敌人1鞭尸</span>
+		<td>np固定获取</td>
+		<td>
+		    <input type="text" id="txtNpCharge" value="0" />
 		</td>
+                <td>倍卡效果(%)</td>
                 <td>
-                    <input type="text" id="txtOverkill1" value="0" size=14px anothervalue="0"/>
-		    <span id="spanOverkill1">100%</span>
+                    <input type="text" id="txtExtraEffect" value="0" />
                 </td>
-                <td>
-		    <span id="spanOverkillLabel2">敌人2鞭尸</span>
+		<td>暴伤Buff(%)</td>
+		<td>
+		    <input type"text" id="txtCriticalBuff" value="0" disabled=true />
 		</td>
-                <td>
-                    <input type="text" id="txtOverkill2" value="0" size=14px anothervalue="0"/>
-                    <span id="spanOverkill2">100%</span>
-                </td>
-                <td>
-		    <span id="spanOverkillLabel3">敌人3鞭尸</span>
-		</td>
-                <td>
-                    <input type="text" id="txtOverkill3" value="0" size=14px anothervalue="0"/>
-                    <span id="spanOverkill3">100%</span>
-                </td>
-            </tr>
+	    </tr>
+	    <tr>
+		<td>特殊说明</td>
+		<td colspan="7">未填写</td>
+	    </tr>
 	    <tr>
 		<td colspan="8">
-		    你可以在上面的各文本框中自行输入队友buff（支持文本框内的四则运算），也可以使用下面的从者列表
+		    你可以在上面的各文本框中自行输入队友Buff（支持文本框内的四则运算），也可以使用下面的从者列表
 		    <input type="button" value="清空队友" id="btnClearSupport"/>
 		</td>
 	    </tr>
@@ -818,7 +879,7 @@
             </tr>
             <tr>
                 <td colspan="8">
-		    你也可以自定义礼装等固定buff（支持文本框内的四则运算），需点击“清空”或切换从者后生效；自定义buff可用于宝具伤害排行
+		    你也可以自定义礼装等固定Buff（支持文本框内的四则运算），需点击“清空”或切换从者后生效；自定义Buff可用于宝具伤害排行
 		    <input type="button" value="清空自定义Buff" id="btnClearCe" />
 		</td>
             </tr>
@@ -849,21 +910,40 @@
                 <td>
                     <input type="text" id="txtCeSpecialAttack" value="0" />
                 </td>
-                <td>黄金律(%)</td>
+                <td>暴伤Buff(%)</td>
                 <td>
-                    <input type="text" id="txtCeNpGainBuff" value="0" />
+                    <input type="text" id="txtCeCriticalBuff" value="0" />
                 </td>
                 <td>固定伤害Buff</td>
                 <td>
                     <input type="text" id="txtCeDamagePlus" value="0" />
                 </td>
             </tr>
+	    <tr>
+                <td>黄金律(%)</td>
+                <td>
+                    <input type="text" id="txtCeNpGainBuff" value="0" />
+                </td>
+		<td>np固定获取
+		<td>
+		    <input type="text" id="txtCeNpCharge" value="0" />
+		</td>
+		<td>倍卡卡色</td>
+		<td>
+		    <select id="ddlExtraEffectColor" >
+			<option value=0>任意</option>
+			<option value=0.8>Quick</option>
+			<option value=1>Arts</option>
+			<option value=1.5>Buster</option>
+		    </select>
+		</td>
+		<td>倍卡效果(%)</td>
+		<td>
+		    <input type="text" id="txtCeExtraEffect" value="0" />
+		</td>
+	    </tr>
             <tr>
                 <td colspan="8">
-                    <select id="ddlOverkillMode"/>
-                        <option value=0>输入鞭尸数</option>
-                        <option value=1>输入血量</option>
-                    </select>
 		    <input type="button" value="累加" id="btnAccumulate" count=0 />
 <!--
 		    <input type="button" value="孔   明" id="btnAddZhuge" />
@@ -1197,10 +1277,10 @@
 	let n = this.value;
 	let i = 2;
 	for(;i<=n;i++) {
-	    abling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
+	    abling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"ddlNSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
 	}
 	for(;i<=3;i++) {
-	    disabling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
+	    disabling("ddlEnemyClass"+i,"ckIsUndying"+i,"btnApplyEnemy"+i,"ddlEnemyAttribute"+i,"ckIsSpecialAttack"+i,"ddlNSpecialAttack"+i,"txtEnemyDefence"+i,"txtCardResist"+i,"txtOverkill"+i);
 	}
 	if(n<2) {
 	    disabling("btnApplyEnemy1");
@@ -1610,8 +1690,8 @@
 	let specialAttackBuff = [0, 0, 0];
 	let npSpecialAttack = [1, 1, 1];
 	for(let i=1;i<=nTarget;i++){
+	    specialAttackBuff[i-1] = getFloat("txtSpecialAttack") * getInt("ddlNSpecialAttack"+i) + getFloat("txtExtraEffect");
 	    if($("ckIsSpecialAttack"+i).checked) {
-		specialAttackBuff[i-1] = getFloat("txtSpecialAttack");
 		npSpecialAttack[i-1] = getFloat("txtNpSpecialAttack") / 100;
 	    }
 	}
@@ -1777,7 +1857,7 @@
 	let resultMax = atk * 0.23 * npCoef * cardColor * (1 + (cardBuff - cardResist[0]) / 100) * Class * ClassResist[0] * attributeResist[0] * 1.1 * Math.max(0, 1 + (attackBuff - enemyDefence[0]) / 100) * (1 + (npStrength + specialAttackBuff[0]) / 100) * npSpecialAttack[0] + damagePlus;
         resultMax = Math.floor(resultMax);
 
-	let npGain = 0;
+	let npGain = getFloat("txtNpCharge") * 100;
 	for(let i=1;i<=nTarget;i++){
 	    let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + (cardBuff - cardResist[i-1]) / 100);
 	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+i);
@@ -1787,24 +1867,6 @@
 	    npGainNormal = Math.floor(npGainNormal);
 	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
 	    npGain += (npGainOverkill - npGainNormal) * overkill[i-1] + npGainNormal * nHits;
-	}
-	if(servant.oc.type == "ChargeNp") {
-	    let ocLevel = $("ddlOvercharge").value;
-	    npGain += servant.oc[ocLevel] * 100;
-	}
-	for(let i=1;i<=3;i++) {
-	    let skill = servant["skill"+i];
-	    let noMiss = $("ckNoMiss"+i).checked;
-	    if(skill && skill.randomChargeNp && noMiss) {
-		npGain += skill.randomChargeNp * 100;
-	    }
-	}
-	let ClassSkill = servant.ClassSkill;
-	if(ClassSkill && ClassSkill.chargeNp) {
-	    npGain += ClassSkill.chargeNp * 100;
-	}
-	if(npEffect && npEffect.chargeNp) {
-	    npGain += npEffect.chargeNp * 100;
 	}
 
         let servantName = getDdlText("ddlServant");

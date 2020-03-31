@@ -81,6 +81,9 @@ function randomSkill(label) {
         let npStrength = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtNpStrength").value -= (noMiss? -npStrength : npStrength);
     }
+    if(buff = skill.randomChargeNp) {
+	$("txtNpCharge").value -= (noMiss? -buff : buff);
+    }
 }
 function bindSkill(label) {
     let id = $("ddlServant").value;
@@ -171,6 +174,9 @@ function bindSkill(label) {
 		$("txtNpStrength").value -= -npStrength;
 	}
 	abling("btnSwitchEffect");
+    }
+    if((buff = skill.randomChargeNp) && noMiss) {
+	$("txtNpCharge").value -= -buff;
     }
 }
 function bindSupport(n,i) {
@@ -575,11 +581,17 @@ function applyEnemy(label) {
     let isUndying = $("ckIsUndying"+label).checked;
     let attribute = $("ddlEnemyAttribute"+label).selectedIndex;
     let isSpecialAttack = $("ckIsSpecialAttack"+label).checked;
+    let nSpecialAttack = $("ddlNSpecialAttack"+label).selectedIndex;
+    let hp = $("txtOverkill"+label).value;
     for(let i=1;i<=3;i++){
         $("ddlEnemyClass"+i).selectedIndex = Class;
         $("ckIsUndying"+i).checked = isUndying;
         $("ddlEnemyAttribute"+i).selectedIndex = attribute;
         $("ckIsSpecialAttack"+i).checked = isSpecialAttack;
+	$("ddlNSpecialAttack"+i).selectedIndex = nSpecialAttack;
+	if($("ddlOverkillMode").value == 1){
+	    $("txtOverkill"+i).value = hp;
+	}
     }
 }
 function initialServantList() {
@@ -776,10 +788,10 @@ function initialEffects() {
 	}
         setOc();
 	if($("ddlNTarget").selectedIndex == 0) {
-            disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+            disabling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","ddlNSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","ddlNSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
         }
         else {
-            abling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
+            abling("ddlNTarget","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","ddlNSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","ddlNSpecialAttack3","btnApplyEnemy3","txtEnemyDefence2","txtEnemyDefence3","txtCardResist2","txtCardResist3","txtOverkill2","txtOverkill3");
         }
         $("ddlOvercharge").oldvalue = $("ddlOvercharge").value;
 	$("ddlSkill1").oldvalue = $("ddlSkill1").value;
@@ -808,7 +820,7 @@ function initialEffects() {
 	$("ddlLvs").oldvalue = servant.star;
     }
     else {
-	abling("ckIsMaxGrail","ddlLvs","txtFouAtk","txtCraftEssenceAtk","txtFouHp","txtCraftEssenceHp","ddlNpLevel","ddlOvercharge","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","btnApplyEnemy3","txtOverkill1","txtOverkill2","txtOverkill3");
+	abling("ckIsMaxGrail","ddlLvs","txtFouAtk","txtCraftEssenceAtk","txtFouHp","txtCraftEssenceHp","ddlNpLevel","ddlOvercharge","ddlSkill1","ckNoMiss1","ddlSkill2","ckNoMiss2","ddlSkill3","ckNoMiss3","ddlCraftEssence","ddlEnemyClass1","ckIsUndying1","ddlEnemyClass2","ckIsUndying2","ddlEnemyClass3","ckIsUndying3","ddlMysticCode","ddlEnemyAttribute1","ckIsSpecialAttack1","ddlNSpecialAttack1","btnApplyEnemy1","ddlEnemyAttribute2","ckIsSpecialAttack2","ddlNSpecialAttack2","btnApplyEnemy2","ddlEnemyAttribute3","ckIsSpecialAttack3","ddlNSpecialAttack3","btnApplyEnemy3","txtOverkill1","txtOverkill2","txtOverkill3");
 	let nLvs = $("ddlLvs").length;
         for(let i=3;i<nLvs;i++) {
             $("ddlLvs").remove(3);
@@ -906,6 +918,12 @@ function bindClassSkill(servant) {
     else {
 	$("txtNpGainBuff").basevalue = 0;
     }
+    if(ClassSkill && ClassSkill.chargeNp) {
+        $("txtNpCharge").value = ClassSkill.chargeNp;
+    }
+    else {
+	$("txtNpCharge").value = "0";
+    }
 }
 //宝具副效果补充
 function bindNpEffect(servant) {
@@ -930,6 +948,9 @@ function bindNpEffect(servant) {
     }
     if (npEffect && npEffect.npCoefficient) {
         $("txtNpCoefficient").value = npEffect.npCoefficient;
+    }
+    if(npEffect && npEffect.chargeNp) {
+        $("txtNpCharge").value -= -npEffect.chargeNp;
     }
 }
 function clearBuff(){
@@ -1025,6 +1046,9 @@ function setOc() {
             break;
         case "SpecialAttackBuff": //杰克女性特攻
             $("txtSpecialAttack").value = ocs[ocLevel];
+	    break;
+	case "ChargeNp":
+	    $("txtNpCharge").value -= -ocs[ocLevel];
     }
 }
 function adjustOc(){
@@ -1080,5 +1104,8 @@ function adjustOc(){
             break;
         case "SpecialAttackBuff":
             $("txtSpecialAttack").value -= ocs[oldocLevel] - ocs[ocLevel];
+	    break;
+	case "ChargeNp":
+	    $("txtNpCharge").value -= ocs[oldocLevel] - ocs[ocLevel];
     }
 }
