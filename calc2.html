@@ -531,7 +531,7 @@
                 </td>
 		<td>np固定获取</td>
 		<td>
-		    <input type="text" id="txtNpCharge" value="0" />
+		    <input type="text" id="txtNpCharge" value="0" basevalue=0 />
 		</td>
                 <td>倍卡效果(%)</td>
                 <td>
@@ -912,7 +912,7 @@
                 </td>
                 <td>暴伤Buff(%)</td>
                 <td>
-                    <input type="text" id="txtCeCriticalBuff" value="0" />
+                    <input type="text" id="txtCeCriticalBuff" value="0" disabled=true/>
                 </td>
                 <td>固定伤害Buff</td>
                 <td>
@@ -1351,6 +1351,8 @@
 	$("txtCeSpecialAttack").value = 0;
 	$("txtCeNpGainBuff").value = 0;
 	$("txtCeDamagePlus").value = 0;
+	$("txtCeNpCharge").value = 0;
+	$("txtCeExtraEffect").value = 0;
     }
     //队友buff
 /*

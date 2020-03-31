@@ -919,10 +919,10 @@ function bindClassSkill(servant) {
 	$("txtNpGainBuff").basevalue = 0;
     }
     if(ClassSkill && ClassSkill.chargeNp) {
-        $("txtNpCharge").value = ClassSkill.chargeNp;
+        $("txtNpCharge").basevalue = ClassSkill.chargeNp;
     }
     else {
-	$("txtNpCharge").value = "0";
+	$("txtNpCharge").basevalue = 0;
     }
 }
 //宝具副效果补充
@@ -950,7 +950,7 @@ function bindNpEffect(servant) {
         $("txtNpCoefficient").value = npEffect.npCoefficient;
     }
     if(npEffect && npEffect.chargeNp) {
-        $("txtNpCharge").value -= -npEffect.chargeNp;
+        $("txtNpCharge").basevalue -= -npEffect.chargeNp;
     }
 }
 function clearBuff(){
@@ -969,6 +969,8 @@ function clearBuff(){
     $("txtSpecialAttack").value = 0;
     $("txtDamagePlus").value = $("txtDamagePlus").basevalue;
     $("txtNpGainBuff").value = $("txtNpGainBuff").basevalue;
+    $("txtNpCharge").value = $("txtNpCharge").basevalue;
+    $("txtExtraEffect").value = 0;
     if($("ddlOverkillMode").selectedIndex == 0) {
 	$("txtOverkill1").value = 0;
         $("txtOverkill2").value = 0;
@@ -984,7 +986,8 @@ function clearBuff(){
     $("spanOverkill3").innerHTML = "100%";
     $("txtAttackBuff").value -= -$("txtCeAttackBuff").value;
     let ceCardBuff = 0;
-    switch(getFloat("ddlColor")){
+    let color = getFloat("ddlColor");
+    switch(color){
         case 1.5:
             ceCardBuff = getFloat("txtCeBusterBuff");
             break;
@@ -999,6 +1002,12 @@ function clearBuff(){
     $("txtSpecialAttack").value -= -$("txtCeSpecialAttack").value;
     $("txtNpGainBuff").value -= -$("txtCeNpGainBuff").value;
     $("txtDamagePlus").value -= -$("txtCeDamagePlus").value;
+    $("txtNpCharge").value -= -$("txtCeNpCharge").value;
+    $("txtCriticalBuff").value -= -$("txtCeCriticalBuff").value;
+    let extraEffectColor = getFloat("ddlExtraEffectColor");
+    if(extraEffectColor == 0 || extraEffectColor == color) {
+	$("txtExtraEffect").value -= -$("txtCeExtraEffect").value;
+    }
 }
 //根据OC重设所有buff
 function setOc() {
