@@ -641,10 +641,10 @@ function initialSupportList() {
     let oldLength = $("ddlSupport1").length;
     for(let i=oldLength;i>0;i--){
         $("ddlSupport1").remove(i);
-        $("ddlSupport1").remove(i);
-        $("ddlSupport1").remove(i);
-        $("ddlSupport1").remove(i);
-        $("ddlSupport1").remove(i);
+        $("ddlSupport2").remove(i);
+        $("ddlSupport3").remove(i);
+        $("ddlSupport4").remove(i);
+        $("ddlSupport5").remove(i);
     }
     let server = $("ddlServer").value;
     let nCount = 0;
