@@ -287,6 +287,10 @@
                         <option value="1.2-2">MoonCancer</option>
                         <option value="1-7">Alterego</option>
                         <option value="1-8">Foreigner</option>
+			<option value="1-9">BeastI</option>
+			<option value="1-10">BeastII</option>
+			<option value="1-11">BeastIII/R</option>
+			<option value="1-12">BeastIII/L</option>
                     </select>
                     <input type="button" value="应用" id="btnApplyEnemy1" onclick="applyEnemy(1)"/>
                 </td>
@@ -306,6 +310,10 @@
                         <option value="1.2-2">MoonCancer</option>
                         <option value="1-7">Alterego</option>
                         <option value="1-8">Foreigner</option>
+                        <option value="1-9">BeastI</option>
+                        <option value="1-10">BeastII</option>
+                        <option value="1-11">BeastIII/R</option>
+                        <option value="1-12">BeastIII/L</option>
                     </select>
                     <input type="button" value="应用" id="btnApplyEnemy2" onclick="applyEnemy(2)"/>
                 </td>
@@ -325,6 +333,10 @@
                         <option value="1.2-2">MoonCancer</option>
                         <option value="1-7">Alterego</option>
                         <option value="1-8">Foreigner</option>
+                        <option value="1-9">BeastI</option>
+                        <option value="1-10">BeastII</option>
+                        <option value="1-11">BeastIII/R</option>
+                        <option value="1-12">BeastIII/L</option>
                     </select>
                     <input type="button" value="应用" id="btnApplyEnemy3" onclick="applyEnemy(3)"/>
                 </td>
@@ -1559,43 +1571,43 @@
 	let ClassResistMatrix = [];
 	switch($("ddlClass").selectedIndex) {
 	    case 0:
-		ClassResistMatrix = [1, 0.5, 2, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1];
+		ClassResistMatrix = [1, 0.5, 2, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 		break;
 	    case 1:
-                ClassResistMatrix = [2, 1, 0.5, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1];
+                ClassResistMatrix = [2, 1, 0.5, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 		break;
 	    case 2:
-                ClassResistMatrix = [0.5, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1];
+                ClassResistMatrix = [0.5, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 		break;
 	    case 3:
-                ClassResistMatrix = [1, 1, 1, 1, 2, 0.5, 2, 0.5, 1, 1, 1, 1, 1];
+                ClassResistMatrix = [1, 1, 1, 1, 2, 0.5, 2, 0.5, 1, 1, 1, 1, 1, 2, 1, 1, 1];
 		break;
 	    case 4:
-                ClassResistMatrix = [1, 1, 1, 0.5, 1, 2, 2, 0.5, 1, 1, 1, 1, 1];
+                ClassResistMatrix = [1, 1, 1, 0.5, 1, 2, 2, 0.5, 1, 1, 1, 1, 1, 2, 1, 1, 1];
 		break;
 	    case 5:
-                ClassResistMatrix = [1, 1, 1, 2, 0.5, 1, 2, 0.5, 1, 1, 1, 1, 1];
+                ClassResistMatrix = [1, 1, 1, 2, 0.5, 1, 2, 0.5, 1, 1, 1, 1, 1, 2, 1, 1, 1];
 		break;
 	    case 6:
-                ClassResistMatrix = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1, 1.5, 1.5, 0.5];
+                ClassResistMatrix = [1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1.5, 1, 1.5, 1.5, 0.5, 1.5, 1, 1, 1];
 		break;
 	    case 7:
-                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 0.5, 1, 2, 1, 1];
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 0.5, 1, 2, 1, 1, 1, 1, 1, 1];
 		break;
 	    case 8:
-                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1];
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 1, 1];
 		break;
 	    case 9:
-                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 		break;
 	    case 10:
-                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 0.5, 2, 1, 1, 1, 1];
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 0.5, 2, 1, 1, 1, 1, 1, 1, 1.2, 1];
 		break;
 	    case 11:
-                ClassResistMatrix = [0.5, 0.5, 0.5, 1.5, 1.5, 1.5, 2, 1, 1, 1, 1, 1, 2];
+                ClassResistMatrix = [0.5, 0.5, 0.5, 1.5, 1.5, 1.5, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1.2, 1.2];
 		break;
 	    case 12:
-                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0.5, 2];
+                ClassResistMatrix = [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 0.5, 2, 1, 1, 1, 1.2];
 	}
 	let servant = servants[id];
 	let npEffect = servant.npEffect;
