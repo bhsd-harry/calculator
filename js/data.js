@@ -533,7 +533,7 @@ function initBerserker(){
     initialServant(5,"Berserker", "源赖光", 114, "天", 11556, 13500, 12650, 14790, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {cardBuff: [20,30]}, {specialAttack: [30,50]}, [], {cardBuff: 12, damagePlus: 150});
     initialServant(5,"Berserker", "谜之女主角X〔Alter〕", 155, "星", 11113, 14175, 12165, 15529, 1,9,1.07, "QuickSingle1", 150, 200, "NpSpecialAttack", 0.8, {}, {cardBuff: [20,30]}, {attackBuff: [10,20]}, [2,4,6,8,11,13,15,17], {}, {}, {}, {}, {attackBuff: [10,20]});
     initialServant(5,"Berserker", "土方岁三", 161, "人", 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle2", 800, 1200, "NpRemainHpDamage", 1.5, {cardBuff: [10,20]}, {}, {}, [], {cardBuff: 5}, {}, {cardBuff: [10,20,1.5]});
-    initialServant(5,"Berserker", "土方岁三SC", 161, "人", 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle1", 600, 1000, "NpRemainHpDamage", 1.5, {cardBuff: [10,20]}, {}, {}, [], {cardBuff: 5});
+    initialServant(5,"Berserker", "土方岁三TC", 161, "人", 12089, 12028, 13233, 13177, 1,1,0, "BusterSingle1", 600, 1000, "NpRemainHpDamage", 1.5, {cardBuff: [10,20]}, {}, {}, [], {cardBuff: 5});
     initialServant(5,"Berserker", "项羽", 226, "人", 11613, 13770, 12712, 15086, 3,5,0.51, "BusterSingle1", 20, 60, "OcNpStrength", 0.8, {}, {cardBuff: [20,30]}, {}, [6,13,20,26]);
     initialServant(5,"Berserker", "阿周那〔Alter〕", 247, "天", 11669, 13837, 12773, 15159, 3,1,0, "BusterAll1", 20, 60, "CardDecrease", 1.5, {attackBuff: [20,30], specialAttack: [30,50]}, {}, {}, [], {cardBuff: 12, damagePlus: 250});
     initialServant(5,"Berserker", "宮本武藏", 261, "人", 12712, 12150, 13915, 13311, 3,4,0.51, "ArtsAll1", 0, 0, "", 1, {npGainBuff: [30,50]}, {}, {attackBuff: [20,30], defDecreaseAll: [10,30]}, [10,20,30], {damagePlus: 125}, {}, {}, {}, {defDecreaseAll: [10,30]});
@@ -585,7 +585,7 @@ function initExtra(){
     /******************************************4星********************************************************************/
     initialServant(4,"Avenger", "戈耳工", 147, "地", 10706, 10197, 12963, 12364, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {attackBuff: [30,50]});
     initialServant(4,"Avenger", "黑森·罗伯", 158, "地", 10628, 9949, 12868, 12063, 1,8,0.79, "QuickSingle2", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {}, [2,5,8,11,13,16,19], {chargeNp: 3.5});
-    initialServant(4,"Avenger", "黑森·罗伯SC", 158, "地", 10628, 9949, 12868, 12063, 1,8,0.79, "QuickSingle1", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {}, [2,5,8,11,13,16,19], {chargeNp: 3.5});
+    initialServant(4,"Avenger", "黑森·罗伯TC", 158, "地", 10628, 9949, 12868, 12063, 1,8,0.79, "QuickSingle1", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {}, [2,5,8,11,13,16,19], {chargeNp: 3.5});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Avenger", "萨列里", 204, "地", 8125, 7840, 10996, 10630, 3,3,0.7, "ArtsAll1", 0, 0, "", 1, {}, {cardBuff: [20,30]}, {defDecreaseSingle: [20,30]}, [16,33], {chargeNp: 3.3}, {}, {}, {}, {defDecreaseSingle: [20,30]});
     //----------------------------------MoonCancer---------------------------------------------------------------------//
