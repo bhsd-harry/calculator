@@ -175,6 +175,10 @@ function bindSkill(label) {
 	}
 	abling("btnSwitchEffect");
     }
+    if(buff = skill.chargeNp) {
+	let chargeNp = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+        $("txtNpCharge").value -= -chargeNp;
+    }
     if((buff = skill.randomChargeNp) && noMiss) {
 	$("txtNpCharge").value -= -buff;
     }
@@ -514,6 +518,11 @@ function changeSkill(label) {
 	let npGainBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtNpGainBuff").value -= o - npGainBuff;
     }
+    if(buff = skill.chargeNp) {
+	o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) /10);
+	let chargeNp = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+	$("txtNpCharge").value -= o - chargeNp;
+    }
     if(buff = skill.randomEffect) {
         let randomIndex = $("btnSwitchEffect").count;
         let currentEffect = Object.keys(buff)[randomIndex];
@@ -742,7 +751,7 @@ function initialEffects() {
         else {
             disabling("txtMaxHp","txtFouHp","txtCraftEssenceHp","txtRemainHp","btnAdjHp");
         }
-        if(ocs.oc1 == ocs.oc5) {
+        if(ocs["1"] == ocs["5"]) {
             disabling("ddlOvercharge");
         }
         else {
@@ -1053,6 +1062,10 @@ function setOc() {
         case "NpSpecialAttack": //宝具特攻
             $("txtNpSpecialAttack").value = ocs[ocLevel];
             break;
+	case "NpSpecialAttackPlus":
+	    $("txtNpSpecialAttack").value = ocs[ocLevel];
+	    $("txtNpCharge").value -= -15 - ocLevel * 5;
+            break;
         case "SpecialAttackBuff": //杰克女性特攻
             $("txtSpecialAttack").value = ocs[ocLevel];
 	    break;
@@ -1070,7 +1083,7 @@ function adjustOc(){
     let ocs = servant.oc;
     let ocLevel = $("ddlOvercharge").value;
     let oldocLevel = $("ddlOvercharge").oldvalue;
-    if(ocs.oc1 == ocs.oc5){
+    if(ocs["1"] == ocs["5"]){
         $("ddlOvercharge").selectedIndex = 0;
         return;
     }
@@ -1111,6 +1124,10 @@ function adjustOc(){
         case "NpSpecialAttack":
             $("txtNpSpecialAttack").value = ocs[ocLevel];
             break;
+	case "NpSpecialAttackPlus":
+	    $("txtNpSpecialAttack").value = ocs[ocLevel];
+	    $("txtNpCharge").value -= (oldocLevel - ocLevel) * 5;
+	    break;
         case "SpecialAttackBuff":
             $("txtSpecialAttack").value -= ocs[oldocLevel] - ocs[ocLevel];
 	    break;
