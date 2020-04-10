@@ -84,6 +84,10 @@ function randomSkill(label) {
     if(buff = skill.randomChargeNp) {
 	$("txtNpCharge").value -= (noMiss? -buff : buff);
     }
+    if(buff = skill.randomNpGainBuff) {
+	let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+	$("txtNpGainBuff").value -= (noMiss? -npGainBuff : npGainBuff);
+    }
 }
 function bindSkill(label) {
     let id = $("ddlServant").value;
@@ -182,6 +186,10 @@ function bindSkill(label) {
     if((buff = skill.randomChargeNp) && noMiss) {
 	$("txtNpCharge").value -= -buff;
     }
+    if((buff = skill.randomNpGainBuff) && noMiss) {
+	let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+	$("txtNpGainBuff").value -= -npGainBuff;
+    }
 }
 function bindSupport(n,i) {
     let id = $("ddlSupport"+n).value;
@@ -251,6 +259,10 @@ function bindSupport(n,i) {
         let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtNpGainBuff").value -= -npGainBuff;
     }
+    if(buff = skill.chargeNp) {
+	let chargeNp = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+	$("txtNpCharge").value -= -chargeNp;
+    }
 }
 function unbindSupport(n,servant,i) {
     let skillLv = $("ddlSupport"+n+"Skill"+i).value;
@@ -307,6 +319,10 @@ function unbindSupport(n,servant,i) {
     if(buff = skill.npGainBuff) {
         let npGainBuff = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
         $("txtNpGainBuff").value -= npGainBuff;
+    }
+    if(buff = skill.chargeNp) {
+	let chargeNp = buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10;
+	$("txtNpCharge").value -= chargeNp;
     }
 }
 function initialSupport(n) {
@@ -522,6 +538,11 @@ function changeSkill(label) {
 	o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) /10);
 	let chargeNp = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
 	$("txtNpCharge").value -= o - chargeNp;
+    }
+    if((buff = skill.randomNpGainBuff) && noMiss) {
+	o = (oldLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * oldLv * 10) /10);
+	let npGainBuff = (skillLv == -1? 0 : buff[0] + Math.ceil((buff[1] - buff[0]) / 10 * skillLv * 10) / 10);
+	$("txtNpGainBuff").value -= o - npGainBuff;
     }
     if(buff = skill.randomEffect) {
         let randomIndex = $("btnSwitchEffect").count;
@@ -763,7 +784,7 @@ function initialEffects() {
             let skill = servant["skill"+i];
             if(skill && Object.keys(skill).length > 0) {
                 abling("ddlSkill"+i);
-                if(skill.randomAttackBuff || skill.randomCardBuff || skill.randomNpStrength || skill.randomChargeNp) {
+                if(skill.randomAttackBuff || skill.randomCardBuff || skill.randomNpStrength || skill.randomChargeNp || skill.randomNpGainBuff) {
                     abling("ckNoMiss"+i);
                 }
                 else {
