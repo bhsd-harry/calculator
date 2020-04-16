@@ -1346,6 +1346,9 @@
 	if(npEffect && npEffect.accAttackBuff) {
 	    $("txtAttackBuff").value -= -npEffect.accAttackBuff;
 	}
+	if(npEffect && npEffect.accSpecialAttack) {
+	    $("txtNpSpecialAttack").value -= -npEffect.accSpecialAttack;
+	}
     }
 
     $("btnClearSupport").onclick = function(){
@@ -1412,6 +1415,7 @@
 	if($("ddlLvs").selectedIndex > 2) {
 	    $("ddlLvs").selectedIndex = 0;
 	}
+	$("txtNpSpecialAttack").basevalue = 100;
         $("txtNpSpecialAttack").value = 100;
 	initialEffects();
     }

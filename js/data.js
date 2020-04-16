@@ -93,7 +93,7 @@ function loadLvs(){
 *    damagePlus：固伤
 *    npGainBuff：黄金律
 *    chargeNp：缓充
-*    randomChargeNp：场地回复魔力
+*    randomChargeNp：场地回复魔力（固定值）
 *    randomEffect：随机效果
 * @param {Array} damageDist 伤害分布
 * @param {Object} ClassSkill 职介技能(比如狂化EX、神性Debuff) 
@@ -105,6 +105,7 @@ function loadLvs(){
 *    npStrength：宝具威力buff
 *    cardBuff：卡牌buff
 *    specialAttack：宝具特攻
+*    accSpecialAttack：叠加宝具特攻
 *    npRemainHpDamage：背水
 *    defDecrease：降防
 *    npCoefficient：固定宝具倍率
@@ -348,6 +349,7 @@ function initLancer(){
     initialServant(5,"Lancer", "恩奇都SC", 143, "天", 10780, 15300, 11800, 16762, 1,1,0, "BusterSingle1", 20, 40, "DefDecrease", 1.5, {cardBuff: [30,50]});
     initialServant(5,"Lancer", "埃列什基伽勒", 196, "地", 10343, 16065, 11322, 17600, 3,1,0, "BusterAll1", 10, 50, "OcCardBuff", 1.5, {}, {cardBuff: [30,50]}, {npGainBuff: [20,30]}, [], {damagePlus: 225}, {}, {}, {}, {npGainBuff: [20,30]});
     initialServant(5,"Lancer", "布拉达曼特", 232, "地", 10833, 15682, 11858, 17180, 3,5,0.7, "BusterSingle1", 20, 60, "OcNpStrength", 0.8, {cardBuff: [20,30]}, {}, {}, [6,13,20,26]);
+    initialServant(5,"Lancer", "罗穆路斯", 280, "天", 12273, 13632, 13435, 14934, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {attackBuff: [10,20]}, {}, {cardBuff: [20,30]}, [], {cardBuff: 9, damagePlus: 235}, { specialAttack: 120, accSpecialAttack: 20 }, {attackBuff: [10,20]});
     /******************************************4星********************************************************************/
     initialServant(4,"Lancer", "巴托里", 18, "人", 9122, 11870, 11045, 14392, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {attackBuff: [10,20]}, {defDecreaseSingle: [10,20]}, {}, [], {}, { ignoreDef: true }, {attackBuff: [10,20], randomAttackBuff: [10,20]}, {defDecreaseSingle: [10,20]});
     initialServant(4,"Lancer", "阿尔托莉雅〔Alter〕", 78, "天", 9968, 11761, 12069, 14260, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {cardBuff: [35,55]}, {}, {attackBuff: [6,12]}, [], {}, { ignoreDef: true }, {}, {}, {attackBuff: [6,12]});

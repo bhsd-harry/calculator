@@ -6,6 +6,7 @@ function compareServants() {
     let nServant = $("ddlServant").length;
     for(let i=1;i<nServant;i++) {
 	$("ddlServant").selectedIndex = i;
+	$("txtNpSpecialAttack").basevalue = 100;
 	$("txtNpSpecialAttack").value = 100;
 	initialEffects();
 	calc();
@@ -801,7 +802,7 @@ function initialEffects() {
                 $("btnSwitchEffect").count = 0;
             }
         }
-	if(npEffect && npEffect.accAttackBuff) {
+	if(npEffect && (npEffect.accAttackBuff || npEffect.accSpecialAttack)) {
 	    abling("btnAccumulate");
 	}
         bindServantData(id);
@@ -908,6 +909,7 @@ function changeNpCoefficient() {
     let npEffect = servant.npEffect;
     let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
     if(npEffect && npEffect.npCoefficient) {
+	$("txtNpSpecialAttack").basevalue = servant.NP[$("ddlNpLevel").selectedIndex];
         $("txtNpSpecialAttack").value = servant.NP[$("ddlNpLevel").selectedIndex];
         return;
     }
@@ -967,8 +969,9 @@ function bindNpEffect(servant) {
     if (npEffect && npEffect.cardBuff) {//单个数值，比如剑兰宝具的30%蓝魔放buff
         $("txtCardBuff").basevalue += npEffect.cardBuff;
     }
-    if (npEffect && npEffect.npSpecialAttack) {
-        $("txtNpSpecialAttack").value = npSpecialAttack;
+    if (npEffect && npEffect.specialAttack) {
+	$("txtNpSpecialAttack").basevalue = npEffect.specialAttack;
+        $("txtNpSpecialAttack").value = npEffect.specialAttack;
     }
     if (npEffect && npEffect.defDecrease) {
         $("txtEnemyDefence1").basevalue = -npEffect.defDecrease;
@@ -997,6 +1000,7 @@ function clearBuff(){
     $("txtCardResist3").value = 0;
     $("txtNpStrength").value = $("txtNpStrength").basevalue;
     $("txtSpecialAttack").value = 0;
+    $("txtNpSpecialAttack").value = $("txtNpSpecialAttack").basevalue;
     $("txtDamagePlus").value = $("txtDamagePlus").basevalue;
     $("txtNpGainBuff").value = $("txtNpGainBuff").basevalue;
     $("txtNpCharge").value = $("txtNpCharge").basevalue;
@@ -1081,9 +1085,11 @@ function setOc() {
             $("txtCardResist3").value = -ocs[ocLevel];
             break;
         case "NpSpecialAttack": //宝具特攻
+	    $("txtNpSpecialAttack").basevalue = ocs[ocLevel];
             $("txtNpSpecialAttack").value = ocs[ocLevel];
             break;
 	case "NpSpecialAttackPlus":
+	    $("txtNpSpecialAttack").basevalue = ocs[ocLevel];
 	    $("txtNpSpecialAttack").value = ocs[ocLevel];
 	    $("txtNpCharge").value -= -15 - ocLevel * 5;
             break;
@@ -1143,9 +1149,11 @@ function adjustOc(){
             $("txtCardResist3").value -= ocs[ocLevel] - ocs[oldocLevel];
             break;
         case "NpSpecialAttack":
+	    $("txtNpSpecialAttack").basevalue = ocs[ocLevel];
             $("txtNpSpecialAttack").value = ocs[ocLevel];
             break;
 	case "NpSpecialAttackPlus":
+	    $("txtNpSpecialAttack").basevalue = ocs[ocLevel];
 	    $("txtNpSpecialAttack").value = ocs[ocLevel];
 	    $("txtNpCharge").value -= (oldocLevel - ocLevel) * 5;
 	    break;
