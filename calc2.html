@@ -1694,7 +1694,7 @@
 	let enemyDefence = [0, 0, 0];
 	for(let i=1;i<=nTarget;i++){
 	    enemyDefence[i-1] = getFloat("txtEnemyDefence"+i);
-	    enemyDefence[i-1] = Math.max(-100, enemyDefence[i-1]);
+	    enemyDefence[i-1] = Math.max(-99.9, enemyDefence[i-1]);
 	}
         //9.卡牌Buff(%)
         let cardBuff = getFloat("txtCardBuff");

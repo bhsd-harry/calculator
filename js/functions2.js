@@ -1005,6 +1005,7 @@ function clearBuff(){
     $("txtNpGainBuff").value = $("txtNpGainBuff").basevalue;
     $("txtNpCharge").value = $("txtNpCharge").basevalue;
     $("txtExtraEffect").value = 0;
+/*
     if($("ddlOverkillMode").selectedIndex == 0) {
 	$("txtOverkill1").value = 0;
         $("txtOverkill2").value = 0;
@@ -1018,6 +1019,7 @@ function clearBuff(){
     $("spanOverkill1").innerHTML = "100%";
     $("spanOverkill2").innerHTML = "100%";
     $("spanOverkill3").innerHTML = "100%";
+*/
     $("txtAttackBuff").value -= -$("txtCeAttackBuff").value;
     let ceCardBuff = 0;
     let color = getFloat("ddlColor");
