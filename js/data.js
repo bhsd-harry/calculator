@@ -439,7 +439,6 @@ function initCaster(){
     initialServant(5,"Caster", "玉藻前TC", 62, "天", 10546, 14259, 11544, 15621, 0,0,0, "Null", 0, 0, "", 0, {}, {}, {}, [], {}, {}, {}, {}, {cardBuff: [30,50,1]});
     initialServant(5,"Caster", "玄奘三藏", 113, "人", 11658, 12965, 12761, 14204, 1,1,0, "BusterSingle2", 0, 0, "", 1.5, {npStrength: [10,20]}, {}, {npGainBuff: [10,30]}, [], {damagePlus: 125}, { ignoreDef: true }, {}, {}, {npGainBuff: [10,30]});
     initialServant(5,"Caster", "达·芬奇", 127, "星", 10598, 14259, 11601, 15621, 3,1,0.54, "ArtsAll2", 30, 70, "OcNpStrength", 1, {randomNpStrength: [20,30]}, {chargeNp: [10,10]}, {}, [], {cardBuff: 10}, { ignoreDef: true });
-    initialServant(5,"Caster", "达·芬奇EN", 127, "星", 10598, 14259, 11601, 15621, 3,1,0.54, "ArtsAll1", 30, 70, "OcNpStrength", 1, {randomNpStrength: [20,30]}, {chargeNp: [10,10]}, {}, [], {cardBuff: 10}, { ignoreDef: true });
     initialServant(5,"Caster", "伊莉雅丝菲尔", 136, "人", 10857, 13825, 11885, 15146, 1,1,0, "BusterSingle2", 20, 100, "OcCardBuff", 1.5, {cardBuff: [30,50]});
     initialServant(5,"Caster", "梅林", 150, "地", 10546, 14259, 11544, 15621, 0,0,0, "Null", 0, 0, "", 0, {attackBuff: [10,20]}, {}, {}, [], {}, {}, {attackBuff: [10,20]}, {}, {cardBuff: [30,50,1.5]});
     initialServant(5,"Caster", "山鲁佐德", 169, "人", 9212, 15846, 10084, 17360, 3,5,0.51, "ArtsAll2", 200, 300, "NpSpecialAttack", 1, {cardBuff: [10,30]}, {}, {}, [6,13,20,26], {cardBuff: 11.5}, { npStrength: 20 });
