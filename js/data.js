@@ -559,6 +559,7 @@ function initBerserker(){
     initialServant(4,"Berserker", "织田信长SC", 178, "人", 10146, 10023, 12285, 12153,1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {cardBuff: [10,20]}, {chargeNp: [3,3]}, {randomAttackBuff: [10,20]}, [], {cardBuff: 6});
     initialServant(4,"Berserker", "阿塔兰忒〔Alter〕", 202, "地", 9806, 10634, 11873, 12894, 1,5,1.05, "QuickSingle1", 0, 0, "", 0.8, {}, {cardBuff: [30,50]}, {}, [6,13,20,26], {}, {}, {}, {cardBuff: [30,50,0.8]});
     initialServant(4,"Berserker", "贞德〔Alter〕", 219, "人", 10298, 9922, 12469, 12030, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {npGainBuff: [20,30]}, {attackBuff: [10,20]}, {cardBuff: [10,20]}, [], {cardBuff: 12});
+    initialServant(4,"Berserker", "鬼女红叶", 282, "地", 9177, 11250, 11111, 13640, 1,1,0, "BusterSingle1", 20, 40, "OcAttackBuff", 1.5, {}, {cardBuff: [20,30]}, {}, [], {cardBuff: 10});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Berserker", "吕布奉先", 49, "人", 8119, 8302, 10988, 11256, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,27]}, {}, {npStrength: [20,30]}, [], {cardBuff: 10}, { ignoreDef: true });
     initialServant(3,"Berserker", "大流士三世", 55, "人", 7608, 8763, 10297, 11881, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npGainBuff: [18,45]}, {}, {}, [], {cardBuff: 8});
@@ -628,6 +629,7 @@ function initExtra(){
     initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯", 195, "地", 12100, 13770, 13245, 15086, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {chargeNp: [10,10], npStrength: [20,30]}, {defDecreaseAll: [10,20]}, {}, [], {cardBuff: 8, damagePlus: 175}, { nullifyDef: true }, {chargeNp: [10,10], npStrength: [20,30]}, {defDecreaseAll: [10,20]});
     initialServant(5,"Foreigner", "葛饰北斋", 198, "人", 12100, 13230, 13245, 14494, 3,5,0.33, "ArtsAll1", 150, 200, "NpSpecialAttack", 1, {}, {cardBuff: [20,30]}, {accDefDecrease: [10,20]}, [6,13,20,26], {cardBuff: 4, damagePlus: 175});
     initialServant(5,"Foreigner", "杨贵妃", 275, "人", 12342, 13365, 13510, 14642, 1,4,0.51, "ArtsSingle1", 150, 200, "NpSpecialAttack", 1, {chargeNp: [10,10]}, {defDecreaseAll: [10,20]}, {accDefDecrease: [10,10]}, [10,20,30], {damagePlus: 175}, {}, {}, {defDecreaseAll: [10,20]});
+    initialServant(5,"Foreigner", "旅行者", 281, "星", 10450, 15592, 11439, 17082, 3,5,0.56, "BusterSingle1", 20, 40, "OcNpStrength", 0.8, {}, {cardBuff: [10,20], cardDecreaseSingle: [10,20]}, {}, [6,13,20,26,35], {}, { specialAttack: 150, chargeNp: 20 }, {}, {cardDecreaseSingle: [10,20,0.8]});
     /******************************************4星********************************************************************/
     initialServant(4,"Foreigner", "谜之女主角XX", 222, "星", 9751, 11250, 11806, 13640, 1,4,0.64, "ArtsSingle1", 20, 60, "OcAttackBuff", 1, {attackBuff: [30,50]}, {}, {specialAttack: [30,50]}, [10,20,30]);
 }
