@@ -369,6 +369,7 @@ function initLancer(){
     initialServant(4,"Lancer", "长尾景虎", 252, "人", 9617, 11360, 11644, 13774, 1,8,0.45, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [20,30]}, {npGainBuff: [20,30]}, {attackBuff: [10,20]}, [2,5,8,11,13,16,19], {damagePlus: 150}, {}, {}, {}, {attackBuff: [10,20]});
     initialServant(4,"Lancer", "谜之Alterego·Λ", 266, "地", 9261, 11749, 11213, 14246, 3,3,0.76, "ArtsAll1", 0, 0, "", 1, {cardBuff: [10,20]}, {}, {attackBuff: [30,50]}, [16,33], {damagePlus: 200}, { ignoreDef: true });
     initialServant(4,"Lancer", "凯妮斯", 279, "地", 9896, 11532, 11982, 13982, 3,1,0, "BusterAll1", 10, 30, "OcNpStrength", 1.5, {attackBuff: [20,40]}, {}, {}, [], {cardBuff: 12, damagePlus: 225});
+    initialServant(4,"Lancer", "宇津见艾莉瑟", 283, "人", 9122, 9578, 11045, 11597, 3,3,0.63, "ArtsAll1", 0, 0, "", 1, {cardBuff: [20,30]}, {}, {specialAttack: [20,30]}, [16,33], {damagePlus: 100});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Lancer", "库·丘林", 17, "天", 7239, 9593, 9797, 13007, 1,1,1.07, "QuickSingle2", 0, 0, "", 0.8, {}, {}, {}, [], {damagePlus: 175});
     initialServant(3,"Lancer", "库·丘林EN", 17, "天", 7239, 9593, 9797, 13007, 1,1,1.07, "QuickSingle1", 0, 0, "", 0.8, {}, {}, {}, [], {damagePlus: 175});
