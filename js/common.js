@@ -130,3 +130,7 @@ function abling() {
         $(arguments[i]).disabled = false;
     }
 }
+
+function clickLabel(id) {
+  $(id).checked=!$(id).checked;
+}

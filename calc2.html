@@ -65,7 +65,7 @@
                     <select id="ddlServant">
                         <option value=-1>|-----------请选择从者-----------|</option>
                     </select>
-                    <label for="ckIsMaxGrail">
+                    <label for="ckIsMaxGrail" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckIsMaxGrail" />圣杯MAX
 		    </label>
                     <datalist id="dlCraftEssenceTips"></datalist>
@@ -201,7 +201,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-		    <label for="ckNoMiss1" onchange="randomSkill(1)">
+		    <label for="ckNoMiss1" onchange="randomSkill(1)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckNoMiss1" /> 命中
                     </label>
                 </td>
@@ -220,7 +220,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckNoMiss2" onchange="randomSkill(2)">
+                    <label for="ckNoMiss2" onchange="randomSkill(2)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckNoMiss2" /> 命中
                     </label>
                 </td>
@@ -239,7 +239,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckNoMiss3" onchange="randomSkill(3)">
+                    <label for="ckNoMiss3" onchange="randomSkill(3)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckNoMiss3" /> 命中
                     </label>
 		    <input type="button" value="切换" id="btnSwitchEffect" count=0 />
@@ -374,7 +374,7 @@
                         <option value=4>星</option>
                         <option value=5>兽</option>
                     </select>
-                    <label for="ckIsUndying1">
+                    <label for="ckIsUndying1" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckIsUndying1" /> np补正
                     </label>
                 </td>
@@ -388,7 +388,7 @@
                         <option value=4>星</option>
                         <option value=5>兽</option>
                     </select>
-                    <label for="ckIsUndying2">
+                    <label for="ckIsUndying2" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckIsUndying2" /> np补正
                     </label>
                 </td>
@@ -402,7 +402,7 @@
                         <option value=4>星</option>
                         <option value=5>兽</option>
                     </select>
-                    <label for="ckIsUndying3">
+                    <label for="ckIsUndying3" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckIsUndying3" /> np补正
                     </label>
                 </td>
@@ -423,7 +423,7 @@
 			<option value=2>2</option>
 			<option value=3>3</option>
 		    </select>
-                    <label for="ckIsSpecialAttack1">
+                    <label for="ckIsSpecialAttack1" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckIsSpecialAttack1" /> 宝具特攻
                     </label>
 		</td>
@@ -435,7 +435,7 @@
                         <option value=2>2</option>
                         <option value=3>3</option>
                     </select>
-                    <label for="ckIsSpecialAttack2">
+                    <label for="ckIsSpecialAttack2" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckIsSpecialAttack2" /> 宝具特攻
                     </label>
                 </td>
@@ -447,7 +447,7 @@
                         <option value=2>2</option>
                         <option value=3>3</option>
                     </select>
-                    <label for="ckIsSpecialAttack3">
+                    <label for="ckIsSpecialAttack3" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckIsSpecialAttack3" /> 宝具特攻
                     </label>
                 </td>
@@ -587,7 +587,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport1NoMiss1" onchange="randomSupport(1,1)">
+                    <label for="ckSupport1NoMiss1" onchange="randomSupport(1,1)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport1NoMiss1" /> 命中
                     </label>
 		</td>
@@ -606,7 +606,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport1NoMiss2" onchange="randomSupport(1,2)">
+                    <label for="ckSupport1NoMiss2" onchange="randomSupport(1,2)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport1NoMiss2" /> 命中
                     </label>
 		</td>
@@ -625,7 +625,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport1NoMiss3" onchange="randomSupport(1,3)">
+                    <label for="ckSupport1NoMiss3" onchange="randomSupport(1,3)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport1NoMiss3" /> 命中
                     </label>
                 </td>
@@ -652,7 +652,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport2NoMiss1" onchange="randomSupport(2,1)">
+                    <label for="ckSupport2NoMiss1" onchange="randomSupport(2,1)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport2NoMiss1" /> 命中
                     </label>
 		</td>
@@ -671,7 +671,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport2NoMiss2" onchange="randomSupport(2,2)">
+                    <label for="ckSupport2NoMiss2" onchange="randomSupport(2,2)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport2NoMiss2" /> 命中
                     </label>
 		</td>
@@ -690,7 +690,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport2NoMiss3" onchange="randomSupport(2,3)">
+                    <label for="ckSupport2NoMiss3" onchange="randomSupport(2,3)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport2NoMiss3" /> 命中
                     </label>
                 </td>
@@ -717,7 +717,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport3NoMiss1" onchange="randomSupport(3,1)">
+                    <label for="ckSupport3NoMiss1" onchange="randomSupport(3,1)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport3NoMiss1" /> 命中
                     </label>
 		</td>
@@ -736,7 +736,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport3NoMiss2" onchange="randomSupport(3,2)">
+                    <label for="ckSupport3NoMiss2" onchange="randomSupport(3,2)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport3NoMiss2" /> 命中
                     </label>
 		</td>
@@ -755,7 +755,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport3NoMiss3" onchange="randomSupport(3,3)">
+                    <label for="ckSupport3NoMiss3" onchange="randomSupport(3,3)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport3NoMiss3" /> 命中
                     </label>
                 </td>
@@ -782,7 +782,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport4NoMiss1" onchange="randomSupport(4,1)">
+                    <label for="ckSupport4NoMiss1" onchange="randomSupport(4,1)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport4NoMiss1" /> 命中
                     </label>
 		</td>
@@ -801,7 +801,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport4NoMiss2" onchange="randomSupport(4,2)">
+                    <label for="ckSupport4NoMiss2" onchange="randomSupport(4,2)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport4NoMiss2" /> 命中
                     </label>
 		</td>
@@ -820,7 +820,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport4NoMiss3" onchange="randomSupport(4,3)">
+                    <label for="ckSupport4NoMiss3" onchange="randomSupport(4,3)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport4NoMiss3" /> 命中
                     </label>
                 </td>
@@ -847,7 +847,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport5NoMiss1" onchange="randomSupport(5,1)">
+                    <label for="ckSupport5NoMiss1" onchange="randomSupport(5,1)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport5NoMiss1" /> 命中
                     </label>
 		</td>
@@ -866,7 +866,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport5NoMiss2" onchange="randomSupport(5,2)">
+                    <label for="ckSupport5NoMiss2" onchange="randomSupport(5,2)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport5NoMiss2" /> 命中
                     </label>
 		</td>
@@ -885,7 +885,7 @@
                         <option value=8>9</option>
                         <option value=10>10</option>
                     </select>
-                    <label for="ckSupport5NoMiss3" onchange="randomSupport(5,3)">
+                    <label for="ckSupport5NoMiss3" onchange="randomSupport(5,3)" onclick="clickLabel(this.for)">
                         <input type="checkbox" id="ckSupport5NoMiss3" /> 命中
                     </label>
                 </td>

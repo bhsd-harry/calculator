@@ -1,6 +1,7 @@
 ﻿* {
     margin: 0;
     padding: 0;
+    font-size: 14px;
 }
 
 body {
@@ -51,7 +52,7 @@ table th, table td {
     display: none;
 }
 
-input[type="checkbox"], input[type="radio"], select {
+input[type="checkbox"], select {
     vertical-align: middle;
 }
 
@@ -105,4 +106,8 @@ input[type="button"] {
 
 .search {
     width: 200px;
+}
+
+label, select, input[type="button"], input[type="checkbox"] {
+    cursor: pointer;
 }
