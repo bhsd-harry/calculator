@@ -505,7 +505,7 @@ function initAssassin(){
     initialServant(4,"Assassin", "燕青", 159, "人", 8661, 11637, 10487, 14110, 1,11,0.71, "QuickSingle1", 0, 0, "", 0.8, {npGainBuff: [20,30]}, {cardBuff: [20,30]}, {}, [1,3,4,6,7,9,10,12,13,15], {cardBuff: 5});
     initialServant(4,"Assassin", "燕青EN", 159, "人", 8661, 11637, 10487, 14110, 1,11,0.71, "QuickSingle1", 0, 0, "", 0.8, {npGainBuff: [20,30]}, {}, {}, [1,3,4,6,7,9,10,12,13,15], {cardBuff: 5});
     initialServant(4,"Assassin", "武则天", 170, "人", 8981, 10942, 10874, 13267, 1,4,0.87, "QuickSingle2", 0, 0, "", 0.8, {defDecreaseSingle: [10,20]}, {randomAttackBuff: [18,38]}, {attackBuff: [10,20]}, [10,20,30], {}, {}, {defDecreaseSingle: [10,20]}, {}, {attackBuff: [10,20], cardBuff: [10,20,0.8]});
-    initialServant(4,"Assassin", "武则天SC", 170, "人", 8981, 10942, 10874, 13267, 1,4,0.87, "QuickSingle1", 0, 0, "", 0.8, {defDecreaseSingle: [10,20]}, {randomAttackBuff: [18,38]}, {attackBuff: [10,20]}, [10,20,30]);
+    initialServant(4,"Assassin", "武则天TC", 170, "人", 8981, 10942, 10874, 13267, 1,4,0.87, "QuickSingle1", 0, 0, "", 0.8, {defDecreaseSingle: [10,20]}, {randomAttackBuff: [18,38]}, {attackBuff: [10,20]}, [10,20,30]);
     initialServant(4,"Assassin", "尼托克丽丝", 177, "天", 8812, 11518, 10670, 13965, 3,3,0.78, "ArtsAll1", 0, 0, "", 1, {}, {}, {attackBuff: [20,30], npStrength: [10,20], npGainBuff: [20,30]}, [16,33], {damagePlus: 185});
     initialServant(4,"Assassin", "望月千代女", 185, "地", 8510, 11637, 10304, 14110, 1,5,0.8, "ArtsSingle1", 0, 0, "", 1, {}, {cardBuff: [10,30]}, {}, [6,13,20,26]);
     initialServant(4,"Assassin", "加藤段藏", 188, "地", 8935, 11055, 10818, 13404, 3,1,0, "BusterAll1", 150, 200, "NpSpecialAttack", 1.5, {cardBuff: [20,30]});
