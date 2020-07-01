@@ -582,6 +582,7 @@ function initExtra(){
     /******************************************5星********************************************************************/
     initialServant(5,"Ruler", "天草四郎", 93, "人", 10972, 14107, 12011, 15455, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npGainBuff: [20,30]}, {chargeNp: [10,20]}, {cardBuff: [20,30]}, [], {}, { nullifyDef: true }, {npGainBuff: [20,30]});
     initialServant(5,"Ruler", "天草四郎SC", 93, "人", 10972, 14107, 12011, 15455, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {chargeNp: [10,20]}, {cardBuff: [20,30]}, [], {}, { nullifyDef: true });
+    initialServant(5,"Ruler", "福尔摩斯", 173, "星", 11495, 13365, 12583, 14642, 0,0,0, "NULL", 0, 0, "", 0, {}, {}, {}, [], {}, {}, {cardDecreaseAll: [10,20,1]});
     initialServant(5,"Ruler", "始皇帝", 229, "人", 9977, 15828, 10921, 17340, 0,0,0, "Null", 0, 0, "", 0, {defDecreaseAll: [10,20]}, {attackBuff: [20,30]}, {}, [], {}, {}, {defDecreaseAll: [10,20]});
     initialServant(5,"Ruler", "阿尔托莉雅", 265, "天", 9593, 16912, 10501, 18528, 3,1,0, "BusterAll1", 20, 40, "OcCardBuff", 1.5, {attackBuff: [20,30]}, {npGainBuff: [20,30]}, {attackBuff: [20,40]}, [], {}, { ignoreDef: true, chargeNp: 20 }, {}, {npGainBuff: [20,30]});
     initialServant(5,"Ruler", "阿尔托莉雅SC", 265, "天", 9593, 16912, 10501, 18528, 3,1,0, "BusterAll1", 20, 40, "OcCardBuff", 1.5, {attackBuff: [20,30]}, {}, {attackBuff: [20,40]}, [], {}, { ignoreDef: true, chargeNp: 20 });
