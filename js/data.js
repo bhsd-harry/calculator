@@ -271,7 +271,8 @@ function initSaber(){
     initialServant(4,"Saber", "高文", 123, "地", 10173, 11419, 12317, 13845, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {attackBuff: [20,20], cardBuff: [20,30]}, {attackBuff: [10,20]}, {}, [], {}, {}, {}, {attackBuff: [10,20]});
     initialServant(4,"Saber", "高文SC", 123, "地", 10173, 11419, 12317, 13845, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {attackBuff: [20,20], randomCardBuff: [20,30]}, {attackBuff: [6,12]}, {}, [], {}, {}, {}, {attackBuff: [6,12]});
     initialServant(4,"Saber", "巴托里〔勇者〕", 138, "地", 9899, 11248, 11986, 13638, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {npGainBuff: [30,50]}, {cardBuff: [20,40]}, {randomEffect: {noEffect: [], cardBuff: [30,50], attackBuff: [30,50]}}, [], {}, { ignoreDef: true }, {}, {}, {randomAttackBuff: [30,50]});
-    initialServant(4,"Saber", "铃鹿御前", 165, "天", 9544, 11753, 11556, 14250, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,40]}, {}, {chargeNp: [5,10], npStrength: [20,20]}, [], {damagePlus: 200});
+    initialServant(4,"Saber", "铃鹿御前", 165, "天", 9544, 11753, 11556, 14250, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {cardBuff: [20,40]}, {}, {chargeNp: [5,10], npStrength: [20,20]}, [], {damagePlus: 200});
+    initialServant(4,"Saber", "铃鹿御前SC", 165, "天", 9544, 11753, 11556, 14250, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,40]}, {}, {chargeNp: [5,10], npStrength: [20,20]}, [], {damagePlus: 200});
     initialServant(4,"Saber", "弗兰肯斯坦", 176, "地", 9353, 11993, 11325, 14541, 1,5,0.7, "QuickSingle1", 0, 0, "", 0.8, {npGainBuff: [40,80]}, {}, {attackBuff: [10,20], npStrength: [10,20]}, [6,13,20,26], {cardBuff: 12});
     initialServant(4,"Saber", "柳生但马守宗矩", 187, "人", 9999, 11135, 12107, 13501, 1,4,0.81, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [30,50]}, {attackBuff: [10,20]}, {npGainBuff: [30,50]}, [10,20,30]);
     initialServant(4,"Saber", "女王梅芙", 221, "地", 8017, 13609, 9707, 16501, 1,6,0.72, "ArtsSingle1", 0, 0, "", 1, {chargeNp: [10,20]}, {cardDecreaseAll: [10,20]}, {attackBuff: [10,20]}, [4,9,14,19,23], {}, {}, {}, {cardDecreaseAll: [10,20,1]}, {attackBuff: [10,20]});	
@@ -314,7 +315,6 @@ function initArcher(){
     initialServant(4,"Archer", "安妮 & 玛莉", 131, "人", 9446, 11521, 11437, 13969, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9.5,19.5]}, {}, {attackBuff: [8.5,25.5]}, [], {}, { npRemainHpDamage: 600 }, {attackBuff: [9.5,19.5]});
     initialServant(4,"Archer", "克洛伊", 137, "天", 9845, 10914, 11920, 13233, 1,6,0.38, "ArtsSingle1", 0, 0, "", 1, {}, {cardBuff: [20,35]}, {}, [4,9,14,19,23]);
     initialServant(4,"Archer", "卫宫〔Alter〕", 157, "人", 8996, 12250, 10892, 14853, 1,10,0.43, "ArtsSingle2", 0, 0, "", 1, {}, {cardBuff: [15,30]}, {attackBuff: [20,40]}, [1,3,5,7,9,10,12,14,16], {}, { ignoreDef: true });
-    initialServant(4,"Archer", "卫宫〔Alter〕EN", 157, "人", 8996, 12250, 10892, 14853, 1,10,0.43, "ArtsSingle1", 0, 0, "", 1, {}, {cardBuff: [15,30]}, {attackBuff: [20,40]}, [1,3,5,7,9,10,12,14,16], {}, { ignoreDef: true });
     initialServant(4,"Archer", "海伦娜", 180, "人", 9446, 11404, 11437, 13827, 3,4,0.38, "ArtsAll1", 0, 0, "", 1, {}, {damagePlus: [1000,2000]}, {cardBuff: [20,40]}, [10,20,30]);
     initialServant(4,"Archer", "巴御前", 184, "地", 9946, 10804, 12043, 13100, 1,1,0, "BusterSingle2", 0, 0, "", 1.5, {attackBuff: [9,19], npStrength: [18,28]}, {}, {}, [], {cardBuff: 2}, {}, {attackBuff: [9,19]});
     initialServant(4,"Archer", "巴御前SC", 184, "地", 9946, 10804, 12043, 13100, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,19], npStrength: [18,28]}, {}, {}, [], {cardBuff: 2});
@@ -372,7 +372,6 @@ function initLancer(){
     initialServant(4,"Lancer", "宇津见艾莉瑟", 283, "人", 9122, 9578, 11045, 11597, 3,3,0.63, "ArtsAll1", 0, 0, "", 1, {cardBuff: [20,30]}, {}, {specialAttack: [20,30]}, [16,33], {damagePlus: 100});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Lancer", "库·丘林", 17, "天", 7239, 9593, 9797, 13007, 1,1,1.07, "QuickSingle2", 0, 0, "", 0.8, {}, {}, {}, [], {damagePlus: 175});
-    initialServant(3,"Lancer", "库·丘林EN", 17, "天", 7239, 9593, 9797, 13007, 1,1,1.07, "QuickSingle1", 0, 0, "", 0.8, {}, {}, {}, [], {damagePlus: 175});
     initialServant(3,"Lancer", "库·丘林〔Prototype〕", 20, "天", 7082, 10098, 9584, 13691, 1,1,1.08, "QuickSingle1", 0, 0, "", 0.8, {}, {}, {specialAttack: [50,100]}, [], {damagePlus: 175});
     initialServant(3,"Lancer", "罗穆路斯", 22, "星", 7239, 9883, 9797, 13400, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {randomAttackBuff: [22,44]}, {cardBuff: [10,30]}, [], {}, {}, {}, {}, {cardBuff: [10,30,1.5]});
     initialServant(3,"Lancer", "赫克托耳", 64, "人", 6928, 10200, 9376, 13829, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npStrength: [10,20]}, {}, {}, [], {}, { ignoreDef: true }, {npStrength: [10,20]});
@@ -416,18 +415,15 @@ function initRider(){
     initialServant(4,"Rider", "卡米拉", 263, "地", 9651, 10476, 11685, 12702, 3,4,0.52, "BusterSingle1", 0, 0, "", 0.8, {}, {chargeNp: [15,25]}, {defDecreaseAll: [20,30]}, [10,20,30], {}, {}, {}, {chargeNp: [15,25]}, {defDecreaseAll: [20,30]});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Rider", "美杜莎", 23, "地", 7200, 8937, 9744, 12117, 3,1,0.58, "BusterSingle2", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {npGainBuff: [20,30]}, [], {cardBuff: 11, damagePlus: 95});
-    initialServant(3,"Rider", "美杜莎EN", 23, "地", 7200, 8937, 9744, 12117, 3,1,0.58, "BusterSingle1", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {npGainBuff: [20,30]}, [], {cardBuff: 11, damagePlus: 95});
     initialServant(3,"Rider", "布狄卡", 26, "人", 6289, 10130, 8511, 13735, 0,0,0, "Null", 0, 0, "", 0, {specialAttack: [40,60]}, {}, {}, [], {}, {}, {specialAttack: [40,60]}, {}, {cardBuff: [10,20,1]});
     initialServant(3,"Rider", "布狄卡SC", 26, "人", 6289, 10130, 8511, 13735, 0,0,0, "Null", 0, 0, "", 0, {specialAttack: [40,60]}, {}, {}, [], {}, {}, {}, {}, {cardBuff: [10,20,1]});
     initialServant(3,"Rider", "牛若丸", 27, "人", 7076, 9028, 9576, 12240, 1,1,0.87, "QuickSingle2", 0, 0, "", 0.8, {npGainBuff: [10,20], cardBuff: [10,20]}, {attackBuff: [8.5,17]}, {}, [], {cardBuff: 11}, {}, {npGainBuff: [10,20]}, {attackBuff: [8.5,17]});
-    initialServant(3,"Rider", "牛若丸EN", 27, "人", 7076, 9028, 9576, 12240, 1,1,0.87, "QuickSingle2", 0, 0, "", 0.8, {npGainBuff: [10,20]}, {attackBuff: [8.5,17]}, {}, [], {cardBuff: 11});
     initialServant(3,"Rider", "亚历山大", 28, "人", 7356, 8640, 9955, 11714, 3,1,0.86, "BusterSingle2", 0, 0, "", 0.8, {attackBuff: [8,16]}, {}, {cardBuff: [10,20]}, [], {cardBuff: 11, damagePlus: 100}, {}, {attackBuff: [8,16]}, {}, {cardBuff: [10,20,0.8]});
     initialServant(3,"Rider", "哥伦布", 172, "人", 6552, 9600, 8867, 13016, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npStrength: [7,14], attackBuff: [7,14]}, {}, {cardBuff: [10,20]}, [], {}, {}, {npStrength: [7,14], attackBuff: [7,14]});
     initialServant(3,"Rider", "赤兔马", 231, "地", 6434, 10483, 8708, 14214, 3,4,0.57, "BusterSingle1", 0, 0, "", 0.8, {cardBuff: [20,30]}, {}, {attackBuff: [10,20]}, [10,20,30], {cardBuff: 12}, { ignoreDef: true });
     initialServant(3,"Rider", "曼迪卡尔多", 273, "人", 6756, 9600, 9143, 13016, 1,4,0.86, "ArtsSingle1", 20, 40, "OcCardBuff", 1, {attackBuff: [10,20]}, {randomAttackBuff: [30,50]}, {cardBuff: [10,20]}, [10,20,30], {}, {}, {attackBuff: [10,20]});
     initialServant(2,"Rider", "乔尔乔斯", 24, "人", 5236, 9200, 7587, 13278, 1,4,0.85, "ArtsSingle1", 0, 0, "", 1, {}, {}, {}, [10,20,30]);
     initialServant(2,"Rider", "蒂奇", 25, "人", 6188, 7907, 8967, 11411, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npStrength: [8,16], attackBuff: [8,16]}, {attackBuff: [9,27]}, {}, [], {}, {}, {npStrength: [8,16], attackBuff: [8,16]});
-    initialServant(2,"Rider", "蒂奇EN", 25, "人", 6188, 7907, 8967, 11411, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {npStrength: [8,16], attackBuff: [8,16]}, {attackBuff: [9,27]});
     initialServant(1,"Rider", "巴沙洛缪·罗伯茨", 257, "人", 5461, 6720, 8485, 10359, 3,6,0.65, "BusterSingle1", 150, 200, "NpSpecialAttack", 0.8, {npStrength: [8.5,17], attackBuff: [8.5,17]}, {}, {cardBuff: [10,20]}, [4,9,14,19,23], {cardBuff: 4}, {}, {npStrength: [8.5,17], attackBuff: [8.5,17]});
 }
 
@@ -464,9 +460,7 @@ function initCaster(){
     initialServant(3,"Caster", "吉尔·德·雷", 32, "人", 6514, 9506, 8816, 12889, 3,1,0, "BusterAll1", 0, 0, "", 1.5);
     initialServant(3,"Caster", "梅菲斯托费勒斯", 35, "地", 6839, 9216, 9255, 12495, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {}, {}, [], {}, { ignoreDef: true });
     initialServant(3,"Caster", "库·丘林", 38, "天", 6580, 9604, 8905, 13022, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {}, {}, {}, [], {damagePlus: 175}, { cardBuff: 20 });
-    initialServant(3,"Caster", "库·丘林EN", 38, "天", 6580, 9604, 8905, 13022, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {}, {}, [], {damagePlus: 175});
     initialServant(3,"Caster", "帕拉塞尔苏斯", 79, "人", 6711, 9506, 9082, 12889, 3,3,0.55, "BusterAll2", 0, 0, "", 1, {}, {cardBuff: [10,20]}, {npGainBuff: [30,50]}, [16,33], {cardBuff: 10}, {}, {}, {cardBuff: [10,20,1]}, {npGainBuff: [30,50]});
-    initialServant(3,"Caster", "帕拉塞尔苏斯EN", 79, "人", 6711, 9506, 9082, 12889, 3,3,0.55, "BusterAll2", 0, 0, "", 1, {}, {cardBuff: [10,20]}, {}, [16,33], {cardBuff: 10}, {}, {}, {cardBuff: [10,20,1]});
     initialServant(3,"Caster", "巴贝奇", 80, "人", 5996, 10887, 8115, 14761, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npGainBuff: [20,30]}, {attackBuff: [20,40]}, {npStrength: [15,25]});
     initialServant(3,"Caster", "杰罗尼莫", 104, "人", 6857, 9123, 9280, 12369, 3,1,0.9, "ArtsAll2", 0, 0, "", 1, {}, {cardBuff: [30,50]}, {}, [], {cardBuff: 8});
     initialServant(3,"Caster", "阿维斯布隆", 203, "人", 6376, 9981, 8629, 13533, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,30]});
@@ -525,7 +519,6 @@ function initAssassin(){
     initialServant(2,"Assassin", "夏尔·亨利·桑松", 43, "人", 5456, 8309, 7906, 11991, 1,1,0, "BusterSingle2", 0, 0, "", 1.5, {specialAttack: [40,60]});
     initialServant(2,"Assassin", "剧院魅影", 44, "地", 5654, 8393, 8193, 12112, 3,1,0.71, "ArtsAll2", 0, 0, "", 1, {}, {}, {}, [], {}, { ignoreDef: true });
     initialServant(1,"Assassin", "佐佐木小次郎", 39, "人", 5735, 6220, 8912, 9588, 1,3,1.05, "QuickSingle2", 0, 0, "", 0.8, {}, {}, {}, [16,33], {}, { cardBuff: 20 });
-    initialServant(1,"Assassin", "佐佐木小次郎EN", 39, "人", 5735, 6220, 8912, 9588, 1,3,1.05, "QuickSingle1", 0, 0, "", 0.8, {}, {}, {}, [16,33]);
     initialServant(1,"Assassin", "玛塔·哈丽", 45, "人", 5377, 6565, 8355, 10120, 0,0,0, "Null", 0, 0, "", 0, {}, {defDecreaseAll: [10,20]}, {defDecreaseSingle: [10,20]}, [], {}, {}, {}, {defDecreaseAll: [10,20]}, {defDecreaseSingle: [10,20]});
     initialServant(1,"Assassin", "夏绿蒂·科黛", 259, "人", 5488, 6220, 8528, 9588, 1,1,0.52, "ArtsSingle1", 0, 0, "", 1, {}, {attackBuff: [20,30]}, {randomEffect: {noEffect: [], cardBuff: [20,30], npStrength: [30,50]}}, [], {}, { ignoreDef: true });
 }
@@ -594,7 +587,6 @@ function initExtra(){
     //----------------------------------Avenger---------------------------------------------------------------------//
     /******************************************5星********************************************************************/
     initialServant(5,"Avenger", "岩窟王", 96, "人", 12641, 12177, 13838, 13340, 3,8,0.62, "BusterSingle2", 0, 0, "", 0.8, {attackBuff: [30,50]}, {npGainBuff: [20,50]}, {}, [3,6,10,13,16,13,10], {chargeNp: 3});
-    initialServant(5,"Avenger", "岩窟王EN", 96, "人", 12641, 12177, 13838, 13340, 3,8,0.62, "BusterSingle1", 0, 0, "", 0.8, {attackBuff: [30,50]}, {npGainBuff: [20,50]}, {}, [3,6,10,13,16,13,10], {chargeNp: 3});
     initialServant(5,"Avenger", "贞德〔Alter〕", 106, "人", 13244, 11761, 14498, 12885, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {attackBuff: [10,20]}, {cardBuff: [30,50]}, [], {chargeNp: 4}, {}, {}, {attackBuff: [10,20], randomAttackBuff: [10,20]});
     initialServant(5,"Avenger", "织田信长", 250, "地", 12641, 11761, 13838, 12885, 3,1,0, "BusterAll1", 150, 200, "NpSpecialAttack", 1.5, {attackBuff: [20,30], accAttackBuff: [10,20]}, {specialAttack: [30,50]}, {chargeNp: [10,20]}, [], {chargeNp: 3.3}, { specialNullifyDef: true });
     initialServant(5,"Avenger", "织田信长SC", 250, "地", 12641, 11761, 13838, 12885, 3,1,0, "BusterAll1", 150, 200, "NpSpecialAttack", 1.5, {attackBuff: [20,30], accAttackBuff: [10,20]}, {}, {chargeNp: [10,20]}, [], {chargeNp: 3.3}, { specialNullifyDef: true });
