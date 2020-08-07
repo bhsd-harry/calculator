@@ -328,7 +328,8 @@ function initArcher(){
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Archer", "罗宾汉", 13, "人", 6715, 10187, 9088, 13812, 1,1,0.87, "ArtsSingle1", 200, 250, "NpSpecialAttack", 1, {}, {npGainBuff: [12,30]});
     initialServant(3,"Archer", "尤瑞艾莉", 15, "天", 7032, 9506, 9517, 12889, 1,1,0.9, "NpSpecialAttack", 0, 0, "", 1, {}, {}, {cardBuff: [20,30]}, [], {damagePlus: 300}, { npCoefficient: 1200 });
-    initialServant(3,"Archer", "大卫", 63, "天", 7736, 8643, 10470, 11719, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {}, {attackBuff: [9,18]}, [], {}, {}, {}, {}, {attackBuff: [9,18]});
+    initialServant(3,"Archer", "大卫", 63, "天", 7736, 8643, 10470, 11719, 1,1,0, "BusterSingle2", 0, 0, "", 1.5, {}, {}, {attackBuff: [9,18]}, [], {}, { specialAttack: 200 }, {}, {}, {attackBuff: [9,18]});
+    initialServant(3,"Archer", "大卫SC", 63, "天", 7736, 8643, 10470, 11719, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {}, {attackBuff: [9,18]}, [], {}, {}, {}, {}, {attackBuff: [9,18]});
     initialServant(3,"Archer", "幼吉尔", 95, "天", 7696, 8731, 10415, 11838, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {attackBuff: [10.5,21]}, {}, {npGainBuff: [20,50]}, [], {damagePlus: 175}, {}, {attackBuff: [10.5,21]});
     initialServant(3,"Archer", "比利小子", 105, "人", 6890, 9506, 9325, 12889, 1,3,0.56, "QuickSingle2", 0, 0, "", 0.8, {}, {}, {}, [16,33], {cardBuff: 7});
     initialServant(3,"Archer", "俵藤太", 125, "人", 7032, 9800, 9517, 13287, 3,1,0, "BusterAll2", 50, 100, "SpecialAttackBuff", 1.5, {cardBuff: [20,30]});
@@ -504,7 +505,8 @@ function initAssassin(){
     initialServant(4,"Assassin", "望月千代女", 185, "地", 8510, 11637, 10304, 14110, 1,5,0.8, "ArtsSingle1", 0, 0, "", 1, {}, {cardBuff: [10,30]}, {}, [6,13,20,26]);
     initialServant(4,"Assassin", "加藤段藏", 188, "地", 8935, 11055, 10818, 13404, 3,1,0, "BusterAll1", 150, 200, "NpSpecialAttack", 1.5, {cardBuff: [20,30]});
     initialServant(4,"Assassin", "牛若丸", 218, "人", 9456, 10580, 11449, 12828, 3,5,0.54, "BusterSingle1", 0, 0, "", 0.8, {}, {cardBuff: [20,30]}, {}, [6,13,20,26], {cardBuff: 11});
-    initialServant(4,"Assassin", "虞美人", 230, "地", 7970, 13389, 9650, 16234, 3,1,0, "BusterAll1", 50, 100, "OcCardBuff", 1.5, {chargeNp: [5,10]}, {}, {}, [], {}, { ignoreDef: true });
+    initialServant(4,"Assassin", "虞美人", 230, "地", 7970, 13389, 9650, 16234, 3,1,0, "BusterAll1", 50, 100, "OcCardBuff", 1.5, {chargeNp: [5,10]}, {attackBuff: [20,30]}, {}, [], {}, { ignoreDef: true });
+    initialServant(4,"Assassin", "虞美人SC", 230, "地", 7970, 13389, 9650, 16234, 3,1,0, "BusterAll1", 50, 100, "OcCardBuff", 1.5, {chargeNp: [5,10]}, {}, {}, [], {}, { ignoreDef: true });
     initialServant(4,"Assassin", "格蕾", 243, "人", 9456, 10580, 11449, 12828, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {attackBuff: [20,30], specialAttack: [50,100]}, {cardBuff: [20,40]}, {}, [], {npGainBuff: 10});
     initialServant(4,"Assassin", "冲田·J·总司", 267, "人", 9337, 10366, 11305, 12569, 3,3,0.92, "BusterSingle1", 0, 0, "", 0.8, {}, {npStrength: [10,20]}, {cardBuff: [30,50]}, [16,33]);
     /******************************************3星及以下********************************************************************/
