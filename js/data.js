@@ -254,7 +254,8 @@ function initSaber(){
     initialServant(5,"Saber", "尼禄〔新娘〕", 90, "人", 11607, 14248, 12706, 15609, 1,2,0.7, "ArtsSingle2", 0, 0, "", 1, {npGainBuff: [35,45]}, {attackBuff: [30,40]}, {}, 25, {}, {}, {npGainBuff: [35,45]}, {attackBuff: [30,40]});
     initialServant(5,"Saber", "两仪式", 91, "人", 10721, 15453, 11736, 16929, 3,1,0.84, "ArtsAll2", 0, 0, "", 1, {cardBuff: [25,40]}, {attackBuff: [15,25]}, {}, [], {cardBuff: 6}, { ignoreDef: true, chargeNp: 10 });
     initialServant(5,"Saber", "两仪式SC", 91, "人", 10721, 15453, 11736, 16929, 3,1,0.84, "ArtsAll1", 0, 0, "", 1, {cardBuff: [25,40]}, {attackBuff: [15,25]}, {}, [], {cardBuff: 6}, { ignoreDef: true });
-    initialServant(5,"Saber", "宫本武藏", 153, "人", 12037, 13635, 13176, 14938, 1,1,0, "BusterSingle1", 20, 60, "OcNpStrength", 1.5, {}, {cardBuff: [30,50]});
+    initialServant(5,"Saber", "宫本武藏", 153, "人", 12037, 13635, 13176, 14938, 1,1,0, "BusterSingle2", 30, 90, "OcNpStrength", 1.5, {}, {cardBuff: [30,50]}, {}, [], {}, { specialAttack: 150 });
+    initialServant(5,"Saber", "宫本武藏SC", 153, "人", 12037, 13635, 13176, 14938, 1,1,0, "BusterSingle1", 20, 60, "OcNpStrength", 1.5, {}, {cardBuff: [30,50]});
     initialServant(5,"Saber", "亚瑟〔Prototype〕", 160, "地", 12465, 13975, 13645, 15310, 3,1,0, "BusterAll1", 10, 50, "OcNpStrength", 1.5, {cardBuff: [30,50]}, {}, {specialAttack: [50,100]});
     initialServant(5,"Saber", "齐格鲁德", 213, "地", 12465, 13975, 13645, 15310, 1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {}, {cardBuff: [30,50]}, {}, [], {damagePlus: 175});
     initialServant(5,"Saber", "红阎魔", 234, "地", 11607, 13960, 12706, 15294, 1,5,0.56, "ArtsSingle1", 40, 60, "SpecialAttackBuff", 1, {}, {defDecreaseAll: [10,20]}, {attackBuff: [10,20]}, [6,13,20,26], {cardBuff: 10}, {}, {defDecreaseAll: [10,20]}, {attackBuff: [10,20]});
@@ -364,7 +365,8 @@ function initLancer(){
     initialServant(4,"Lancer", "美杜莎SC", 146, "地", 8253, 13119, 9993, 15907, 1,8,0.44, "QuickSingle2", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {}, [2,5,8,11,13,16,19], {damagePlus: 250});
     initialServant(4,"Lancer", "源赖光", 181, "天", 9168, 12112, 11100, 14686, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {cardBuff: [20,40]}, {attackBuff: [10,20]}, [], {cardBuff: 6, damagePlus: 150}, { ignoreDef: true }, {}, {cardBuff: [20,40,1.5]}, {attackBuff: [10,20]});
     initialServant(4,"Lancer", "帕尔瓦蒂", 183, "天", 8127, 13253, 9840, 16069, 3,4,1.08, "BusterSingle1", 10, 30, "ChargeNp", 0.8, {cardBuff: [20,30], npGainBuff: [20,30]}, {attackBuff: [30,50]}, {}, [10,20,30], {damagePlus: 225});
-    initialServant(4,"Lancer", "哪吒", 193, "天", 9284, 12112, 11241, 14686, 3,1,0, "BusterAll1", 20, 60, "OcNpStrength", 1.5, {cardBuff: [10,20]});
+    initialServant(4,"Lancer", "哪吒", 193, "天", 9284, 12112, 11241, 14686, 3,1,0, "BusterAll2", 20, 60, "OcNpStrength", 1.5, {cardBuff: [10,20]});
+    initialServant(4,"Lancer", "哪吒SC", 193, "天", 9284, 12112, 11241, 14686, 3,1,0, "BusterAll1", 20, 60, "OcNpStrength", 1.5, {cardBuff: [10,20]});
     initialServant(4,"Lancer", "瓦尔基里", 214, "天", 8037, 14025, 9731, 17005, 3,7,0.86, "BusterSingle1", 0, 0, "", 0.8, {cardBuff: [20,30], npStrength: [10,20]}, {}, {chargeNp: [5,10]}, [3,7,10,14,17,21], {damagePlus: 200});
     initialServant(4,"Lancer", "茨木童子", 217, "地", 9133, 12354, 11058, 14979, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [10,20], npStrength: [20,30], npGainBuff: [20,30]}, {}, {}, [], {cardBuff: 4}, { ignoreDef: true }, {attackBuff: [10,20]});
     initialServant(4,"Lancer", "长尾景虎", 252, "人", 9617, 11360, 11644, 13774, 1,8,0.45, "ArtsSingle1", 0, 0, "", 1, {cardBuff: [20,30]}, {npGainBuff: [20,30]}, {attackBuff: [10,20]}, [2,5,8,11,13,16,19], {damagePlus: 150}, {}, {}, {}, {attackBuff: [10,20]});
@@ -451,7 +453,8 @@ function initCaster(){
     initialServant(4,"Caster", "爱丽丝菲尔", 111, "人", 8237, 12476, 9973, 15127, 0,0,0, "Null", 0, 0, "", 0, {}, {npGainBuff: [20,30]}, {}, [], {damagePlus: 200});
     initialServant(4,"Caster", "尼托克丽丝", 120, "地", 9060, 11288, 10970, 13686, 3,3,0.54, "ArtsAll2", 0, 0, "", 1, {}, {}, {}, [16,33], {cardBuff: 10, damagePlus: 175});
     initialServant(4,"Caster", "玛丽·安托瓦内特", 130, "人", 9060, 11404, 10970, 13827, 3,3,0.32, "ArtsAll1", 0, 0, "", 1, {attackBuff: [9.5,19.5]}, {}, {}, [16,33], {cardBuff: 10}, {}, {attackBuff: [9.5,19.5]});
-    initialServant(4,"Caster", "吉尔伽美什", 145, "人", 8460, 12005, 10243, 14556, 3,10,0.16, "ArtsAll1", 0, 0, "", 1, {}, {attackBuff: [10.5,21]}, {cardBuff: [20,30]}, [1,3,5,7,9,10,12,14,16], {cardBuff: 10, damagePlus: 175}, {}, {}, {attackBuff: [10.5,21]}, {cardBuff: [20,30,1]});
+    initialServant(4,"Caster", "吉尔伽美什", 145, "人", 8460, 12005, 10243, 14556, 3,10,0.16, "ArtsAll2", 0, 0, "", 1, {}, {attackBuff: [10.5,21]}, {cardBuff: [20,30]}, [1,3,5,7,9,10,12,14,16], {cardBuff: 10, damagePlus: 175}, {}, {}, {attackBuff: [10.5,21]}, {cardBuff: [20,30,1]});
+    initialServant(4,"Caster", "吉尔伽美什SC", 145, "人", 8460, 12005, 10243, 14556, 3,10,0.16, "ArtsAll1", 0, 0, "", 1, {}, {attackBuff: [10.5,21]}, {cardBuff: [20,30]}, [1,3,5,7,9,10,12,14,16], {cardBuff: 10, damagePlus: 175}, {}, {}, {attackBuff: [10.5,21]}, {cardBuff: [20,30,1]});
     initialServant(4,"Caster", "喀耳刻", 192, "天", 8671, 12250, 10499, 14853, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {}, {defDecreaseAll: [10,20]}, {}, [], {}, {}, {}, {defDecreaseAll: [10,20]});
     initialServant(4,"Caster", "示巴女王", 194, "人", 8629, 12127, 10448, 14704, 1,5,0.81, "ArtsSingle1", 0, 0, "", 1, {attackBuff: [8.9,17.8]}, {}, {cardBuff: [10,20]}, [6,13,20,26], {cardBuff: 6}, {}, {attackBuff: [8.9,17.8]}, {}, {cardBuff: [10,20,1,1.5]});
     initialServant(4,"Caster", "齐格", 208, "人", 8394, 11288, 10163, 13686, 3,3,0.78, "ArtsAll1", 20, 40, "DefDecrease", 1, {npGainBuff: [20,30]}, {cardBuff: [22,36]}, {specialAttack: [50,100]}, [16,33], {cardBuff: 6.5});
