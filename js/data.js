@@ -92,6 +92,7 @@ function loadLvs(){
 *    specialAttack：特攻buff
 *    damagePlus：固伤
 *    npGainBuff：黄金律
+*    randomNpGainBuff：概率黄金律
 *    chargeNp：缓充
 *    randomChargeNp：场地回复魔力（固定值）
 *    randomEffect：随机效果
@@ -101,6 +102,7 @@ function loadLvs(){
 *    damagePlus: 0(神性Debuff),
 *    chargeNp: 回复魔力
 *    npGainBuff: 黄金律
+*    npStrength: 宝威
 * @param {Object} npEffect 宝具副效果(oc特攻只能显示一种副效果，所以剩余其他的副效果存储到这个对象里)
 *    npStrength：宝具威力buff
 *    cardBuff：卡牌buff
@@ -330,6 +332,7 @@ function initArcher(){
     initialServant(4,"Archer", "刑部姬", 262, "地", 8895, 12476, 10770, 15127, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {attackBuff: [10,20]}, {cardBuff: [20,30]}, [], {damagePlus: 145}, {}, {}, {attackBuff: [10,20]});
     initialServant(4,"Archer", "灾星简", 269, "人", 8996, 12495, 10892, 15150, 1,5,0.71, "QuickSingle1", 10, 30, "CombinedDecrease", 0.8, {}, {attackBuff: [10,20]}, {}, [6,13,20,26], {cardBuff: 10}, {}, {}, {attackBuff: [10,20]});
     initialServant(4,"Archer", "南丁格尔〔圣诞〕", 271, "人", 9859, 11080, 11936, 13434, 3,6,0.6, "BusterSingle1", 0, 0, "", 0.8, {}, {npStrength: [20,30]}, {attackBuff: [10,20]}, [4,9,14,19,23], {}, {}, {}, {npStrength: [20,30]}, {attackBuff: [10,20]});
+    initialServant(4,"Archer", "伊莉雅丝菲尔", 286, "人", 10098, 10914, 12226, 13233, 3,5,0.63, "BusterSingle1", 10, 50, "OcCardBuff", 0.8, {cardBuff: [10,20]}, {npGainBuff: [20,30], attackBuff: [10,20]}, {}, [6,13,20,26], {chargeNp: 3}, {}, {}, {attackBuff: [10,20]});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Archer", "罗宾汉", 13, "人", 6715, 10187, 9088, 13812, 1,1,0.87, "ArtsSingle1", 200, 250, "NpSpecialAttack", 1, {}, {npGainBuff: [12,30]});
     initialServant(3,"Archer", "尤瑞艾莉", 15, "天", 7032, 9506, 9517, 12889, 1,1,0.9, "NpSpecialAttack", 0, 0, "", 1, {}, {}, {cardBuff: [20,30]}, [], {damagePlus: 300}, { npCoefficient: 1200 });
@@ -377,6 +380,7 @@ function initLancer(){
     initialServant(4,"Lancer", "谜之Alterego·Λ", 266, "地", 9261, 11749, 11213, 14246, 3,3,0.76, "ArtsAll1", 0, 0, "", 1, {cardBuff: [10,20]}, {}, {attackBuff: [30,50]}, [16,33], {damagePlus: 200}, { ignoreDef: true });
     initialServant(4,"Lancer", "凯妮斯", 279, "地", 9896, 11532, 11982, 13982, 3,1,0, "BusterAll1", 10, 30, "OcNpStrength", 1.5, {attackBuff: [20,40]}, {}, {}, [], {cardBuff: 12, damagePlus: 225});
     initialServant(4,"Lancer", "宇津见艾莉瑟", 283, "人", 9122, 9578, 11045, 11597, 3,3,0.63, "ArtsAll1", 0, 0, "", 1, {cardBuff: [20,30]}, {}, {specialAttack: [20,30]}, [16,33], {damagePlus: 100});
+    initialServant(4,"Lancer", "虞美人", 288, "地", 9896, 11245, 11982, 13634, 1,5,1.1, "QuickSingle1", 0, 0, "", 0.8, {npGainBuff: [20,20], randomNpGainBuff: [10,20]}, {}, {cardBuff: [10,20]}, [6,13,20,26,35], {}, { specialAttack: 150 });
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Lancer", "库·丘林", 17, "天", 7239, 9593, 9797, 13007, 1,1,1.07, "QuickSingle2", 0, 0, "", 0.8, {attackBuff: [20,20], randomAttackBuff: [30,30]}, {}, {}, [], {damagePlus: 175});
     initialServant(3,"Lancer", "库·丘林SC", 17, "天", 7239, 9593, 9797, 13007, 1,1,1.07, "QuickSingle2", 0, 0, "", 0.8, {}, {}, {}, [], {damagePlus: 175});
@@ -566,6 +570,7 @@ function initBerserker(){
     initialServant(4,"Berserker", "阿塔兰忒〔Alter〕", 202, "地", 9806, 10634, 11873, 12894, 1,5,1.05, "QuickSingle1", 0, 0, "", 0.8, {}, {cardBuff: [30,50]}, {}, [6,13,20,26], {}, {}, {}, {cardBuff: [30,50,0.8]});
     initialServant(4,"Berserker", "贞德〔Alter〕", 219, "人", 10298, 9922, 12469, 12030, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {npGainBuff: [20,30]}, {attackBuff: [10,20]}, {cardBuff: [10,20]}, [], {cardBuff: 12});
     initialServant(4,"Berserker", "鬼女红叶", 282, "地", 9177, 11250, 11111, 13640, 1,1,0, "BusterSingle1", 20, 40, "OcAttackBuff", 1.5, {}, {cardBuff: [20,30]}, {}, [], {cardBuff: 10});
+    initialServant(4,"Berserker", "布伦希尔德", 287, "天", 10197, 10023, 12346, 12153, 3,1,0, "BusterAll1", 20, 60, "OcCardBuff", 1.5, {}, {chargeNp: [10,20]}, {cardBuff: [20,30]}, [], {cardBuff: 3.5, damagePlus: 100}, {}, {}, {}, {cardBuff: [20,30,1,1.5]});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Berserker", "吕布奉先", 49, "人", 8119, 8302, 10988, 11256, 1,1,0, "BusterSingle1", 0, 0, "", 1.5, {attackBuff: [9,27]}, {}, {npStrength: [20,30]}, [], {cardBuff: 10}, { ignoreDef: true });
     initialServant(3,"Berserker", "大流士三世", 55, "人", 7608, 8763, 10297, 11881, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npGainBuff: [18,45]}, {}, {cardDecreaseAll: [20,20]}, [], {cardBuff: 8}, {}, {}, {}, {cardDecreaseAll: [20,20,1.5]});
@@ -617,6 +622,7 @@ function initExtra(){
     /******************************************5星********************************************************************/
     initialServant(5,"MoonCancer", "BB", 220, "地", 11182, 14812, 12240, 16227, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {}, {cardBuff: [10,20], npStrength: [30,50]}, {}, [], {damagePlus: 250});
     initialServant(5,"MoonCancer", "石像神", 244, "天", 9166, 17844, 10034, 19549, 3,3,0.35, "ArtsAll1", 0, 0, "", 1, {attackBuff: [10,20]}, {attackBuff: [20,30]}, {npGainBuff: [20,30]}, [16,33], {damagePlus: 175}, { defDecrease: 30 }, {attackBuff: [10,20]}, {}, {npGainBuff: [20,30]});
+    initialServant(5,"MoonCancer", "杀生院祈荒", 285, "地", 11128, 15336, 12181, 16801, 3,3,0.6, "ArtsAll1", 0, 0, "", 1, {npStrength: [20,20]}, {}, {defDecreaseAll: [10,20], cardDecreaseAll: [20,20]}, [16,33], {cardBuff: 12, npStrength: 12}, { accSpecialAttack: 20 }, {}, {}, {defDecreaseAll: [10,20], cardDecreaseAll: [20,20,1]});
     /******************************************4星********************************************************************/
     initialServant(4,"MoonCancer", "BB", 166, "人", 8197, 13643, 9925, 16542, 1,5,0.61, "ArtsSingle1", 0, 0, "", 1, {}, {}, {}, [6,13,20,26], {cardBuff: 10}, { chargeNp: 20 });
     //----------------------------------Alterego---------------------------------------------------------------------//

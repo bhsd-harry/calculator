@@ -681,7 +681,7 @@ function initialSupportList() {
     let nCount = 0;
     let serverValue = 0;
     servants.forEach(function(servant){
-	if(servant.support1 || servant.support2 || servant.support3) {
+	if(servant.Class == "Caster" && (servant.support1 || servant.support2 || servant.support3)) {
 	    if(server == -1) {
 	    	$("ddlSupport1").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
 	    	$("ddlSupport2").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
@@ -721,6 +721,48 @@ function initialSupportList() {
                 }
 	    }
 	}
+    });
+    servants.forEach(function(servant){ 
+        if(servant.Class != "Caster" && (servant.support1 || servant.support2 || servant.support3)) {
+            if(server == -1) {
+                $("ddlSupport1").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                $("ddlSupport2").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                $("ddlSupport3").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                $("ddlSupport4").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                $("ddlSupport5").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+            }
+            else {
+                switch(servant.name.slice(-2)) {
+                    case "SC":
+                        serverValue = 1;
+                        break;
+                    case "TC":
+                        serverValue = 2;
+                        break;
+                    case "EN":
+                        serverValue = 3;
+                        break;
+                    default:
+                        serverValue = 0;
+                }
+                if(serverValue <= server) {
+                    if(serverValue > 0) {
+                        $("ddlSupport1").remove(nCount);
+                        $("ddlSupport2").remove(nCount);
+                        $("ddlSupport3").remove(nCount);
+                        $("ddlSupport4").remove(nCount);
+                        $("ddlSupport5").remove(nCount);
+                        nCount--;
+                    }
+                    $("ddlSupport1").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                    $("ddlSupport2").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                    $("ddlSupport3").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                    $("ddlSupport4").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                    $("ddlSupport5").options.add(new Option(`[${servant.star}][${servant.Class}]${servant.name}`, servant.id));
+                    nCount++;
+                }
+            }
+        }
     })
 }
 function initialEffects() {
@@ -864,6 +906,7 @@ function initialEffects() {
 	$("txtCardBuff").basevalue = 0;
 	$("txtNpStrength").basevalue = 0;
 	$("txtDamagePlus").basevalue = 0;
+	$("txtNpSpecialAttack").basevalue = 100;
 	clearBuff();
     }
 }
@@ -909,8 +952,8 @@ function changeNpCoefficient() {
     let npEffect = servant.npEffect;
     let isNpRemainHpDamage = (npEffect && npEffect.npRemainHpDamage);
     if(npEffect && npEffect.npCoefficient) {
-	$("txtNpSpecialAttack").basevalue = servant.NP[$("ddlNpLevel").selectedIndex];
-        $("txtNpSpecialAttack").value = servant.NP[$("ddlNpLevel").selectedIndex];
+	$("txtNpSpecialAttack").basevalue = servant.NP[$("ddlNpLevel").selectedIndex] || 100;
+        $("txtNpSpecialAttack").value = servant.NP[$("ddlNpLevel").selectedIndex] || 100;
         return;
     }
     $("txtNpCoefficient").value = servant.NP[$("ddlNpLevel").selectedIndex];
@@ -956,15 +999,18 @@ function bindClassSkill(servant) {
     else {
 	$("txtNpCharge").basevalue = 0;
     }
+    if(ClassSkill && ClassSkill.npStrength) {
+        $("txtNpStrength").basevalue = ClassSkill.npStrength;
+    }
+    else {
+        $("txtNpStrength").basevalue = 0;
+    }
 }
 //宝具副效果补充
 function bindNpEffect(servant) {
     let npEffect = servant.npEffect;
     if (npEffect && npEffect.npStrength) {//单个数值，比如1001宝具的20%宝具威力buff
-        $("txtNpStrength").basevalue = npEffect.npStrength;
-    }
-    else {
-        $("txtNpStrength").basevalue = 0;
+        $("txtNpStrength").basevalue += npEffect.npStrength;
     }
     if (npEffect && npEffect.cardBuff) {//单个数值，比如剑兰宝具的30%蓝魔放buff
         $("txtCardBuff").basevalue += npEffect.cardBuff;
