@@ -260,7 +260,8 @@ function initSaber(){
     initialServant(5,"Saber", "宫本武藏", 153, "人", 12037, 13635, 13176, 14938, 1,1,0, "BusterSingle2", 30, 90, "OcNpStrength", 1.5, {}, {cardBuff: [30,50]}, {}, [], {}, { specialAttack: 150 });
     initialServant(5,"Saber", "宫本武藏SC", 153, "人", 12037, 13635, 13176, 14938, 1,1,0, "BusterSingle1", 20, 60, "OcNpStrength", 1.5, {}, {cardBuff: [30,50]});
     initialServant(5,"Saber", "亚瑟〔Prototype〕", 160, "地", 12465, 13975, 13645, 15310, 3,1,0, "BusterAll1", 10, 50, "OcNpStrength", 1.5, {cardBuff: [30,50]}, {}, {specialAttack: [50,100]});
-    initialServant(5,"Saber", "齐格鲁德", 213, "地", 12465, 13975, 13645, 15310, 1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {}, {cardBuff: [30,50]}, {}, [], {damagePlus: 175});
+    initialServant(5,"Saber", "齐格鲁德", 213, "地", 12465, 13975, 13645, 15310, 1,1,0, "BusterSingle2", 150, 200, "NpSpecialAttack", 1.5, {}, {cardBuff: [30,50]}, {}, [], {damagePlus: 175});
+    initialServant(5,"Saber", "齐格鲁德SC", 213, "地", 12465, 13975, 13645, 15310, 1,1,0, "BusterSingle1", 150, 200, "NpSpecialAttack", 1.5, {}, {cardBuff: [30,50]}, {}, [], {damagePlus: 175});
     initialServant(5,"Saber", "红阎魔", 234, "地", 11607, 13960, 12706, 15294, 1,5,0.56, "ArtsSingle1", 40, 60, "SpecialAttackBuff", 1, {}, {defDecreaseAll: [10,20]}, {attackBuff: [10,20]}, [6,13,20,26], {cardBuff: 10}, {}, {defDecreaseAll: [10,20]}, {attackBuff: [10,20]});
     initialServant(5,"Saber", "阿斯托尔福", 270, "地", 11694, 14248, 12801, 15609, 1,9,0.52, "QuickSingle1", 20, 40, "OcCardBuff", 0.8, {chargeNp: [10,20]}, {}, {attackBuff: [10,20]}, [2,4,6,8,11,13,15,17], {cardBuff: 10});
     initialServant(5,"Saber", "狄俄斯库里", 278, "天", 11840, 14824, 12961, 16240, 1,8,0.51, "ArtsSingle1", 0, 0, "", 1, {}, {npStrength: [10,15], attackBuff: [10,15]}, {cardBuff: [10,20]}, [2,5,8,11,13,16,19], {chargeNp: 3, damagePlus: 225, npGainBuff: 5}, { ignoreDef: true }, {}, {npStrength: [10,15], attackBuff: [10,15]});
