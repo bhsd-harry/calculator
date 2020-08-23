@@ -1877,23 +1877,14 @@
         resultMax = Math.floor(resultMax);
 
 	let npGain = getFloat("txtNpCharge") * 100;
-	if(!Math.fround) {
-	    Math.fround = (function() {
-		var temp = new Float32Array(1);
-		return function fround(x) {
-		    temp[0] = +x;
-		    return temp[0];
-		}
-	    })();
-	}
 	for(let i=1;i<=nTarget;i++){
-	    let npGainBase = Math.fround(Math.fround(baseNp * Math.fround(Math.fround(cardNpCoef) * Math.fround(1 + Math.fround(npGainBuff / 100)))) * Math.fround(1 + Math.fround((cardBuff - cardResist[i-1]) / 100)));
-	    let npGainNormal = Math.fround(Math.fround(npGainBase) * Math.fround(getFloat("ddlEnemyClass"+i)));
+	    let npGainBase = baseNp * cardNpCoef * (1 + npGainBuff / 100) * (1 + (cardBuff - cardResist[i-1]) / 100);
+	    let npGainNormal = npGainBase * getFloat("ddlEnemyClass"+i);
 	    if ($("ckIsUndying"+i).checked) {
-		npGainNormal = Math.fround(Math.fround(npGainNormal)*Math.fround(1.2));
+		npGainNormal *= 1.2;
 	    }
-	    npGainNormal = Math.floor(Math.fround(npGainNormal*2));
-	    let npGainOverkill = Math.floor(Math.fround(Math.fround(npGainNormal) * Math.fround(1.5)));
+	    npGainNormal = Math.floor(npGainNormal);
+	    let npGainOverkill = Math.floor(npGainNormal * 1.5);
 	    npGain += (npGainOverkill - npGainNormal) * overkill[i-1] + npGainNormal * nHits;
 	}
 
