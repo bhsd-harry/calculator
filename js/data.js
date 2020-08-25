@@ -285,6 +285,7 @@ function initSaber(){
     initialServant(4,"Saber", "兰陵王", 227, "人", 9112, 12625, 11033, 15308, 0,0,0, "Null", 0, 0, "", 0, {attackBuff: [10,20]}, {}, {}, [], {}, {}, {attackBuff: [10,20]}, {}, {cardBuff: [10,20,1]});
     initialServant(4,"Saber", "拉克西米", 245, "人", 9949, 11362, 12046, 13776, 3,4,1.01, "BusterSingle1", 0, 0, "", 0.8, {attackBuff: [10,20]}, {}, {}, [10,20,30], {cardBuff: 8, damagePlus: 200}, {}, {attackBuff: [10,20]});
     initialServant(4,"Saber", "葛饰北斋", 264, "人", 9389, 11873, 11368, 14396, 1,8,0.46, "ArtsSingle1", 30, 70, "OcNpStrength", 1, {}, {}, {cardBuff: [20,30]}, [2,5,8,11,13,16,19], {damagePlus: 100});
+    initialServant(4,"Saber", "巴御前", 290, "地", 9544, 12233, 11556, 14832, 3,3,0.55, "ArtsAll1", 0, 0, "", 1, {}, {cardBuff: [20,30]}, {}, [16,33], {}, { cardBuff: 20 });
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Saber", "恺撒", 7, "人", 7497, 9595, 10146, 13009, 1,10,1.1, "QuickSingle2", 0, 0, "", 0.8, {npStrength: [9,18]}, {attackBuff: [8,16]}, {}, [1,3,5,7,9,10,12,14,16], {cardBuff: 8, damagePlus: 150}, { accAttackBuff: 10 }, {npStrength: [9,18]}, {attackBuff: [8,16]});
     initialServant(3,"Saber", "恺撒SC", 7, "人", 7497, 9595, 10146, 13009, 1,10,1.1, "QuickSingle1", 0, 0, "", 0.8, {npStrength: [9,18]}, {attackBuff: [8,16]}, {}, [1,3,5,7,9,10,12,14,16], {cardBuff: 8, damagePlus: 150});
@@ -426,6 +427,7 @@ function initRider(){
     initialServant(4,"Rider", "伊什塔尔", 182, "天", 9603, 10692, 11627, 12964, 3,4,0.68, "BusterSingle1", 20, 60, "OcCardBuff", 0.8, {cardBuff: [10,20], npGainBuff: [10,20]}, {}, {npGainBuff: [30,50]}, [10,20,30], {cardBuff: 12, damagePlus: 225}, {}, {cardBuff: [10,20,0.8,1.5], npGainBuff: [10,20]});
     initialServant(4,"Rider", "坂本龙马", 211, "人", 8555, 11880, 10358, 14404, 1,4,0.56, "ArtsSingle1", 0, 0, "", 1, {attackBuff: [8.5,17]}, {}, {cardBuff: [10,20]}, [10,20,30], {damagePlus: 170}, {}, {attackBuff: [8.5,17]}, {}, {cardBuff: [10,20,1]});
     initialServant(4,"Rider", "卡米拉", 263, "地", 9651, 10476, 11685, 12702, 3,4,0.52, "BusterSingle1", 0, 0, "", 0.8, {}, {chargeNp: [15,25]}, {defDecreaseAll: [20,30]}, [10,20,30], {}, {}, {}, {chargeNp: [15,25]}, {defDecreaseAll: [20,30]});
+    initialServant(4,"Rider", "紫式部", 291, "人", 8730, 11880, 10570, 14404, 1,3,0.53, "ArtsSingle1", 0, 0, "", 1, {defDecreaseSingle: [20,30]}, {cardDecreaseSingle: [20,30]}, {chargeNp: [10,20]}, [16,33], {}, {}, {defDecreaseSingle: [20,30]}, {cardDecreaseSingle: [20,30,1]});
     /******************************************3星及以下********************************************************************/
     initialServant(3,"Rider", "美杜莎", 23, "地", 7200, 8937, 9744, 12117, 3,1,0.58, "BusterSingle2", 0, 0, "", 0.8, {}, {attackBuff: [10,30]}, {npGainBuff: [20,30]}, [], {cardBuff: 11, damagePlus: 95});
     initialServant(3,"Rider", "布狄卡", 26, "人", 6289, 10130, 8511, 13735, 0,0,0, "Null", 0, 0, "", 0, {specialAttack: [40,60]}, {}, {}, [], {}, {}, {specialAttack: [40,60]}, {}, {cardBuff: [10,20,1]});
@@ -645,6 +647,7 @@ function initExtra(){
     initialServant(5,"Foreigner", "葛饰北斋", 198, "人", 12100, 13230, 13245, 14494, 3,5,0.33, "ArtsAll1", 150, 200, "NpSpecialAttack", 1, {}, {cardBuff: [20,30]}, {accDefDecrease: [10,20]}, [6,13,20,26], {cardBuff: 4, damagePlus: 175});
     initialServant(5,"Foreigner", "杨贵妃", 275, "人", 12342, 13365, 13510, 14642, 1,4,0.51, "ArtsSingle1", 150, 200, "NpSpecialAttack", 1, {chargeNp: [10,10]}, {defDecreaseAll: [10,20]}, {accDefDecrease: [10,10]}, [10,20,30], {damagePlus: 175}, {}, {}, {defDecreaseAll: [10,20]});
     initialServant(5,"Foreigner", "旅行者", 281, "星", 10450, 15592, 11439, 17082, 3,5,0.56, "BusterSingle1", 20, 40, "OcNpStrength", 0.8, {}, {cardBuff: [10,20], cardDecreaseSingle: [10,20]}, {}, [6,13,20,26,35], {}, { specialAttack: 150, chargeNp: 20 }, {}, {cardDecreaseSingle: [10,20,0.8]});
+    initialServant(5,"Foreigner", "阿比盖尔·威廉姆斯〔夏〕", 289, "地", 11781, 14250, 12896, 15611, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {defDecreaseSingle: [30,50]}, {defDecreaseAll: [10,20]}, {cardDecreaseSingle: [20,30]}, [], {cardBuff: 9, damagePlus: 185}, { nullifyDef: true }, {defDecreaseSingle: [30,50]}, {defDecreaseAll: [10,20]}, {cardDecreaseSingle: [20,30,1.5]});
     /******************************************4星********************************************************************/
     initialServant(4,"Foreigner", "谜之女主角XX", 222, "星", 9751, 11250, 11806, 13640, 1,4,0.64, "ArtsSingle1", 20, 60, "OcAttackBuff", 1, {attackBuff: [30,50]}, {}, {specialAttack: [30,50]}, [10,20,30]);
 }
