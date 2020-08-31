@@ -362,6 +362,7 @@
                         <option value="35-13">华美的新年</option>
                         <option value="50-14">迦勒底队长</option>
 			<option value="0-15">第五元素</option>
+			<option value="20-16">迦勒底开拓者</option>
                     </select>
                 </td>
                 <td>敌人1阵营</td>
@@ -1773,6 +1774,7 @@
         npStrength += getInt("ddlMysticCode");
 	switch($("ddlMysticCode").selectedIndex) {
 	    case 1:
+	    case 10:
 		attackBuff += 30;
 		break;
 	    case 2:
@@ -1792,6 +1794,7 @@
                 }
                 break;
 	    case 6:
+	    case 16:
 		if(cardColor == 0.8) {
                     cardBuff += 30;
                 }
@@ -1802,6 +1805,7 @@
                 }
                 break;
             case 8:
+	    case 12:
                 if(cardColor == 1) {
                     cardBuff += 30;
                 }
@@ -1809,16 +1813,8 @@
 	    case 9:
 		attackBuff += 20;
 		break;
-	    case 10:
-		attackBuff += 30;
-		break;
 	    case 11:
 		attackBuff += 40;
-		break;
-	    case 12:
-		if(cardColor == 1) {
-                    cardBuff += 30;
-                }
 		break;
 	    case 15:
 		npGainBuff += 40;
