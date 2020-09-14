@@ -480,7 +480,8 @@ function initCaster(){
     initialServant(3,"Caster", "帕拉塞尔苏斯", 79, "人", 6711, 9506, 9082, 12889, 3,3,0.55, "BusterAll2", 0, 0, "", 1, {}, {cardBuff: [10,20]}, {npGainBuff: [30,50]}, [16,33], {cardBuff: 10}, {}, {}, {cardBuff: [10,20,1]}, {npGainBuff: [30,50]});
     initialServant(3,"Caster", "巴贝奇", 80, "人", 5996, 10887, 8115, 14761, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {npGainBuff: [20,30]}, {attackBuff: [20,40]}, {npStrength: [15,25]});
     initialServant(3,"Caster", "杰罗尼莫", 104, "人", 6857, 9123, 9280, 12369, 3,1,0.9, "ArtsAll2", 0, 0, "", 1, {}, {cardBuff: [30,50]}, {}, [], {cardBuff: 8});
-    initialServant(3,"Caster", "阿维斯布隆", 203, "人", 6376, 9981, 8629, 13533, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,30]});
+    initialServant(3,"Caster", "阿维斯布隆", 203, "人", 6376, 9981, 8629, 13533, 3,1,0, "BusterAll2", 20, 40, "OcNpStrength", 1.5, {cardBuff: [20,30]});
+    initialServant(3,"Caster", "阿维斯布隆SC", 203, "人", 6376, 9981, 8629, 13533, 3,1,0, "BusterAll1", 0, 0, "", 1.5, {cardBuff: [20,30]});
     initialServant(3,"Caster", "阿斯克勒庇俄斯", 249, "地", 6376, 10084, 8629, 13672, 0,0,0, "Null", 0, 0, "", 0, {}, {npGainBuff: [20,30]}, {}, [], {}, {}, {}, {npGainBuff: [20,30]});
     initialServant(2,"Caster", "安徒生", 33, "人", 5758, 8484, 8344, 12244, 0,0,0, "Null", 0, 0, "", 0, {}, {}, {chargeNp: [5,10]}, [], {}, {}, {}, {}, {chargeNp: [5,10]});
     initialServant(2,"Caster", "莎士比亚", 34, "人", 5798, 8080, 8402, 11661, 3,1,0, "BusterAll2", 0, 0, "", 1.5, {cardBuff: [20,40]}, {}, {}, [], {}, {}, {cardBuff: [20,40,1.5]});
